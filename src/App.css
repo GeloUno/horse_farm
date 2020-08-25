@@ -296,15 +296,16 @@ body {
 
 .carousel {
   position: relative;
+  top: -180px;
+  left: 315px;
   display: flex;
   align-items: flex-end;
-
+  transform: scale(.45);
 }
 
 .btn-carousel {
   margin: 1px;
-  width: 1rem;
-  height: 4rem;
-  background: #000;
-  transform: scale(.5);
+  height: 6rem;
+  transform: scale(1);
+  background: var(--background-color-brown);
 }

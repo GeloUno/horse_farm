@@ -60,6 +60,11 @@ const nextPage = (numberPage) => {
   }
 };
 
+const equalsPageNumberReturnOpacity = (pageNumber, buttonNumber) => {
+  // eslint-disable-next-line eqeqeq
+  return buttonNumber == pageNumber ? { opacity: '1' } : { opacity: '.15' };
+};
+
 export const Attractions = () => {
   const [attraction, setAttraction] = useState(dataAtractions[1]);
   return (
@@ -102,12 +107,16 @@ export const Attractions = () => {
           </article>
         </div>
         <div className="carousel">
-          {Object.keys(dataAtractions).map((keyData) => {
+          {Object.keys(dataAtractions).map((buttonNumber) => {
             return (
               <button
-                key={keyData}
+                key={buttonNumber}
                 className="btn btn-carousel clip-path"
-                onClick={() => setAttraction(dataAtractions[keyData])}
+                onClick={() => setAttraction(dataAtractions[buttonNumber])}
+                style={equalsPageNumberReturnOpacity(
+                  attraction.page,
+                  buttonNumber
+                )}
               ></button>
             );
           })}
