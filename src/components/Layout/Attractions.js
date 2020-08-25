@@ -34,7 +34,7 @@ const dataAtractions = {
     page: 3,
   },
   4: {
-    titleRegular: 'Razem w ',
+    titleRegular: 'Razem w',
     titleBold: 'Teren',
     description:
       'jeśli pod okiem instruktora zdobędziesz odpowiednie doświadczenie ruszymy na jazdę konną w teren po malowniczym krajobrazie Lubelszczyzny',
@@ -63,15 +63,17 @@ const nextPage = (numberPage) => {
 export const Attractions = () => {
   const [attraction, setAttraction] = useState(dataAtractions[1]);
   return (
-    <section className="contaniner">
-      <div className="leftSectionAtraction">
+    <div className="contaniner">
+      <section className="left-section-attraction">
         <article className="article">
-          <div className="titleAttraction">
-            <h2 className="titleRegular">{attraction.titleRegular}</h2>
-            <h2 className="titleBold">{' ' + attraction.titleBold}</h2>
-          </div>
+          <header className="title-attraction">
+            <h2 className="title-regular">
+              {attraction.titleRegular}
+              <strong className="title-bold">{attraction.titleBold}</strong>
+            </h2>
+          </header>
           <div>
-            <h3 className="description">{attraction.description}</h3>
+            <p className="description-attraction">{attraction.description}</p>
 
             <button
               className="btn btn-green"
@@ -85,22 +87,33 @@ export const Attractions = () => {
             </button>
           </div>
           <div>
-            <div className="backgroundText">{attraction.backgroundText}</div>
+            <p className="background-text">{attraction.backgroundText}</p>
           </div>
         </article>
-      </div>
-      <div className="rightSectionAtraction">
-        <div className="imageAtraction">
-          <div className="parrent">
-            <div className="test-article">
-              {console.log('att', attraction)}
-              <img className="image-test" src={attraction.image} alt="" />
-            </div>
-          </div>
+      </section>
+      <section className="right-section-attraction">
+        <div className="parent-image-attraction">
+          <article className="image-article clip-path">
+            <img
+              className="image-attraction"
+              src={attraction.image}
+              alt="nauka jazdy konnej"
+            />
+          </article>
         </div>
-        <div className="slider"></div>
-      </div>
-    </section>
+        <div className="carousel">
+          {Object.keys(dataAtractions).map((keyData) => {
+            return (
+              <button
+                key={keyData}
+                className="btn btn-carousel clip-path"
+                onClick={() => setAttraction(dataAtractions[keyData])}
+              ></button>
+            );
+          })}
+        </div>
+      </section>
+    </div>
   );
 };
 

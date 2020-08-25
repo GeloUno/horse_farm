@@ -20,7 +20,7 @@ body {
   font-weight: 500;
 }
 
-/* header */
+/* Header */
 
 .image-header {
   height: 50rem;
@@ -146,12 +146,12 @@ body {
 
 /* Title Section*/
 
-.titleSection {
+.title-section {
   display: block;
   padding: 1rem 0;
 }
 
-.titleText {
+.title-text {
   font-size: 2.75rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -160,17 +160,17 @@ body {
   text-align: center;
 }
 
-/*  Attraction Section */
+/*  Attraction Section Left*/
 
 .contaniner {
   display: flex;
   flex-direction: row;
-  height: 67rem;
+  height: 45rem;
   background: #fff;
   margin: 0 7.5rem;
 }
 
-.leftSectionAtraction {
+.left-section-attraction {
   display: flex;
   width: 50%;
   height: 100%;
@@ -182,13 +182,7 @@ body {
   justify-content: space-between;
 }
 
-.rightSectionAtraction {
-  display: flex;
-  width: 50%;
-  /* background: green; */
-}
-
-.titleAttraction {
+.title-attraction {
   display: flex;
   flex-direction: row;
   font-size: 3.75rem;
@@ -197,40 +191,41 @@ body {
   margin-bottom: 3.25rem;
 }
 
-.titleRegular {
+.title-regular {
   margin: 0;
   font-weight: normal;
   padding-right: 1rem;
 }
 
-.titleBold {
+.title-bold {
+  padding-left: 1rem;
   font-weight: bold;
   margin: 0;
   color: var(--primary-color-green);
   text-transform: uppercase;
 }
 
-.description {
+.description-attraction {
   height: 2rem;
+  font-size: 1.2rem;
   margin: 1.25rem 15rem 3.875rem 4rem;
   font-weight: normal;
 }
 
-.backgroundText {
-  /* position: static; */
+.background-text {
+  margin: 0;
   font-size: 16.875rem;
   text-transform: uppercase;
   font-weight: bold;
   color: var(--background-color-brown);
   opacity: 15%;
-  /* bottom: 1rem; */
   z-index: 0;
+  line-height: 120%;
 }
 
-/* Button */
+/* Button  */
 .btn {
   height: 3.125rem;
-  /* width: 9.375rem; */
   text-transform: uppercase;
   border: none;
   font-size: 1.25rem;
@@ -246,7 +241,6 @@ body {
 .btn:focus {
   outline: 0 !important;
 }
-
 
 .btn:hover {
   border: none;
@@ -269,53 +263,48 @@ body {
   margin-top: 3.25rem;
 }
 
+/*  Attraction Section Right */
 
+.right-section-attraction {
+  display: flex;
+  width: 50%;
+  flex-direction: column;
 
-/* TEST SWOH IMAGE IN  */
-
-
-.poligon-image {
-  width: 500px;
-  height: 500px;
-  /* background: red;
-  clip-path: polygon(40% 0%, 100% 0%, 60% 100%, 0% 100%);
-  filter: drop-shadow(0 15px 30px rgba(0, 0, 200, 0.5)); */
 }
 
-.image {
-  width: 774px;
-  height: 792px;
-  /* background: red;
-  object-fit: cover;
-  object-position: 100% 10%;
-  transform: scale(1.2);
-  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.35); */
-}
-
-/* box-shadow: 10px 20px 10px 5px rgba(0, 0, 0, 0.40); */
-
-.parrent {
+.parent-image-attraction {
   filter: drop-shadow(20px 20px 20px rgba(0, 0, 0, 0.4));
 }
 
-.test-article {
+.image-article {
   position: relative;
+  top: -3.2rem;
   width: 800px;
   height: 800px;
-  /* object-position: 100% 10%; */
-  /* top: -200px;
-  left: 400px; */
-  /* background: brown; */
-  clip-path: polygon(35% 0%, 100% 0%, 65% 100%, 0% 100%);
-  margin-bottom: 300px;
+  /* clip-path: polygon(35% 0%, 100% 0%, 65% 100%, 0% 100%); */
+  transform: scale(0.85);
 }
 
-.image-test {
-  border: 2px solid white;
-  /* position: relative;
-  bottom: 100px;
-  left: -400px; */
-  /* transform: scale(1.3); */
+.clip-path {
+  clip-path: polygon(35% 0%, 100% 0%, 65% 100%, 0% 100%);
+}
+
+/* .image-attraction {
   object-fit: cover;
   object-position: 100% 100%;
+} */
+
+.carousel {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+
+}
+
+.btn-carousel {
+  margin: 1px;
+  width: 1rem;
+  height: 4rem;
+  background: #000;
+  transform: scale(.5);
 }

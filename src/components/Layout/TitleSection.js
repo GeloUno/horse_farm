@@ -2,8 +2,8 @@ import React from 'react';
 
 const TitleSection = ({ title }) => {
   return (
-    <div className="titleSection">
-      <h2 className="titleText">{title}</h2>
+    <div className="title-section">
+      <h2 className="title-text">{title}</h2>
     </div>
   );
 };
