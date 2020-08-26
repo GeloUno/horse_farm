@@ -4,6 +4,7 @@ import Header from './components/Layout/Header';
 import { NavBar } from './components/Layout/NavBar';
 import Attractions from './components/Layout/Attractions';
 import TitleSection from './components/Layout/TitleSection';
+import Opinions from './components/Layout/Opinions';
 
 function App() {
   return (
@@ -12,6 +13,8 @@ function App() {
       <Header />
       <TitleSection title="Atrakcje" />
       <Attractions />
+      <TitleSection title="Opinia" />
+      <Opinions opinion={true} />
     </div>
   );
 }
