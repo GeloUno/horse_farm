@@ -82,7 +82,7 @@ const getRandomDataNoRepeat = (dataArray, lengthArrayBack) => {
 
 export const Opinions = () => {
   let randomOpinions = null;
-  randomOpinions = getRandomDataNoRepeat(dataOpinions, 3);
+  randomOpinions = getRandomDataNoRepeat(dataOpinions, 4);
   return (
     <section className="contaniner flex-direction-col">
       <header className="title-header">

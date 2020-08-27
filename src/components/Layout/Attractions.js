@@ -106,7 +106,7 @@ export const Attractions = () => {
             />
           </article>
         </div>
-        <div className="carousel">
+        <div className="carousel-buttons">
           {Object.keys(dataAtractions).map((buttonNumber) => {
             return (
               <button
