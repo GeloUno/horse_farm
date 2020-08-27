@@ -3,9 +3,7 @@
 :root {
   font-size: 100%;
   font-style: 16px;
-  font-family: 'Montserrat',
-    sans-serif;
-  /* what it is */
+  font-family: 'Montserrat', sans-serif;
   line-height: 1.5;
   --primary-color-green: #6A8F4D;
   --second-color-green: #807B32;
@@ -167,12 +165,13 @@ body {
   flex-direction: row;
   height: 45rem;
   background: #fff;
-  margin: 0 7.5rem;
+  margin: 0 10rem;
+  position: relative;
 }
 
 .left-section-attraction {
   display: flex;
-  width: 50%;
+  max-width: 50%;
   height: 100%;
   background: #fff;
   align-items: stretch;
@@ -180,9 +179,10 @@ body {
 
 .article {
   justify-content: space-between;
+  /* max-width: 60%; */
 }
 
-.title-attraction {
+.title-header {
   display: flex;
   flex-direction: row;
   font-size: 3.75rem;
@@ -205,10 +205,14 @@ body {
   text-transform: uppercase;
 }
 
+.article div {
+  width: 50rem;
+}
+
 .description-attraction {
   height: 2rem;
   font-size: 1.2rem;
-  margin: 1.25rem 15rem 3.875rem 4rem;
+  margin: 1.25rem 15rem 3.875rem 04rem;
   font-weight: normal;
 }
 
@@ -224,6 +228,7 @@ body {
 }
 
 /* Button  */
+
 .btn {
   height: 3.125rem;
   text-transform: uppercase;
@@ -266,14 +271,18 @@ body {
 /*  Attraction Section Right */
 
 .right-section-attraction {
+  position: absolute;
   display: flex;
-  width: 50%;
+  right: 0%;
+  width: 800px;
   flex-direction: column;
+  z-index: 1;
 
 }
 
 .parent-image-attraction {
   filter: drop-shadow(20px 20px 20px rgba(0, 0, 0, 0.4));
+
 }
 
 .image-article {
@@ -281,8 +290,8 @@ body {
   top: -3.2rem;
   width: 800px;
   height: 800px;
-  /* clip-path: polygon(35% 0%, 100% 0%, 65% 100%, 0% 100%); */
   transform: scale(0.85);
+  z-index: 1;
 }
 
 .clip-path {
@@ -295,9 +304,9 @@ body {
 } */
 
 .carousel {
-  position: relative;
-  top: -180px;
-  left: 315px;
+  position: absolute;
+  bottom: 82px;
+  right: -80px;
   display: flex;
   align-items: flex-end;
   transform: scale(.45);
@@ -308,4 +317,45 @@ body {
   height: 6rem;
   transform: scale(1);
   background: var(--background-color-brown);
+}
+
+/* Opinions */
+
+.flex-direction-col {
+  flex-direction: column;
+}
+
+.flex-direction-row {
+  flex-direction: row;
+}
+
+.opinios-body {
+  display: flex;
+}
+
+.article-body {
+  width: 25%;
+}
+
+.image-user {
+  width: 128px;
+  height: 128px;
+  clip-path: circle(50% at 50% 50%);
+}
+
+.nick-user h2 {
+  font-size: 2.5rem;
+  color: var(--background-color-brown);
+
+}
+
+.description p {
+  font-size: 1.5rem;
+  font-style: italic;
+  font-weight: normal;
+  margin-right: 5rem;
+}
+
+.contact-link {
+  color: var(--primary-color-green);
 }

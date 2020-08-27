@@ -71,7 +71,7 @@ export const Attractions = () => {
     <div className="contaniner">
       <section className="left-section-attraction">
         <article className="article">
-          <header className="title-attraction">
+          <header className="title-header">
             <h2 className="title-regular">
               {attraction.titleRegular}
               <strong className="title-bold">{attraction.titleBold}</strong>
