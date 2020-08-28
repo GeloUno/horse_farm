@@ -69,7 +69,7 @@ export const Attractions = () => {
   const [attraction, setAttraction] = useState(dataAtractions[1]);
   return (
     <div className="contaniner">
-      <section className="left-section-attraction">
+      <section className="body-section">
         <article className="article">
           <header className="title-header">
             <h2 className="title-regular">

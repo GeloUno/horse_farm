@@ -5,6 +5,8 @@ import { NavBar } from './components/Layout/NavBar';
 import Attractions from './components/Layout/Attractions';
 import TitleSection from './components/Layout/TitleSection';
 import Opinions from './components/Layout/Opinions';
+import Contact from './components/Layout/Contact';
+import Footer from './components/Layout/Footer';
 
 function App() {
   return (
@@ -15,6 +17,9 @@ function App() {
       <Attractions />
       <TitleSection title="Opinia" />
       <Opinions opinion={true} />
+      <TitleSection title="kontakt" />
+      <Contact />
+      <Footer />
     </div>
   );
 }

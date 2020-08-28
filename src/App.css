@@ -7,7 +7,8 @@
   line-height: 1.5;
   --primary-color-green: #6A8F4D;
   --second-color-green: #807B32;
-  --background-color-brown: #7A4826;
+  --first-color-brown: #7A4826;
+  --second-color-brown: #BDA493;
 }
 
 body {
@@ -169,8 +170,8 @@ body {
   position: relative;
 }
 
-
-.left-section-attraction {
+/* left section */
+.body-section {
   display: flex;
   max-width: 50%;
   height: 100%;
@@ -212,7 +213,7 @@ body {
 
 .description-attraction {
   height: 2rem;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   margin: 1.25rem 15rem 3.875rem 04rem;
   font-weight: normal;
 }
@@ -222,7 +223,7 @@ body {
   font-size: 16.875rem;
   text-transform: uppercase;
   font-weight: bold;
-  color: var(--background-color-brown);
+  color: var(--first-color-brown);
   opacity: 15%;
   z-index: 0;
   line-height: 120%;
@@ -290,8 +291,8 @@ body {
 .image-attraction {
   position: relative;
   /* top: -3.2rem; */
-  width: 680px;
-  height: 680px;
+  width: 42.5rem;
+  height: 42.5rem;
   object-fit: contain;
   object-position: 0% 0%;
   /* transform: scale(0.85); */
@@ -320,7 +321,7 @@ body {
   margin: 1px;
   height: 6rem;
   transform: scale(1);
-  background: var(--background-color-brown);
+  background: var(--first-color-brown);
 }
 
 /* Opinions */
@@ -350,8 +351,7 @@ body {
 
 .nick-user h2 {
   font-size: 2.5rem;
-  color: var(--background-color-brown);
-
+  color: var(--first-color-brown);
 }
 
 .description p {
@@ -363,4 +363,54 @@ body {
 
 .contact-link {
   color: var(--primary-color-green);
+}
+
+/* CONTACT SECTION */
+.contact-section {
+  flex-direction: column;
+  width: 50%;
+  align-items: center;
+}
+
+.contact-section div {
+  text-align: center;
+}
+
+.contact-section div h2 {
+  font-size: 3.125rem;
+}
+
+.contact-section div p,
+address,
+address a {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #000;
+  opacity: 0.75;
+  text-decoration: none;
+  font-style: normal;
+}
+
+.contact-section div p a {
+  color: var(--primary-color-green);
+  text-decoration: none;
+  opacity: 100%;
+}
+
+.contact-section div span {
+  color: var(--second-color-brown);
+}
+
+
+.contact-section div i {
+  font-size: 6.25rem;
+  color: var(--first-color-brown);
+}
+
+.socialMedia {
+  display: flex;
+  margin-top: 3rem;
+  margin-bottom: 6rem;
+  width: 60%;
+  justify-content: space-around;
 }
