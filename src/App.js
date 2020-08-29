@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Header from './components/Layout/Header';
 import { NavBar } from './components/Layout/NavBar';
@@ -7,11 +7,23 @@ import TitleSection from './components/Layout/TitleSection';
 import Opinions from './components/Layout/Opinions';
 import Contact from './components/Layout/Contact';
 import Footer from './components/Layout/Footer';
+import SideBar from './components/Layout/SideBar';
 
 function App() {
+  const [sideBarShow, setSideBarShow] = useState(false);
+
+  const sideBarToggle = (e) => {
+    e.preventDefault();
+    if (!e.target.classList.contains('sideBarBody')) {
+      setSideBarShow(!sideBarShow);
+      console.log('TEST 2');
+    }
+  };
+
   return (
     <div className="App">
-      <NavBar />
+      <NavBar sideBarToggle={sideBarToggle} />
+      {sideBarShow && <SideBar sideBarToggle={sideBarToggle} />}
       <Header />
       <TitleSection title="Atrakcje" />
       <Attractions />

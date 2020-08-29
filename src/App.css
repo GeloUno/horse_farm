@@ -101,9 +101,12 @@ body {
   height: 60px;
   padding: 0px 0px 0px 0px;
   position: fixed;
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.60);
   color: rgba(255, 255, 255, 1.0);
   z-index: 10;
+  backdrop-filter: blur(7px)
+    /*saturate(90%) */
+  ;
 }
 
 .menu-right {
@@ -141,6 +144,32 @@ body {
 
 .navbar ul li h2 a i {
   letter-spacing: .5rem;
+}
+
+/* Side Bar */
+
+.sideBarBackground {
+  position: fixed;
+  background: rgba(0, 0, 0, .4);
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  backdrop-filter: blur(10px) saturate(25%);
+}
+
+.sideBarBody {
+  position: fixed;
+  background: #fff;
+  height: 100%;
+  width: 20%;
+}
+
+.sideBarBody i {
+  display: block;
+  text-align: end;
+  margin: 25px 30px auto auto;
+  font-size: 2rem;
+  cursor: pointer;
 }
 
 /* Title Section*/

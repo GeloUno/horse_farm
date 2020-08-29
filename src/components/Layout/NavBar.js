@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import '../../App.css';
 
-export const NavBar = () => {
+export const NavBar = ({ sideBarToggle }) => {
   const isAutrenticeted = true;
 
   const guestLinks = (
@@ -83,7 +83,7 @@ export const NavBar = () => {
       <ul className="menu-left">
         <li>
           <h2>
-            <a href="/">
+            <a href="/" onClick={(e) => sideBarToggle(e)}>
               <i className="fas fa-bars"></i>
             </a>
           </h2>

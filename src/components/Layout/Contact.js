@@ -17,6 +17,7 @@ const Contact = () => {
             <a
               href="https://maps.google.com/maps?q=polska+belzyce+mikolaja+kopernika+165a"
               target="_blank"
+              rel="noopener noreferrer"
             >
               24-200 Bełżyce
             </a>
@@ -25,16 +26,18 @@ const Contact = () => {
             <a
               href="https://maps.google.com/maps?q=polska+belzyce+mikolaja+kopernika+165a"
               target="_blank"
+              rel="noopener noreferrer"
             >
               Mikołaja Kopernika 165A
             </a>
           </address>
         </div>
         <div className="socialMedia">
-          <i className="fab fa-facebook-square"></i>
+          <i className="fab fa-whatsapp-square"></i>
           <a
             href="https://maps.google.com/maps?q=polska+belzyce+mikolaja+kopernika+165a"
             target="_blank"
+            rel="noopener noreferrer"
           >
             <i className="fas fa-map-marker-alt"></i>
           </a>
