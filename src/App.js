@@ -7,7 +7,7 @@ import TitleSection from './components/Layout/TitleSection';
 import Opinions from './components/Layout/Opinions';
 import Contact from './components/Layout/Contact';
 import Footer from './components/Layout/Footer';
-import SideBar from './components/Layout/SideBar';
+import SideBar from './components/Users/SideBar';
 
 function App() {
   const [sideBarShow, setSideBarShow] = useState(false);

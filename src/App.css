@@ -146,7 +146,7 @@ body {
   letter-spacing: .5rem;
 }
 
-/* Side Bar */
+/* SIDE BARNAV */
 
 .sideBarBackground {
   position: fixed;
@@ -159,18 +159,80 @@ body {
 
 .sideBarBody {
   position: fixed;
+  display: flex;
+  flex-direction: column;
   background: #fff;
   height: 100%;
   width: 20%;
+  align-items: center;
 }
 
 .sideBarBody i {
   display: block;
   text-align: end;
-  margin: 25px 30px auto auto;
+  margin: 25px 30px 0px auto;
   font-size: 2rem;
   cursor: pointer;
 }
+
+.userSideBar {
+  clip-path: circle(50% at 50% 50%);
+}
+
+.photoUser {
+  border-radius: 50%;
+  border: solid 10px #fff;
+  /* clip-path: circle(50% at 50% 50%); */
+  width: 12rem;
+  height: 12rem;
+}
+
+.userNickAndPoints {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.userNickAndPoints strong {
+  font-size: 1.25rem;
+}
+
+.linksSideNavBar ul,
+.logOut ul {
+  padding: 0rem;
+
+}
+
+.linksSideNavBar ul li,
+.logOut ul li {
+  list-style: none;
+}
+
+.linksSideNavBar ul li h2 a,
+.logOut ul li h2 a {
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+  color: var(--first-color-brown);
+  padding-left: 2rem;
+}
+
+.linksSideNavBar,
+.logOut {
+  width: 100%;
+}
+
+.logOut ul li h2 a {
+  color: #fff;
+  background: var(--first-color-brown);
+  box-sizing: border-box;
+  padding: 10px;
+  width: 100%;
+  /* margin-left: -9vw;
+  margin-right: -9vw; */
+}
+
+
 
 /* Title Section*/
 
