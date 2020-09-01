@@ -3,7 +3,7 @@ import React from 'react';
 const SideBar = ({ sideBarToggle }) => {
   return (
     <div
-      className="sideBarBackground"
+      className="modalBackground"
       onClick={(e) => {
         sideBarToggle(e);
       }}

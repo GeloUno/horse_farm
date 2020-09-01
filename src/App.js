@@ -16,7 +16,6 @@ function App() {
     e.preventDefault();
     if (!e.target.classList.contains('sideBarBody')) {
       setSideBarShow(!sideBarShow);
-      console.log('TEST 2');
     }
   };
 

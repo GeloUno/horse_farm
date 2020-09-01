@@ -148,7 +148,7 @@ body {
 
 /* SIDE BARNAV */
 
-.sideBarBackground {
+.modalBackground {
   position: fixed;
   background: rgba(0, 0, 0, .4);
   width: 100%;
@@ -161,16 +161,17 @@ body {
   position: fixed;
   display: flex;
   flex-direction: column;
-  background: #fff;
+  color: #707070;
   height: 100%;
   width: 20%;
   align-items: center;
+  background-color: #D6D4D3;
 }
 
 .sideBarBody i {
   display: block;
   text-align: end;
-  margin: 25px 30px 0px auto;
+  margin: 1.5625rem 1.875rem 0px auto;
   font-size: 2rem;
   cursor: pointer;
 }
@@ -214,8 +215,12 @@ body {
   display: block;
   cursor: pointer;
   color: var(--first-color-brown);
-  padding-left: 2rem;
+  background-color: #fff;
+  padding: 0.625rem;
+  padding-left: 20%;
 }
+
+.logOut ul li h2 a {}
 
 .linksSideNavBar,
 .logOut {
@@ -224,12 +229,13 @@ body {
 
 .logOut ul li h2 a {
   color: #fff;
+  margin-top: 20%;
   background: var(--first-color-brown);
   box-sizing: border-box;
-  padding: 10px;
+  padding: 0.625rem;
   width: 100%;
-  /* margin-left: -9vw;
-  margin-right: -9vw; */
+  text-align: center;
+
 }
 
 
