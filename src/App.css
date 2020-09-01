@@ -579,7 +579,8 @@ address a {
 
 
 .inputModalContainer form label {
-  margin-left: 1rem;
+  margin-left: 2rem;
+  margin-bottom: -1rem;
   /* margin-bottom: -1rem; */
 }
 
@@ -588,6 +589,7 @@ address a {
   background-color: var(--primary-color-green);
   font-weight: bold;
   border: none;
+  margin-top: 2rem;
 }
 
 .btnSingInRemindPassword {
