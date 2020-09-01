@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import './App.css';
 import Header from './components/Layout/Header';
-import { NavBar } from './components/Layout/NavBar';
+import NavBar from './components/Layout/NavBar';
 import Attractions from './components/Layout/Attractions';
 import TitleSection from './components/Layout/TitleSection';
 import Opinions from './components/Layout/Opinions';
 import Contact from './components/Layout/Contact';
 import Footer from './components/Layout/Footer';
 import SideBar from './components/Users/SideBar';
+import LoginUser from './components/Layout/LoginUser';
 
 function App() {
   const [sideBarShow, setSideBarShow] = useState(false);
+  const [loginModalShow, setLoginModalShow] = useState(false);
 
   const sideBarToggle = (e) => {
     e.preventDefault();
@@ -18,11 +20,22 @@ function App() {
       setSideBarShow(!sideBarShow);
     }
   };
+  const loginModalToggle = (e) => {
+    e.preventDefault();
+    console.log('e :>> ', e.target.classList);
+    if (e.target.classList.contains('accessToggleModalShow')) {
+      setLoginModalShow(!loginModalShow);
+    }
+  };
 
   return (
     <div className="App">
-      <NavBar sideBarToggle={sideBarToggle} />
+      <NavBar
+        sideBarToggle={sideBarToggle}
+        loginModalToggle={loginModalToggle}
+      />
       {sideBarShow && <SideBar sideBarToggle={sideBarToggle} />}
+      {loginModalShow && <LoginUser loginModalToggle={loginModalToggle} />}
       <Header />
       <TitleSection title="Atrakcje" />
       <Attractions />

@@ -1,9 +1,10 @@
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import '../../App.css';
 
-export const NavBar = ({ sideBarToggle }) => {
-  const isAutrenticeted = true;
+const NavBar = ({ loginModalToggle, sideBarToggle }) => {
+  const isAutrenticeted = false;
 
   const guestLinks = (
     <Fragment>
@@ -37,7 +38,11 @@ export const NavBar = ({ sideBarToggle }) => {
       </li>
       <li>
         <h2>
-          <a href="/" className="sm-hiden">
+          <a
+            href="/"
+            className="sm-hiden accessToggleModalShow"
+            onClick={(e) => loginModalToggle(e)}
+          >
             <i className="fas fa-sign-in-alt"></i>
             Zaloguj
           </a>
@@ -102,3 +107,10 @@ export const NavBar = ({ sideBarToggle }) => {
     </nav>
   );
 };
+
+// NavBar.prorTypes = {
+//   sideBarToggle: PropTypes.func.isRequired,
+//   loginModalToggle: PropTypes.func.isRequired,
+// };
+
+export default NavBar;
