@@ -7,12 +7,13 @@ import TitleSection from './components/Layout/TitleSection';
 import Opinions from './components/Layout/Opinions';
 import Contact from './components/Layout/Contact';
 import Footer from './components/Layout/Footer';
-import SideBar from './components/Users/SideBar';
-import LoginUser from './components/Layout/LoginUser';
+import SideBar from './components/Modals/SideBar';
+import LoginUser from './components/Modals/LoginUser';
 
 function App() {
   const [sideBarShow, setSideBarShow] = useState(false);
   const [loginModalShow, setLoginModalShow] = useState(false);
+  const [singinModalShow, setSinginModalShow] = useState(false);
 
   const sideBarToggle = (e) => {
     e.preventDefault();
