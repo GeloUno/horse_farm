@@ -43,7 +43,12 @@ const SingUpUser = ({ signinModalToggle }) => {
               id="email"
               placeholder="wprowadź email ..."
             />
-            <input type="button" value="Rejestracja" />
+            <button
+              type="submit"
+              className="btn btn-brown btn-capitalize btn-radius btn-signup"
+            >
+              Rejestracja
+            </button>
           </form>
         </div>
       </div>

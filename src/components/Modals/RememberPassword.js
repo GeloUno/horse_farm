@@ -24,7 +24,12 @@ const RememberPassword = ({ rememberPasswordModalToggle }) => {
               id="email"
               placeholder="wprowadź email ..."
             />
-            <input type="button" value="Wyślij" />
+            <button
+              type="submit"
+              className="btn btn-brown btn-capitalize btn-radius btn-rememberPassword"
+            >
+              wyslij
+            </button>
           </form>
         </div>
       </div>

@@ -11,6 +11,7 @@ import SideBar from './components/Modals/SideBar';
 import LoginUser from './components/Modals/LogInUser';
 import SingUpUser from './components/Modals/SignUpUser';
 import RememberPassword from './components/Modals/RememberPassword';
+import Profile from './components/Users/Profile';
 
 function App() {
   const [sideBarShow, setSideBarShow] = useState(false);
@@ -77,6 +78,8 @@ function App() {
       <Opinions opinion={true} />
       <TitleSection title="kontakt" />
       <Contact />
+      <TitleSection title="Profil" />
+      <Profile />
       <Footer />
     </div>
   );

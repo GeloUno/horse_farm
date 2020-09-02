@@ -33,9 +33,14 @@ const LoginUser = ({
               id="password"
               placeholder="wprowadź hasło ..."
             />
-            <input type="button" value="Zaloguj" />
+            <button
+              type="submit"
+              className="btn btn-green btn-capitalize btn-radius btn-login"
+            >
+              zaloguj
+            </button>
           </form>
-          <div className="btnSingInRemindPassword">
+          <div className=" btnSignInRemindPassword">
             <p
               className="accessToggleModalShow"
               onClick={(e) => {

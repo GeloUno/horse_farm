@@ -220,7 +220,7 @@ body {
   padding-left: 20%;
 }
 
-.logOut ul li h2 a {}
+/* .logOut ul li h2 a {} */
 
 .linksSideNavBar,
 .logOut {
@@ -336,6 +336,16 @@ body {
   padding: .75rem 3rem;
 }
 
+.btn-green {
+  background-color: var(--primary-color-green);
+  color: #fff;
+}
+
+.btn-brown {
+  background-color: var(--first-color-brown);
+  color: #fff;
+}
+
 .btn p {
   margin: 0;
 }
@@ -356,9 +366,16 @@ body {
   transform-origin: center;
 }
 
-.btn-green {
-  color: #fff;
-  background: var(--primary-color-green);
+.btn-capitalize {
+  text-transform: lowercase;
+}
+
+.btn-capitalize::first-letter {
+  text-transform: capitalize;
+}
+
+.btn-radius {
+  border-radius: 5px;
 }
 
 .article .btn {
@@ -587,21 +604,20 @@ address a {
   /* margin-bottom: -1rem; */
 }
 
-.inputModalContainer form input[type='button'] {
-  color: #fff;
-  background-color: var(--primary-color-green);
+.btn-login {
   font-weight: bold;
   border: none;
-  margin-top: 2rem;
+  margin: 2rem 1rem;
+
 }
 
-.btnSingInRemindPassword {
+.btnSignInRemindPassword {
   display: flex;
   flex-direction: row;
 
 }
 
-.btnSingInRemindPassword p {
+.btnSignInRemindPassword p {
   display: flex;
   color: var(--primary-color-green);
   margin: 1rem;
@@ -614,12 +630,14 @@ address a {
   flex-direction: row-reverse;
 }
 
-.signinModal .inputModalContainer form input[type="button"],
-.rememberPasswordModal .inputModalContainer form input[type="button"] {
-  background-color: var(--first-color-brown);
+.btn-signup {
+  margin: 1rem;
+  margin-top: 3rem;
 }
 
+
 /* remember password modal rest */
+
 .rememberPasswordModal {
   position: relative;
   flex-direction: column;
@@ -642,4 +660,55 @@ address a {
 
 .rememberPasswordModal div:nth-child(2) form {
   width: 35%;
+}
+
+.btn-rememberPassword {
+  margin: 1rem;
+  margin-top: 1rem;
+}
+
+/* PROFILE */
+
+.profileContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userProfile {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+
+  align-items: center;
+}
+
+
+.userProfile div {
+  display: flex;
+  width: 100%;
+  justify-items: center;
+  flex-direction: row;
+  align-items: baseline;
+  color: var(--first-color-brown);
+}
+
+.userProfile div p {
+  /* width: 6rem; */
+  width: 47%;
+  margin-right: 1rem;
+  text-align: end;
+  color: var(--second-color-brown);
+}
+
+.userProfile div h2 {
+  width: 53%;
+}
+
+.profileButtons {
+  display: flex;
+  height: 10rem;
+  width: 60%;
+  justify-content: space-between;
+  align-items: center;
 }
