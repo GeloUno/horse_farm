@@ -511,7 +511,7 @@ address a {
   justify-content: space-around;
 }
 
-/* LOGIN MODAL */
+/* LOGIN & SIGNIN MODAL */
 
 .modalContainerCenter {
   display: flex;
@@ -522,7 +522,8 @@ address a {
   align-items: center;
 }
 
-.loginModal {
+.loginModal,
+.signinModal {
   display: flex;
   flex-direction: row;
   background-color: #fff;
@@ -536,6 +537,7 @@ address a {
   /* left: 50%; */
   /* transform: translate(-50%, -50%); */
 }
+
 
 .imageModalContainer {
   display: flex;
@@ -599,6 +601,16 @@ address a {
 }
 
 .btnSingInRemindPassword p {
+  display: flex;
   color: var(--primary-color-green);
   margin: 1rem;
+  cursor: pointer;
+}
+
+.signinModal {
+  flex-direction: row-reverse;
+}
+
+.signinModal .inputModalContainer form input[type="button"] {
+  background-color: var(--first-color-brown);
 }

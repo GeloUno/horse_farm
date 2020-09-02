@@ -8,7 +8,8 @@ import Opinions from './components/Layout/Opinions';
 import Contact from './components/Layout/Contact';
 import Footer from './components/Layout/Footer';
 import SideBar from './components/Modals/SideBar';
-import LoginUser from './components/Modals/LoginUser';
+import LoginUser from './components/Modals/LogInUser';
+import SingUpUser from './components/Modals/SignUpUser';
 
 function App() {
   const [sideBarShow, setSideBarShow] = useState(false);
@@ -23,9 +24,16 @@ function App() {
   };
   const loginModalToggle = (e) => {
     e.preventDefault();
-    console.log('e :>> ', e.target.classList);
+    // console.log('login Toogle :>> ', e.target.classList);
     if (e.target.classList.contains('accessToggleModalShow')) {
       setLoginModalShow(!loginModalShow);
+    }
+  };
+  const signinModalToggle = (e) => {
+    e.preventDefault();
+    // console.log('signin Toggle :>> ', e.target.classList);
+    if (e.target.classList.contains('accessToggleModalShow')) {
+      setSinginModalShow(!singinModalShow);
     }
   };
 
@@ -36,7 +44,13 @@ function App() {
         loginModalToggle={loginModalToggle}
       />
       {sideBarShow && <SideBar sideBarToggle={sideBarToggle} />}
-      {loginModalShow && <LoginUser loginModalToggle={loginModalToggle} />}
+      {loginModalShow && (
+        <LoginUser
+          signinModalToggle={signinModalToggle}
+          loginModalToggle={loginModalToggle}
+        />
+      )}
+      {singinModalShow && <SingUpUser signinModalToggle={signinModalToggle} />}
       <Header />
       <TitleSection title="Atrakcje" />
       <Attractions />
