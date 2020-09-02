@@ -511,7 +511,7 @@ address a {
   justify-content: space-around;
 }
 
-/* LOGIN & SIGNIN MODAL */
+/* LOGIN & SIGNIN & REMEMBER_PASSWORD MODAL */
 
 .modalContainerCenter {
   display: flex;
@@ -523,7 +523,8 @@ address a {
 }
 
 .loginModal,
-.signinModal {
+.signinModal,
+.rememberPasswordModal {
   display: flex;
   flex-direction: row;
   background-color: #fff;
@@ -607,10 +608,38 @@ address a {
   cursor: pointer;
 }
 
+/* signup modal rest */
+
 .signinModal {
   flex-direction: row-reverse;
 }
 
-.signinModal .inputModalContainer form input[type="button"] {
+.signinModal .inputModalContainer form input[type="button"],
+.rememberPasswordModal .inputModalContainer form input[type="button"] {
   background-color: var(--first-color-brown);
+}
+
+/* remember password modal rest */
+.rememberPasswordModal {
+  position: relative;
+  flex-direction: column;
+}
+
+.rememberPasswordModal div {
+  display: flex;
+  height: 50%;
+  width: 100%;
+}
+
+.rememberPasswordModal div:nth-child(1) {
+  justify-content: center;
+  align-items: center;
+}
+
+.rememberPasswordModal div:nth-child(1) h2 {
+  width: 50%;
+}
+
+.rememberPasswordModal div:nth-child(2) form {
+  width: 35%;
 }

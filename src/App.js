@@ -10,11 +10,17 @@ import Footer from './components/Layout/Footer';
 import SideBar from './components/Modals/SideBar';
 import LoginUser from './components/Modals/LogInUser';
 import SingUpUser from './components/Modals/SignUpUser';
+import RememberPassword from './components/Modals/RememberPassword';
 
 function App() {
   const [sideBarShow, setSideBarShow] = useState(false);
   const [loginModalShow, setLoginModalShow] = useState(false);
   const [singinModalShow, setSinginModalShow] = useState(false);
+  const [rememberPasswordModalShow, setRememberPasswordModalShow] = useState(
+    false
+  );
+
+  /* FIXME: what will be better multi function ore one  ?? */
 
   const sideBarToggle = (e) => {
     e.preventDefault();
@@ -36,6 +42,13 @@ function App() {
       setSinginModalShow(!singinModalShow);
     }
   };
+  const rememberPasswordModalToggle = (e) => {
+    e.preventDefault();
+    // console.log('remeberPassword Toggle :>> ', e.target.classList);
+    if (e.target.classList.contains('accessToggleModalShow')) {
+      setRememberPasswordModalShow(!rememberPasswordModalShow);
+    }
+  };
 
   return (
     <div className="App">
@@ -48,9 +61,15 @@ function App() {
         <LoginUser
           signinModalToggle={signinModalToggle}
           loginModalToggle={loginModalToggle}
+          rememberPasswordModalToggle={rememberPasswordModalToggle}
         />
       )}
       {singinModalShow && <SingUpUser signinModalToggle={signinModalToggle} />}
+      {rememberPasswordModalShow && (
+        <RememberPassword
+          rememberPasswordModalToggle={rememberPasswordModalToggle}
+        />
+      )}
       <Header />
       <TitleSection title="Atrakcje" />
       <Attractions />

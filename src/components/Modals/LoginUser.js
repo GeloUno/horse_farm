@@ -1,7 +1,11 @@
 import React from 'react';
 import LoginHorseImg from '../../assets/LoginHorse.png';
 
-const LoginUser = ({ signinModalToggle, loginModalToggle }) => {
+const LoginUser = ({
+  signinModalToggle,
+  loginModalToggle,
+  rememberPasswordModalToggle,
+}) => {
   return (
     <div
       className="modalBackground modalContainerCenter accessToggleModalShow"
@@ -41,7 +45,15 @@ const LoginUser = ({ signinModalToggle, loginModalToggle }) => {
             >
               Rejesteacja
             </p>
-            <p>Przypomnij hasło</p>
+            <p
+              className="accessToggleModalShow"
+              onClick={(e) => {
+                loginModalToggle(e);
+                rememberPasswordModalToggle(e);
+              }}
+            >
+              Przypomnij hasło
+            </p>
           </div>
         </div>
       </div>
