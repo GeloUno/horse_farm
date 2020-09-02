@@ -12,6 +12,7 @@ import LoginUser from './components/Modals/LogInUser';
 import SingUpUser from './components/Modals/SignUpUser';
 import RememberPassword from './components/Modals/RememberPassword';
 import Profile from './components/Users/Profile';
+import EditProfile from './components/Users/EditProfile';
 
 function App() {
   const [sideBarShow, setSideBarShow] = useState(false);
@@ -80,6 +81,8 @@ function App() {
       <Contact />
       <TitleSection title="Profil" />
       <Profile />
+      <TitleSection title="Edycja profily" />
+      <EditProfile />
       <Footer />
     </div>
   );

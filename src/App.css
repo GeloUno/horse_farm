@@ -712,3 +712,22 @@ address a {
   justify-content: space-between;
   align-items: center;
 }
+
+/* EDIT PROFILE */
+.editUserProfile input {
+  padding: 0.5rem;
+  font-size: 1.1rem;
+  width: 20.3125rem;
+  font-weight: 500;
+  margin-bottom: 1.2rem;
+}
+
+.editUserProfile input::placeholder {
+  font-weight: 200;
+  font-size: .9rem;
+}
+
+.btn-editProfileButton {
+
+  justify-content: center;
+}
