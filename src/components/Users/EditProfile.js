@@ -6,6 +6,7 @@ const EditProfile = ({
   lastName = 'Nowakbardzodługienazwisko',
   email = 'supertajny@gmail.com',
   phone = '501 234 567',
+  opinion = undefined,
 }) => {
   const [user, setUser] = useState({
     nick,
@@ -13,6 +14,7 @@ const EditProfile = ({
     lastName,
     email,
     phone,
+    opinion,
   });
 
   const onChangeUser = (e) => {
@@ -94,6 +96,20 @@ const EditProfile = ({
             name="phone"
             value={user.phone}
             key={phone}
+          />
+        </div>
+        <div>
+          <p>opinia:</p>
+          <textarea
+            className="editUserOpinionTextArea"
+            onChange={(e) => {
+              onChangeUser(e);
+            }}
+            placeholder="Tu możesz wystawić opinię o stadninie. Wystawiając opinię WYRAŻSZ ZGODĘ na upoblicznienie swojego wizerunku. Zawsze możesz edytować lub wykasować opinię. Usunięcie opini skutkuje usunięciem wizerunku z miejsca publicznego strony. Jeśli nie jesteś pełnoletni o zgodę zapytaj osoby dorosłe: Rodzica, Opiekuna ..."
+            type="text"
+            rows="10"
+            name="opinion"
+            value={user.opinion}
           />
         </div>
       </form>

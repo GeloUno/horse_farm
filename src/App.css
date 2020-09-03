@@ -714,6 +714,13 @@ address a {
 }
 
 /* EDIT PROFILE */
+
+
+.editProfileContainer {
+  height: 60rem;
+}
+
+.editUserOpinionTextArea,
 .editUserProfile input {
   padding: 0.5rem;
   font-size: 1.1rem;
@@ -728,6 +735,10 @@ address a {
 }
 
 .btn-editProfileButton {
-
   justify-content: center;
 }
+
+/* .editUserOpinion {
+  word-break: break-all;
+  width: 18vw;
+} */
