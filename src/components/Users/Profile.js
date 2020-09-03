@@ -41,7 +41,6 @@ const Profile = ({
       <div className="profileButtons">
         <button className="btn btn-green btn-capitalize">edycja</button>
         <button className="btn btn-green btn-capitalize">planer</button>
-        <button className="btn btn-green btn-capitalize">opinaia</button>
         <button className="btn btn-green btn-capitalize">rezerwacja</button>
       </div>
     </div>

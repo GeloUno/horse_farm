@@ -13,6 +13,7 @@ import SingUpUser from './components/Modals/SignUp';
 import RememberPassword from './components/Modals/RememberPassword';
 import Profile from './components/Users/Profile';
 import EditProfile from './components/Users/EditProfile';
+import Galery from './components/Layout/Galery';
 
 function App() {
   const [sideBarShow, setSideBarShow] = useState(false);
@@ -83,6 +84,8 @@ function App() {
       <Profile />
       <TitleSection title="Edycja profily" />
       <EditProfile />
+      <TitleSection title="Galeria" />
+      <Galery />
       <Footer />
     </div>
   );
