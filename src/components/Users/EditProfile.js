@@ -107,7 +107,7 @@ const EditProfile = ({
             }}
             placeholder="Tu możesz wystawić opinię o stadninie. Wystawiając opinię WYRAŻSZ ZGODĘ na upoblicznienie swojego wizerunku. Zawsze możesz edytować lub wykasować opinię. Usunięcie opini skutkuje usunięciem wizerunku z miejsca publicznego strony. Jeśli nie jesteś pełnoletni o zgodę zapytaj osoby dorosłe: Rodzica, Opiekuna ..."
             type="text"
-            rows="10"
+            rows="12"
             name="opinion"
             value={user.opinion}
           />

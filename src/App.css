@@ -717,7 +717,7 @@ address a {
 
 
 .editProfileContainer {
-  height: 60rem;
+  height: 64rem;
 }
 
 .editUserOpinionTextArea,
@@ -729,6 +729,7 @@ address a {
   margin-bottom: 1.2rem;
 }
 
+.editUserOpinionTextArea::placeholder,
 .editUserProfile input::placeholder {
   font-weight: 200;
   font-size: .9rem;
