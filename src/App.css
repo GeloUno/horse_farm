@@ -9,6 +9,7 @@
   --second-color-green: #807B32;
   --first-color-brown: #7A4826;
   --second-color-brown: #BDA493;
+  --disable-color-button: #B2B2B2;
 }
 
 body {
@@ -773,5 +774,59 @@ address a {
   clip-path: inset(0 0 0 0);
   object-fit: cover;
   cursor: pointer;
+}
 
+.addImage {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+
+.addImageButton {
+  font-size: 5rem;
+  color: var(--first-color-brown);
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.inputImageGaleryHidden {
+  display: none;
+}
+
+.errorMesaggeDownloadImage {
+  display: flex;
+  flex-direction: column;
+  color: hsl(0, 100%, 45%);
+  align-self: center;
+  align-items: center;
+  text-transform: uppercase;
+  font-weight: normal;
+  border: 2px solid hsl(0, 100%, 45%);
+  width: 37.5rem;
+}
+
+/* PAGINATION */
+.paggination {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+.paggination button {
+  margin: 1rem;
+  color: var(--primary-color-green);
+  background-color: #fff;
+  /* width: 50px;
+  height: 50px; */
+  font-size: 2rem;
+  border: none;
+  cursor: pointer;
+}
+
+.paggination button:disabled {
+  color: var(--disable-color-button);
+  cursor: not-allowed;
+  cursor: auto;
 }

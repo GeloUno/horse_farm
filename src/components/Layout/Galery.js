@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Pagination from './Pagination';
 
 /* FIXME: isAuth change to false in prod */
 /* TODO: add horse like and comments */
 
 const Galery = ({
   isAuth = true,
+  isPaggination = true,
   imagesGalery = [
     {
       url:
@@ -55,11 +57,50 @@ const Galery = ({
     },
   ],
 }) => {
+  const [fileImage, setFileImage] = useState();
+  const [isErrorImageSelected, setIsErrorImageSelected] = useState(false);
+  const TYPES_IMAGES_ACCEPT = ['image/jpeg', 'image/png'];
+
+  const handleChange = (e) => {
+    setIsErrorImageSelected(false);
+    const selectedImage = e.target.files[0];
+    console.log('selected :>> ', selectedImage);
+    if (selectedImage && TYPES_IMAGES_ACCEPT.includes(selectedImage.type)) {
+      setFileImage(selectedImage);
+    } else {
+      setIsErrorImageSelected(true);
+      setFileImage(null);
+    }
+  };
+
   return (
     <div className="container containerImages">
       {isAuth && (
         <div className="addImage">
-          <input type="file" name="" id="" />
+          <label>
+            <input
+              className="inputImageGaleryHidden"
+              type="file"
+              name=""
+              id=""
+              onChange={(e) => {
+                handleChange(e);
+              }}
+            />
+            <span>
+              <i
+                className="fas fa-plus-circle addImageButton"
+                onMouseEnter={() => setIsErrorImageSelected(false)}
+              ></i>
+            </span>
+          </label>
+        </div>
+      )}
+      {isErrorImageSelected && (
+        <div className="errorMesaggeDownloadImage">
+          <h3>Niepoprawny format pliku</h3>
+
+          <h4>Proszę wybrać plik z rozszerzeniem png lub jpg</h4>
         </div>
       )}
       <div className="gridImages">
@@ -76,7 +117,7 @@ const Galery = ({
             );
           })}
       </div>
-      <div className="paggination"></div>
+      {isPaggination && <Pagination />}
     </div>
   );
 };
