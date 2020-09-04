@@ -828,5 +828,5 @@ address a {
 .paggination button:disabled {
   color: var(--disable-color-button);
   cursor: not-allowed;
-  cursor: auto;
+  /* cursor: auto; */
 }
