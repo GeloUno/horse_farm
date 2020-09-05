@@ -17,7 +17,7 @@ const isUserIdIsInArrayOfObjects = (data, userId) => {
 
 const Galery = ({
   isAuth = true,
-  userID = 3,
+  userID = 1,
   isPagination = true,
   imagesGalery = [
     {
