@@ -1,12 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Pagination from './Pagination';
+import UploadImage from './UploadImage';
 
 /* FIXME: isAuth change to false in prod */
 /* TODO: add horse like and comments */
 
+const isUserIdIsInArrayOfObjects = (data, userId) => {
+  if (data.filter((lik) => lik['uid'] === userId).length > 0) {
+    // console.log(true);
+    return true;
+  } else {
+    // console.log(false);
+    return false;
+  }
+};
+
 const Galery = ({
   isAuth = true,
-  isPaggination = true,
+  userID = 3,
+  isPagination = true,
   imagesGalery = [
     {
       url:
@@ -21,22 +33,56 @@ const Galery = ({
     {
       url:
         'https://cdn.pixabay.com/photo/2019/08/26/06/26/pony-4430894_960_720.jpg',
+      like: [{ uid: 1 }, { uid: 2 }],
+      comments: [
+        { uid: 1, commnet: 'nice' },
+        { uid: 2, commnet: 'love' },
+        { uid: 3, commnet: ' best' },
+        { uid: 2, commnet: 'love' },
+        { uid: 3, commnet: ' best' },
+        { uid: 2, commnet: 'love' },
+        { uid: 3, commnet: ' best' },
+      ],
     },
     {
       url:
         'https://cdn.pixabay.com/photo/2018/08/22/23/26/the-horse-3624892_960_720.jpg',
+      like: [{ uid: 4 }, { uid: 8 }, { uid: 5 }],
+      comments: [
+        { uid: 1, commnet: 'nice' },
+        { uid: 2, commnet: 'love' },
+        { uid: 2, commnet: 'love' },
+        { uid: 3, commnet: ' best' },
+      ],
     },
     {
       url:
         'https://cdn.pixabay.com/photo/2017/09/20/05/56/the-horse-2767521_960_720.jpg',
+      like: [{ uid: 4 }, { uid: 8 }, { uid: 5 }],
     },
     {
       url:
         'https://cdn.pixabay.com/photo/2019/08/26/10/14/horses-4431313_960_720.jpg',
+      comments: [
+        { uid: 1, commnet: 'nice' },
+        { uid: 2, commnet: 'love' },
+        { uid: 2, commnet: 'love' },
+        { uid: 3, commnet: ' best' },
+      ],
     },
     {
       url:
-        'https://cdn.pixabay.com/photo/2019/08/26/08/48/sign-4431155_960_720.jpg',
+        'https://whitefish.skyrun.com/components/com_jomholiday/assets/images/04-spinner.gif',
+      like: [
+        { uid: 4 },
+        { uid: 8 },
+        { uid: 7 },
+        { uid: 9 },
+        { uid: 10 },
+        { uid: 12 },
+        { uid: 55 },
+        { uid: 47 },
+      ],
     },
 
     {
@@ -46,6 +92,7 @@ const Galery = ({
     {
       url:
         'https://cdn.pixabay.com/photo/2017/01/16/19/17/horses-1984977_960_720.jpg',
+      like: [{ uid: 3 }],
     },
     {
       url:
@@ -57,52 +104,9 @@ const Galery = ({
     },
   ],
 }) => {
-  const [fileImage, setFileImage] = useState();
-  const [isErrorImageSelected, setIsErrorImageSelected] = useState(false);
-  const TYPES_IMAGES_ACCEPT = ['image/jpeg', 'image/png'];
-
-  const handleChange = (e) => {
-    setIsErrorImageSelected(false);
-    const selectedImage = e.target.files[0];
-    console.log('selected :>> ', selectedImage);
-    if (selectedImage && TYPES_IMAGES_ACCEPT.includes(selectedImage.type)) {
-      setFileImage(selectedImage);
-    } else {
-      setIsErrorImageSelected(true);
-      setFileImage(null);
-    }
-  };
-
   return (
-    <div className="container containerImages">
-      {isAuth && (
-        <div className="addImage">
-          <label>
-            <input
-              className="inputImageGaleryHidden"
-              type="file"
-              name=""
-              id=""
-              onChange={(e) => {
-                handleChange(e);
-              }}
-            />
-            <span>
-              <i
-                className="fas fa-plus-circle addImageButton"
-                onMouseEnter={() => setIsErrorImageSelected(false)}
-              ></i>
-            </span>
-          </label>
-        </div>
-      )}
-      {isErrorImageSelected && (
-        <div className="errorMesaggeDownloadImage">
-          <h3>Niepoprawny format pliku</h3>
-
-          <h4>Proszę wybrać plik z rozszerzeniem png lub jpg</h4>
-        </div>
-      )}
+    <div>
+      {isAuth && <UploadImage />}
       <div className="gridImages">
         {imagesGalery &&
           imagesGalery.map((imageGalery, index) => {
@@ -113,11 +117,39 @@ const Galery = ({
                   src={imagesGalery[index].url}
                   alt="Zdjecia koni z stadniny"
                 />
+                <div className="likeAndComments">
+                  <div className="numberLike number">
+                    {imageGalery.like &&
+                      isUserIdIsInArrayOfObjects(imageGalery.like, userID)}
+                    <i
+                      className="fas fa-hat-cowboy"
+                      style={
+                        imageGalery.like &&
+                        isUserIdIsInArrayOfObjects(imageGalery.like, userID)
+                          ? { color: 'hsla(24, 53%, 42%, 1)' }
+                          : { color: '#707070' }
+                      }
+                    ></i>
+                    {(imageGalery.like && imageGalery.like.length) || 0}
+                  </div>
+                  <div className="numberComments number">
+                    <i
+                      className="fas fa-comments"
+                      style={
+                        imageGalery.comments &&
+                        isUserIdIsInArrayOfObjects(imageGalery.comments, userID)
+                          ? { color: 'hsla(94, 30%, 47%, 1)' }
+                          : { color: '#707070' }
+                      }
+                    ></i>
+                    {(imageGalery.comments && imageGalery.comments.length) || 0}
+                  </div>
+                </div>
               </div>
             );
           })}
       </div>
-      {isPaggination && <Pagination />}
+      {isPagination && <Pagination numberPage={1} lengthPages={3} />}
     </div>
   );
 };

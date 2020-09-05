@@ -756,16 +756,16 @@ address a {
 .gridImages {
   display: flex;
   justify-content: center;
-
   flex-direction: row;
   flex-wrap: wrap;
 }
 
 .gridImage {
+  position: relative;
   width: 400px;
   height: 400px;
   box-sizing: border-box;
-  margin: 20px 20px;
+  margin: 40px 20px;
 }
 
 .gridImage img {
@@ -775,6 +775,53 @@ address a {
   object-fit: cover;
   cursor: pointer;
 }
+
+/* like and comment */
+
+.likeAndComments {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem;
+  color: #707070;
+}
+
+.number {
+  letter-spacing: .5rem;
+}
+
+
+/* .circleLike,
+.circleComments {
+  clip-path: circle(100% at 0 100%);
+  background-color: #B2B2B2;
+  width: 5rem;
+  height: 5rem;
+}
+
+.circleComments {
+  clip-path: circle(100% at 100% 100%);
+}
+
+.likesImage {
+  position: absolute;
+  bottom: 0rem;
+  left: 0rem;
+}
+
+.commentsImage {
+  position: absolute;
+  bottom: 0rem;
+  right: 0rem;
+}
+
+.circleLike {
+  margin-right: 1rem;
+} */
+
+
+
+
+/* add image */
 
 .addImage {
   display: flex;
@@ -807,6 +854,7 @@ address a {
 }
 
 /* PAGINATION */
+
 .paggination {
   display: flex;
   flex-direction: row;

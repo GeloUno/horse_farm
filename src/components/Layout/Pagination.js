@@ -1,6 +1,6 @@
 import React from 'react';
 
-/* TODO: add function in galery set next page and add functiom with number in button */
+/* TODO: add function in galery set next page and add this functiom with number on button */
 
 const Pagination = ({ numberPage = 1, lengthPages = 1, setNumbetPages }) => {
   return (
@@ -11,7 +11,7 @@ const Pagination = ({ numberPage = 1, lengthPages = 1, setNumbetPages }) => {
             className="prevArrowButton"
             disabled={numberPage - 1 < 1 ? true : false}
           >
-            <i class="fas fa-arrow-circle-left"></i>
+            <i className="fas fa-arrow-circle-left"></i>
           </button>
           <button
             className="prevNumberButton"
@@ -44,7 +44,7 @@ const Pagination = ({ numberPage = 1, lengthPages = 1, setNumbetPages }) => {
             className="nextArrowButton"
             disabled={numberPage >= lengthPages ? true : false}
           >
-            <i class="fas fa-arrow-circle-right"></i>
+            <i className="fas fa-arrow-circle-right"></i>
           </button>
         </div>
       )}
