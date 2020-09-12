@@ -14,6 +14,8 @@ const isUserIdIsInArrayOfObjects = (data, userId) => {
 };
 
 const Galery = ({
+  galeryImageModalToggle,
+  setDataGaleryImageModal,
   isAuth = true,
   userID = 1,
   isPagination = true,
@@ -112,8 +114,12 @@ const Galery = ({
               <div key={index} className="gridImage">
                 <img
                   key={index}
-                  src={imagesGalery[index].url}
+                  src={imageGalery.url}
                   alt="Zdjecia koni z stadniny"
+                  onClick={(e) => {
+                    setDataGaleryImageModal(imageGalery);
+                    galeryImageModalToggle(e);
+                  }}
                 />
                 <div className="likeAndComments">
                   <div className="numberLike number">

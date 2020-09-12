@@ -14,6 +14,7 @@ import RememberPassword from './components/Modals/RememberPassword';
 import Profile from './components/Users/Profile';
 import EditProfile from './components/Users/EditProfile';
 import Galery from './components/Layout/Galery';
+import GaleryFullScreenImage from './components/Modals/GaleryFullScreenImage';
 
 function App() {
   const [sideBarShow, setSideBarShow] = useState(false);
@@ -52,6 +53,15 @@ function App() {
       setRememberPasswordModalShow(!rememberPasswordModalShow);
     }
   };
+  const [isGaleryImageModalShow, setIsGaleryImageModalShow] = useState(false);
+  const [dataGaleryImageModal, setDataGaleryImageModal] = useState(undefined);
+
+  const galeryImageModalToggle = (e) => {
+    e.preventDefault();
+    // if (e.target.classList.contains('modalContainerCenter')) {
+    setIsGaleryImageModalShow(!isGaleryImageModalShow);
+    // }
+  };
 
   return (
     <div className="App">
@@ -73,6 +83,12 @@ function App() {
           rememberPasswordModalToggle={rememberPasswordModalToggle}
         />
       )}
+      {isGaleryImageModalShow && (
+        <GaleryFullScreenImage
+          dataGaleryImageModal={dataGaleryImageModal}
+          galeryImageModalToggle={galeryImageModalToggle}
+        />
+      )}
       <Header />
       <TitleSection title="Atrakcje" />
       <Attractions />
@@ -85,7 +101,10 @@ function App() {
       <TitleSection title="Edycja profily" />
       <EditProfile />
       <TitleSection title="Galeria" />
-      <Galery />
+      <Galery
+        setDataGaleryImageModal={setDataGaleryImageModal}
+        galeryImageModalToggle={galeryImageModalToggle}
+      />
       <Footer />
     </div>
   );
