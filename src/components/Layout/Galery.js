@@ -7,10 +7,8 @@ import UploadImage from './UploadImage';
 
 const isUserIdIsInArrayOfObjects = (data, userId) => {
   if (data.filter((lik) => lik['uid'] === userId).length > 0) {
-    // console.log(true);
     return true;
   } else {
-    // console.log(false);
     return false;
   }
 };
