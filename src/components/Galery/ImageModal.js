@@ -16,11 +16,18 @@ const GaleryFullScreenImage = ({
     >
       <div className="loginModal gridImage modalImage">
         <img src={dataGaleryImageModal.url} alt="zdjecie koni" />
-        {console.log(dataGaleryImageModal)}
         <LikesAndComments imageGalery={dataGaleryImageModal} userID={userID} />
         {dataGaleryImageModal.comments &&
           dataGaleryImageModal.comments.map((comment, index) => {
-            return <div key={index}>{comment.comment}</div>;
+            return (
+              <div className="likesAndComments" key={index}>
+                {/*FIXME: change uid at nick user and comment should have user nick */}
+                <label className="userNickComment"> {comment.uid}</label>
+                <div className="comment" key={index}>
+                  {comment.comment}
+                </div>
+              </div>
+            );
           })}
       </div>
     </div>

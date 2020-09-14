@@ -10,6 +10,8 @@
   --first-color-brown: #7A4826;
   --second-color-brown: #BDA493;
   --disable-color-button: #B2B2B2;
+  --gray-light: hsla(0, 0%, 92%, 1);
+  --gray-soft: hsla(0, 4%, 69%, 1);
 }
 
 body {
@@ -911,7 +913,22 @@ address a {
   box-sizing: border-box;
 }
 
-/* HELPER to remove */
+.likesAndComments {
+  /* margin: .5rem 0; */
+}
+
+.userNickComment {
+  font-size: .9rem;
+  color: var(--gray-soft);
+  padding: 1rem;
+}
 
 
-/* overflow-y: scroll; */
+.comment {
+  display: block;
+  background: var(--gray-light);
+  font-size: 1.2rem;
+  padding: .5rem;
+  padding-left: 1rem;
+  border-radius: 1rem;
+}
