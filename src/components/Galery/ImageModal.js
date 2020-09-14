@@ -14,7 +14,7 @@ const GaleryFullScreenImage = ({
         galeryImageModalToggle(e);
       }}
     >
-      <div className="loginModal">
+      <div className="loginModal gridImage modalImage">
         <img src={dataGaleryImageModal.url} alt="zdjecie koni" />
 
         {console.log('imageData', dataGaleryImageModal)}

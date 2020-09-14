@@ -1,6 +1,6 @@
 import React from 'react';
-import Pagination from './Pagination';
-import UploadImage from './UploadImage';
+import Pagination from '../Layout/Pagination';
+import UploadImage from '../Layout/UploadImage';
 
 /* FIXME: isAuth change to false in prod */
 /* TODO: add horse like and comments */
