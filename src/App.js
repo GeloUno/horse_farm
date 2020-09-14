@@ -13,8 +13,8 @@ import SingUpUser from './components/Modals/SignUp';
 import RememberPassword from './components/Modals/RememberPassword';
 import Profile from './components/Users/Profile';
 import EditProfile from './components/Users/EditProfile';
-import Galery from './components/Layout/Galery';
-import GaleryFullScreenImage from './components/Modals/GaleryFullScreenImage';
+import Galery from './components/Galery/Images';
+import GaleryFullScreenImage from './components/Galery/ImageModal';
 
 function App() {
   const [sideBarShow, setSideBarShow] = useState(false);
