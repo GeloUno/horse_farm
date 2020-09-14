@@ -1,23 +1,15 @@
 import React from 'react';
 import Pagination from '../Layout/Pagination';
 import UploadImage from '../Layout/UploadImage';
+import LikesAndComments from './LikesAndComments';
 
 /* FIXME: isAuth change to false in prod */
-/* TODO: add horse like and comments */
-
-const isUserIdIsInArrayOfObjects = (data, userId) => {
-  if (data.filter((lik) => lik['uid'] === userId).length > 0) {
-    return true;
-  } else {
-    return false;
-  }
-};
 
 const Galery = ({
   galeryImageModalToggle,
   setDataGaleryImageModal,
   isAuth = true,
-  userID = 1,
+  userID = null,
   isPagination = true,
   imagesGalery = [
     {
@@ -25,9 +17,9 @@ const Galery = ({
         'https://cdn.pixabay.com/photo/2017/11/19/12/55/horses-2962718_960_720.jpg',
       like: [{ uid: 1 }, { uid: 2 }, { uid: 6 }, { uid: 9 }],
       comments: [
-        { uid: 1, commnet: 'nice' },
-        { uid: 2, commnet: 'love' },
-        { uid: 3, commnet: ' best' },
+        { uid: 1, comment: 'nice' },
+        { uid: 2, comment: 'love' },
+        { uid: 3, comment: ' best' },
       ],
     },
     {
@@ -35,13 +27,13 @@ const Galery = ({
         'https://cdn.pixabay.com/photo/2019/08/26/06/26/pony-4430894_960_720.jpg',
       like: [{ uid: 1 }, { uid: 2 }],
       comments: [
-        { uid: 1, commnet: 'nice' },
-        { uid: 2, commnet: 'love' },
-        { uid: 3, commnet: ' best' },
-        { uid: 2, commnet: 'love' },
-        { uid: 3, commnet: ' best' },
-        { uid: 2, commnet: 'love' },
-        { uid: 3, commnet: ' best' },
+        { uid: 1, comment: 'nice' },
+        { uid: 2, comment: 'love' },
+        { uid: 3, comment: ' best' },
+        { uid: 2, comment: 'love' },
+        { uid: 3, comment: ' best' },
+        { uid: 2, comment: 'love' },
+        { uid: 3, comment: ' best' },
       ],
     },
     {
@@ -49,10 +41,10 @@ const Galery = ({
         'https://cdn.pixabay.com/photo/2018/08/22/23/26/the-horse-3624892_960_720.jpg',
       like: [{ uid: 4 }, { uid: 8 }, { uid: 5 }],
       comments: [
-        { uid: 1, commnet: 'nice' },
-        { uid: 2, commnet: 'love' },
-        { uid: 2, commnet: 'love' },
-        { uid: 3, commnet: ' best' },
+        { uid: 1, comment: 'nice' },
+        { uid: 2, comment: 'love' },
+        { uid: 2, comment: 'love' },
+        { uid: 3, comment: ' best' },
       ],
     },
     {
@@ -64,10 +56,10 @@ const Galery = ({
       url:
         'https://cdn.pixabay.com/photo/2019/08/26/10/14/horses-4431313_960_720.jpg',
       comments: [
-        { uid: 1, commnet: 'nice' },
-        { uid: 2, commnet: 'love' },
-        { uid: 2, commnet: 'love' },
-        { uid: 3, commnet: ' best' },
+        { uid: 1, comment: 'nice' },
+        { uid: 2, comment: 'love' },
+        { uid: 2, comment: 'love' },
+        { uid: 3, comment: ' best' },
       ],
     },
     {
@@ -106,7 +98,7 @@ const Galery = ({
 }) => {
   return (
     <div>
-      {isAuth && <UploadImage />}
+      <div>{isAuth && <UploadImage />}</div>
       <div className="gridImages">
         {imagesGalery &&
           imagesGalery.map((imageGalery, index) => {
@@ -121,34 +113,7 @@ const Galery = ({
                     galeryImageModalToggle(e);
                   }}
                 />
-                <div className="likeAndComments">
-                  <div className="numberLike number">
-                    {imageGalery.like &&
-                      isUserIdIsInArrayOfObjects(imageGalery.like, userID)}
-                    <i
-                      className="fas fa-hat-cowboy"
-                      style={
-                        imageGalery.like &&
-                        isUserIdIsInArrayOfObjects(imageGalery.like, userID)
-                          ? { color: 'hsla(24, 53%, 42%, 1)' }
-                          : { color: '#707070' }
-                      }
-                    ></i>
-                    {(imageGalery.like && imageGalery.like.length) || 0}
-                  </div>
-                  <div className="numberComments number">
-                    <i
-                      className="fas fa-comments"
-                      style={
-                        imageGalery.comments &&
-                        isUserIdIsInArrayOfObjects(imageGalery.comments, userID)
-                          ? { color: 'hsla(94, 30%, 47%, 1)' }
-                          : { color: '#707070' }
-                      }
-                    ></i>
-                    {(imageGalery.comments && imageGalery.comments.length) || 0}
-                  </div>
-                </div>
+                <LikesAndComments imageGalery={imageGalery} userID={userID} />
               </div>
             );
           })}
