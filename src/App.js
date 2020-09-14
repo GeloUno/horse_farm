@@ -23,6 +23,8 @@ function App() {
   const [rememberPasswordModalShow, setRememberPasswordModalShow] = useState(
     false
   );
+  const [isGaleryImageModalShow, setIsGaleryImageModalShow] = useState(false);
+  const [dataGaleryImageModal, setDataGaleryImageModal] = useState(undefined);
   // FIXME: set user ID after login to DB
   const [userID, setUserID] = useState(1); //FIXME: on prod should be null, set user id from DB
 
@@ -55,17 +57,15 @@ function App() {
       setRememberPasswordModalShow(!rememberPasswordModalShow);
     }
   };
-  const [isGaleryImageModalShow, setIsGaleryImageModalShow] = useState(false);
-  const [dataGaleryImageModal, setDataGaleryImageModal] = useState(undefined);
 
   const galeryImageModalToggle = (e) => {
     e.preventDefault();
-    isGaleryImageModalShow
-      ? document.body.classList.remove('lockScrollInBody')
-      : document.body.classList.add('lockScrollInBody');
-    // if (e.target.classList.contains('modalContainerCenter')) {
-    setIsGaleryImageModalShow(!isGaleryImageModalShow);
-    // }
+    if (e.target.classList.contains('accessToggleModalShow')) {
+      setIsGaleryImageModalShow(!isGaleryImageModalShow);
+      isGaleryImageModalShow
+        ? document.body.classList.remove('lockScrollInBody')
+        : document.body.classList.add('lockScrollInBody');
+    }
   };
 
   return (

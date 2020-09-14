@@ -914,7 +914,7 @@ address a {
 }
 
 .likesAndComments {
-  /* margin: .5rem 0; */
+  margin: .5rem 0;
 }
 
 .userNickComment {
@@ -931,4 +931,15 @@ address a {
   padding: .5rem;
   padding-left: 1rem;
   border-radius: 1rem;
+}
+
+.addCommentForm {
+  display: block;
+
+}
+
+.addCommentInput {
+  width: 97%;
+  border: none;
+  /* margin: 1rem 0; */
 }
