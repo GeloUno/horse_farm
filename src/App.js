@@ -60,6 +60,9 @@ function App() {
 
   const galeryImageModalToggle = (e) => {
     e.preventDefault();
+    isGaleryImageModalShow
+      ? document.body.classList.remove('lockScrollInBody')
+      : document.body.classList.add('lockScrollInBody');
     // if (e.target.classList.contains('modalContainerCenter')) {
     setIsGaleryImageModalShow(!isGaleryImageModalShow);
     // }

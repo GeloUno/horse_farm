@@ -893,18 +893,13 @@ address a {
 }
 
 .modalImage::-webkit-scrollbar {
-  /* overflow: hidden; */
+  overflow: hidden;
   display: none;
 }
 
-/*FIXME: stop scrolling body add when modal is open*/
-
-/* .modalImage:active~html,
-body {
+.lockScrollInBody {
   overflow: hidden;
-  position: fixed !important;
-  background: #fff;
-} */
+}
 
 .modalImage img {
   width: 100%;
