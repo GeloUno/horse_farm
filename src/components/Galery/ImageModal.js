@@ -20,7 +20,7 @@ const GaleryFullScreenImage = ({
         <img src={dataGaleryImageModal.url} alt="zdjecie koni" />
         <LikesAndComments imageGalery={dataGaleryImageModal} userID={userID} />
         <AddComment imageID={dataGaleryImageModal.imageID} userID={userID} />
-        <CommentsImage dataGaleryImageModal={dataGaleryImageModal} />
+        <CommentsImage dataGaleryImageModal={dataGaleryImageModal} userID={userID} />
       </div>
     </div>
   );

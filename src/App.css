@@ -10,8 +10,9 @@
   --first-color-brown: #7A4826;
   --second-color-brown: #BDA493;
   --disable-color-button: #B2B2B2;
-  --gray-light: hsla(0, 0%, 92%, 1);
-  --gray-soft: hsla(0, 4%, 69%, 1);
+  --gray-light: hsla(0, 0%, 90%, 1);
+  --gray-soft: hsla(0, 4%, 70%, 1);
+  --gray-dark: hsla(0, 4%, 50%, 1);
 }
 
 body {
@@ -790,39 +791,8 @@ address a {
 
 .number {
   letter-spacing: .5rem;
+  cursor: pointer;
 }
-
-
-/* .circleLike,
-.circleComments {
-  clip-path: circle(100% at 0 100%);
-  background-color: #B2B2B2;
-  width: 5rem;
-  height: 5rem;
-}
-
-.circleComments {
-  clip-path: circle(100% at 100% 100%);
-}
-
-.likesImage {
-  position: absolute;
-  bottom: 0rem;
-  left: 0rem;
-}
-
-.commentsImage {
-  position: absolute;
-  bottom: 0rem;
-  right: 0rem;
-}
-
-.circleLike {
-  margin-right: 1rem;
-} */
-
-
-
 
 /* add image */
 
@@ -926,11 +896,13 @@ address a {
 
 .comment {
   display: flex;
+  position: relative;
   background: var(--gray-light);
   font-size: 1.2rem;
   padding: .5rem;
   padding-left: 1rem;
   border-radius: 1rem;
+  color: var(--gray-dark);
 }
 
 .addCommentInput {
@@ -945,3 +917,40 @@ address a {
 .addCommentInput:focus {
   outline-width: 0;
 }
+
+.deleteComment {
+  position: absolute;
+  right: 1rem;
+  cursor: pointer;
+}
+
+
+/* GARBAGE CSS */
+
+/* .circleLike,
+.circleComments {
+  clip-path: circle(100% at 0 100%);
+  background-color: #B2B2B2;
+  width: 5rem;
+  height: 5rem;
+}
+
+.circleComments {
+  clip-path: circle(100% at 100% 100%);
+}
+
+.likesImage {
+  position: absolute;
+  bottom: 0rem;
+  left: 0rem;
+}
+
+.commentsImage {
+  position: absolute;
+  bottom: 0rem;
+  right: 0rem;
+}
+
+.circleLike {
+  margin-right: 1rem;
+} */

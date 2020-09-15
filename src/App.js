@@ -26,7 +26,7 @@ function App() {
   const [isGaleryImageModalShow, setIsGaleryImageModalShow] = useState(false);
   const [dataGaleryImageModal, setDataGaleryImageModal] = useState(undefined);
   // FIXME: set user ID after login to DB
-  const [userID, setUserID] = useState(1); //FIXME: on prod should be null, set user id from DB
+  const [userID, setUserID] = useState(2); //FIXME: on prod should be null, set user id from DB
 
   /* FIXME: what will be better multi function ore one  ?? */
 
