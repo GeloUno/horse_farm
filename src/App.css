@@ -943,3 +943,7 @@ address a {
   border: none;
   /* margin: 1rem 0; */
 }
+
+.addCommentInput:focus {
+  outline-width: 0;
+}
