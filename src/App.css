@@ -855,7 +855,7 @@ address a {
 /* MODAL IMAGE */
 
 
-.modalImage {
+.modalImageGalery {
   width: 65rem;
   height: 52rem;
   flex-direction: column;
@@ -864,7 +864,7 @@ address a {
   overflow-y: scroll;
 }
 
-.modalImage::-webkit-scrollbar {
+.modalImageGalery::-webkit-scrollbar {
   overflow: hidden;
   display: none;
 }
@@ -873,7 +873,7 @@ address a {
   overflow: hidden;
 }
 
-.modalImage img {
+.modalImageGalery img {
   width: 100%;
   height: 100%;
 }

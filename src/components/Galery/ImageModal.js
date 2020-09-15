@@ -16,11 +16,14 @@ const GaleryFullScreenImage = ({
         galeryImageModalToggle(e);
       }}
     >
-      <div className="loginModal gridImage modalImage">
+      <div className="loginModal gridImage modalImageGalery">
         <img src={dataGaleryImageModal.url} alt="zdjecie koni" />
         <LikesAndComments imageGalery={dataGaleryImageModal} userID={userID} />
         <AddComment imageID={dataGaleryImageModal.imageID} userID={userID} />
-        <CommentsImage dataGaleryImageModal={dataGaleryImageModal} userID={userID} />
+        <CommentsImage
+          dataGaleryImageModal={dataGaleryImageModal}
+          userID={userID}
+        />
       </div>
     </div>
   );
