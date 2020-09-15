@@ -5,13 +5,13 @@ import LikesAndComments from './LikesAndComments';
 
 /* FIXME: isAuth change to false in prod */
 
-const Galery = ({
-  galeryImageModalToggle,
-  setDataGaleryImageModal,
+const Gallery = ({
+  galleryImageModalToggle,
+  setDataGalleryImageModal,
   isAuth = true,
   userID = null,
   isPagination = true,
-  imagesGalery = [
+  imagesGallery = [
     {
       imageID: 1,
       url:
@@ -110,21 +110,21 @@ const Galery = ({
     <div>
       <div>{isAuth && <UploadImage />}</div>
       <div className="gridImages">
-        {imagesGalery &&
-          imagesGalery.map((imageGalery, index) => {
+        {imagesGallery &&
+          imagesGallery.map((imageGallery, index) => {
             return (
               <div key={index} className="gridImage">
                 <img
                   className="accessToggleModalShow"
                   key={index}
-                  src={imageGalery.url}
+                  src={imageGallery.url}
                   alt="Zdjecia koni z stadniny"
                   onClick={(e) => {
-                    setDataGaleryImageModal(imageGalery);
-                    galeryImageModalToggle(e);
+                    setDataGalleryImageModal(imageGallery);
+                    galleryImageModalToggle(e);
                   }}
                 />
-                <LikesAndComments imageGalery={imageGalery} userID={userID} />
+                <LikesAndComments imageGallery={imageGallery} userID={userID} />
               </div>
             );
           })}
@@ -134,4 +134,4 @@ const Galery = ({
   );
 };
 
-export default Galery;
+export default Gallery;

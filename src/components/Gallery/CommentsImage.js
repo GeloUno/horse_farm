@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function CommentsImage({ dataGaleryImageModal, userID }) {
+function CommentsImage({ dataGalleryImageModal, userID }) {
   return (
     <div>
-      {dataGaleryImageModal.comments &&
-        dataGaleryImageModal.comments.map((comment, index) => {
+      {dataGalleryImageModal.comments &&
+        dataGalleryImageModal.comments.map((comment, index) => {
           return (
             <div className="likesAndComments" key={index}>
               <label className="userNickComment"> {comment.nick}</label>
@@ -25,7 +25,7 @@ function CommentsImage({ dataGaleryImageModal, userID }) {
 }
 
 CommentsImage.propTypes = {
-  dataGaleryImageModal: PropTypes.object.isRequired,
+  dataGalleryImageModal: PropTypes.object.isRequired,
 };
 
 export default CommentsImage;

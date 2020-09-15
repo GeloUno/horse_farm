@@ -13,8 +13,9 @@ import SingUpUser from './components/Modals/SignUp';
 import RememberPassword from './components/Modals/RememberPassword';
 import Profile from './components/Users/Profile';
 import EditProfile from './components/Users/EditProfile';
-import Galery from './components/Galery/Images';
-import GaleryFullScreenImage from './components/Galery/ImageModal';
+import Gallery from './components/Gallery/Images';
+import GalleryFullScreenImage from './components/Gallery/ImageModal';
+import Booking from './components/Layout/Booking';
 
 function App() {
   const [sideBarShow, setSideBarShow] = useState(false);
@@ -23,8 +24,8 @@ function App() {
   const [rememberPasswordModalShow, setRememberPasswordModalShow] = useState(
     false
   );
-  const [isGaleryImageModalShow, setIsGaleryImageModalShow] = useState(false);
-  const [dataGaleryImageModal, setDataGaleryImageModal] = useState(undefined);
+  const [isGalleryImageModalShow, setIsGalleryImageModalShow] = useState(false);
+  const [dataGalleryImageModal, setDataGalleryImageModal] = useState(undefined);
   // FIXME: set user ID after login to DB
   const [userID, setUserID] = useState(2); //FIXME: on prod should be null, set user id from DB
 
@@ -58,11 +59,11 @@ function App() {
     }
   };
 
-  const galeryImageModalToggle = (e) => {
+  const galleryImageModalToggle = (e) => {
     e.preventDefault();
     if (e.target.classList.contains('accessToggleModalShow')) {
-      setIsGaleryImageModalShow(!isGaleryImageModalShow);
-      isGaleryImageModalShow
+      setIsGalleryImageModalShow(!isGalleryImageModalShow);
+      isGalleryImageModalShow
         ? document.body.classList.remove('lockScrollInBody')
         : document.body.classList.add('lockScrollInBody');
     }
@@ -88,10 +89,10 @@ function App() {
           rememberPasswordModalToggle={rememberPasswordModalToggle}
         />
       )}
-      {isGaleryImageModalShow && (
-        <GaleryFullScreenImage
-          dataGaleryImageModal={dataGaleryImageModal}
-          galeryImageModalToggle={galeryImageModalToggle}
+      {isGalleryImageModalShow && (
+        <GalleryFullScreenImage
+          dataGalleryImageModal={dataGalleryImageModal}
+          galleryImageModalToggle={galleryImageModalToggle}
           userID={userID}
         />
       )}
@@ -107,11 +108,16 @@ function App() {
       <TitleSection title="Edycja profily" />
       <EditProfile />
       <TitleSection title="Galeria" />
-      <Galery
-        setDataGaleryImageModal={setDataGaleryImageModal}
-        galeryImageModalToggle={galeryImageModalToggle}
+      <Gallery
+        setDataGalleryImageModal={setDataGalleryImageModal}
+        galleryImageModalToggle={galleryImageModalToggle}
         userID={userID}
       />
+      <TitleSection title="Rrezerwacja" />
+      <Booking userID={userID} />
+      {
+        // it should be user object
+      }
       <Footer />
     </div>
   );

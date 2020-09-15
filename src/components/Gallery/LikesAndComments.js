@@ -9,41 +9,41 @@ const isUserIdIsInArrayOfObjects = (data, userId) => {
   }
 };
 
-const LikesAndComments = ({ imageGalery, userID = 0 }) => {
+const LikesAndComments = ({ imageGallery, userID = 0 }) => {
   return (
     <div className="likeAndComments">
       <div className="numberLike number">
-        {imageGalery.like &&
-          isUserIdIsInArrayOfObjects(imageGalery.like, userID)}
+        {imageGallery.like &&
+          isUserIdIsInArrayOfObjects(imageGallery.like, userID)}
         <i
           className="fas fa-hat-cowboy"
           style={
-            imageGalery.like &&
-            isUserIdIsInArrayOfObjects(imageGalery.like, userID)
+            imageGallery.like &&
+            isUserIdIsInArrayOfObjects(imageGallery.like, userID)
               ? { color: 'hsla(24, 53%, 42%, 1)' }
               : { color: '#707070' }
           }
         ></i>
-        {(imageGalery.like && imageGalery.like.length) || 0}
+        {(imageGallery.like && imageGallery.like.length) || 0}
       </div>
       <div className="numberComments number">
         <i
           className="fas fa-comments"
           style={
-            imageGalery.comments &&
-            isUserIdIsInArrayOfObjects(imageGalery.comments, userID)
+            imageGallery.comments &&
+            isUserIdIsInArrayOfObjects(imageGallery.comments, userID)
               ? { color: 'hsla(94, 30%, 47%, 1)' }
               : { color: '#707070' }
           }
         ></i>
-        {(imageGalery.comments && imageGalery.comments.length) || 0}
+        {(imageGallery.comments && imageGallery.comments.length) || 0}
       </div>
     </div>
   );
 };
 
 LikesAndComments.propTypes = {
-  imageGalery: PropTypes.object.isRequired,
+  imageGallery: PropTypes.object.isRequired,
   userID: PropTypes.any.isRequired, // FIXME: I think it will be a string you will see when data will come from DB
 };
 

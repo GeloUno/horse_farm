@@ -748,7 +748,7 @@ address a {
   width: 18vw;
 } */
 
-/* GALERY IMAGES */
+/* GALlERY IMAGES */
 .containerImages {
   display: flex;
   flex-direction: column;
@@ -810,7 +810,7 @@ address a {
   border-radius: 50%;
 }
 
-.inputImageGaleryHidden {
+.inputImageGalleryHidden {
   display: none;
 }
 
@@ -855,7 +855,7 @@ address a {
 /* MODAL IMAGE */
 
 
-.modalImageGalery {
+.modalImageGallery {
   width: 65rem;
   height: 52rem;
   flex-direction: column;
@@ -864,7 +864,7 @@ address a {
   overflow-y: scroll;
 }
 
-.modalImageGalery::-webkit-scrollbar {
+.modalImageGallery::-webkit-scrollbar {
   overflow: hidden;
   display: none;
 }
@@ -873,7 +873,7 @@ address a {
   overflow: hidden;
 }
 
-.modalImageGalery img {
+.modalImageGallery img {
   width: 100%;
   height: 100%;
 }
