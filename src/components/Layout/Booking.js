@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import DatePicker from 'react-datepicker';
+import addDays from 'date-fns/addDays';
+import pl from 'date-fns/locale/pl';
+
+import 'react-datepicker/dist/react-datepicker.css';
 
 const Booking = ({ userID, nick = 'Ami' }) => {
+  const DateNow = new Date();
+  const [startDate, setStartDate] = useState(DateNow);
+
   const firstHouer = 8;
   const lastHouer = 21;
-  const DateNow = new Date();
   const nextDate = (dateAdd) => {
     // FIXME: at work it is
   };
@@ -12,7 +19,7 @@ const Booking = ({ userID, nick = 'Ami' }) => {
   const forHouerOptions = (firstHouer, lastHouer) => {
     const arrayOptionsHouer = [];
     for (firstHouer; firstHouer < lastHouer; firstHouer++) {
-      console.log('firstHouer :>> ', firstHouer);
+      // console.log('firstHouer :>> ', firstHouer);
       arrayOptionsHouer.push(
         <option key={firstHouer} value={firstHouer + ':00'}>
           {firstHouer + ':00'}
@@ -36,31 +43,32 @@ const Booking = ({ userID, nick = 'Ami' }) => {
           alt="użytkownik"
         />
       </div>
-      <form onSubmit={handleSubmit} className="userProfile editUserProfile">
-        <div>
+      <form onSubmit={handleSubmit}>
+        <div className="bookingForm">
           <p>nick:</p>
           <label>{nick}</label>
         </div>
-        <div>
-          <p>podaj dzień</p>
-          <select value="1111" name="dayBooking">
-            <option value="grejpfrutowy">
-              {'dzień: ' + DateNow.getUTCDate()}
-            </option>
-            <option value="limonkowy">Limonkowy</option>
-            <option value="kokosowy">Kokosowy</option>
-            <option value="mango">Mango</option>
-          </select>
-        </div>
-        <div>
+        <DatePicker
+          selected={startDate}
+          minDate={addDays(new Date(), 2)}
+          maxDate={addDays(new Date(), 16)}
+          locale={pl}
+          onChange={(date) => {
+            console.log('date', date);
+            setStartDate(date);
+          }}
+          inline
+        />
+
+        <div className="bookingForm">
           <p>od godziny:</p>
-          <select value="" name="fromHouerBooking">
+          <select name="fromHouerBooking">
             {forHouerOptions(firstHouer, lastHouer)}
           </select>
         </div>
-        <div>
+        <div className="bookingForm">
           <p>do godziny: </p>
-          <select value="" name="toHouerBooking">
+          <select name="toHouerBooking">
             {forHouerOptions(firstHouer + 1, lastHouer + 1)}
           </select>
         </div>
