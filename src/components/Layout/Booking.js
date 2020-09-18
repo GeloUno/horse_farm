@@ -60,6 +60,7 @@ const Booking = ({
           }}
           inline
         />
+        <p>*48 godzinnym wyprzedzeniem</p>
 
         <div className="bookingForm">
           <p className="mg-1-right">od godziny:</p>
