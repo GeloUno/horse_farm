@@ -683,7 +683,6 @@ address a {
   display: flex;
   width: 100%;
   flex-direction: column;
-
   align-items: center;
 }
 
@@ -941,7 +940,6 @@ address a {
 .react-datepicker__current-month,
 .react-datepicker__day-name,
 .react-datepicker__day--selected {
-
   background: var(--primary-color-green) !important;
   color: #fff !important;
 }
@@ -950,9 +948,50 @@ address a {
   background-color: hsla(94, 18%, 66%, 1) !important;
 }
 
+.react-datepicker__navigation--next {
+  border-left-color: #fff !important;
+}
+
+.react-datepicker__navigation--previous {
+  border-right-color: #fff !important;
+}
+
+.bookingForm {
+  display: flex;
+  align-items: baseline;
+  font-size: 1.1rem;
+  /* margin: 1rem; */
+}
+
+.bookingForm select {
+
+  padding: .5rem;
+  font-size: 1.1rem;
+}
+
+.bookingForm p {
+  color: var(--second-color-brown);
+}
+
+.bookingForm h2 {
+  color: var(--first-color-brown);
+}
+
+.bookingForm div .btn {
+  margin-top: 5rem;
+}
 
 
 
+/* UTILITY */
+
+.mg-1-right {
+  margin-right: 1rem;
+}
+
+.mg-2-top {
+  margin-top: 2rem;
+}
 
 /* GARBAGE CSS */
 

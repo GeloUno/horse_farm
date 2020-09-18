@@ -27,7 +27,7 @@ function App() {
   const [isGalleryImageModalShow, setIsGalleryImageModalShow] = useState(false);
   const [dataGalleryImageModal, setDataGalleryImageModal] = useState(undefined);
   // FIXME: set user ID after login to DB
-  const [userID, setUserID] = useState(2); //FIXME: on prod should be null, set user id from DB
+  const [user, setUser] = useState({ user: { userID: 2, nick: 'Ami' } }); //FIXME: on prod should be null, set user id from DB
 
   /* FIXME: what will be better multi function ore one  ?? */
 
@@ -93,7 +93,7 @@ function App() {
         <GalleryFullScreenImage
           dataGalleryImageModal={dataGalleryImageModal}
           galleryImageModalToggle={galleryImageModalToggle}
-          userID={userID}
+          userID={user.user.userID}
         />
       )}
       <Header />
@@ -111,13 +111,10 @@ function App() {
       <Gallery
         setDataGalleryImageModal={setDataGalleryImageModal}
         galleryImageModalToggle={galleryImageModalToggle}
-        userID={userID}
+        userID={user.user.userID}
       />
       <TitleSection title="Rrezerwacja" />
-      <Booking userID={userID} />
-      {
-        // it should be user object
-      }
+      <Booking userID={user.user.userID} nick={user.user.nick} />
       <Footer />
     </div>
   );
