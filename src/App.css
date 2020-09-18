@@ -868,6 +868,11 @@ address a {
   display: none;
 }
 
+.inputImageGaleryHidden {
+  width: 0;
+  height: 0;
+}
+
 .lockScrollInBody {
   overflow: hidden;
 }
