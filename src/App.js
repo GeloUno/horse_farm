@@ -15,7 +15,8 @@ import Profile from './components/Users/Profile';
 import EditProfile from './components/Users/EditProfile';
 import Gallery from './components/Gallery/Images';
 import GalleryFullScreenImage from './components/Gallery/ImageModal';
-import Booking from './components/Layout/Booking';
+import MakeBooking from './components/Booking/MakeBooking';
+import ConfirmBooking from './components/Booking/ConfirmBooking';
 
 function App() {
   const [sideBarShow, setSideBarShow] = useState(false);
@@ -26,6 +27,10 @@ function App() {
   );
   const [isGalleryImageModalShow, setIsGalleryImageModalShow] = useState(false);
   const [dataGalleryImageModal, setDataGalleryImageModal] = useState(undefined);
+  const [startDateAndTimeBooking, setStartDateAndTimeBooking] = useState(
+    undefined
+  );
+  const [endDateAndTimeBooking, setEndDateAndTimeBooking] = useState(undefined);
   // FIXME: set user ID after login to DB
   const [user, setUser] = useState({ user: { userID: 2, nick: 'Ami' } }); //FIXME: on prod should be null, set user id from DB
 
@@ -114,7 +119,18 @@ function App() {
         userID={user.user.userID}
       />
       <TitleSection title="Rrezerwacja" />
-      <Booking userID={user.user.userID} nick={user.user.nick} />
+      <MakeBooking
+        userID={user.user.userID}
+        nick={user.user.nick}
+        setStartDateAndTimeBooking={setStartDateAndTimeBooking}
+        setEndDateAndTimeBooking={setEndDateAndTimeBooking}
+      />
+      <TitleSection title="Potwierdzenie rezerwacji" />
+      <ConfirmBooking
+        user={user}
+        startDateAndTimeBooking={startDateAndTimeBooking}
+        endDateAndTimeBooking={endDateAndTimeBooking}
+      />
       <Footer />
     </div>
   );

@@ -986,6 +986,13 @@ address a {
   margin-top: 5rem;
 }
 
+/* COMFIRM BOOKING*/
+
+.confirmBookingContainer div {
+  display: flex;
+  justify-content: center;
+}
+
 
 
 /* UTILITY */
