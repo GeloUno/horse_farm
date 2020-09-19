@@ -6,14 +6,14 @@ import setHour from 'date-fns/setHours';
 import setMinutes from 'date-fns/setMinutes';
 import pl from 'date-fns/locale/pl';
 import 'react-datepicker/dist/react-datepicker.css';
-
 import { forHoursOptions } from '../../utility/forHoursOptions';
-
-const Booking = ({
+const MakeBooking = ({
   userID,
   nick,
   firstHourBooking = 8,
   lastHourBooking = 21,
+  setStartDateAndTimeBooking,
+  setEndDateAndTimeBooking,
 }) => {
   const [dayBooking, setDayBooking] = useState(addDays(new Date(), 2));
   const [startTimeBooking, setStartTimeBooking] = useState(firstHourBooking);
@@ -31,9 +31,8 @@ const Booking = ({
       setHour(dayBooking, endTimeBooking),
       0
     );
-    console.log('User', userID, nick);
-    console.log('bookingStartDateAndTime :>> ', bookingStartDateAndTime);
-    console.log('bookingEndDateAndTime :>> ', bookingEndDateAndTime);
+    setStartDateAndTimeBooking(bookingStartDateAndTime);
+    setEndDateAndTimeBooking(bookingEndDateAndTime);
   };
 
   return (
@@ -96,9 +95,9 @@ const Booking = ({
     </div>
   );
 };
-Booking.propTypes = {
+MakeBooking.propTypes = {
   userID: PropTypes.any.isRequired,
   nick: PropTypes.string.isRequired,
 };
 
-export default Booking;
+export default MakeBooking;
