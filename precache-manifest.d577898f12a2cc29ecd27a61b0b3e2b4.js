@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a9deb16a7601098cec2f94c3ac194f5f",
+    "revision": "462c1bbfdb6b2165ed730f12df4d1633",
     "url": "/GeloUno/horse_farm/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/GeloUno/horse_farm/static/css/2.25ff2e5b.chunk.css"
   },
   {
-    "revision": "3e37526e6bd870c20824",
-    "url": "/GeloUno/horse_farm/static/css/main.6d19f4d1.chunk.css"
+    "revision": "0668740afdd62f3ab7e8",
+    "url": "/GeloUno/horse_farm/static/css/main.2eaf917c.chunk.css"
   },
   {
     "revision": "128033e3021a567fd566",
@@ -20,7 +20,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/GeloUno/horse_farm/static/js/2.bf9fe3e5.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "3e37526e6bd870c20824",
+    "revision": "0668740afdd62f3ab7e8",
     "url": "/GeloUno/horse_farm/static/js/main.2f892ff7.chunk.js"
   },
   {

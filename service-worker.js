@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/GeloUno/horse_farm/precache-manifest.ec52c4cffb3a03600076732d6242df9c.js"
+  "/GeloUno/horse_farm/precache-manifest.d577898f12a2cc29ecd27a61b0b3e2b4.js"
 );
 
 self.addEventListener('message', (event) => {
