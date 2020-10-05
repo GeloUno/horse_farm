@@ -110,7 +110,7 @@ function App() {
       <Contact />
       <TitleSection title="Profil" />
       <Profile />
-      <TitleSection title="Edycja profily" />
+      <TitleSection title="Edycja profilu" />
       <EditProfile />
       <TitleSection title="Galeria" />
       <Gallery
