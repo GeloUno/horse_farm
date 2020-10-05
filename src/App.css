@@ -512,7 +512,6 @@ address a {
 .contact-section div p a {
   color: var(--primary-color-green);
   text-decoration: none;
-  opacity: 100%;
 }
 
 .contact-section div span {
