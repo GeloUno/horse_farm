@@ -43,6 +43,9 @@ const Profile = ({
         <button className="btn btn-green btn-capitalize">planer</button>
         <button className="btn btn-green btn-capitalize">rezerwacja</button>
       </div>
+      <div className="profileButtons profileRemove">
+        <button className="btn btn-red btn-capitalize">Usuń profil</button>
+      </div>
     </div>
   );
 };
