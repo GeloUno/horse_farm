@@ -17,6 +17,7 @@ import Gallery from './components/Gallery/Images';
 import GalleryFullScreenImage from './components/Gallery/ImageModal';
 import MakeBooking from './components/Booking/MakeBooking';
 import ConfirmBooking from './components/Booking/ConfirmBooking';
+import PlanBookings from './components/Booking/PlanBookings';
 
 function App() {
   const [sideBarShow, setSideBarShow] = useState(false);
@@ -131,6 +132,8 @@ function App() {
         startDateAndTimeBooking={startDateAndTimeBooking}
         endDateAndTimeBooking={endDateAndTimeBooking}
       />
+      <TitleSection title="Planer" />
+      <PlanBookings />
       <Footer />
     </div>
   );

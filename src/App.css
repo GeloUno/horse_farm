@@ -1024,6 +1024,36 @@ address a {
   margin-top: 2rem;
 }
 
+/* PLAN BOOKING */
+.containerPlanBooking {
+  flex-direction: column;
+}
+
+.dateHeader,
+.clendaryHouerBookingBody {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.dayHeader {
+  height: 6rem;
+  ;
+}
+
+.clendaryHouerBookingBody {
+  height: 20rem;
+}
+
+.monthYearHeader,
+.dayHeader,
+.clendaryBooking,
+.houerBooking {
+  width: 50%;
+}
+
+
+
 /* GARBAGE CSS */
 
 /* .circleLike,
