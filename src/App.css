@@ -5,11 +5,12 @@
   font-style: 16px;
   font-family: 'Montserrat', sans-serif;
   line-height: 1.5;
-  --primary-color-green: #6A8F4D;
-  --second-color-green: #807B32;
-  --first-color-brown: #7A4826;
-  --second-color-brown: #BDA493;
-  --disable-color-button: #B2B2B2;
+  --primary-color-green: hsla(94, 30%, 43%, 1);
+  --second-color-green: hsla(56, 44%, 35%, 1);
+  --first-color-brown: hsla(24, 53%, 31%, 1);
+  --second-color-brown: hsla(24, 24%, 66%, 1);
+  --shadow-color-brown: hsla(24, 53%, 31%, 0.15);
+  --disable-color-button: hsla(0, 0%, 70%, 1);
   --gray-light: hsla(0, 0%, 90%, 1);
   --gray-soft: hsla(0, 4%, 70%, 1);
   --gray-dark: hsla(0, 4%, 50%, 1);
@@ -322,8 +323,8 @@ body {
   font-size: 16.875rem;
   text-transform: uppercase;
   font-weight: bold;
-  color: var(--first-color-brown);
-  opacity: 15%;
+  color: var(--shadow-color-brown);
+  /* opacity: 15%; */
   z-index: 0;
   line-height: 120%;
 }
