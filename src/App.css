@@ -14,6 +14,8 @@
   --gray-light: hsla(0, 0%, 90%, 1);
   --gray-soft: hsla(0, 4%, 70%, 1);
   --gray-dark: hsla(0, 4%, 50%, 1);
+  --red-alert: hsla(0, 100%, 45%, 1);
+  ;
 }
 
 body {
@@ -343,6 +345,11 @@ body {
 
 .btn-green {
   background-color: var(--primary-color-green);
+  color: #fff;
+}
+
+.btn-red {
+  background-color: var(--red-alert);
   color: #fff;
 }
 
@@ -716,6 +723,16 @@ address a {
   align-items: center;
 }
 
+.profileRemove {
+  justify-content: center;
+}
+
+.profileRemove button {
+  transform: translateX(-22px);
+  padding: .75rem 5rem;
+}
+
+
 /* EDIT PROFILE */
 
 
@@ -816,12 +833,14 @@ address a {
 .errorMesaggeDownloadImage {
   display: flex;
   flex-direction: column;
-  color: hsl(0, 100%, 45%);
+  color: var(--red-alert);
+  ;
   align-self: center;
   align-items: center;
   text-transform: uppercase;
   font-weight: normal;
-  border: 2px solid hsl(0, 100%, 45%);
+  border: 2px solid var(--red-alert);
+  ;
   width: 37.5rem;
 }
 
