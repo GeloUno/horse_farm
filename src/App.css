@@ -263,7 +263,7 @@ body {
 
 /*  Attraction Section Left*/
 
-.contaniner {
+.container {
   display: flex;
   flex-direction: row;
   height: 45rem;
