@@ -916,7 +916,6 @@ address a {
   padding: 1rem;
 }
 
-
 .comment {
   display: flex;
   position: relative;
@@ -1025,6 +1024,7 @@ address a {
 }
 
 /* PLAN BOOKING */
+
 .containerPlanBooking {
   flex-direction: column;
   max-width: 900px;
@@ -1077,17 +1077,13 @@ address a {
 .DayOfMonth {
   display: flex;
   height: 10rem;
-  /* overflow: hidden; */
-  /* overflow-x: scroll; */
   transform: translateY(-2rem);
-  /* padding: 0; */
 }
 
 .scroll-horizontal {
   padding: 0 !important;
 }
 
-/* .DayOfMonth::-webkit-scrollbar, */
 .DayOfMonth div::-webkit-scrollbar {
   display: none;
 }
