@@ -46,6 +46,7 @@ const PlanBookings = (props) => {
           reverseScroll
           style={{
             paddingTop: '0',
+            overflowX: 'scroll',
           }}
         >
           <div className="btn">1</div>
