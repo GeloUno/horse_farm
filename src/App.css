@@ -263,7 +263,7 @@ body {
 
 /*  Attraction Section Left*/
 
-.contaniner {
+.container {
   display: flex;
   flex-direction: row;
   height: 45rem;
@@ -1023,6 +1023,93 @@ address a {
 .mg-2-top {
   margin-top: 2rem;
 }
+
+/* PLAN BOOKING */
+.containerPlanBooking {
+  flex-direction: column;
+  max-width: 900px;
+  justify-content: center;
+  margin: auto;
+}
+
+.dateHeader,
+.clendaryHouerBookingBody {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+}
+
+.dayHeader {
+  height: 6rem;
+}
+
+.clendaryHouerBookingBody {
+  height: 20rem;
+}
+
+.monthYearHeader {
+  height: 10rem;
+  background-color: #fff;
+  color: var(--primary-color-green);
+}
+
+.dayHeader {
+  height: 10rem;
+  background-color: var(--primary-color-green);
+  color: #fff;
+}
+
+.monthYearHeader,
+.dayHeader,
+.clendaryBooking,
+.houerBooking {
+  width: 50%;
+}
+
+.monthYearHeader,
+.dayHeader {
+  padding-left: 3rem;
+  box-shadow: 0 1rem 2rem hsla(0, 0%, 0%, 0.25);
+  z-index: 1;
+}
+
+.DayOfMonth {
+  display: flex;
+  height: 10rem;
+  overflow: hidden;
+  overflow-x: scroll;
+  transform: translateY(-2rem);
+  /* padding: 0; */
+}
+
+.scroll-horizontal {
+  padding: 0 !important;
+}
+
+.DayOfMonth::-webkit-scrollbar {
+  display: none;
+}
+
+.DayOfMonth div {
+  font-size: 2rem;
+  padding: 1rem;
+  padding-top: 2rem;
+  color: var(--primary-color-green);
+}
+
+.changeDateBooking {
+  display: flex;
+  flex-direction: row;
+}
+
+.btnChangeDateBooking {
+  padding: 1rem;
+  margin-right: 2rem;
+  margin-left: -1rem;
+  cursor: pointer;
+}
+
 
 /* GARBAGE CSS */
 

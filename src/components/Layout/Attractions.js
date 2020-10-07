@@ -68,7 +68,7 @@ const equalsPageNumberReturnOpacity = (pageNumber, buttonNumber) => {
 export const Attractions = () => {
   const [attraction, setAttraction] = useState(dataAtractions[1]);
   return (
-    <div className="contaniner">
+    <div className="container">
       <section className="body-section">
         <article className="article">
           <header className="title-header">

@@ -19,7 +19,7 @@ const UploadImage = () => {
 
   return (
     <div>
-      <div className="container containerImages">
+      <div className="containerImages">
         <div className="addImage">
           <label>
             <input
