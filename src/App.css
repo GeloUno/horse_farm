@@ -1049,13 +1049,13 @@ address a {
 }
 
 .monthYearHeader {
-  height: 8rem;
+  height: 10rem;
   background-color: #fff;
   color: var(--primary-color-green);
 }
 
 .dayHeader {
-  height: 8rem;
+  height: 10rem;
   background-color: var(--primary-color-green);
   color: #fff;
 }
@@ -1071,6 +1071,7 @@ address a {
 .dayHeader {
   padding-left: 3rem;
   box-shadow: 0 1rem 2rem hsla(0, 0%, 0%, 0.25);
+  z-index: 1;
 }
 
 .DayOfMonth {
@@ -1095,7 +1096,18 @@ address a {
   padding: 1rem;
   padding-top: 2rem;
   color: var(--primary-color-green);
+}
 
+.changeDateBooking {
+  display: flex;
+  flex-direction: row;
+}
+
+.btnChangeDateBooking {
+  padding: 1rem;
+  margin-right: 2rem;
+  margin-left: -1rem;
+  cursor: pointer;
 }
 
 

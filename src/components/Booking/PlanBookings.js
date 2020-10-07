@@ -15,16 +15,39 @@ const PlanBookings = (props) => {
             <h2>Wrzesień</h2>
           </div>
           <div className="year">2020</div>
+          <div className="year">
+            <div className="changeMonth changeDateBooking">
+              <div className="prevMonth btnChangeDateBooking">
+                <i className="fas fa-chevron-left"></i>
+              </div>
+              <div className="nextMonth btnChangeDateBooking">
+                <i className="fas fa-chevron-right"></i>
+              </div>
+            </div>
+          </div>
         </div>
         <div className="dayHeader">
           <div className="dayNumber">
             <h2>22</h2>
           </div>
           <div className="daysOfWeek">sobota</div>
+          <div className="changeDay changeDateBooking">
+            <div className="prevDay btnChangeDateBooking">
+              <i className="fas fa-chevron-left"></i>
+            </div>
+            <div className="nextMonth btnChangeDateBooking">
+              <i className="fas fa-chevron-right"></i>
+            </div>
+          </div>
         </div>
       </div>
       <div className="DayOfMonth">
-        <HorizontalScroll reverseScroll>
+        <HorizontalScroll
+          reverseScroll
+          style={{
+            paddingTop: '0',
+          }}
+        >
           <div className="btn">1</div>
           <div className="btn">2</div>
           <div className="btn">3</div>
