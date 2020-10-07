@@ -1027,6 +1027,9 @@ address a {
 /* PLAN BOOKING */
 .containerPlanBooking {
   flex-direction: column;
+  max-width: 900px;
+  justify-content: center;
+  margin: auto;
 }
 
 .dateHeader,
@@ -1034,6 +1037,7 @@ address a {
   display: flex;
   flex-direction: row;
   width: 100%;
+
 }
 
 .dayHeader {
@@ -1044,6 +1048,18 @@ address a {
   height: 20rem;
 }
 
+.monthYearHeader {
+  height: 8rem;
+  background-color: #fff;
+  color: var(--primary-color-green);
+}
+
+.dayHeader {
+  height: 8rem;
+  background-color: var(--primary-color-green);
+  color: #fff;
+}
+
 .monthYearHeader,
 .dayHeader,
 .clendaryBooking,
@@ -1051,6 +1067,36 @@ address a {
   width: 50%;
 }
 
+.monthYearHeader,
+.dayHeader {
+  padding-left: 3rem;
+  box-shadow: 0 1rem 2rem hsla(0, 0%, 0%, 0.25);
+}
+
+.DayOfMonth {
+  display: flex;
+  height: 10rem;
+  overflow: hidden;
+  overflow-x: scroll;
+  transform: translateY(-2rem);
+  /* padding: 0; */
+}
+
+.scroll-horizontal {
+  padding: 0 !important;
+}
+
+.DayOfMonth::-webkit-scrollbar {
+  display: none;
+}
+
+.DayOfMonth div {
+  font-size: 2rem;
+  padding: 1rem;
+  padding-top: 2rem;
+  color: var(--primary-color-green);
+
+}
 
 
 /* GARBAGE CSS */
