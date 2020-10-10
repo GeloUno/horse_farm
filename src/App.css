@@ -1107,6 +1107,50 @@ address a {
   cursor: pointer;
 }
 
+.houerBookingBody {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  width: 100%;
+}
+
+.houerBookingBody::-webkit-scrollbar {
+  overflow: hidden;
+  display: none;
+}
+
+.houerBooking {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.dataHouerBooking {
+  padding: 1rem;
+  font-size: 1.5rem;
+  color: var(--primary-color-green);
+  border-bottom: 2px solid var(--primary-color-green);
+  /* height: 25rem; */
+}
+
+.userBooking {
+  transform: translateX(5rem);
+}
+
+/* .modalImageGallery {
+  width: 65rem;
+  height: 52rem;
+  flex-direction: column;
+  border: #fff 1rem solid;
+  box-sizing: border-box;
+  overflow-y: scroll;
+}
+
+.modalImageGallery::-webkit-scrollbar {
+  overflow: hidden;
+  display: none;
+} */
+
 
 /* GARBAGE CSS */
 
