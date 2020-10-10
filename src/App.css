@@ -916,7 +916,6 @@ address a {
   padding: 1rem;
 }
 
-
 .comment {
   display: flex;
   position: relative;
@@ -1025,6 +1024,7 @@ address a {
 }
 
 /* PLAN BOOKING */
+
 .containerPlanBooking {
   flex-direction: column;
   max-width: 900px;
@@ -1077,17 +1077,13 @@ address a {
 .DayOfMonth {
   display: flex;
   height: 10rem;
-  /* overflow: hidden; */
-  /* overflow-x: scroll; */
   transform: translateY(-2rem);
-  /* padding: 0; */
 }
 
 .scroll-horizontal {
   padding: 0 !important;
 }
 
-/* .DayOfMonth::-webkit-scrollbar, */
 .DayOfMonth div::-webkit-scrollbar {
   display: none;
 }
@@ -1110,6 +1106,50 @@ address a {
   margin-left: -1rem;
   cursor: pointer;
 }
+
+.houerBookingBody {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  width: 100%;
+}
+
+.houerBookingBody::-webkit-scrollbar {
+  overflow: hidden;
+  display: none;
+}
+
+.houerBooking {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.dataHouerBooking {
+  padding: 1rem;
+  font-size: 1.5rem;
+  color: var(--primary-color-green);
+  border-bottom: 2px solid var(--primary-color-green);
+  /* height: 25rem; */
+}
+
+.userBooking {
+  transform: translateX(5rem);
+}
+
+/* .modalImageGallery {
+  width: 65rem;
+  height: 52rem;
+  flex-direction: column;
+  border: #fff 1rem solid;
+  box-sizing: border-box;
+  overflow-y: scroll;
+}
+
+.modalImageGallery::-webkit-scrollbar {
+  overflow: hidden;
+  display: none;
+} */
 
 
 /* GARBAGE CSS */
