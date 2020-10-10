@@ -71,7 +71,7 @@ const MakeBooking = ({
               setEndTimeBooking(1 + +e.target.value);
             }}
           >
-            {forHoursOptions(firstHourBooking, lastHourBooking)}
+            {forHoursOptions(firstHourBooking, lastHourBooking, true, false)}
           </select>
         </div>
         <div className="bookingForm">
@@ -81,7 +81,12 @@ const MakeBooking = ({
             value={endTimeBooking}
             onChange={(e) => setEndTimeBooking(+e.target.value)}
           >
-            {forHoursOptions(1 + +startTimeBooking, lastHourBooking + 1)}
+            {forHoursOptions(
+              1 + +startTimeBooking,
+              lastHourBooking + 1,
+              true,
+              false
+            )}
           </select>
         </div>
         <div>
