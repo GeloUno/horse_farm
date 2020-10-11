@@ -1076,7 +1076,7 @@ address a {
 
 .DayOfMonth {
   display: flex;
-  height: 10rem;
+  height: 5rem;
   transform: translateY(-2rem);
 }
 
@@ -1091,7 +1091,7 @@ address a {
 .DayOfMonth div {
   font-size: 2rem;
   padding: 1rem;
-  padding-top: 2rem;
+  /* padding-top: 2rem; */
   color: var(--primary-color-green);
 }
 

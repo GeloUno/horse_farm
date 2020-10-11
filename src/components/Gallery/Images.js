@@ -2,7 +2,7 @@ import React from 'react';
 import Pagination from '../Layout/Pagination';
 import UploadImage from './UploadImage';
 import LikesAndComments from './LikesAndComments';
-import { DevImagesData } from '../../devUtility/imagesGalery';
+import { DevImagesData } from '../../DevUtility/imagesGalery';
 
 /* FIXME: isAuth change to false in prod */
 
