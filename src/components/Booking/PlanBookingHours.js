@@ -3,11 +3,25 @@ import PropTypes from 'prop-types';
 import faker from 'faker/locale/pl';
 import { PlanBookingHoursUsersList } from './PlanBookingHoursUsersList';
 
-const PlanBookingHoures = ({ firstHourBooking, lastHourBooking }) => {
+const PlanBookingHoures = ({
+  firstHourBooking,
+  lastHourBooking,
+  BookingData,
+  bookingDay,
+}) => {
+  const dayBookingData = BookingData.filter((dataBooking) => {
+    const day = new Date(bookingDay).getDate();
+    const dayCompareFromDataBooking = dataBooking.hourBooking.getDate();
+    return day === dayCompareFromDataBooking;
+  });
   return (
     <div className="clendaryHouerBookingBody">
       <div className="houerBookingBody">
-        {PlanBookingHoursUsersList(firstHourBooking, lastHourBooking + 1)}
+        {PlanBookingHoursUsersList(
+          firstHourBooking,
+          lastHourBooking + 1,
+          dayBookingData
+        )}
       </div>
     </div>
   );
