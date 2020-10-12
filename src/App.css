@@ -1079,13 +1079,45 @@ address a {
 
 .DayOfMonth {
   display: flex;
-  height: 5rem;
+  height: 8rem;
   transform: translateY(-2rem);
 }
 
-.scroll-horizontal {
-  padding: 0 !important;
+.dayString {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  padding-bottom: 0 !important;
 }
+
+.dayNumber {
+  display: flex;
+  width: 100%;
+  padding-top: 0 !important;
+}
+
+.dayString time,
+.dayNumber time {
+  width: 100%;
+  text-align: center;
+}
+
+.dayString time {
+  font-size: 0.9rem;
+}
+
+.dayNumberAndString {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* .scroll-horizontal {
+  height: 5rem !important;
+  padding: 0 !important;
+} */
 
 .DayOfMonth div::-webkit-scrollbar {
   display: none;
@@ -1145,6 +1177,11 @@ address a {
   display: flex;
   justify-content: center;
   margin: 2rem 0;
+}
+
+.btn-day {
+  height: 5rem;
+  text-transform: lowercase;
 }
 
 /* .modalImageGallery {

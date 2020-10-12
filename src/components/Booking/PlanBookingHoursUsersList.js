@@ -3,14 +3,14 @@ import { DevBookingData } from '../../DevUtility/booking';
 
 const usersListInHour = (users, hourBooking) => {
   const usersList = users.map((user, index) => {
-    console.log(
-      'user hour',
-      user.name,
-      '->',
-      user.hourBooking,
-      'test hour date',
-      new Date(user.hourBooking)
-    );
+    // console.log(
+    //   'user hour',
+    //   user.name,
+    //   '->',
+    //   user.hourBooking,
+    //   'test hour date',
+    //   new Date(user.hourBooking)
+    // );
 
     return (
       // startHour < nowHour &&
