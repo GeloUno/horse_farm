@@ -16,8 +16,6 @@ const PlanBookings = (props) => {
     setDaysInMonth(moment(bookingDay).daysInMonth());
   }, [bookingDay]);
 
-  /* Data Com */
-
   return (
     <div className="container containerPlanBooking">
       <div className="dateHeader ">
@@ -84,8 +82,8 @@ const PlanBookings = (props) => {
       </div>
       <PlanBookingsDays
         daysInMonth={daysInMonth}
-        bookingDay={bookingDay}
         setBookingDay={setBookingDay}
+        bookingDay={bookingDay}
       />
       {console.log('DevBookingData :>> ', DevBookingData)}
       <PlanBookingHoures BookingData={DevBookingData} bookingDay={bookingDay} />

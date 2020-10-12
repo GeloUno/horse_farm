@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import HorizontalScroll from 'react-scroll-horizontal';
-import moment from 'moment';
 import Moment from 'react-moment';
 
-const listDaysInMonth = (daysInMonth, bookingDate, setBookingDay) => {
+const listDaysInMonth = (daysInMonth, bookingDay, setBookingDay) => {
   const listDays = [];
 
   for (let index = 1; index <= daysInMonth; index++) {
-    const day = moment(bookingDate).set('date', index);
+    const day = new Date(bookingDay).setDate(index);
+    const dayInWeek = new Date(day).getDay();
+    console.log(dayInWeek);
     listDays.push(
       <div
         className="dayNumberAndString btn btn-day"
@@ -17,10 +18,10 @@ const listDaysInMonth = (daysInMonth, bookingDate, setBookingDay) => {
           setBookingDay(day);
         }}
       >
-        <div className="dayString">
-          <Moment format="ddd">{day}</Moment>
+        <div className={dayInWeek === 0 ? 'dayString day-red' : 'dayString'}>
+          <Moment format="dddd">{day}</Moment>
         </div>
-        <div className="dayNumber">
+        <div className={dayInWeek === 0 ? 'dayNumber day-red' : 'dayNumber'}>
           <Moment format="DD">{day}</Moment>
         </div>
       </div>
@@ -29,7 +30,7 @@ const listDaysInMonth = (daysInMonth, bookingDate, setBookingDay) => {
   return listDays;
 };
 
-const PlanBookingsDays = ({ daysInMonth, bookingDate, setBookingDay }) => {
+const PlanBookingsDays = ({ daysInMonth, bookingDay, setBookingDay }) => {
   return (
     <div className="DayOfMonth">
       <HorizontalScroll
@@ -39,7 +40,7 @@ const PlanBookingsDays = ({ daysInMonth, bookingDate, setBookingDay }) => {
           overflowX: 'scroll',
         }}
       >
-        {listDaysInMonth(daysInMonth, bookingDate, setBookingDay)}
+        {listDaysInMonth(daysInMonth, bookingDay, setBookingDay)}
       </HorizontalScroll>
     </div>
   );
