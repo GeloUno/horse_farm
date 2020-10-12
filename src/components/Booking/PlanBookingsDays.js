@@ -4,7 +4,7 @@ import HorizontalScroll from 'react-scroll-horizontal';
 import moment from 'moment';
 import Moment from 'react-moment';
 
-const listDaysInMonth = (daysInMonth, bookingDate, setBookingDate) => {
+const listDaysInMonth = (daysInMonth, bookingDate, setBookingDay) => {
   const listDays = [];
 
   for (let index = 1; index <= daysInMonth; index++) {
@@ -14,7 +14,7 @@ const listDaysInMonth = (daysInMonth, bookingDate, setBookingDate) => {
         className="dayNumberAndString btn btn-day"
         key={index}
         onClick={() => {
-          setBookingDate(day);
+          setBookingDay(day);
         }}
       >
         <div className="dayString">
@@ -29,7 +29,7 @@ const listDaysInMonth = (daysInMonth, bookingDate, setBookingDate) => {
   return listDays;
 };
 
-const PlanBookingsDays = ({ daysInMonth, bookingDate, setBookingDate }) => {
+const PlanBookingsDays = ({ daysInMonth, bookingDate, setBookingDay }) => {
   return (
     <div className="DayOfMonth">
       <HorizontalScroll
@@ -39,7 +39,7 @@ const PlanBookingsDays = ({ daysInMonth, bookingDate, setBookingDate }) => {
           overflowX: 'scroll',
         }}
       >
-        {listDaysInMonth(daysInMonth, bookingDate, setBookingDate)}
+        {listDaysInMonth(daysInMonth, bookingDate, setBookingDay)}
       </HorizontalScroll>
     </div>
   );

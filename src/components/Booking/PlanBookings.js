@@ -4,35 +4,39 @@ import Moment from 'react-moment';
 import moment from 'moment';
 import PlanBookingsDays from './PlanBookingsDays';
 import PlanBookingHoures from './PlanBookingHours';
+import { DevBookingData } from '../../DevUtility/booking';
 
 const PlanBookings = (props) => {
-  const [bookingDate, setBookingDate] = useState(new Date());
+  const [bookingDay, setBookingDay] = useState(new Date());
   const [daysInMonth, setDaysInMonth] = useState(
-    moment(bookingDate).daysInMonth()
+    moment(bookingDay).daysInMonth()
   );
 
   useEffect(() => {
-    setDaysInMonth(moment(bookingDate).daysInMonth());
-  }, [bookingDate]);
+    setDaysInMonth(moment(bookingDay).daysInMonth());
+  }, [bookingDay]);
+
+  /* Data Com */
+
   return (
     <div className="container containerPlanBooking">
       <div className="dateHeader ">
         <div className="monthYearHeader">
           <div className="month">
             <h2>
-              <Moment format="MMMM">{bookingDate}</Moment>
+              <Moment format="MMMM">{bookingDay}</Moment>
             </h2>
           </div>
           <div className="year">
             {' '}
-            <Moment format="YYYY">{bookingDate}</Moment>
+            <Moment format="YYYY">{bookingDay}</Moment>
           </div>
           <div className="year">
             <div className="changeMonth changeDateBooking">
               <div
                 className="prevMonth btnChangeDateBooking"
                 onClick={() => {
-                  setBookingDate(moment(bookingDate).subtract(1, 'months'));
+                  setBookingDay(moment(bookingDay).subtract(1, 'months'));
                 }}
               >
                 <i className="fas fa-chevron-left"></i>
@@ -40,7 +44,7 @@ const PlanBookings = (props) => {
               <div
                 className="nextMonth btnChangeDateBooking"
                 onClick={() => {
-                  setBookingDate(moment(bookingDate).add(1, 'months'));
+                  setBookingDay(moment(bookingDay).add(1, 'months'));
                 }}
               >
                 <i className="fas fa-chevron-right"></i>
@@ -51,18 +55,18 @@ const PlanBookings = (props) => {
         <div className="dayHeader">
           <div className="dayNumber">
             <h2>
-              <Moment format="D">{bookingDate}</Moment>
+              <Moment format="D">{bookingDay}</Moment>
             </h2>
           </div>
           <div className="daysOfWeek">
             {' '}
-            <Moment format="dddd">{bookingDate}</Moment>
+            <Moment format="dddd">{bookingDay}</Moment>
           </div>
           <div className="changeDay changeDateBooking">
             <div
               className="prevDay btnChangeDateBooking"
               onClick={() => {
-                setBookingDate(moment(bookingDate).subtract(1, 'days'));
+                setBookingDay(moment(bookingDay).subtract(1, 'days'));
               }}
             >
               <i className="fas fa-chevron-left"></i>
@@ -70,7 +74,7 @@ const PlanBookings = (props) => {
             <div
               className="nextMonth btnChangeDateBooking"
               onClick={() => {
-                setBookingDate(moment(bookingDate).add(1, 'days'));
+                setBookingDay(moment(bookingDay).add(1, 'days'));
               }}
             >
               <i className="fas fa-chevron-right"></i>
@@ -80,10 +84,11 @@ const PlanBookings = (props) => {
       </div>
       <PlanBookingsDays
         daysInMonth={daysInMonth}
-        bookingDate={bookingDate}
-        setBookingDate={setBookingDate}
+        bookingDay={bookingDay}
+        setBookingDay={setBookingDay}
       />
-      <PlanBookingHoures />
+      {console.log('DevBookingData :>> ', DevBookingData)}
+      <PlanBookingHoures BookingData={DevBookingData} bookingDay={bookingDay} />
       <div className="reservedButtonLink">
         <button className="btn btn-green btn-capitalize">rezerwacja</button>
       </div>
