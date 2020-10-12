@@ -1048,7 +1048,7 @@ address a {
 }
 
 .clendaryHouerBookingBody {
-  height: 40rem;
+  height: 35rem;
 }
 
 .monthYearHeader {
@@ -1090,10 +1090,15 @@ address a {
   padding-bottom: 0 !important;
 }
 
+
 .dayNumber {
   display: flex;
   width: 100%;
   padding-top: 0 !important;
+}
+
+.day-red {
+  color: var(--red-alert) !important;
 }
 
 .dayString time,
@@ -1114,10 +1119,6 @@ address a {
 }
 
 
-/* .scroll-horizontal {
-  height: 5rem !important;
-  padding: 0 !important;
-} */
 
 .DayOfMonth div::-webkit-scrollbar {
   display: none;
@@ -1184,6 +1185,10 @@ address a {
   text-transform: lowercase;
 }
 
+
+
+/* GARBAGE CSS */
+
 /* .modalImageGallery {
   width: 65rem;
   height: 52rem;
@@ -1197,10 +1202,10 @@ address a {
   overflow: hidden;
   display: none;
 } */
-
-
-/* GARBAGE CSS */
-
+/* .scroll-horizontal {
+  height: 5rem !important;
+  padding: 0 !important;
+} */
 /* .circleLike,
 .circleComments {
   clip-path: circle(100% at 0 100%);
