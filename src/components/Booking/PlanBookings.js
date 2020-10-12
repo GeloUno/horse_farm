@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import pl from 'date-fns/locale/pl';
-import HorizontalScroll from 'react-scroll-horizontal';
-import faker from 'faker/locale/pl';
+
 import PlanBookingsDays from './PlanBookingsDays';
 import PlanBookingHoures from './PlanBookingHours';
 
@@ -45,7 +44,7 @@ const PlanBookings = (props) => {
       </div>
       <PlanBookingsDays />
       <PlanBookingHoures />
-      <div>
+      <div className="reservedButtonLink">
         <button className="btn btn-green btn-capitalize">rezerwacja</button>
       </div>
     </div>

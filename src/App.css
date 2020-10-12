@@ -1141,6 +1141,12 @@ address a {
   transform: translateX(5rem);
 }
 
+.reservedButtonLink {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
 /* .modalImageGallery {
   width: 65rem;
   height: 52rem;

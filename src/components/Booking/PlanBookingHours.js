@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import faker from 'faker/locale/pl';
-import { PlanBookingHoursByUsers } from './PlanBookingHoursByUsers';
+import { PlanBookingHoursUsersList } from './PlanBookingHoursUsersList';
 
 const PlanBookingHoures = ({ firstHourBooking, lastHourBooking }) => {
   return (
     <div className="clendaryHouerBookingBody">
       <div className="houerBookingBody">
-        {PlanBookingHoursByUsers(firstHourBooking, lastHourBooking + 1)}
+        {PlanBookingHoursUsersList(firstHourBooking, lastHourBooking + 1)}
       </div>
     </div>
   );

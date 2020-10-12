@@ -37,7 +37,10 @@ const hourBooking = (listHourBooking, arrayHoursList) => {
   );
 };
 
-export const PlanBookingHoursByUsers = (firstHourBooking, lastHourBooking) => {
+export const PlanBookingHoursUsersList = (
+  firstHourBooking,
+  lastHourBooking
+) => {
   const arrayHours = [];
   for (
     firstHourBooking;
