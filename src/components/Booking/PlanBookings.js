@@ -11,6 +11,14 @@ const PlanBookings = (props) => {
   const [daysInMonth, setDaysInMonth] = useState(
     moment(bookingDay).daysInMonth()
   );
+  const bookingMonth = DevBookingData.filter((data) => {
+    return (
+      moment(bookingDay).format('M') === moment(data.hourBooking).format('M') &&
+      moment(bookingDay).format('YYYYY') ===
+        moment(data.hourBooking).format('YYYYY')
+      //FIXME: filter month and year should be in backend server
+    );
+  });
 
   useEffect(() => {
     setDaysInMonth(moment(bookingDay).daysInMonth());
@@ -26,7 +34,6 @@ const PlanBookings = (props) => {
             </h2>
           </div>
           <div className="year">
-            {' '}
             <Moment format="YYYY">{bookingDay}</Moment>
           </div>
           <div className="year">
@@ -86,7 +93,7 @@ const PlanBookings = (props) => {
         bookingDay={bookingDay}
       />
       {console.log('DevBookingData :>> ', DevBookingData)}
-      <PlanBookingHoures BookingData={DevBookingData} bookingDay={bookingDay} />
+      <PlanBookingHoures BookingData={bookingMonth} bookingDay={bookingDay} />
       <div className="reservedButtonLink">
         <button className="btn btn-green btn-capitalize">rezerwacja</button>
       </div>
