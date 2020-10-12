@@ -1,8 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import HorizontalScroll from 'react-scroll-horizontal';
+import moment from 'moment';
+import Moment from 'react-moment';
 
-const PlanBookingsDays = (props) => {
+const listDaysInMonth = (daysInMonth, bookingDate, setBookingDay) => {
+  const listDays = [];
+
+  for (let index = 1; index <= daysInMonth; index++) {
+    const day = moment(bookingDate).set('date', index);
+    listDays.push(
+      <div
+        className="dayNumberAndString btn btn-day"
+        key={index}
+        onClick={() => {
+          setBookingDay(day);
+        }}
+      >
+        <div className="dayString">
+          <Moment format="ddd">{day}</Moment>
+        </div>
+        <div className="dayNumber">
+          <Moment format="DD">{day}</Moment>
+        </div>
+      </div>
+    );
+  }
+  return listDays;
+};
+
+const PlanBookingsDays = ({ daysInMonth, bookingDate, setBookingDay }) => {
   return (
     <div className="DayOfMonth">
       <HorizontalScroll
@@ -12,42 +39,14 @@ const PlanBookingsDays = (props) => {
           overflowX: 'scroll',
         }}
       >
-        <div className="btn">1</div>
-        <div className="btn">2</div>
-        <div className="btn">3</div>
-        <div className="btn">4</div>
-        <div className="btn">5</div>
-        <div className="btn">6</div>
-        <div className="btn">7</div>
-        <div className="btn">8</div>
-        <div className="btn">9</div>
-        <div className="btn">10</div>
-        <div className="btn">11</div>
-        <div className="btn">12</div>
-        <div className="btn">13</div>
-        <div className="btn">14</div>
-        <div className="btn">15</div>
-        <div className="btn">16</div>
-        <div className="btn">17</div>
-        <div className="btn">18</div>
-        <div className="btn">19</div>
-        <div className="btn">20</div>
-        <div className="btn">21</div>
-        <div className="btn">22</div>
-        <div className="btn">23</div>
-        <div className="btn">24</div>
-        <div className="btn">25</div>
-        <div className="btn">26</div>
-        <div className="btn">27</div>
-        <div className="btn">28</div>
-        <div className="btn">29</div>
-        <div className="btn">30</div>
-        <div className="btn">31</div>
+        {listDaysInMonth(daysInMonth, bookingDate, setBookingDay)}
       </HorizontalScroll>
     </div>
   );
 };
 
-PlanBookingsDays.propTypes = {};
+PlanBookingsDays.propTypes = {
+  daysInMonth: PropTypes.number.isRequired,
+};
 
 export default PlanBookingsDays;
