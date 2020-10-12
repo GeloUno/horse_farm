@@ -9,7 +9,6 @@ const listDaysInMonth = (daysInMonth, bookingDay, setBookingDay) => {
   for (let index = 1; index <= daysInMonth; index++) {
     const day = new Date(bookingDay).setDate(index);
     const dayInWeek = new Date(day).getDay();
-    console.log(dayInWeek);
     listDays.push(
       <div
         className="dayNumberAndString btn btn-day"
