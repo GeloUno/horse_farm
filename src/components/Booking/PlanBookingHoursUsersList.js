@@ -1,20 +1,9 @@
 import React, { useState } from 'react';
-import { DevBookingData } from '../../DevUtility/booking';
+// import { DevBookingData } from '../../DevUtility/booking';
 
-const usersListInHour = (users, hourBooking) => {
+const usersListInHour = (users) => {
   const usersList = users.map((user, index) => {
-    // console.log(
-    //   'user hour',
-    //   user.name,
-    //   '->',
-    //   user.hourBooking,
-    //   'test hour date',
-    //   new Date(user.hourBooking)
-    // );
-
     return (
-      // startHour < nowHour &&
-      // endHour > nowHour &&
       <div className="dataHouerBooking userBooking" key={user.id}>
         {++index}. {user.name}
       </div>
@@ -23,8 +12,8 @@ const usersListInHour = (users, hourBooking) => {
   return usersList;
 };
 
-const hourBooking = (listHourBooking, arrayHoursList) => {
-  const users = DevBookingData.filter((e) => {
+const hourBooking = (listHourBooking, arrayHoursList, dayBookingData) => {
+  const users = dayBookingData.filter((e) => {
     const date = new Date(e.hourBooking);
     return date.getHours() === listHourBooking;
   });
@@ -39,7 +28,8 @@ const hourBooking = (listHourBooking, arrayHoursList) => {
 
 export const PlanBookingHoursUsersList = (
   firstHourBooking,
-  lastHourBooking
+  lastHourBooking,
+  dayBookingData
 ) => {
   const arrayHours = [];
   for (
@@ -47,7 +37,7 @@ export const PlanBookingHoursUsersList = (
     firstHourBooking < lastHourBooking;
     firstHourBooking++
   ) {
-    hourBooking(firstHourBooking, arrayHours);
+    hourBooking(firstHourBooking, arrayHours, dayBookingData);
   }
   return arrayHours;
 };
