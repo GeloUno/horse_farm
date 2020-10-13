@@ -1237,7 +1237,7 @@ address a {
 
 }
 
-@media screen and (min-width: 401px) and (max-width: 600px) {
+@media screen and (max-width: 600px) {
   :root {
     font-size: 40%;
     line-height: 1.1;
