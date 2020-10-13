@@ -3,8 +3,12 @@ import React from 'react';
 const OpinionUser = ({ nick, sourceImage, description }) => {
   return (
     <article className="article-body flex-direction-col">
-      <div className="image-user">
-        <img src={sourceImage} alt="zdjęcie użytkownika" />
+      <div>
+        <img
+          className="image-user"
+          src={sourceImage}
+          alt="zdjęcie użytkownika"
+        />
       </div>
 
       <div className="nick-user">
