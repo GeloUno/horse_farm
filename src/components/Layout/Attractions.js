@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { dataAtractions } from '../../utility/dataAtractons';
+import { dataAtractions } from '../../utility/dataAtractons.js';
+
 const nextPage = (numberPage) => {
   if (numberPage >= 5) {
     return dataAtractions[1];
@@ -9,7 +10,7 @@ const nextPage = (numberPage) => {
 };
 
 const equalsPageNumberReturnOpacity = (pageNumber, buttonNumber) => {
-  return buttonNumber == pageNumber ? { opacity: '1' } : { opacity: '.15' };
+  return buttonNumber === pageNumber ? { opacity: '1' } : { opacity: '.15' };
 };
 
 export const Attractions = () => {

@@ -1,8 +1,8 @@
-import atrattionImage_1 from '../../assets/Attractions/Stadnina-1.png';
-import atrattionImage_2 from '../../assets/Attractions/Stadnina-2.png';
-import atrattionImage_3 from '../../assets/Attractions/Stadnina-3.png';
-import atrattionImage_4 from '../../assets/Attractions/Stadnina-4.png';
-import atrattionImage_5 from '../../assets/Attractions/Stadnina-5.png';
+import atrattionImage_1 from '../assets/Attractions/Stadnina-1.png';
+import atrattionImage_2 from '../assets/Attractions/Stadnina-2.png';
+import atrattionImage_3 from '../assets/Attractions/Stadnina-3.png';
+import atrattionImage_4 from '../assets/Attractions/Stadnina-4.png';
+import atrattionImage_5 from '../assets/Attractions/Stadnina-5.png';
 
 export const dataAtractions = {
   1: {
