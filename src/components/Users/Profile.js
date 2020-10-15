@@ -1,11 +1,11 @@
 import React from 'react';
-
+import { DEVuser } from '../../DevUtility/user';
 const Profile = ({
-  nick = 'Ami',
-  firstName = 'Amelka',
-  lastName = 'Nowakbardzodługienazwisko',
-  email = 'supertajny@gmail.com',
-  phone = '501 234 567',
+  nick = DEVuser.nick,
+  firstName = DEVuser.firstName,
+  lastName = DEVuser.lastName,
+  email = DEVuser.email,
+  phone = DEVuser.phone,
 }) => {
   return (
     <div className="contaniner profileContainer">
