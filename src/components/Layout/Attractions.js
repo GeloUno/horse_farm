@@ -10,7 +10,9 @@ const nextPage = (numberPage) => {
 };
 
 const equalsPageNumberReturnOpacity = (pageNumber, buttonNumber) => {
-  return buttonNumber === pageNumber ? { opacity: '1' } : { opacity: '.15' };
+  return Number(buttonNumber) === Number(pageNumber)
+    ? { opacity: '1' }
+    : { opacity: '.15' };
 };
 
 export const Attractions = () => {
