@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import { DEVuser } from '../../DevUtility/user';
 
 const EditProfile = ({
-  nick = 'Ami',
-  firstName = 'Amelka',
-  lastName = 'Nowakbardzodługienazwisko',
-  email = 'supertajny@gmail.com',
-  phone = '501 234 567',
+  nick = DEVuser.nick,
+  firstName = DEVuser.firstName,
+  lastName = DEVuser.lastName,
+  email = DEVuser.email,
+  phone = DEVuser.phone,
   opinion = undefined,
 }) => {
   const [user, setUser] = useState({
