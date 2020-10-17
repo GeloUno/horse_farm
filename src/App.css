@@ -1454,7 +1454,7 @@ Bootstrap 3 Media Queries             =
 }
 
 /* target 360x640 M 24% */
-@media only screen and (max-width : 400px) and (orientation: portrait) {
+@media only screen and (max-width : 415px) and (orientation: portrait) {
 
   :root {
     font-size: 55%;
