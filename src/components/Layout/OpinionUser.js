@@ -21,7 +21,9 @@ const OpinionUser = ({ nick, sourceImage, description }) => {
 
       <div className="contact-link">
         <link rel="stylesheet" href="#" />
-        kontakt <i className="fas fa-arrow-right"></i>
+        <p>
+          kontakt <i className="fas fa-arrow-right"></i>
+        </p>
       </div>
     </article>
   );

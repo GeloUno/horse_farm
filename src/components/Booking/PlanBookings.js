@@ -92,7 +92,6 @@ const PlanBookings = (props) => {
         setBookingDay={setBookingDay}
         bookingDay={bookingDay}
       />
-      {console.log('DevBookingData :>> ', DevBookingData)}
       <PlanBookingHoures BookingData={bookingMonth} bookingDay={bookingDay} />
       <div className="reservedButtonLink">
         <button className="btn btn-green btn-capitalize">rezerwacja</button>
