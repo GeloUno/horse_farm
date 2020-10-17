@@ -18,6 +18,7 @@ import GalleryFullScreenImage from './components/Gallery/ImageModal';
 import MakeBooking from './components/Booking/MakeBooking';
 import ConfirmBooking from './components/Booking/ConfirmBooking';
 import PlanBookings from './components/Booking/PlanBookings';
+import { ShowMobileInfo } from './DevUtility/ShowMobileInfo';
 
 function App() {
   const [sideBarShow, setSideBarShow] = useState(false);
@@ -134,6 +135,7 @@ function App() {
       />
       <TitleSection title="Planer" />
       <PlanBookings />
+      <ShowMobileInfo />
       <Footer />
     </div>
   );
