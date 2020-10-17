@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 const usersListInHour = (users) => {
   const usersList = users.map((user, index) => {
     return (
-      <div className="dataHouerBooking userBooking" key={user.id}>
+      <div className="dataHouerBooking userBookingList" key={user.id}>
         {++index}. {user.name}
       </div>
     );
