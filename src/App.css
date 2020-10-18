@@ -170,7 +170,7 @@ body {
   flex-direction: column;
   color: #707070;
   height: 100%;
-  width: 35%;
+  width: 25%;
   align-items: center;
   background-color: hsla(0, 4%, 95%, 1);
 }
@@ -178,7 +178,7 @@ body {
 .sideBarBody i {
   display: block;
   text-align: end;
-  margin: 1.5625rem 9.875rem 0px auto;
+  margin: 1.5625rem 7.875rem 0px auto;
   font-size: 2.5rem;
   cursor: pointer;
 }
@@ -1465,6 +1465,10 @@ Bootstrap 3 Media Queries             =
     width: 15rem;
   }
 
+  .navbar ul li h2 a {
+    font-size: 2.5rem;
+  }
+
   .btn-header {
     width: 15rem;
     font-size: 1.6rem;
@@ -1480,6 +1484,11 @@ Bootstrap 3 Media Queries             =
 
   .title-header {
     font-size: 2rem;
+  }
+
+  .text-header {
+    padding-left: 55%;
+    margin-left: 0rem;
   }
 
   .article .btn {
