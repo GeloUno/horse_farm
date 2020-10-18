@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import moment from 'moment';
 import PlanBookingsDays from './PlanBookingsDays';
@@ -99,7 +98,5 @@ const PlanBookings = (props) => {
     </div>
   );
 };
-
-PlanBookings.propTypes = {};
 
 export default PlanBookings;

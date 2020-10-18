@@ -19,6 +19,7 @@ const UploadImage = () => {
 
   return (
     <div>
+      {console.log('fileImage', fileImage)}
       <div className="containerImages">
         <div className="addImage">
           <label>

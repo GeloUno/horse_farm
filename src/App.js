@@ -33,10 +33,10 @@ function App() {
     undefined
   );
   const [endDateAndTimeBooking, setEndDateAndTimeBooking] = useState(undefined);
-  // FIXME: set user ID after login to DB
-  const [user, setUser] = useState({ user: { userID: 2, nick: 'Ami' } }); //FIXME: on prod should be null, set user id from DB
+  // ANCHOR: set user ID after login to DB
+  const [user, setUser] = useState({ user: { userID: 2, nick: 'Ami' } }); //ANCHOR: on prod should be null, set user id from DB
 
-  /* FIXME: what will be better multi function ore one  ?? */
+  /* ANCHOR: what will be better multi function ore one  ?? */
 
   const sideBarToggle = (e) => {
     e.preventDefault();

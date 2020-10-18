@@ -1,4 +1,9 @@
-permalink: /docs/index.html
+# Horse Farm
+
+developer project build on
+[Stadnina](https://gelouno.github.io/horse_farm)
+
+#
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
