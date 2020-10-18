@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 
 const AddComment = ({ imageID, userID }) => {
   const [newComment, setNewComment] = useState();
@@ -28,7 +27,5 @@ const AddComment = ({ imageID, userID }) => {
     </div>
   );
 };
-
-AddComment.propTypes = {};
 
 export default AddComment;

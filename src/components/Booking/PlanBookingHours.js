@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import faker from 'faker/locale/pl';
 import { PlanBookingHoursUsersList } from './PlanBookingHoursUsersList';
 
 const PlanBookingHoures = ({
