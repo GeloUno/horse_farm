@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a600e76267fd3326bde7e852ce35fe7d",
+    "revision": "7a963fb7ebb55716c57f6fac3054691b",
     "url": "/horse_farm/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/horse_farm/static/css/2.25ff2e5b.chunk.css"
   },
   {
-    "revision": "2a8b276fa39a9dd2c1fe",
-    "url": "/horse_farm/static/css/main.667563a6.chunk.css"
+    "revision": "6651c69130286175991e",
+    "url": "/horse_farm/static/css/main.1aec617b.chunk.css"
   },
   {
     "revision": "1301f91df13b4cb7956d",
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/horse_farm/static/js/2.87da9d5b.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "2a8b276fa39a9dd2c1fe",
-    "url": "/horse_farm/static/js/main.01ab0c4f.chunk.js"
+    "revision": "6651c69130286175991e",
+    "url": "/horse_farm/static/js/main.51dbbf8a.chunk.js"
   },
   {
     "revision": "cc816126fe1eb0efe209",
