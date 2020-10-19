@@ -87,7 +87,7 @@ export const Opinions = () => {
   // let randomOpinions = null;
   let randomOpinions = getRandomDataNoRepeat(dataOpinions, 4);
   return (
-    <section className="container flex-direction-col">
+    <section className="container container-opinion flex-direction-col">
       <header className="title-header">
         <h2 className="title-regular">
           Trochę o<strong className="title-bold">NAS</strong>

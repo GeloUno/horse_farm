@@ -21,7 +21,6 @@
 body {
   padding: 0;
   margin: 0;
-  margin: 0;
   /* ? */
   font-weight: 500;
 }
@@ -51,6 +50,11 @@ body {
 .btn-brown {
   background-color: var(--first-color-brown);
   color: #fff;
+}
+
+.btn-withe-brown {
+  background-color: #fff;
+  color: var(--first-color-brown);
 }
 
 .btn p {
@@ -87,6 +91,14 @@ body {
 
 .left-article-attraction .btn {
   margin-top: 3.25rem;
+}
+
+.flex-direction-col {
+  flex-direction: column;
+}
+
+.flex-direction-row {
+  flex-direction: row;
 }
 
 /* Header */
@@ -134,10 +146,10 @@ body {
   margin: auto;
   margin-top: 7rem;
   font-size: 2.75rem;
-  border-radius: 0.625rem;
-  border: 0.125rem solid #fff;
+  border-radius: 1rem;
+  /* border: 0.125rem solid #fff;
   background-color: #fff;
-  color: #7A4826;
+  color: #7A4826; */
   text-transform: uppercase;
   font-weight: bold;
   letter-spacing: 0.1rem;
@@ -234,7 +246,7 @@ body {
   flex-direction: column;
   color: #707070;
   height: 100%;
-  width: 25%;
+  width: 15rem;
   align-items: center;
   background-color: hsla(0, 4%, 95%, 1);
 }
@@ -242,7 +254,7 @@ body {
 .sideBarBody i {
   display: block;
   text-align: end;
-  margin: 1.5625rem 7.875rem 0px auto;
+  margin: 1.5625rem 10.875rem 0px auto;
   font-size: 2.5rem;
   cursor: pointer;
 }
@@ -461,22 +473,21 @@ body {
 }
 
 /* OPINIONS */
-
-.flex-direction-col {
+.container-opinion {
   flex-direction: column;
+  position: relative;
+  height: auto;
 }
 
-.flex-direction-row {
-  flex-direction: row;
-}
 
 .opinios-body {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
 }
 
 .article-body {
-  width: 25%;
+  width: 22rem;
 }
 
 .image-user {
@@ -498,14 +509,16 @@ body {
 }
 
 .contact-link {
+  width: 22rem;
   color: var(--primary-color-green);
+  margin-bottom: 4rem;
 }
 
 /* CONTACT SECTION */
 
 .contact-section {
   flex-direction: column;
-  width: 50%;
+  width: 100%;
   align-items: center;
 }
 
@@ -545,7 +558,7 @@ address a {
 
 .socialMedia {
   display: flex;
-  margin-top: 3rem;
+  margin-top: 6rem;
   margin-bottom: 6rem;
   width: 60%;
   justify-content: space-around;
@@ -1164,6 +1177,7 @@ address a {
 
 }
 
+/* ANCHOR CHECK IS WORK ON SAFARI */
 .houerBookingBody::-webkit-scrollbar {
   overflow: hidden;
   display: none;
@@ -1184,8 +1198,10 @@ address a {
 }
 
 .userBookingList {
+  /* display: flex; */
   box-sizing: border-box;
   width: calc(100% - 5rem);
+  margin-left: 5rem;
   /* transform: translateX(5rem); */
 }
 
