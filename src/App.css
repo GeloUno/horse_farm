@@ -26,6 +26,69 @@ body {
   font-weight: 500;
 }
 
+/* BUTTON  */
+
+.btn {
+  height: 3.125rem;
+  text-transform: uppercase;
+  border: none;
+  font-size: 1.25rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: .75rem 3rem;
+}
+
+.btn-green {
+  background-color: var(--primary-color-green);
+  color: #fff;
+}
+
+.btn-red {
+  background-color: var(--red-alert);
+  color: #fff;
+}
+
+.btn-brown {
+  background-color: var(--first-color-brown);
+  color: #fff;
+}
+
+.btn p {
+  margin: 0;
+}
+
+.btn:focus {
+  outline: 0 !important;
+}
+
+.btn:hover {
+  border: none;
+  box-shadow: 0.625rem 0.625rem 0.625rem 0.125rem rgba(0, 0, 0, 0.20);
+}
+
+.btn:active {
+  border: none;
+  box-shadow: 0.625rem 0.625rem 0.625rem 0.125rem rgba(0, 0, 0, 0.1);
+  /* transform: translateY(1%) scale(0.98); */
+  transform-origin: center;
+}
+
+.btn-capitalize {
+  text-transform: lowercase;
+}
+
+.btn-capitalize::first-letter {
+  text-transform: capitalize;
+}
+
+.btn-radius {
+  border-radius: 0.3125rem;
+}
+
+.left-article-attraction .btn {
+  margin-top: 3.25rem;
+}
+
 /* Header */
 
 .image-header {
@@ -65,6 +128,7 @@ body {
 
 .btn-header {
   display: block;
+  height: 5rem;
   width: 28rem;
   padding: 1rem;
   margin: auto;
@@ -77,13 +141,13 @@ body {
   text-transform: uppercase;
   font-weight: bold;
   letter-spacing: 0.1rem;
-  box-shadow: 0.625rem 1.25rem 0.625rem 0.3125rem rgba(0, 0, 0, 0.40);
+  /* box-shadow: 0.625rem 1.25rem 0.625rem 0.3125rem rgba(0, 0, 0, 0.40); */
 }
 
 .btn-header:active {
   border: none;
-  transform: translateY(1%) scale(0.98);
-  transform-origin: center;
+  /* transform: translateY(1%) scale(0.98); */
+  /* transform-origin: center; */
 }
 
 .btn-header:hover {
@@ -185,7 +249,7 @@ body {
 
 .userSideBar {
   clip-path: circle(50% at 50% 50%);
-  transform: translateX(2.5rem);
+  /* transform: translateX(2.5rem); */
 }
 
 .photoUser {
@@ -276,14 +340,20 @@ body {
 /* left section */
 .body-section {
   display: flex;
-  max-width: 50%;
+  position: relative;
+  flex-direction: row;
+  width: 100%;
   height: 100%;
   background: #fff;
   align-items: stretch;
 }
 
 .left-article-attraction {
+  display: flex;
+  position: relative;
+  flex-direction: column;
   justify-content: space-between;
+  z-index: 0;
   /* max-width: 60%; */
 }
 
@@ -332,80 +402,21 @@ body {
   line-height: 120%;
 }
 
-/* BUTTON  */
 
-.btn {
-  height: 3.125rem;
-  text-transform: uppercase;
-  border: none;
-  font-size: 1.25rem;
-  font-weight: 500;
-  cursor: pointer;
-  padding: .75rem 3rem;
-}
-
-.btn-green {
-  background-color: var(--primary-color-green);
-  color: #fff;
-}
-
-.btn-red {
-  background-color: var(--red-alert);
-  color: #fff;
-}
-
-.btn-brown {
-  background-color: var(--first-color-brown);
-  color: #fff;
-}
-
-.btn p {
-  margin: 0;
-}
-
-.btn:focus {
-  outline: 0 !important;
-}
-
-.btn:hover {
-  border: none;
-  box-shadow: 0.625rem 0.625rem 0.625rem 0.125rem rgba(0, 0, 0, 0.20);
-}
-
-.btn:active {
-  border: none;
-  box-shadow: 0.625rem 0.625rem 0.625rem 0.125rem rgba(0, 0, 0, 0.1);
-  transform: translateY(1%) scale(0.98);
-  transform-origin: center;
-}
-
-.btn-capitalize {
-  text-transform: lowercase;
-}
-
-.btn-capitalize::first-letter {
-  text-transform: capitalize;
-}
-
-.btn-radius {
-  border-radius: 0.3125rem;
-}
-
-.left-article-attraction .btn {
-  margin-top: 3.25rem;
-}
 
 /*  Attraction Section Right */
 
 .right-article-attraction {
-  position: absolute;
   display: flex;
-  /* right: 20%; */
-  /* width: 680px; */
+  position: absolute;
+  right: 7rem;
+  top: 1rem;
   flex-direction: column;
   z-index: 1;
+  /* right: 20%; */
+  /* width: 680px; */
   /* object-position: 100% 100%; */
-  transform: scale(1) translateX(50rem);
+  /* transform: scale(1) translateX(50rem); */
 }
 
 .parent-image-attraction {
@@ -730,7 +741,7 @@ address a {
 }
 
 .profileRemove button {
-  transform: translateX(-1.5rem);
+  /* transform: translateX(-1.5rem); */
   padding: .75rem 5rem;
 }
 
@@ -1082,7 +1093,7 @@ address a {
 .DayOfMonth {
   display: flex;
   height: 8rem;
-  transform: translateY(-2rem);
+  /* transform: translateY(-2rem); */
 }
 
 .dayString {
@@ -1175,7 +1186,7 @@ address a {
 .userBookingList {
   box-sizing: border-box;
   width: calc(100% - 5rem);
-  transform: translateX(5rem);
+  /* transform: translateX(5rem); */
 }
 
 .reservedButtonLink {
@@ -1285,15 +1296,17 @@ Bootstrap 3 Media Queries             =
     font-size: 90%;
   }
 
-  .right-article-attraction {
+  /* .right-article-attraction {
     transform: scale(0.9) translateX(45rem);
-  }
+  } */
 
   .background-text {
     margin: 0;
     font-size: 14.875rem;
   }
 }
+
+
 
 /* target 1366x768 D oki */
 /* target 1280x1024 D oki */
@@ -1313,9 +1326,9 @@ Bootstrap 3 Media Queries             =
     font-size: 70%;
   }
 
-  .right-article-attraction {
+  /* .right-article-attraction {
     transform: scale(0.9) translateX(43rem);
-  }
+  } */
 }
 
 
@@ -1326,9 +1339,9 @@ Bootstrap 3 Media Queries             =
     font-size: 60%;
   }
 
-  .right-article-attraction {
+  /* .right-article-attraction {
     transform: scale(0.9) translateX(45rem);
-  }
+  } */
 }
 
 /* target 823x411 M Pixel 2XL */
@@ -1395,9 +1408,9 @@ Bootstrap 3 Media Queries             =
     font-size: 68%;
   }
 
-  .right-article-attraction {
+  /* .right-article-attraction {
     transform: scale(0.9) translateX(43rem);
-  }
+  } */
 }
 
 /* target 962x601 T 5% oki Orientation Veryical */
@@ -1407,9 +1420,9 @@ Bootstrap 3 Media Queries             =
     font-size: 40%;
   }
 
-  .right-article-attraction {
+  /* .right-article-attraction {
     transform: scale(0.9) translateX(45rem);
-  }
+  } */
 
   .menu-right {
     display: none;
@@ -1498,7 +1511,7 @@ Bootstrap 3 Media Queries             =
 
   .background-text {
     font-size: 8.875rem;
-    transform: translateY(2rem);
+    /* transform: translateY(2rem); */
   }
 
   .description-attraction {

@@ -15,7 +15,7 @@ function Header() {
       <div className="image-header" style={styleBacgroundImage}>
         <div className="text-header">
           <h1>Nauka jazdy konnej</h1>
-          <button type="submit" className="btn-header">
+          <button type="submit" className="btn btn-header">
             Rezerwacja
           </button>
         </div>
