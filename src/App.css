@@ -282,7 +282,7 @@ body {
   align-items: stretch;
 }
 
-.article {
+.left-article-attraction {
   justify-content: space-between;
   /* max-width: 60%; */
 }
@@ -310,7 +310,7 @@ body {
   text-transform: uppercase;
 }
 
-.article div {
+.left-article-attraction div {
   width: 50rem;
 }
 
@@ -391,13 +391,13 @@ body {
   border-radius: 0.3125rem;
 }
 
-.article .btn {
+.left-article-attraction .btn {
   margin-top: 3.25rem;
 }
 
 /*  Attraction Section Right */
 
-.right-section-attraction {
+.right-article-attraction {
   position: absolute;
   display: flex;
   /* right: 20%; */
@@ -1285,7 +1285,7 @@ Bootstrap 3 Media Queries             =
     font-size: 90%;
   }
 
-  .right-section-attraction {
+  .right-article-attraction {
     transform: scale(0.9) translateX(45rem);
   }
 
@@ -1313,7 +1313,7 @@ Bootstrap 3 Media Queries             =
     font-size: 70%;
   }
 
-  .right-section-attraction {
+  .right-article-attraction {
     transform: scale(0.9) translateX(43rem);
   }
 }
@@ -1326,7 +1326,7 @@ Bootstrap 3 Media Queries             =
     font-size: 60%;
   }
 
-  .right-section-attraction {
+  .right-article-attraction {
     transform: scale(0.9) translateX(45rem);
   }
 }
@@ -1395,7 +1395,7 @@ Bootstrap 3 Media Queries             =
     font-size: 68%;
   }
 
-  .right-section-attraction {
+  .right-article-attraction {
     transform: scale(0.9) translateX(43rem);
   }
 }
@@ -1407,7 +1407,7 @@ Bootstrap 3 Media Queries             =
     font-size: 40%;
   }
 
-  .right-section-attraction {
+  .right-article-attraction {
     transform: scale(0.9) translateX(45rem);
   }
 
@@ -1479,7 +1479,7 @@ Bootstrap 3 Media Queries             =
     margin: 0 3rem;
   }
 
-  .article div {
+  .left-article-attraction div {
     width: 35rem;
   }
 
@@ -1492,7 +1492,7 @@ Bootstrap 3 Media Queries             =
     margin-left: 0rem;
   }
 
-  .article .btn {
+  .left-article-attraction .btn {
     margin-top: 9.25rem;
   }
 
@@ -1505,7 +1505,7 @@ Bootstrap 3 Media Queries             =
     margin: 1.25rem 9rem 3.875rem 04rem;
   }
 
-  .right-section-attraction {
+  .right-article-attraction {
     display: none;
   }
 

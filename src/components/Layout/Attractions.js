@@ -20,7 +20,7 @@ export const Attractions = () => {
   return (
     <div className="container">
       <section className="body-section">
-        <article className="article">
+        <article className="left-article-attraction">
           <header className="title-header">
             <h2 className="title-regular">
               {attraction.titleRegular}
@@ -45,32 +45,32 @@ export const Attractions = () => {
             <p className="background-text">{attraction.backgroundText}</p>
           </div>
         </article>
-      </section>
-      <section className="right-section-attraction">
-        <div className="parent-image-attraction">
-          <article className="image-article clip-path">
-            <img
-              className="image-attraction"
-              src={attraction.image}
-              alt="nauka jazdy konnej"
-            />
-          </article>
-        </div>
-        <div className="carousel-buttons">
-          {Object.keys(dataAtractions).map((buttonNumber) => {
-            return (
-              <button
-                key={buttonNumber}
-                className="btn btn-carousel clip-path"
-                onClick={() => setAttraction(dataAtractions[buttonNumber])}
-                style={equalsPageNumberReturnOpacity(
-                  attraction.page,
-                  buttonNumber
-                )}
-              ></button>
-            );
-          })}
-        </div>
+        <article className="right-article-attraction">
+          <div className="parent-image-attraction">
+            <article className="image-article clip-path">
+              <img
+                className="image-attraction"
+                src={attraction.image}
+                alt="nauka jazdy konnej"
+              />
+            </article>
+          </div>
+          <div className="carousel-buttons">
+            {Object.keys(dataAtractions).map((buttonNumber) => {
+              return (
+                <button
+                  key={buttonNumber}
+                  className="btn btn-carousel clip-path"
+                  onClick={() => setAttraction(dataAtractions[buttonNumber])}
+                  style={equalsPageNumberReturnOpacity(
+                    attraction.page,
+                    buttonNumber
+                  )}
+                ></button>
+              );
+            })}
+          </div>
+        </article>
       </section>
     </div>
   );
