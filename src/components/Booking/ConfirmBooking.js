@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import 'moment/locale/pl';
+import { useHistory } from 'react-router-dom';
 const ConfirmBooking = ({
   user: { user },
   startDateAndTimeBooking,
   endDateAndTimeBooking,
 }) => {
+  const history = useHistory();
   return (
     <div className="contaniner profileContainer">
       {user && startDateAndTimeBooking && endDateAndTimeBooking && (
@@ -37,7 +39,12 @@ const ConfirmBooking = ({
             <h4>{user.nick}</h4>
           </div>
           <div>
-            <button className="btn btn-green btn-capitalize btn-login">
+            <button
+              className="btn btn-green btn-capitalize btn-login"
+              onClick={() => {
+                history.push('/');
+              }}
+            >
               zamknij
             </button>
           </div>

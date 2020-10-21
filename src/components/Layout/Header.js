@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../../App.css';
 import backgroundImageHorse from '../../assets/HorseBackground.png';
 
@@ -15,9 +16,11 @@ function Header() {
       <div className="image-header" style={styleBacgroundImage}>
         <div className="text-header">
           <h1>Nauka jazdy konnej</h1>
-          <button type="submit" className="btn btn-withe-brown btn-header">
-            Rezerwacja
-          </button>
+          <Link to="/rezerwacja">
+            <button type="submit" className="btn btn-withe-brown btn-header">
+              Rezerwacja
+            </button>
+          </Link>
         </div>
       </div>
     </header>

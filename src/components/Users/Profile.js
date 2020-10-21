@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { DEVuser } from '../../DevUtility/user';
 const Profile = ({
   nick = DEVuser.nick,
@@ -39,12 +40,20 @@ const Profile = ({
         </div>
       </div>
       <div className="profileButtons">
-        <button className="btn btn-green btn-capitalize">edycja</button>
-        <button className="btn btn-green btn-capitalize">planer</button>
-        <button className="btn btn-green btn-capitalize">rezerwacja</button>
+        <Link to="edycjaprofilu">
+          <button className="btn btn-green btn-capitalize">edycja</button>
+        </Link>
+        <Link to="planer">
+          <button className="btn btn-green btn-capitalize">planer</button>
+        </Link>
+        <Link to="rezerwacja">
+          <button className="btn btn-green btn-capitalize">rezerwacja</button>
+        </Link>
       </div>
       <div className="profileButtons profileRemove">
-        <button className="btn btn-red btn-capitalize">Usuń profil</button>
+        <Link to="usunprofil">
+          <button className="btn btn-red btn-capitalize">Usuń profil</button>
+        </Link>
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const SideBar = ({ sideBarToggle }) => {
   return (
@@ -34,37 +35,37 @@ const SideBar = ({ sideBarToggle }) => {
           <ul>
             <li>
               <h2>
-                <a href="/" className="sm-hiden">
+                <Link to="/" className="sm-hiden">
                   Główna
-                </a>
+                </Link>
               </h2>
             </li>
             <li>
               <h2>
-                <a href="/" className="sm-hiden">
+                <Link to="/profil" className="sm-hiden">
                   Profil
-                </a>
+                </Link>
               </h2>
             </li>
             <li>
               <h2>
-                <a href="/" className="sm-hiden">
+                <Link to="/rezerwacja" className="sm-hiden">
                   Rezerwacja
-                </a>
+                </Link>
               </h2>
             </li>
             <li>
               <h2>
-                <a href="/" className="sm-hiden">
+                <Link to="/planer" className="sm-hiden">
                   Planer
-                </a>
+                </Link>
               </h2>
             </li>
             <li>
               <h2>
-                <a href="/" className="sm-hiden">
+                <Link to="/galeria" className="sm-hiden">
                   Galeria
-                </a>
+                </Link>
               </h2>
             </li>
           </ul>
@@ -73,9 +74,9 @@ const SideBar = ({ sideBarToggle }) => {
           <ul>
             <li>
               <h2>
-                <a href="/" className="sm-hiden">
+                <Link to="/singout" className="sm-hiden">
                   Wyloguj
-                </a>
+                </Link>
               </h2>
             </li>
           </ul>

@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import '../../App.css';
 
 const NavBar = ({ loginModalToggle, sideBarToggle }) => {
@@ -8,42 +9,42 @@ const NavBar = ({ loginModalToggle, sideBarToggle }) => {
     <Fragment>
       <li>
         <h2>
-          <a href="/" className="sm-hiden">
+          <Link to="/" className="sm-hiden">
             Atrakcje
-          </a>
+          </Link>
         </h2>
       </li>
       <li>
         <h2>
-          <a href="/" className="sm-hiden">
+          <Link to="/opinia" className="sm-hiden">
             Opinia
-          </a>
+          </Link>
         </h2>
       </li>
       <li>
         <h2>
-          <a href="/" className="sm-hiden">
+          <Link to="/kontakt" className="sm-hiden">
             Kontakt
-          </a>
+          </Link>
         </h2>
       </li>
       <li>
         <h2>
-          <a href="/" className="sm-hiden">
+          <Link to="/galeria" className="sm-hiden">
             Galeria
-          </a>
+          </Link>
         </h2>
       </li>
       <li>
         <h2>
-          <a
-            href="/"
+          <Link
+            to="/login"
             className="sm-hiden accessToggleModalShow"
             onClick={(e) => loginModalToggle(e)}
           >
             <i className="fas fa-sign-in-alt"></i>
             Zaloguj
-          </a>
+          </Link>
         </h2>
       </li>
     </Fragment>
@@ -52,31 +53,31 @@ const NavBar = ({ loginModalToggle, sideBarToggle }) => {
     <Fragment>
       <li>
         <h2>
-          <a href="/" className="sm-hiden">
+          <Link to="/planer" className="sm-hiden">
             Planer
-          </a>
+          </Link>
         </h2>
       </li>
       <li>
         <h2>
-          <a href="/" className="sm-hiden">
+          <Link to="/rezerwacja" className="sm-hiden">
             Rezerwacja
-          </a>
+          </Link>
         </h2>
       </li>
       <li>
         <h2>
-          <a href="/" className="sm-hiden">
+          <Link to="/galeria" className="sm-hiden">
             Galeria
-          </a>
+          </Link>
         </h2>
       </li>
       <li>
         <h2>
-          <a href="/" className="sm-hiden">
+          <Link to="/logout" className="sm-hiden">
             <i className="fas fa-sign-out-alt"></i>
             Wyloguj
-          </a>
+          </Link>
         </h2>
       </li>
     </Fragment>
@@ -86,18 +87,18 @@ const NavBar = ({ loginModalToggle, sideBarToggle }) => {
       <ul className="menu-left">
         <li>
           <h2>
-            <a href="/" onClick={(e) => sideBarToggle(e)}>
+            <Link to="/" onClick={(e) => sideBarToggle(e)}>
               <i className="fas fa-bars"></i>
-            </a>
+            </Link>
           </h2>
         </li>
       </ul>
       <ul className="menu-right">
         <li>
           <h2>
-            <a href="/" className="sm-hiden">
+            <Link to="/" className="sm-hiden">
               Główna
-            </a>
+            </Link>
           </h2>
         </li>
         {<Fragment>{isAutrenticeted ? userLinks : guestLinks}</Fragment>}
