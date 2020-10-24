@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import React from 'react';
 import ConfirmBooking from '../Booking/ConfirmBooking';
 import MakeBooking from '../Booking/MakeBooking';
 import PlanBookings from '../Booking/PlanBookings';
@@ -13,18 +12,6 @@ import Opinions from './Opinions';
 import TitleSection from './TitleSection';
 
 export const HomeScreen = () => {
-  const { hash } = useLocation();
-  useEffect(() => {
-    if (!hash) {
-      window.scrollTo({ left: 0, top: 0, behavior: 'smooth' });
-    } else {
-      const hashId = hash.replace('#', '');
-      const qeurySelector = document.querySelector('.attractions');
-      console.log('querySelector :>> ', qeurySelector);
-      const element = document.getElementById(hashId);
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, [hash]);
   return (
     <>
       <Header />
@@ -38,7 +25,7 @@ export const HomeScreen = () => {
 export const AttractionsScreen = () => {
   return (
     <>
-      <TitleSection title="Atrakcje" idPage={'atrakcje'} />
+      <TitleSection title="Atrakcje" addClassPage="attractions" />
       <Attractions />
     </>
   );
@@ -47,7 +34,7 @@ export const AttractionsScreen = () => {
 export const OpinionsScreen = () => {
   return (
     <>
-      <TitleSection title="Opinia" idPage={'opinia'} />
+      <TitleSection title="Opinia" addClassPage="opinions" />
       <Opinions opinion={true} />
     </>
   );
@@ -56,7 +43,7 @@ export const OpinionsScreen = () => {
 export const ContactScreen = () => {
   return (
     <>
-      <TitleSection title="Kontakt" idPage={'kontakt'} />
+      <TitleSection title="Kontakt" addClassPage="contact" />
       <Contact />
     </>
   );

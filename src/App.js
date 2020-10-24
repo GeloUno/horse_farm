@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
 
 import NavBar from './components/Layout/NavBar';
 import Footer from './components/Layout/Footer';
@@ -24,6 +24,16 @@ import {
 } from './components/Layout/Screens';
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
+
+  const [sectionPage, setSectionPage] = useState(null);
+  useEffect(() => {
+    if (sectionPage) {
+      const elementSection = document.querySelector(`.${sectionPage}`);
+      elementSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [sectionPage]);
+
   const [sideBarShow, setSideBarShow] = useState(false);
   const [loginModalShow, setLoginModalShow] = useState(false);
   const [singinModalShow, setSinginModalShow] = useState(false);
@@ -85,8 +95,17 @@ function App() {
         <NavBar
           sideBarToggle={sideBarToggle}
           loginModalToggle={loginModalToggle}
+          isAuthenticated={isAuthenticated}
+          setSectionPage={setSectionPage}
         />
-        {sideBarShow && <SideBar sideBarToggle={sideBarToggle} />}
+        {sideBarShow && (
+          <SideBar
+            sideBarToggle={sideBarToggle}
+            loginModalToggle={loginModalToggle}
+            isAuthenticated={isAuthenticated}
+            setSectionPage={setSectionPage}
+          />
+        )}
         {loginModalShow && (
           <LoginUser
             signinModalToggle={signinModalToggle}
@@ -109,6 +128,7 @@ function App() {
             userID={user.user.userID}
           />
         )}
+        <Redirect exact from="/horse_farm" to="/" />
         <Route path="/" component={HomeScreen} exact />
         <Route path="/opinia" component={OpinionsScreen} />
         <Route path="/profil" component={ProfileScreen} />

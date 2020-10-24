@@ -199,13 +199,16 @@ body {
 
 .menu-left {
   margin-left: 10rem;
-  cursor: pointer;
   z-index: 3;
+}
+
+.menu-left li h2 {
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.75);
 }
 
 .navbar ul li {
   display: block;
-  cursor: pointer;
   list-style: none;
   padding-left: 0.625rem;
   padding-right: 0.625rem;
@@ -213,19 +216,27 @@ body {
   z-index: 3;
 }
 
-.navbar ul li:hover a {
+.navbar ul li h2:hover a {
   color: rgba(255, 255, 255, 1);
 }
 
+.navbar ul li h2 {
+  display: flex;
+  flex-direction: row;
+}
+
 .navbar ul li h2 a {
+  cursor: pointer;
   font-size: 1.5rem;
   font-weight: 400;
   letter-spacing: .05rem;
   text-decoration: none;
   color: rgba(255, 255, 255, 0.75);
+  padding: .5rem 0;
 }
 
 .navbar ul li h2 a i {
+  padding: 0rem;
   letter-spacing: .5rem;
 }
 
@@ -251,7 +262,7 @@ body {
   background-color: hsla(0, 4%, 95%, 1);
 }
 
-.sideBarBody i {
+.sideBarBody .closeBtn {
   display: block;
   text-align: end;
   margin: 1.5625rem 10.875rem 0px auto;
@@ -302,6 +313,10 @@ body {
   background-color: #fff;
   padding: 0.625rem;
   padding-left: 20%;
+}
+
+.linksSideNavBar ul li h2 a i {
+  padding-right: 0.5rem;
 }
 
 /* .logOut ul li h2 a {} */
