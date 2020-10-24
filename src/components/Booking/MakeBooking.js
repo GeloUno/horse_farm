@@ -7,6 +7,7 @@ import setMinutes from 'date-fns/setMinutes';
 import pl from 'date-fns/locale/pl';
 import 'react-datepicker/dist/react-datepicker.css';
 import { forHoursOptions } from '../../utility/forHoursOptions';
+import { useHistory } from 'react-router-dom';
 const MakeBooking = ({
   userID,
   nick,
@@ -18,6 +19,7 @@ const MakeBooking = ({
   const [dayBooking, setDayBooking] = useState(addDays(new Date(), 2));
   const [startTimeBooking, setStartTimeBooking] = useState(firstHourBooking);
   const [endTimeBooking, setEndTimeBooking] = useState(1 + +startTimeBooking);
+  const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -33,6 +35,7 @@ const MakeBooking = ({
     );
     setStartDateAndTimeBooking(bookingStartDateAndTime);
     setEndDateAndTimeBooking(bookingEndDateAndTime);
+    history.push('/potwierdzenie_rezerwacji');
   };
 
   return (
