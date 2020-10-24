@@ -1562,11 +1562,10 @@ Bootstrap 3 Media Queries             =
   .right-article-attraction {
     display: flex;
     position: relative;
+    top: -1rem;
     right: 3rem;
     width: 42.25rem;
-    /* top: 6rem;
-    transform: scale(0.6);
-    */
+    transform: scale(.9);
   }
 
   .image-attraction {
