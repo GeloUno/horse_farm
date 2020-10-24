@@ -275,6 +275,10 @@ body {
   /* transform: translateX(2.5rem); */
 }
 
+.spaceSideBarNoUser {
+  height: 14rem;
+}
+
 .photoUser {
   border-radius: 50%;
   border: solid 0.625rem #fff;
@@ -1501,7 +1505,7 @@ Bootstrap 3 Media Queries             =
 @media only screen and (max-width : 415px) and (orientation: portrait) {
 
   :root {
-    font-size: 55%;
+    font-size: 50%;
   }
 
   .text-header h1 {
@@ -1521,6 +1525,12 @@ Bootstrap 3 Media Queries             =
 
   .container {
     margin: 0 3rem;
+    height: auto;
+  }
+
+  .body-section {
+    flex-direction: column-reverse;
+    height: 50%;
   }
 
   .left-article-attraction div {
@@ -1550,9 +1560,23 @@ Bootstrap 3 Media Queries             =
   }
 
   .right-article-attraction {
-    display: none;
+    display: flex;
+    position: relative;
+    right: 3rem;
+    width: 42.25rem;
+    /* top: 6rem;
+    transform: scale(0.6);
+    */
   }
 
+  .image-attraction {
+    /* top: -0.5rem; */
+    /* left: 6rem; */
+    /* width: 32.5rem;
+    height: 32.5rem; */
+  }
+
+  .background-text {}
 
 }
 

@@ -40,7 +40,11 @@ const SideBar = ({
             </div>
           </>
         )}
-
+        {!isAuthenticated && (
+          <>
+            <div className="spaceSideBarNoUser" />
+          </>
+        )}
         <div className="linksSideNavBar">
           <ul>
             <NavList
