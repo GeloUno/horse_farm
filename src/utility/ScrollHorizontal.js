@@ -23,6 +23,11 @@ export default class ScrollHorizontal extends Component {
     this.distanceChildParent = this.distanceChildParent.bind(this);
     this.reduceSpeedFalling = this.reduceSpeedFalling.bind(this);
     this.recalculateAfterScroll = this.recalculateAfterScroll.bind(this);
+
+    // this.handleOnTouchStart = this.handleOnTouchStart.bind(this);
+    // this.handleOnTouchMove = this.handleOnTouchMove.bind(this);
+    // this.handleOnTouchCancel = this.handleOnTouchCancel.bind(this);
+    // this.handleOnTouchEnd = this.handleOnTouchEnd.bind(this);
   }
 
   componentDidMount() {
@@ -45,6 +50,27 @@ export default class ScrollHorizontal extends Component {
       this.handleMoveMouseUlockAllScrollsTouchPad,
       { passive: false }
     );
+
+    // DOM.findDOMNode(this.hScrollParent).addEventListener(
+    //   'touchstart',
+    //   this.handleOnTouchStart,
+    //   { passive: false }
+    // );
+    // DOM.findDOMNode(this.hScrollParent).addEventListener(
+    //   'touchmove',
+    //   this.handleOnTouchMove,
+    //   { passive: false }
+    // );
+    // DOM.findDOMNode(this.hScrollParent).addEventListener(
+    //   'touchcancel',
+    //   this.handleOnTouchCancel,
+    //   { passive: false }
+    // );
+    // DOM.findDOMNode(this.hScrollParent).addEventListener(
+    //   'touchend',
+    //   this.handleOnTouchEnd,
+    //   { passive: false }
+    // );
   }
 
   componentWillUnmount() {
@@ -79,6 +105,19 @@ export default class ScrollHorizontal extends Component {
       this.calculate();
     }
   };
+
+  // handleOnTouchStart(e) {
+  //   console.log('Start Touch', e);
+  // }
+  // handleOnTouchEnd(e) {
+  //   console.log('End Touch', e);
+  // }
+  // handleOnTouchMove(e) {
+  //   console.log('Move Touch', e);
+  // }
+  // handleOnTouchCancel(e) {
+  //   console.log('Cancel Touch', e);
+  // }
 
   handleMoveMouseUlockAllScrollsTouchPad() {
     this.setState((prevState) => ({

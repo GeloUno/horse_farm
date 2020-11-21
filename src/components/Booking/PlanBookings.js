@@ -4,6 +4,7 @@ import moment from 'moment';
 import PlanBookingsDays from './PlanBookingsDays';
 import PlanBookingHoures from './PlanBookingHours';
 import { DevBookingData } from '../../DevUtility/booking';
+import { isMobile } from 'react-device-detect';
 const getWayToScroll = ({
   childFirstPointX,
   childWidth,
@@ -41,12 +42,15 @@ const PlanBookings = () => {
     try {
       const daySelected = await new Date(bookingDay).getDate();
       const dayDiv = await document.querySelector(`.day-${daySelected}`);
-
       if (dayDiv !== null) {
-        await setHorizontalAmimationValueDays(0);
-        await setHorizontalAmimationValueDays(
-          getWayToScroll(getCoordinateParentChild(dayDiv))
-        );
+        if (!isMobile) {
+          await setHorizontalAmimationValueDays(0);
+          await setHorizontalAmimationValueDays(
+            getWayToScroll(getCoordinateParentChild(dayDiv))
+          );
+        } else {
+          dayDiv.scrollIntoView({ behavior: 'smooth' });
+        }
       }
     } catch (error) {
       console.log('Ups .. Scroll to Day :>> ', error);
