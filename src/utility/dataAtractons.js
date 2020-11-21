@@ -24,10 +24,10 @@ export const dataAtractions = {
     page: 2,
   },
   3: {
-    titleRegular: 'Tutaj',
+    titleRegular: 'Kiedy',
     titleBold: 'Trenujemy',
     description:
-      'na tym wybiegu najmłodsi uczą się zdobywać pierwsze szlify jazdy konnej jak również ci doświadczeni mogą trochę poszaleć',
+      'na wybiegu początkujacy uczą się zdobywać pierwsze szlify jazdy konnej jak również ci doświadczeni mogą trochę poszaleć',
     backgroundText: 'Nasza',
     image: atrattionImage_3,
     page: 3,
@@ -45,7 +45,7 @@ export const dataAtractions = {
     titleRegular: 'Po',
     titleBold: 'Treningu',
     description:
-      'a wieczorkiem usiądźmy razem przy ognisku by zregenerować siły na kolejną jazdę konną',
+      'wieczorkiem usiądźmy razem przy ognisku by zregenerować siły na kolejną jazdę konną',
     backgroundText: 'życia',
     image: atrattionImage_5,
     page: 5,
