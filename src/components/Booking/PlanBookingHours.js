@@ -14,8 +14,8 @@ const PlanBookingHoures = ({
     return day === dayCompareFromDataBooking;
   });
   return (
-    <div className="clendaryHouerBookingBody">
-      <div className="houerBookingBody">
+    <div className="clendaryHourBookingBody">
+      <div className="hourBookingBody">
         {PlanBookingHoursUsersList(
           firstHourBooking,
           lastHourBooking + 1,
