@@ -24,7 +24,7 @@ import {
 } from './components/Layout/Screens';
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
 
   const [sectionPage, setSectionPage] = useState(null);
   useEffect(() => {
@@ -91,7 +91,7 @@ function App() {
 
   return (
     <div className="App">
-      <Router>
+      <Router basename="/horse_farm">
         <NavBar
           sideBarToggle={sideBarToggle}
           loginModalToggle={loginModalToggle}
@@ -128,8 +128,8 @@ function App() {
             userID={user.user.userID}
           />
         )}
-        <Redirect exact from="/horse_farm" to="/" />
-        <Route path="/" component={HomeScreen} exact />
+        {/* <Redirect exect from="/horse_farm/" to="/" /> */}
+        <Route exect path="/" component={HomeScreen} exact />
         <Route path="/opinia" component={OpinionsScreen} />
         <Route path="/profil" component={ProfileScreen} />
         <Route path="/planer" component={PlanBookingsScreen} />
@@ -166,7 +166,7 @@ function App() {
             />
           )}
         />
-        <ShowMobileInfo />
+        {/* <ShowMobileInfo /> */}
         <Footer />
       </Router>
     </div>
