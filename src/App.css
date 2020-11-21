@@ -176,7 +176,7 @@ body {
 .navbar {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   margin: 0;
   padding: 0;
@@ -195,6 +195,10 @@ body {
 .menu-right {
   display: inline-flex;
   margin-right: 10rem;
+}
+
+.menu-left {
+  display: none;
 }
 
 .menu-left {
@@ -534,6 +538,9 @@ body {
 }
 
 /* CONTACT SECTION */
+.container-contact {
+  height: 42rem;
+}
 
 .contact-section {
   flex-direction: column;
@@ -579,7 +586,7 @@ address a {
   display: flex;
   margin-top: 6rem;
   margin-bottom: 6rem;
-  width: 60%;
+  min-width: 50%;
   justify-content: space-around;
 }
 
@@ -925,6 +932,9 @@ address a {
   border: #fff 1rem solid;
   box-sizing: border-box;
   overflow-y: scroll;
+  scrollbar-width: none;
+  /* for mozilla */
+
 }
 
 .modalImageGallery::-webkit-scrollbar {
@@ -939,6 +949,7 @@ address a {
 
 .lockScrollInBody {
   overflow: hidden;
+  -moz-overflow: hidden;
 }
 
 .modalImageGallery img {
@@ -1061,7 +1072,7 @@ address a {
 
 
 
-/* UTILITY */
+/* UTILITY  GLOBAL*/
 
 .mg-1-right {
   margin-right: 1rem;
@@ -1070,6 +1081,8 @@ address a {
 .mg-2-top {
   margin-top: 2rem;
 }
+
+
 
 /* PLAN BOOKING */
 
@@ -1082,28 +1095,31 @@ address a {
 }
 
 .dateHeader,
-.clendaryHouerBookingBody {
+.clendaryHourBookingBody {
   display: flex;
   flex-direction: row;
   width: 100%;
 }
 
-.dayHeader {
-  height: 6rem;
+.dateHeader {
+  height: 7.5rem;
 }
 
-.clendaryHouerBookingBody {
-  height: 35rem;
+.dayHeader {
+  height: 100%;
+}
+
+.clendaryHourBookingBody {
+  height: 63vh;
 }
 
 .monthYearHeader {
-  height: 10rem;
+  height: 100%;
   background-color: #fff;
   color: var(--primary-color-green);
 }
 
 .dayHeader {
-  height: 10rem;
   background-color: var(--primary-color-green);
   color: #fff;
 }
@@ -1111,7 +1127,7 @@ address a {
 .monthYearHeader,
 .dayHeader,
 .clendaryBooking,
-.houerBooking {
+.hourBooking {
   width: 50%;
 }
 
@@ -1124,7 +1140,7 @@ address a {
 
 .DayOfMonth {
   display: flex;
-  height: 8rem;
+  height: 6rem;
   /* transform: translateY(-2rem); */
 }
 
@@ -1142,6 +1158,7 @@ address a {
   padding-top: 0 !important;
 }
 
+
 .day-red {
   color: var(--red-alert) !important;
 }
@@ -1150,6 +1167,10 @@ address a {
 .dayNumber time {
   width: 100%;
   text-align: center;
+}
+
+.contentDate {
+  margin: .5rem 0;
 }
 
 .dayString time {
@@ -1171,7 +1192,7 @@ address a {
 
 .DayOfMonth div {
   font-size: 2rem;
-  padding: 1rem;
+  padding: 0 1rem;
   /* padding-top: 2rem; */
   color: var(--primary-color-green);
 }
@@ -1182,33 +1203,40 @@ address a {
 }
 
 .btnChangeDateBooking {
-  padding: 1rem;
+  padding: 0 1rem;
   margin-right: 2rem;
   margin-left: -1rem;
   cursor: pointer;
 }
 
-.houerBookingBody {
-  display: flex;
+.hourBookingBody {
+  /* display: flex;  FIX SAFARI SHOW */
+  flex: 1;
   flex-direction: column;
   overflow-y: scroll;
+  scrollbar-width: none;
+  /* for mozilla */
   width: 100%;
-
+  height: 100%;
 }
 
-/* ANCHOR CHECK IS WORK ON SAFARI */
-.houerBookingBody::-webkit-scrollbar {
+.hourBookingBody::-webkit-scrollbar {
   overflow: hidden;
   display: none;
 }
 
-.houerBooking {
+.hourBooking {
   display: flex;
+  /* flex: 1; */
   flex-direction: column;
+  align-items: stretch;
   width: 100%;
 }
 
-.dataHouerBooking {
+.dataHourBooking {
+  display: flex;
+  /* flex: 1; */
+  align-items: stretch;
   padding: 1rem;
   font-size: 1.5rem;
   color: var(--primary-color-green);
@@ -1217,11 +1245,13 @@ address a {
 }
 
 .userBookingList {
-  /* display: flex; */
+  display: flex;
+  flex: 1;
+  align-items: stretch;
   box-sizing: border-box;
   width: calc(100% - 5rem);
-  margin-left: 5rem;
-  /* transform: translateX(5rem); */
+  transform: translateX(5rem);
+
 }
 
 .reservedButtonLink {
@@ -1235,184 +1265,160 @@ address a {
   text-transform: lowercase;
 }
 
-/* MEDIA QUERIES */
-
-/* 
-Bootstrap 3 Media Queries             =
-================================================== */
-
-/*==========  Mobile First Method  ==========*/
-
-/* Custom, iPhone Retina */
-/* @media only screen and (min-width : 320px) {
-
-    }
-
-    /* Extra Small Devices, Phones */
-/* @media only screen and (min-width : 480px) {
-
-    } */
-
-/* Small Devices, Tablets */
-/* @media only screen and (min-width : 768px) {
-
-    } */
-
-/* Medium Devices, Desktops */
-/* @media only screen and (min-width : 992px) {
-
-    } */
-
-/* Large Devices, Wide Screens */
-/* @media only screen and (min-width : 1200px) {
-
-    } */
-
-/*==========  Non-Mobile First Method  ==========*/
-
-/* Large Devices, Wide Screens */
-/* @media only screen and (max-width : 1200px) {
-
-    } */
-
-/* Medium Devices, Desktops */
-/* @media only screen and (max-width : 992px) {
-
-    } */
-
-/* Small Devices, Tablets */
-/* @media only screen and (max-width : 768px) {
-
-    } */
-
-/* Extra Small Devices, Phones */
-/* @media only screen and (max-width : 480px) {
-
-    } */
-
-/* Custom, iPhone Retina */
-
-/* @media only screen and (max-width : 320px) {
-
-    }  */
-
-/* Bootstrap 2.3.2 Media Queries   */
-/* 
-@media only screen and (max-width : 1200px) {
-
-}
-
-@media only screen and (max-width : 979px) {
-
-}
-
-@media only screen and (max-width : 767px) {
-
-}
-
-@media only screen and (max-width : 480px) {
-
-}
-
-@media only screen and (max-width : 320px) {
-
-} */
-
-
 /* target 1920 1080 D 20% oki */
-/* target 1600x900 D 5% oki */
 /* for root 100% */
 
-/* target 1536x864 D 12% oki */
-/* target 1440x900 D  9% oki */
-/* target  1280x800 T 14% oki  */
+
+/* target 1600x900 D 5% oki */
 @media only screen and (max-width: 1600px) {
   :root {
-    font-size: 90%;
+    font-size: 95%;
   }
 
-  /* .right-article-attraction {
-    transform: scale(0.9) translateX(45rem);
-  } */
+  .right-article-attraction {
+    right: -2rem;
+  }
 
   .background-text {
     margin: 0;
     font-size: 14.875rem;
   }
+
+  .clendaryHourBookingBody {
+    height: 63vh;
+  }
+}
+
+/* target 1536x864 D 12% oki */
+/* target 1440x900 D  9% oki */
+@media only screen and (max-width: 1550px) {
+
+  :root {
+    font-size: 91%;
+  }
+
+  .right-article-attraction {
+    right: -2rem;
+  }
+}
+
+/* target 1440x900 D 4% oki */
+@media only screen and (max-width: 1450px) {
+  :root {
+    font-size: 92%;
+  }
+
+  .right-article-attraction {
+    right: -9rem;
+  }
+
+  .clendaryHourBookingBody {
+    height: 65vh;
+  }
 }
 
 
-
 /* target 1366x768 D oki */
-/* target 1280x1024 D oki */
 /* target 1366x1024 T iPadPro oki */
-/* target 1280x800 T 5% oki */
 @media only screen and (max-width: 1400px) {
   :root {
-    font-size: 80%;
+    font-size: 82%;
+  }
+
+  .right-article-attraction {
+    right: -5rem;
+  }
+
+  .clendaryHourBookingBody {
+    height: 63vh;
+  }
+
+  .profileContainer {
+    height: 90vh;
+  }
+}
+
+/* target  1280x800 T 14% oki  */
+/* target 1280x1024 D oki */
+/* target 800x1280 T 5% oki */
+@media only screen and (max-width : 1280px) {
+  :root {
+    font-size: 78%;
+  }
+
+  .clendaryHourBookingBody {
+    height: 67vh;
+  }
+}
+
+/* Galaxy Tab 4 */
+@media only screen and (max-width : 1140px) {
+  :root {
+    font-size: 69%;
+  }
+
+  .clendaryHourBookingBody {
+    height: 67vh;
   }
 }
 
 /* target 1024x600 D ?? */
 /* target 1024x768 T 25% iPad */
 
-@media only screen and (max-width : 1200px) {
+@media only screen and (max-width : 1024px) {
   :root {
-    font-size: 70%;
+    font-size: 63%;
   }
 
-  /* .right-article-attraction {
-    transform: scale(0.9) translateX(43rem);
-  } */
+  .clendaryHourBookingBody {
+    height: 68vh;
+  }
 }
 
-
-
-@media only screen and (max-width :1020px) {
+/* 962x601 T 6% */
+@media only screen and (max-width :970px) {
 
   :root {
-    font-size: 60%;
+    font-size: 58%;
   }
 
-  /* .right-article-attraction {
-    transform: scale(0.9) translateX(45rem);
-  } */
+  .clendaryHourBookingBody {
+    height: 65vh;
+  }
 }
 
 /* target 823x411 M Pixel 2XL */
+/* target 823x375 iPhone X  */
+/* target 823x375 iPhone X  */
 @media only screen and (max-width : 880px) {
 
   :root {
-    font-size: 55%;
+    font-size: 50%;
   }
 }
 
 /* target 720x540 T Surface Duo oki */
 /* target 736x414 M iPhone 6/7/8 Plus oki */
-@media only screen and (max-width : 800px) {
-  :root {
-    font-size: 48%;
-  }
-}
-
-/* target 667x375 M iPhone 6/7/8 oki */
-@media only screen and (max-width : 700px) {
+@media only screen and (max-width : 750px) {
   :root {
     font-size: 44%;
   }
 }
 
+/* target 667x375 M iPhone 6/7/8  */
+/* target 670x412 M Samsung A70  */
 /* target 640x360 M 24% oki */
-@media only screen and (max-width : 640px) {
+
+@media only screen and (max-width : 680px) {
   :root {
-    font-size: 40%;
+    font-size: 41%;
   }
 }
 
 /* target 568x320 M iPhone5 */
 @media only screen and (max-width : 585px) {
   :root {
-    font-size: 100%;
+    font-size: 35%;
   }
 }
 
@@ -1424,55 +1430,82 @@ Bootstrap 3 Media Queries             =
     font-size: 50%;
   }
 
-  .clendaryHouerBookingBody {
-    height: 65rem;
+  .navbar {
+    justify-content: flex-start;
   }
-
-  /* 
-  .menu-right {
-    display: none;
-  } */
-
-
-}
-
-/* target 1024x768 T orientation vertical */
-/* target 1024x1366 T iPadPro orientation vertical */
-@media only screen and (max-width : 1200px) and (orientation: portrait) {
-  :root {
-    font-size: 68%;
-  }
-
-  /* .right-article-attraction {
-    transform: scale(0.9) translateX(43rem);
-  } */
-}
-
-/* target 962x601 T 5% oki Orientation Veryical */
-@media only screen and (max-width : 1020px) and (orientation: portrait) {
-
-  :root {
-    font-size: 40%;
-  }
-
-  /* .right-article-attraction {
-    transform: scale(0.9) translateX(45rem);
-  } */
 
   .menu-right {
     display: none;
   }
 
   .menu-left {
+    display: inline-flex;
     margin-left: 0rem;
+  }
+
+  .clendaryHourBookingBody {
+    height: 85vh;
+  }
+
+  .sideBarBody {
+    width: 35vw;
+    font-size: .9vh;
+  }
+
+  .sideBarBody .closeBtn {
+    margin: 1vh 29vw 0px auto;
+  }
+
+  .linksSideNavBar ul li h2 a,
+  .logOut ul li h2 a {
+    padding: 1vh;
+    padding-left: 5vw;
+  }
+
+  .navbar {
+    height: 3vh;
+    font-size: 1vh;
+  }
+
+  .profileContainer {
+    height: 90vh;
+  }
+
+}
+
+/* target 1366x1024 T iPadPro orientation vertical */
+@media only screen and (max-width : 1024px) and (orientation: portrait) {
+  :root {
+    font-size: 63%;
+  }
+
+  .clendaryHourBookingBody {
+    height: 84vh;
   }
 }
 
-/* target 800x1280 T orientation vertical */
+/* target 962x601 T 5% oki Orientation Veryical */
+@media only screen and (max-width : 970px) and (orientation: portrait) {
+
+  :root {
+    font-size: 40%;
+  }
+
+  .clendaryHourBookingBody {
+    height: 83vh;
+  }
+}
+
+/* target 768x1024 T orientation vertical */
+/* target 800x1280 T  14,5% orientation vertical */
 @media only screen and (max-width : 800px) and (orientation: portrait) {
 
   :root {
-    font-size: 51%;
+    font-size: 49%;
+  }
+
+  .clendaryHourBookingBody {
+    height: 85vh;
   }
 }
 
@@ -1482,6 +1515,22 @@ Bootstrap 3 Media Queries             =
   :root {
     font-size: 47%;
   }
+
+  .clendaryHourBookingBody {
+    height: 84vh;
+  }
+}
+
+/* Galaxy Tab 4 712x1138 */
+@media only screen and (max-width : 720px) and (orientation: portrait) {
+
+  :root {
+    font-size: 43%;
+  }
+
+  .clendaryHourBookingBody {
+    height: 84vh;
+  }
 }
 
 /* target 601x962 T orientation vertical */
@@ -1489,7 +1538,19 @@ Bootstrap 3 Media Queries             =
 @media only screen and (max-width : 605px) and (orientation: portrait) {
 
   :root {
-    font-size: 40%;
+    font-size: 43%;
+  }
+
+  .background-text {
+    font-size: 10rem;
+  }
+
+  .title-header {
+    font-size: 2.5rem;
+  }
+
+  .clendaryHourBookingBody {
+    height: 84vh;
   }
 }
 
@@ -1502,10 +1563,14 @@ Bootstrap 3 Media Queries             =
 }
 
 /* target 360x640 M 24% */
+/* target 412x670 Galaxy A70  */
+/* target 414x670 6/67/8 iPhone Plus */
+/* target 414x670 6/67/8 iPhone */
+
 @media only screen and (max-width : 415px) and (orientation: portrait) {
 
   :root {
-    font-size: 50%;
+    font-size: 2.5vw;
   }
 
   .text-header h1 {
@@ -1513,8 +1578,29 @@ Bootstrap 3 Media Queries             =
     width: 15rem;
   }
 
+  /* NavBar*/
+  .navbar {
+    height: 8vw;
+    font-size: 3vw;
+  }
+
   .navbar ul li h2 a {
     font-size: 2.5rem;
+  }
+
+  .sideBarBody {
+    width: 55vw;
+    font-size: 3vw;
+  }
+
+  .sideBarBody .closeBtn {
+    margin: 1vh 40vw 0px auto;
+  }
+
+  .linksSideNavBar ul li h2 a,
+  .logOut ul li h2 a {
+    padding: 1.2vh;
+    padding-left: 8vw;
   }
 
   .btn-header {
@@ -1529,7 +1615,7 @@ Bootstrap 3 Media Queries             =
   }
 
   .body-section {
-    flex-direction: column-reverse;
+    /* flex-direction: column-reverse; */
     height: 50%;
   }
 
@@ -1545,6 +1631,8 @@ Bootstrap 3 Media Queries             =
     padding-left: 55%;
     margin-left: 0rem;
   }
+
+
 
   .left-article-attraction .btn {
     margin-top: 9.25rem;
@@ -1568,6 +1656,10 @@ Bootstrap 3 Media Queries             =
     transform: scale(.9);
   }
 
+  .right-article-attraction {
+    display: none;
+  }
+
   .image-attraction {
     /* top: -0.5rem; */
     /* left: 6rem; */
@@ -1576,6 +1668,30 @@ Bootstrap 3 Media Queries             =
   }
 
   .background-text {}
+
+  .socialMedia {
+    min-width: 100%;
+  }
+
+  .userProfile div p {
+    width: 40%;
+  }
+
+  .profileButtons {
+    width: 90%;
+  }
+
+  .profileContainer {
+    height: 82vh;
+  }
+
+  .clendaryHourBookingBody {
+    height: 65vh;
+  }
+
+  .profileContainer {
+    height: 90vh;
+  }
 
 }
 
@@ -1594,10 +1710,13 @@ Bootstrap 3 Media Queries             =
   overflow: hidden;
   display: none;
 } */
-/* .scroll-horizontal {
-  height: 5rem !important;
-  padding: 0 !important;
+
+/* element.style {
+  transform: translate3d(-800px, 0px, 0px);
+
 } */
+
+
 /* .circleLike,
 .circleComments {
   clip-path: circle(100% at 0 100%);
