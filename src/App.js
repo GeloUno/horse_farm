@@ -24,7 +24,7 @@ import {
 } from './components/Layout/Screens';
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const [sectionPage, setSectionPage] = useState(null);
   useEffect(() => {
