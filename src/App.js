@@ -15,6 +15,7 @@ import { ShowMobileInfo } from './DevUtility/ShowMobileInfo';
 import {
   ConfirmBookingScreen,
   ContactScreen,
+  EditProfileScreen,
   GalleryScreen,
   HomeScreen,
   MakeBookingScreen,
@@ -52,30 +53,28 @@ function App() {
   /* ANCHOR: what will be better multi function ore one  ?? */
 
   const sideBarToggle = (e) => {
-    e.preventDefault();
     if (!e.target.classList.contains('sideBarBody')) {
       setSideBarShow(!sideBarShow);
+      e.preventDefault();
     }
   };
   const loginModalToggle = (e) => {
-    e.preventDefault();
     // console.log('login Toogle :>> ', e.target.classList);
     if (e.target.classList.contains('accessToggleModalShow')) {
       setLoginModalShow(!loginModalShow);
+      e.preventDefault();
     }
   };
   const signinModalToggle = (e) => {
-    e.preventDefault();
-    // console.log('signin Toggle :>> ', e.target.classList);
     if (e.target.classList.contains('accessToggleModalShow')) {
       setSinginModalShow(!singinModalShow);
+      e.preventDefault();
     }
   };
   const rememberPasswordModalToggle = (e) => {
-    e.preventDefault();
-    // console.log('remeberPassword Toggle :>> ', e.target.classList);
     if (e.target.classList.contains('accessToggleModalShow')) {
       setRememberPasswordModalShow(!rememberPasswordModalShow);
+      e.preventDefault();
     }
   };
 
@@ -132,6 +131,7 @@ function App() {
         <Route exect path="/" component={HomeScreen} exact />
         <Route path="/opinia" component={OpinionsScreen} />
         <Route path="/profil" component={ProfileScreen} />
+        <Route path="/edycjaprofilu" component={EditProfileScreen} />
         <Route path="/planer" component={PlanBookingsScreen} />
         <Route path="/kontakt" component={ContactScreen} />
         <Route
