@@ -4,7 +4,7 @@ const AddComment = ({ imageID, userID }) => {
   const [newComment, setNewComment] = useState();
 
   const handleChangeComment = (e) => {
-    console.log('e :>> ', e.target.value);
+    // console.log('e :>> ', e.target.value);
     setNewComment(e.target.value);
   };
   return (
