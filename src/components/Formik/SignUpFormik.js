@@ -1,0 +1,109 @@
+import React from 'react';
+import { Field, Form, Formik } from 'formik';
+import * as Yup from 'yup';
+const SignUpFormik = () => {
+  const initialValues = { email: '', password: '', confirmPassword: '' };
+
+  const validationSchema = Yup.object({
+    email: Yup.string()
+      .email('Ups... coś z adresem e-mail jest nie tak')
+      .required('proszę podaj adres e-mail'),
+    password: Yup.string()
+      .min(10, 'minimalna liczba znaków to 10')
+      .required('proszę podaj hasło'),
+    //   .oneOf(['{', '}'], 'nie dozwolony symbol'),
+    //   .notOneOf(['{', '}'], 'nie dozwolony symbol')
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref('password', '')], 'hasła nie są identyczne')
+      .required('proszę wprowadź ponownie hasło'),
+  });
+  const handleSubmit = (values) => {
+    console.log('handle :>> ', values);
+  };
+
+  return (
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={handleSubmit}
+    >
+      {(formik) => (
+        <Form>
+          <label htmlFor="email">e-mail:</label>
+          <Field name="email">
+            {(props) => {
+              const { field, form, meta } = props;
+
+              return (
+                <>
+                  <input
+                    className="inputModalContaineFormInput"
+                    id="email"
+                    {...field}
+                  />
+
+                  <div className="errorMessenge">
+                    {meta.touched && meta.error}
+                  </div>
+                </>
+              );
+            }}
+          </Field>
+          <label htmlFor="password">hasło:</label>
+          <Field name="password">
+            {(props) => {
+              const { field, form, meta } = props;
+
+              return (
+                <>
+                  <input
+                    className="inputModalContaineFormInput"
+                    id="password"
+                    {...field}
+                  />
+
+                  <div className="errorMessenge">
+                    {meta.touched && meta.error}
+                  </div>
+                </>
+              );
+            }}
+          </Field>
+          <label htmlFor="confirmPassword">powtórz hasło:</label>
+          <Field name="confirmPassword">
+            {(props) => {
+              const { field, form, meta } = props;
+
+              return (
+                <>
+                  <input
+                    className="inputModalContaineFormInput"
+                    id="confirmPassword"
+                    {...field}
+                  />
+
+                  <div className="errorMessenge">
+                    {meta.touched && meta.error}
+                  </div>
+                </>
+              );
+            }}
+          </Field>
+          <button
+            disabled={
+              (formik.touched.email && formik.errors.email) ||
+              (formik.touched.password && formik.errors.password) ||
+              (formik.touched.confirmPassword && formik.errors.confirmPassword)
+            }
+            type="submit"
+            className="btn btn-brown btn-capitalize btn-radius btn-signup"
+          >
+            rejestracja
+          </button>
+        </Form>
+      )}
+    </Formik>
+  );
+};
+
+export default SignUpFormik;

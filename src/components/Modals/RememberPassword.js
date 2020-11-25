@@ -1,10 +1,12 @@
 import React from 'react';
+import RemenberPasswordFormik from '../Formik/RemenberPasswordFormik';
 
 const RememberPassword = ({ rememberPasswordModalToggle }) => {
   return (
     <div
       className="modalBackground modalContainerCenter accessToggleModalShow"
       onClick={(e) => {
+        // e.stopPropagation();
         rememberPasswordModalToggle(e);
       }}
     >
@@ -16,21 +18,7 @@ const RememberPassword = ({ rememberPasswordModalToggle }) => {
           </h2>
         </div>
         <div className="inputModalContainer">
-          <form>
-            <label htmlFor="">email:</label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="wprowadź email ..."
-            />
-            <button
-              type="submit"
-              className="btn btn-brown btn-capitalize btn-radius btn-rememberPassword"
-            >
-              wyslij
-            </button>
-          </form>
+          <RemenberPasswordFormik />
         </div>
       </div>
     </div>

@@ -37,6 +37,14 @@ body {
   padding: .75rem 3rem;
 }
 
+.btn:disabled {
+  background-color: var(--gray-dark);
+}
+
+.btn:disabled:hover {
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+}
+
 .btn-green {
   background-color: var(--primary-color-green);
   color: #fff;
@@ -647,12 +655,15 @@ address a {
   width: 60%;
 }
 
-.inputModalContainer form input {
+/* .inputModalContainer form input  */
+.inputModalContaineFormInput {
   padding: .75rem;
   border-radius: 0.3125rem;
   margin: 1rem;
+  margin-bottom: 0;
   border: solid 1px #707070;
   font-size: 1.1rem;
+  box-sizing: content-box;
 }
 
 .inputModalContainer form input:focus {
@@ -663,6 +674,7 @@ address a {
 .inputModalContainer form label {
   margin-left: 2rem;
   margin-bottom: -1rem;
+  margin-top: 1rem;
   /* margin-bottom: -1rem; */
 }
 
@@ -727,6 +739,12 @@ address a {
 .btn-rememberPassword {
   margin: 1rem;
   margin-top: 1rem;
+}
+
+.errorMessenge {
+  margin-left: 2rem;
+  font-size: .8rem;
+  color: var(--red-alert);
 }
 
 /* PROFILE */
@@ -1559,6 +1577,15 @@ address a {
 
   :root {
     font-size: 36%;
+  }
+
+  .imageModalContainer {
+    display: none;
+  }
+
+  .inputModalContainer {
+    display: flex;
+    width: 100%;
   }
 }
 

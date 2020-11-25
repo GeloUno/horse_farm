@@ -1,5 +1,6 @@
 import React from 'react';
 import LoginHorseImg from '../../assets/LoginHorse.png';
+import LogInFormik from '../Formik/LogInFormik';
 
 const LoginUser = ({
   signinModalToggle,
@@ -18,28 +19,7 @@ const LoginUser = ({
           <img className="modalImage" src={LoginHorseImg} alt="Konik" />
         </div>
         <div className="inputModalContainer">
-          <form>
-            <label htmlFor="">nick:</label>
-            <input
-              type="text"
-              name="nick"
-              id="nick"
-              placeholder="wprowadź nick ..."
-            />
-            <label htmlFor="">hasło:</label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="wprowadź hasło ..."
-            />
-            <button
-              type="submit"
-              className="btn btn-green btn-capitalize btn-radius btn-login"
-            >
-              zaloguj
-            </button>
-          </form>
+          <LogInFormik />
           <div className=" btnSignInRemindPassword">
             <p
               className="accessToggleModalShow"
