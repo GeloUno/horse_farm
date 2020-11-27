@@ -14,6 +14,7 @@ export const RemenberPasswordFormik = () => {
     validationSchema: Yup.object({
       email: Yup.string()
         .email('Ups... coś brakuje w adresie e-mail')
+        .max(50, ',maksymalna lczba znaków 50')
         .required('proszę podać adres e-mail'),
     }),
   });

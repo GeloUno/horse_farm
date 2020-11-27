@@ -8,11 +8,13 @@ const LogInFormik = () => {
   const validationSchema = Yup.object({
     password: Yup.string()
       .min(10, 'minimalna liczba znaków to 10')
+      .max(50, ',maksymalna lczba znaków 50')
       .required('proszę podaj hasło'),
     //   .oneOf(['{', '}'], 'nie dozwolony symbol'),
     //   .notOneOf(['{', '}'], 'nie dozwolony symbol')
     email: Yup.string()
       .email('Ups... czegoś beakuje w adresie e-mial')
+      .max(50, ',maksymalna lczba znaków 50')
       .required('proszę podaj adres e-mail'),
   });
   const handleSubmit = (values) => {
@@ -36,7 +38,7 @@ const LogInFormik = () => {
                 <>
                   <input
                     className="inputModalContaineFormInput"
-                    type="text"
+                    type="email"
                     id="email"
                     {...field}
                   />

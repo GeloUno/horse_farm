@@ -7,9 +7,11 @@ const SignUpFormik = () => {
   const validationSchema = Yup.object({
     email: Yup.string()
       .email('Ups... coś z adresem e-mail jest nie tak')
+      .max(50, ',maksymalna lczba znaków 50')
       .required('proszę podaj adres e-mail'),
     password: Yup.string()
-      .min(10, 'minimalna liczba znaków to 10')
+      .min(8, 'minimalna liczba znaków to 8')
+      .max(50, ',maksymalna lczba znaków 50')
       .required('proszę podaj hasło'),
     //   .oneOf(['{', '}'], 'nie dozwolony symbol'),
     //   .notOneOf(['{', '}'], 'nie dozwolony symbol')
@@ -39,6 +41,7 @@ const SignUpFormik = () => {
                   <input
                     className="inputModalContaineFormInput"
                     id="email"
+                    type="email"
                     {...field}
                   />
 
@@ -59,6 +62,7 @@ const SignUpFormik = () => {
                   <input
                     className="inputModalContaineFormInput"
                     id="password"
+                    type="password"
                     {...field}
                   />
 
@@ -79,6 +83,7 @@ const SignUpFormik = () => {
                   <input
                     className="inputModalContaineFormInput"
                     id="confirmPassword"
+                    type="password"
                     {...field}
                   />
 
