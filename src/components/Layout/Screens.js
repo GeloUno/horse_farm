@@ -111,6 +111,9 @@ export const GalleryScreen = ({
   userID,
   setDataGalleryImageModal,
   galleryImageModalToggle,
+  isGalleryImageModalShow,
+  isScrollToAddComment,
+  setisScrollToAddComment,
 }) => {
   return (
     <>
@@ -118,7 +121,10 @@ export const GalleryScreen = ({
       <Gallery
         setDataGalleryImageModal={setDataGalleryImageModal}
         galleryImageModalToggle={galleryImageModalToggle}
+        isGalleryImageModalShow={isGalleryImageModalShow}
         userID={userID}
+        isScrollToAddComment={isScrollToAddComment}
+        setisScrollToAddComment={setisScrollToAddComment}
       />
     </>
   );

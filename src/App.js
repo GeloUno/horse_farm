@@ -46,6 +46,7 @@ function App() {
   const [startDateAndTimeBooking, setStartDateAndTimeBooking] = useState(
     undefined
   );
+  const [isScrollToAddComment, setisScrollToAddComment] = useState(false);
   const [endDateAndTimeBooking, setEndDateAndTimeBooking] = useState(undefined);
   // ANCHOR: set user ID after login to DB
   const [user, setUser] = useState({ user: { userID: 2, nick: 'Ami' } }); //ANCHOR: on prod should be null, set user id from DB
@@ -122,9 +123,12 @@ function App() {
         )}
         {isGalleryImageModalShow && (
           <GalleryFullScreenImage
+            isGalleryImageModalShow={isGalleryImageModalShow}
             dataGalleryImageModal={dataGalleryImageModal}
             galleryImageModalToggle={galleryImageModalToggle}
             userID={user.user.userID}
+            isScrollToAddComment={isScrollToAddComment}
+            setisScrollToAddComment={setisScrollToAddComment}
           />
         )}
         {/* <Redirect exect from="/horse_farm/" to="/" /> */}
@@ -160,9 +164,12 @@ function App() {
           path="/galeria"
           component={() => (
             <GalleryScreen
+              isGalleryImageModalShow={isGalleryImageModalShow}
               setDataGalleryImageModal={setDataGalleryImageModal}
               galleryImageModalToggle={galleryImageModalToggle}
               userID={user.user.userID}
+              isScrollToAddComment={isScrollToAddComment}
+              setisScrollToAddComment={setisScrollToAddComment}
             />
           )}
         />

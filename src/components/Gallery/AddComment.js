@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const AddComment = ({ imageID, userID }) => {
+const AddComment = ({ imageID, userID, inputAddCommentRef }) => {
   const [newComment, setNewComment] = useState();
 
   const handleChangeComment = (e) => {
@@ -15,6 +15,7 @@ const AddComment = ({ imageID, userID }) => {
         }
 
         <input
+          ref={inputAddCommentRef}
           className="comment addCommentInput"
           placeholder="dodaj komentarz ..."
           maxLength="150"

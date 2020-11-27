@@ -9,10 +9,13 @@ import { DevImagesData } from '../../DevUtility/imagesGalery';
 const Gallery = ({
   galleryImageModalToggle,
   setDataGalleryImageModal,
+  isGalleryImageModalShow,
   isAuth = true,
   userID = null,
   isPagination = true,
   imagesGallery = DevImagesData,
+
+  setisScrollToAddComment,
 }) => {
   return (
     <div>
@@ -32,7 +35,14 @@ const Gallery = ({
                     galleryImageModalToggle(e);
                   }}
                 />
-                <LikesAndComments imageGallery={imageGallery} userID={userID} />
+                <LikesAndComments
+                  imageGallery={imageGallery}
+                  userID={userID}
+                  galleryImageModalToggle={galleryImageModalToggle}
+                  setDataGalleryImageModal={setDataGalleryImageModal}
+                  setisScrollToAddComment={setisScrollToAddComment}
+                  isGalleryImageModalShow={isGalleryImageModalShow}
+                />
               </div>
             );
           })}
