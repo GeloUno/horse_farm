@@ -807,7 +807,7 @@ address a {
 
 
 .editProfileContainer {
-  height: 64rem;
+  height: auto;
 }
 
 .editUserOpinionTextArea,
@@ -825,8 +825,39 @@ address a {
   font-size: .9rem;
 }
 
+.editUserProfile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.bodyInputEditProfile {
+  display: inline-flex;
+}
+
+.labelInputEditProfile {
+  /* align-self: center; */
+  padding-top: 1.4rem;
+}
+
+.textareaEditProfile {
+  width: 20rem;
+  font-size: 1.2rem;
+}
+
 .btn-editProfileButton {
   justify-content: center;
+}
+
+.btnBodyEditProfileSave {
+  margin: 2rem;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.btnBodyEditProfileSave .btn {
+  margin-left: 3rem;
 }
 
 /* .editUserOpinion {
@@ -1354,6 +1385,10 @@ address a {
   .profileContainer {
     height: 90vh;
   }
+
+  .editProfileContainer {
+    height: auto;
+  }
 }
 
 /* target  1280x800 T 14% oki  */
@@ -1487,6 +1522,10 @@ address a {
 
   .profileContainer {
     height: 90vh;
+  }
+
+  .editProfileContainer {
+    height: auto;
   }
 
 }
@@ -1708,9 +1747,6 @@ address a {
     width: 90%;
   }
 
-  .profileContainer {
-    height: 82vh;
-  }
 
   .clendaryHourBookingBody {
     height: 65vh;
@@ -1718,6 +1754,10 @@ address a {
 
   .profileContainer {
     height: 90vh;
+  }
+
+  .editProfileContainer {
+    height: auto;
   }
 
 }
