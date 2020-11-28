@@ -114,11 +114,15 @@ function App() {
           />
         )}
         {singinModalShow && (
-          <SingUpUser signinModalToggle={signinModalToggle} />
+          <SingUpUser
+            signinModalToggle={signinModalToggle}
+            loginModalToggle={loginModalToggle}
+          />
         )}
         {rememberPasswordModalShow && (
           <RememberPassword
             rememberPasswordModalToggle={rememberPasswordModalToggle}
+            loginModalToggle={loginModalToggle}
           />
         )}
         {isGalleryImageModalShow && (

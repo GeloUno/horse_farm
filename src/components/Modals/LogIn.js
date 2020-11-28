@@ -1,12 +1,14 @@
 import React from 'react';
 import LoginHorseImg from '../../assets/LoginHorse.png';
 import LogInFormik from '../Formik/LogInFormik';
+import { useHistory } from 'react-router-dom';
 
 const LoginUser = ({
   signinModalToggle,
   loginModalToggle,
   rememberPasswordModalToggle,
 }) => {
+  const history = useHistory();
   return (
     <div
       className="modalBackground modalContainerCenter accessToggleModalShow"
@@ -19,6 +21,7 @@ const LoginUser = ({
           <img className="modalImage" src={LoginHorseImg} alt="Konik" />
         </div>
         <div className="inputModalContainer">
+          <i className="fas fa-arrow-left backIcon accessToggleModalShow"></i>
           <LogInFormik />
           <div className=" btnSignInRemindPassword">
             <p

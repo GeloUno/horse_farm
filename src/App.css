@@ -642,6 +642,7 @@ address a {
 
 .inputModalContainer {
   display: flex;
+  position: relative;
   width: 50%;
   height: 100%;
   flex-direction: column;
@@ -676,6 +677,14 @@ address a {
   margin-bottom: -1rem;
   margin-top: 1rem;
   /* margin-bottom: -1rem; */
+}
+
+.backIcon {
+  position: absolute;
+  cursor: pointer;
+  top: 1.2rem;
+  left: 1.2rem;
+  font-size: 1.2rem;
 }
 
 .btn-login {
@@ -1628,6 +1637,7 @@ address a {
   }
 }
 
+/* MOBILE */
 /* target 360x640 M 24% */
 /* target 412x670 Galaxy A70  */
 /* target 414x670 6/67/8 iPhone Plus */
@@ -1758,6 +1768,14 @@ address a {
 
   .editProfileContainer {
     height: auto;
+  }
+
+  .rememberPasswordModal div:nth-child(1) h2 {
+    width: 75%;
+  }
+
+  .rememberPasswordModal div:nth-child(2) form {
+    width: 50%;
   }
 
 }
