@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import RemenberPasswordFormik from '../Formik/RemenberPasswordFormik';
+
+// import { RememberPasswordContext } from '../../App';
 
 const RememberPassword = ({
   rememberPasswordModalToggle,
   loginModalToggle,
 }) => {
+  // const toogleModalPassword = useContext(RememberPasswordContext);
   return (
     <div
       className="modalBackground modalContainerCenter accessToggleModalShow"
@@ -13,6 +16,7 @@ const RememberPassword = ({
         rememberPasswordModalToggle(e);
       }}
     >
+      {/* {console.log('object', toogleModalPassword)} */}
       <div className="rememberPasswordModal">
         <div className="textModalContainer">
           <i
