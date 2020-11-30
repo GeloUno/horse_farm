@@ -24,14 +24,20 @@ import {
   ProfileScreen,
 } from './components/Layout/Screens';
 
+// export const RememberPasswordContext = React.createContext();
+
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const [sectionPage, setSectionPage] = useState(null);
+
+  const scrollToSection = (section) => {
+    const elementSection = document.querySelector(`.${section}`);
+    elementSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
   useEffect(() => {
     if (sectionPage) {
-      const elementSection = document.querySelector(`.${sectionPage}`);
-      elementSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      scrollToSection(sectionPage);
     }
   }, [sectionPage]);
 
@@ -120,10 +126,19 @@ function App() {
           />
         )}
         {rememberPasswordModalShow && (
+          // <RememberPasswordContext.Provider
+          //   value={{
+          //     sideBarShow,
+          //     loginModalShow,
+          //     singinModalShow,
+          //     rememberPasswordModalShow,
+          //   }}
+          // >
           <RememberPassword
             rememberPasswordModalToggle={rememberPasswordModalToggle}
             loginModalToggle={loginModalToggle}
           />
+          // </RememberPasswordContext.Provider>
         )}
         {isGalleryImageModalShow && (
           <GalleryFullScreenImage
