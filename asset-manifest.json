@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/horse_farm/static/css/main.18262db4.chunk.css",
-    "main.js": "/horse_farm/static/js/main.6eb42d7b.chunk.js",
-    "main.js.map": "/horse_farm/static/js/main.6eb42d7b.chunk.js.map",
+    "main.css": "/horse_farm/static/css/main.bd6106b3.chunk.css",
+    "main.js": "/horse_farm/static/js/main.50209182.chunk.js",
+    "main.js.map": "/horse_farm/static/js/main.50209182.chunk.js.map",
     "runtime-main.js": "/horse_farm/static/js/runtime-main.9034245c.js",
     "runtime-main.js.map": "/horse_farm/static/js/runtime-main.9034245c.js.map",
     "static/css/2.25ff2e5b.chunk.css": "/horse_farm/static/css/2.25ff2e5b.chunk.css",
-    "static/js/2.16145a31.chunk.js": "/horse_farm/static/js/2.16145a31.chunk.js",
-    "static/js/2.16145a31.chunk.js.map": "/horse_farm/static/js/2.16145a31.chunk.js.map",
+    "static/js/2.1ed0be5b.chunk.js": "/horse_farm/static/js/2.1ed0be5b.chunk.js",
+    "static/js/2.1ed0be5b.chunk.js.map": "/horse_farm/static/js/2.1ed0be5b.chunk.js.map",
     "index.html": "/horse_farm/index.html",
-    "precache-manifest.9720a1542061f58663d8d4905bca3f1a.js": "/horse_farm/precache-manifest.9720a1542061f58663d8d4905bca3f1a.js",
+    "precache-manifest.ed8aa6d5b1cfeb026c2296d222221a4b.js": "/horse_farm/precache-manifest.ed8aa6d5b1cfeb026c2296d222221a4b.js",
     "service-worker.js": "/horse_farm/service-worker.js",
     "static/css/2.25ff2e5b.chunk.css.map": "/horse_farm/static/css/2.25ff2e5b.chunk.css.map",
-    "static/css/main.18262db4.chunk.css.map": "/horse_farm/static/css/main.18262db4.chunk.css.map",
-    "static/js/2.16145a31.chunk.js.LICENSE.txt": "/horse_farm/static/js/2.16145a31.chunk.js.LICENSE.txt",
+    "static/css/main.bd6106b3.chunk.css.map": "/horse_farm/static/css/main.bd6106b3.chunk.css.map",
+    "static/js/2.1ed0be5b.chunk.js.LICENSE.txt": "/horse_farm/static/js/2.1ed0be5b.chunk.js.LICENSE.txt",
     "static/media/HorseBackground.png": "/horse_farm/static/media/HorseBackground.8f51e8a2.png",
     "static/media/LoginHorse.png": "/horse_farm/static/media/LoginHorse.9476513c.png",
     "static/media/SigninHorse.png": "/horse_farm/static/media/SigninHorse.3d106ca1.png",
@@ -26,8 +26,8 @@
   "entrypoints": [
     "static/js/runtime-main.9034245c.js",
     "static/css/2.25ff2e5b.chunk.css",
-    "static/js/2.16145a31.chunk.js",
-    "static/css/main.18262db4.chunk.css",
-    "static/js/main.6eb42d7b.chunk.js"
+    "static/js/2.1ed0be5b.chunk.js",
+    "static/css/main.bd6106b3.chunk.css",
+    "static/js/main.50209182.chunk.js"
   ]
 }
