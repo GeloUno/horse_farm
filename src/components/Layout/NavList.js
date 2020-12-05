@@ -1,11 +1,24 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
+import { useHistory } from 'react-router-dom';
+import { signOutFirebase } from '../../firebase';
+
 export const NavList = ({
   loginModalToggle,
   isAuthenticated,
   setSectionPage,
 }) => {
+  const history = useHistory();
+  const handleSignOut = () => {
+    signOutFirebase()
+      .then(() => {
+        history.push('/');
+      })
+      .catch((error) => {
+        console.warn('error LogOut :>> ', error);
+      });
+  };
   const onHandleClickJumptoSectionOrTop = (section) => {
     if (section) {
       setSectionPage(section);
@@ -85,11 +98,11 @@ export const NavList = ({
       <li>
         <h2>
           <Link
-            to="/login"
+            to=""
             className="sm-hiden accessToggleModalShow"
             onClick={(e) => loginModalToggle(e)}
           >
-            <i className="fas fa-sign-in-alt"></i>
+            <i className="fas fa-sign-in-alt accessToggleModalShow"></i>
             Zaloguj
           </Link>
         </h2>
@@ -165,8 +178,12 @@ export const NavList = ({
         </h2>
       </li>
       <li>
-        <h2>
-          <Link to="/logout" className="sm-hiden">
+        <h2
+          onClick={() => {
+            handleSignOut();
+          }}
+        >
+          <Link to="" className="sm-hiden">
             <i className="fas fa-sign-out-alt"></i>
             Wyloguj
           </Link>

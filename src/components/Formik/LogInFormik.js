@@ -2,13 +2,17 @@ import React from 'react';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 
+import firebase from 'firebase';
+import 'firebase/auth';
+import 'firebase/firestore';
+import { signInEmailPassword } from '../../firebase';
 const LogInFormik = () => {
   const initialValues = { email: '', password: '' };
 
   const validationSchema = Yup.object({
     password: Yup.string()
-      .min(10, 'minimalna liczba znaków to 10')
-      .max(50, ',maksymalna lczba znaków 50')
+      .min(8, 'minimalna liczba znaków to 8')
+      .max(256, ',maksymalna lczba znaków 256')
       .required('proszę podaj hasło'),
     //   .oneOf(['{', '}'], 'nie dozwolony symbol'),
     //   .notOneOf(['{', '}'], 'nie dozwolony symbol')
@@ -17,8 +21,17 @@ const LogInFormik = () => {
       .max(50, ',maksymalna lczba znaków 50')
       .required('proszę podaj adres e-mail'),
   });
-  const handleSubmit = (values) => {
-    console.log('handle :>> ', values);
+
+  const handleSubmit = (values, { setErrors, resetForm }) => {
+    signInEmailPassword(values)
+      .then((data) => {
+        //   console.log('data user :>> ', data);
+        resetForm();
+      })
+      .catch((error) => {
+        //   console.warn('data error  :>> ', error);
+        setErrors({ [error.input]: [error.message] });
+      });
   };
 
   return (
@@ -54,7 +67,7 @@ const LogInFormik = () => {
           <Field name="password">
             {(props) => {
               const { field, form, meta } = props;
-              //   console.log('Field props :>> ', formik);
+              // console.log('Field props :>> ', formik, form, meta);
               return (
                 <>
                   <input

@@ -1,15 +1,26 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import firebase from 'firebase';
+import 'firebase/auth';
+import 'firebase/firestore';
+import { sendEmailToResetPassword } from '../../firebase';
 
-export const RemenberPasswordFormik = () => {
+export const ResetPassword = () => {
   const formik = useFormik({
     initialValues: {
       email: '',
     },
-    onSubmit: (values) => {
-      console.log('onSubmit :>> ', values);
-      formik.resetForm();
+    onSubmit: (values, { setErrors, resetForm }) => {
+      //  console.log('values', values);
+      sendEmailToResetPassword(values.email)
+        .then((data) => {
+          //    console.log('sendEmailToResetPassword data :>> ', data);
+        })
+        .catch((error) => {
+          //  console.log('sendEmailToResetPassword error :>> ', error);
+          setErrors({ [error.input]: [error.message] });
+        });
     },
     validationSchema: Yup.object({
       email: Yup.string()
@@ -56,7 +67,7 @@ export const RemenberPasswordFormik = () => {
           // formik.values.email === '' ||
           formik.touched.email && formik.errors.email
         }
-        className="btn btn-brown btn-capitalize btn-radius btn-rememberPassword"
+        className="btn btn-brown btn-capitalize btn-radius btn-resetPassword"
       >
         wyslij
       </button>
@@ -64,4 +75,4 @@ export const RemenberPasswordFormik = () => {
   );
 };
 
-export default RemenberPasswordFormik;
+export default ResetPassword;

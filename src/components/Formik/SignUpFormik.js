@@ -1,6 +1,21 @@
 import React from 'react';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
+import firebase from 'firebase';
+
+import 'firebase/auth';
+import 'firebase/firestore';
+import { signUpEmailPassword } from '../../firebase';
+
+const handleSubmit = (values, { setErrors, resetForm }) => {
+  signUpEmailPassword(values)
+    .then((user) => {
+      // console.log('sign UP user :>> ', user);
+    })
+    .catch((error) => {
+      setErrors({ [error.input]: [error.message] });
+    });
+};
 const SignUpFormik = () => {
   const initialValues = { email: '', password: '', confirmPassword: '' };
 
@@ -19,9 +34,6 @@ const SignUpFormik = () => {
       .oneOf([Yup.ref('password', '')], 'hasła nie są identyczne')
       .required('proszę wprowadź ponownie hasło'),
   });
-  const handleSubmit = (values) => {
-    console.log('handle :>> ', values);
-  };
 
   return (
     <Formik
