@@ -598,7 +598,7 @@ address a {
   justify-content: space-around;
 }
 
-/* LOGIN & SIGNIN & REMEMBER_PASSWORD MODAL */
+/* LOGIN & SIGNIN & RESET_PASSWORD MODAL */
 
 .modalContainerCenter {
   display: flex;
@@ -611,7 +611,7 @@ address a {
 
 .loginModal,
 .signinModal,
-.rememberPasswordModal {
+.resetPasswordModal {
   display: flex;
   flex-direction: row;
   background-color: #fff;
@@ -679,6 +679,33 @@ address a {
   /* margin-bottom: -1rem; */
 }
 
+.socilaMediaLoginGrup {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  font-size: 2rem;
+}
+
+.sobialLoginBody {
+  width: 30%;
+  height: 20%;
+  text-align: center;
+  color: var(--primary-color-green);
+}
+
+.btnSocial {
+  border-radius: 3.3rem;
+  border: 2px solid var(--primary-color-green);
+  background-color: var(--primary-color-green);
+  color: #fff;
+  width: 3rem;
+  cursor: pointer;
+}
+
+/* .socialLoginText {
+  color: var(--first-color-brown);
+} */
+
 .backIcon {
   position: absolute;
   cursor: pointer;
@@ -719,33 +746,33 @@ address a {
 }
 
 
-/* remember password modal rest */
+/* reset password modal rest */
 
-.rememberPasswordModal {
+.resetPasswordModal {
   position: relative;
   flex-direction: column;
 }
 
-.rememberPasswordModal div {
+.resetPasswordModal div {
   display: flex;
   height: 50%;
   width: 100%;
 }
 
-.rememberPasswordModal div:nth-child(1) {
+.resetPasswordModal div:nth-child(1) {
   justify-content: center;
   align-items: center;
 }
 
-.rememberPasswordModal div:nth-child(1) h2 {
+.resetPasswordModal div:nth-child(1) h2 {
   width: 50%;
 }
 
-.rememberPasswordModal div:nth-child(2) form {
+.resetPasswordModal div:nth-child(2) form {
   width: 35%;
 }
 
-.btn-rememberPassword {
+.btn-resetPassword {
   margin: 1rem;
   margin-top: 1rem;
 }
@@ -1128,7 +1155,16 @@ address a {
   justify-content: center;
 }
 
+/* PAGE NOT FOUND */
 
+.PageNotFound {
+  display: flex;
+  margin: 0;
+  padding: 18rem;
+  /* height: 50vh; */
+  text-align: center;
+  font-size: 3rem;
+}
 
 /* UTILITY  GLOBAL*/
 
@@ -1770,11 +1806,11 @@ address a {
     height: auto;
   }
 
-  .rememberPasswordModal div:nth-child(1) h2 {
+  .resetPasswordModal div:nth-child(1) h2 {
     width: 75%;
   }
 
-  .rememberPasswordModal div:nth-child(2) form {
+  .resetPasswordModal div:nth-child(2) form {
     width: 50%;
   }
 
