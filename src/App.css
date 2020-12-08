@@ -686,7 +686,7 @@ address a {
   font-size: 2rem;
 }
 
-.sobialLoginBody {
+.socialLoginBody {
   width: 30%;
   height: 20%;
   text-align: center;
@@ -743,6 +743,10 @@ address a {
 .btn-signup {
   margin: 1rem;
   margin-top: 3rem;
+}
+
+.errorMessageSocialMedia.errorMessenge {
+  margin: 0 -2rem;
 }
 
 
