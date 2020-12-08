@@ -9,8 +9,8 @@ import { signUpEmailPassword } from '../../firebase';
 
 const handleSubmit = (values, { setErrors, resetForm }) => {
   signUpEmailPassword(values)
-    .then((user) => {
-      // console.log('sign UP user :>> ', user);
+    .then((result) => {
+      console.log('sign UP result :>> ', result);
     })
     .catch((error) => {
       setErrors({ [error.input]: [error.message] });
@@ -28,8 +28,6 @@ const SignUpFormik = () => {
       .min(8, 'minimalna liczba znaków to 8')
       .max(50, ',maksymalna lczba znaków 50')
       .required('proszę podaj hasło'),
-    //   .oneOf(['{', '}'], 'nie dozwolony symbol'),
-    //   .notOneOf(['{', '}'], 'nie dozwolony symbol')
     confirmPassword: Yup.string()
       .oneOf([Yup.ref('password', '')], 'hasła nie są identyczne')
       .required('proszę wprowadź ponownie hasło'),

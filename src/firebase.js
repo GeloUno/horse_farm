@@ -36,24 +36,38 @@ const errorFirebaseAuthTranslationPL = {
     input: 'email',
     message: 'Już się znamy zapraszam do logowania',
   },
+  authunauthorizeddomain: {
+    input: 'errorMessageSocialMedia',
+    message: 'Ups... z tej domeny nie można się zalogować przez social media',
+  },
+  authpopupclosedbyuser: {
+    input: 'errorMessageSocialMedia',
+    message:
+      'Ups... logowanie zostało przerwane przez zamknięcie okna social media',
+  },
+  authcancelledpopuprequest: {
+    input: 'errorMessageSocialMedia',
+    message:
+      'Ups... logowanie zostało przerwane przez zamknięcie okna social media',
+  },
 };
 
 const removeMinusAndSlash = (error) => {
   return error.replace(/[^a-zA-Z0-9]+/g, '');
 };
 
-export const signInSocialMedia = (social) => {
+export const signInSocialMedia = async (social) => {
   let provider;
   social === 'google' && (provider = new firebase.auth.GoogleAuthProvider());
   social === 'facebook' &&
     (provider = new firebase.auth.FacebookAuthProvider());
-  firebase
+  await firebase
     .auth()
     .signInWithPopup(provider)
     .then(function (result) {
       const token = result.credential;
       const user = result.user;
-
+      console.log('result socila media', result);
       // social === 'google' && console.log('LoginByGoogle', token, user);
       // social === 'facebook' && console.log('LoginByFacebook', token, user);
       firebase
@@ -65,19 +79,18 @@ export const signInSocialMedia = (social) => {
         .catch((error) => {
           // console.log('error :>> ', error);
         });
+      return user;
     })
     .catch(function (error) {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.email;
-      // The firebase.auth.AuthCredential type that was used.
-      const credential = error.credential;
-      // ...
       // social === 'google' && console.log('Error LoginByGoogle');
       // social === 'facebook' && console.log('Error LoginByFacebook');
       console.error(error);
+      throw (
+        errorFirebaseAuthTranslationPL[removeMinusAndSlash(error.code)] || {
+          input: 'errorMessageSocialMedia',
+          message: error.message,
+        }
+      );
     });
 };
 
@@ -85,8 +98,9 @@ export const signInEmailPassword = async (values) => {
   let dataBackFromFirebase = await firebase
     .auth()
     .signInWithEmailAndPassword(values.email, values.password)
-    .then((user) => {
-      return user;
+    .then((result) => {
+      !result.user.emailVerified && sendVerificationEmail();
+      return result;
       // console.log('user :>> ', user);
     })
     .catch(async (err) => {
@@ -138,14 +152,13 @@ export const sendEmailToResetPassword = async (email) => {
   return dataFromFirebase;
 };
 
-export const verificationEmail = () => {
+export const sendVerificationEmail = () => {
   const user = firebase.auth().currentUser;
 
   user
     .sendEmailVerification()
     .then(() => {
       // console.log('send email :>> ');
-      // Email sent.
     })
     .catch((error) => {
       // console.log('error :>> ', error);
@@ -170,7 +183,6 @@ export const getCurrentUser = () => {
     .sendEmailVerification()
     .then(() => {
       // console.log('send email :>> ');
-      // Email sent.
     })
     .catch((error) => {
       // console.log('error :>> ', error);

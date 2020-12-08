@@ -6,7 +6,7 @@ import firebase from 'firebase';
 import 'firebase/auth';
 import 'firebase/firestore';
 import { signInEmailPassword } from '../../firebase';
-const LogInFormik = () => {
+const LogInFormik = ({ user, setUser }) => {
   const initialValues = { email: '', password: '' };
 
   const validationSchema = Yup.object({
@@ -14,8 +14,6 @@ const LogInFormik = () => {
       .min(8, 'minimalna liczba znaków to 8')
       .max(256, ',maksymalna lczba znaków 256')
       .required('proszę podaj hasło'),
-    //   .oneOf(['{', '}'], 'nie dozwolony symbol'),
-    //   .notOneOf(['{', '}'], 'nie dozwolony symbol')
     email: Yup.string()
       .email('Ups... czegoś beakuje w adresie e-mial')
       .max(50, ',maksymalna lczba znaków 50')
@@ -25,7 +23,11 @@ const LogInFormik = () => {
   const handleSubmit = (values, { setErrors, resetForm }) => {
     signInEmailPassword(values)
       .then((data) => {
-        //   console.log('data user :>> ', data);
+        setUser({
+          email: data.user.email,
+          emailVerified: data.user.emailVerified,
+        });
+        console.log('data user :>> ', data);
         resetForm();
       })
       .catch((error) => {

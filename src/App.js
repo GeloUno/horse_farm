@@ -121,6 +121,7 @@ function App() {
             signinModalToggle={signinModalToggle}
             loginModalToggle={loginModalToggle}
             resetPasswordModalToggle={resetPasswordModalToggle}
+            setLoginModalShow={setLoginModalShow}
           />
         )}
         {singinModalShow && (
