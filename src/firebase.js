@@ -56,35 +56,24 @@ const removeMinusAndSlash = (error) => {
   return error.replace(/[^a-zA-Z0-9]+/g, '');
 };
 
-export const signInSocialMedia = async (social) => {
+export const signInSocialMedia = async (socialMedia) => {
   let provider;
-  social === 'google' && (provider = new firebase.auth.GoogleAuthProvider());
-  social === 'facebook' &&
+
+  socialMedia === 'google' &&
+    (provider = new firebase.auth.GoogleAuthProvider());
+  socialMedia === 'facebook' &&
     (provider = new firebase.auth.FacebookAuthProvider());
-  await firebase
+
+  const userAuthDataBackFromFirebase = await firebase
     .auth()
     .signInWithPopup(provider)
-    .then(function (result) {
-      const token = result.credential;
-      const user = result.user;
-      console.log('result socila media', result);
-      // social === 'google' && console.log('LoginByGoogle', token, user);
-      // social === 'facebook' && console.log('LoginByFacebook', token, user);
-      firebase
-        .auth()
-        .currentUser.getIdToken(true)
-        .then((idToken) => {
-          // console.log('idToken :>> ', idToken);
-        })
-        .catch((error) => {
-          // console.log('error :>> ', error);
-        });
-      return user;
+    .then((result) => {
+      return result;
     })
-    .catch(function (error) {
-      // social === 'google' && console.log('Error LoginByGoogle');
-      // social === 'facebook' && console.log('Error LoginByFacebook');
-      console.error(error);
+    .catch((error) => {
+      // socialMedia === 'google' && console.log('Error LoginByGoogle');
+      // socialMedia === 'facebook' && console.log('Error LoginByFacebook');
+      console.error('Error Firebase Social Media', error);
       throw (
         errorFirebaseAuthTranslationPL[removeMinusAndSlash(error.code)] || {
           input: 'errorMessageSocialMedia',
@@ -92,6 +81,7 @@ export const signInSocialMedia = async (social) => {
         }
       );
     });
+  return userAuthDataBackFromFirebase;
 };
 
 export const signInEmailPassword = async (values) => {
@@ -103,7 +93,7 @@ export const signInEmailPassword = async (values) => {
       return result;
       // console.log('user :>> ', user);
     })
-    .catch(async (err) => {
+    .catch((err) => {
       // console.log('err :>> ', err);
       throw (
         errorFirebaseAuthTranslationPL[removeMinusAndSlash(err.code)] || {

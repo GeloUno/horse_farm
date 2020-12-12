@@ -1,12 +1,12 @@
 import React from 'react';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
-
-import firebase from 'firebase';
 import 'firebase/auth';
 import 'firebase/firestore';
-import { signInEmailPassword } from '../../firebase';
-const LogInFormik = ({ user, setUser }) => {
+import { useDispatch } from 'react-redux';
+import { userSignInByEmailAction } from '../../actions/userActions';
+const LogInFormik = ({ setUser }) => {
+  const dispatch = useDispatch();
   const initialValues = { email: '', password: '' };
 
   const validationSchema = Yup.object({
@@ -21,19 +21,7 @@ const LogInFormik = ({ user, setUser }) => {
   });
 
   const handleSubmit = (values, { setErrors, resetForm }) => {
-    signInEmailPassword(values)
-      .then((data) => {
-        setUser({
-          email: data.user.email,
-          emailVerified: data.user.emailVerified,
-        });
-        console.log('data user :>> ', data);
-        resetForm();
-      })
-      .catch((error) => {
-        //   console.warn('data error  :>> ', error);
-        setErrors({ [error.input]: [error.message] });
-      });
+    dispatch(userSignInByEmailAction(values, setErrors, resetForm));
   };
 
   return (
@@ -48,7 +36,6 @@ const LogInFormik = ({ user, setUser }) => {
           <Field name="email">
             {(props) => {
               const { field, form, meta } = props;
-              //   console.log('Field props :>> ', props);
               return (
                 <>
                   <input
@@ -69,7 +56,6 @@ const LogInFormik = ({ user, setUser }) => {
           <Field name="password">
             {(props) => {
               const { field, form, meta } = props;
-              // console.log('Field props :>> ', formik, form, meta);
               return (
                 <>
                   <input
@@ -88,7 +74,6 @@ const LogInFormik = ({ user, setUser }) => {
           </Field>
           <button
             disabled={
-              // formik.values.email === '' ||
               (formik.touched.email && formik.errors.email) ||
               (formik.touched.password && formik.errors.password)
             }

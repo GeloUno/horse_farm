@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import userReducer from './reducers/userReducer';
 
-const reducer = combineReducers({ userReducer: userReducer });
+const reducer = combineReducers({ userAction: userReducer });
 const initinalState = {};
 const middleware = [thunk];
 
