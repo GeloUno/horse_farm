@@ -4,6 +4,7 @@ import 'firebase/auth';
 import 'firebase/firestore';
 import { getFirebase } from '../../firebase';
 import LogInBody from '../Users/LogInBody';
+import { useSelector } from 'react-redux';
 
 const LoginUser = ({
   signinModalToggle,
@@ -12,10 +13,9 @@ const LoginUser = ({
   setLoginModalShow,
 }) => {
   getFirebase();
-  const [user, setUser] = useState({
-    email: null,
-    emailVerified: null,
-  });
+  const userAuth = useSelector((state) => state.userAction);
+  const { idToken, user } = userAuth;
+
   const [view, setView] = useState(null);
 
   useEffect(() => {
@@ -26,21 +26,16 @@ const LoginUser = ({
           loginModalToggle={loginModalToggle}
           signinModalToggle={signinModalToggle}
           resetPasswordModalToggle={resetPasswordModalToggle}
-          user={user}
-          setUser={setUser}
         />
       );
-    } else if (user.email && !user.emailVerified) {
+    } else if (user.email && !user.emailVerified && !idToken) {
       setView(<div>emailVeryfied</div>);
-    } else if (user.email && user.emailVerified) {
+    } else if (idToken) {
       setLoginModalShow(false);
     }
 
     return () => {};
-  }, [user]);
-
-  // console.log(base.name);
-  // console.log(base.database());
+  }, [user, idToken]);
 
   return (
     <div
