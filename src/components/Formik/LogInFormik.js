@@ -5,7 +5,7 @@ import 'firebase/auth';
 import 'firebase/firestore';
 import { useDispatch } from 'react-redux';
 import { userSignInByEmailAction } from '../../actions/userActions';
-const LogInFormik = ({ setUser }) => {
+const LogInFormik = () => {
   const dispatch = useDispatch();
   const initialValues = { email: '', password: '' };
 
