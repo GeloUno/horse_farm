@@ -15,6 +15,7 @@ const initialState = {
   loading: false,
   error: false,
   errorMessage: '',
+  idToken: null,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -61,7 +62,13 @@ const userReducer = (state = initialState, action) => {
     case USER_LOGUOT_FAILED:
       return { ...state, ...payload };
     case USER_LOGUOT_SUCCESS:
-      return { ...state, ...payload };
+      return {
+        loading: false,
+        error: false,
+        errorMessage: '',
+        idToken: '',
+        user: {},
+      };
 
     default:
       return state;
