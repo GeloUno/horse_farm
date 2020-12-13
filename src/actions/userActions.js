@@ -13,34 +13,38 @@ import {
   getIdToken,
   signInEmailPassword,
   signInSocialMedia,
+  signOutFirebase,
 } from '../firebase';
 
 export const userSignInByEmailAction = (values, setErrors, resetForm) => async (
   dispatch
 ) => {
   try {
-    console.log('User Actions :>> ', values.email);
     dispatch({
       type: USER_SIGNIN_REQUEST,
       payload: { provider: 'email' },
     });
+    let idToken = null;
     const userAuth = await signInEmailPassword(values);
     const { additionalUserInfo, user } = userAuth;
+    user.emailVerified && (idToken = await getIdToken());
 
     dispatch({
       type: USER_SIGNIN_SUCCESS,
       payload: {
-        isNewUser: additionalUserInfo.isNewUser,
-        providerId: additionalUserInfo.providerId,
-        email: user.email,
-        emailVerified: user.emailVerified,
-        uid: user.uid,
+        user: {
+          isNewUser: additionalUserInfo.isNewUser,
+          providerId: additionalUserInfo.providerId,
+          email: user.email,
+          emailVerified: user.emailVerified,
+          uid: user.uid,
+        },
+        idToken: idToken,
       },
     });
 
     resetForm();
   } catch (error) {
-    console.log('error  CATCH ACTION:>> ', error);
     setErrors(
       { [error.input]: [error.message] } || {
         input: 'errorMessageSocialMedia',
@@ -114,12 +118,23 @@ export const userSignInSocilaMedialAction = (values) => async (dispatch) => {
         break;
     }
   } catch (error) {
-    // console.log('error  CATCH Social Media:>> ', error);
     dispatch({
       type: USER_SIGNIN_FAILED,
       payload: {
         errorMessage: error.message,
       },
     });
+  }
+};
+
+export const userSignOutAction = async (dispatch) => {
+  try {
+    dispatch({ type: USER_LOGUOT_REQUEST });
+    const logOut = await signOutFirebase();
+    dispatch({
+      type: USER_LOGUOT_SUCCESS,
+    });
+  } catch (error) {
+    dispatch({ type: USER_LOGUOT_FAILED, payload: error.errorMessage });
   }
 };

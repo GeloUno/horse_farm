@@ -29,11 +29,19 @@ import {
   ProfileScreen,
 } from './components/Layout/Screens';
 import PageNotFound from './components/Layout/PageNotFound';
+import { useDispatch, useSelector } from 'react-redux';
+import { useCookies } from 'react-cookie';
 
 // export const ResetPasswordContext = React.createContext();
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const userAuth = useSelector((state) => state.userAction);
+  const { idToken } = userAuth;
+
+  //  const { idToken } = userAuth;
+
+  const [cookies] = useCookies(['idToken']);
 
   const [sectionPage, setSectionPage] = useState(null);
 
@@ -47,6 +55,14 @@ function App() {
     }
   }, [sectionPage]);
 
+  useEffect(() => {
+    cookies.idToken ? setIsAuthenticated(true) : setIsAuthenticated(false);
+
+    return () => {
+      // cleanup;
+    };
+  });
+
   const [sideBarShow, setSideBarShow] = useState(false);
   const [loginModalShow, setLoginModalShow] = useState(false);
   const [singinModalShow, setSinginModalShow] = useState(false);
@@ -59,7 +75,7 @@ function App() {
   const [isScrollToAddComment, setisScrollToAddComment] = useState(false);
   const [endDateAndTimeBooking, setEndDateAndTimeBooking] = useState(undefined);
   // ANCHOR: set user ID after login to DB
-  const [user, setUser] = useState({ user: { userID: 2, nick: 'Ami' } }); //ANCHOR: on prod should be null, set user id from DB
+  const [user, setUser] = useState(null); //ANCHOR: on prod should be null, set user id from DB
 
   /* ANCHOR: what will be better multi function ore one  ?? */
 
@@ -122,6 +138,7 @@ function App() {
             loginModalToggle={loginModalToggle}
             resetPasswordModalToggle={resetPasswordModalToggle}
             setLoginModalShow={setLoginModalShow}
+            setUser={setUser}
           />
         )}
         {singinModalShow && (

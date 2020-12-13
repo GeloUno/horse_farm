@@ -5,21 +5,22 @@ import 'firebase/firestore';
 import { getFirebase } from '../../firebase';
 import LogInBody from '../Users/LogInBody';
 import { useSelector } from 'react-redux';
+import { useCookies } from 'react-cookie';
 
 const LoginUser = ({
   signinModalToggle,
   loginModalToggle,
   resetPasswordModalToggle,
   setLoginModalShow,
+  setUser,
 }) => {
   getFirebase();
+  const [cookies, setCookie, removeCookie] = useCookies(['idToken']);
   const userAuth = useSelector((state) => state.userAction);
   const { idToken, user } = userAuth;
-
   const [view, setView] = useState(null);
 
   useEffect(() => {
-    console.log('user', user);
     if (!user.email && !user.emailVerified) {
       setView(
         <LogInBody
@@ -31,6 +32,14 @@ const LoginUser = ({
     } else if (user.email && !user.emailVerified && !idToken) {
       setView(<div>emailVeryfied</div>);
     } else if (idToken) {
+      setCookie('idToken', idToken, {
+        path: '/',
+        // domain: 'http://localhost/',
+        maxAge: 30 * 60,
+        // secure: true,
+        // httpOnly: true,
+      });
+      setUser(user);
       setLoginModalShow(false);
     }
 

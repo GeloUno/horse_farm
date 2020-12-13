@@ -187,9 +187,9 @@ export const signOutFirebase = async () => {
   await firebase
     .auth()
     .signOut()
-    .then((data) => {
-      // console.log('firebaseLogOut :>> ', data);
-      return data;
+    .then((result) => {
+      // console.log('firebaseLogOut :>> ', result);
+      return result;
     })
     .catch((error) => {
       // console.warn('loguotFirebase error :>> ', error);

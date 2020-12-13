@@ -1,7 +1,10 @@
 import React, { Fragment } from 'react';
+import { useCookies } from 'react-cookie';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { useHistory } from 'react-router-dom';
+import { userSignOutAction } from '../../actions/userActions';
 import { signOutFirebase } from '../../firebase';
 
 export const NavList = ({
@@ -10,6 +13,8 @@ export const NavList = ({
   setSectionPage,
 }) => {
   const history = useHistory();
+  const dispatch = useDispatch();
+  const [cookies, setCookie, removeCookie] = useCookies(['idToken']);
   const handleSignOut = () => {
     signOutFirebase()
       .then(() => {
@@ -183,7 +188,16 @@ export const NavList = ({
             handleSignOut();
           }}
         >
-          <Link to="" className="sm-hiden">
+          <Link
+            to=""
+            className="sm-hiden"
+            onClick={() => {
+              dispatch(userSignOutAction);
+              removeCookie('idToken', {
+                path: '/',
+              });
+            }}
+          >
             <i className="fas fa-sign-out-alt"></i>
             Wyloguj
           </Link>
