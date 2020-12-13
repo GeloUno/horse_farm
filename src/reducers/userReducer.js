@@ -35,14 +35,7 @@ const userReducer = (state = initialState, action) => {
         user: {},
         errorMessage: '',
         provider: payload.provider,
-      };
-    case USER_SIGNIN_FAILED:
-      return {
-        ...state,
-        loading: false,
-        error: true,
-        errorMessage: payload.errorMessage,
-        user: {},
+        idToken: false,
       };
     case USER_SIGNIN_SUCCESS:
       return {
@@ -50,7 +43,17 @@ const userReducer = (state = initialState, action) => {
         loading: false,
         error: false,
         errorMessage: '',
-        user: payload,
+        user: payload.user,
+        idToken: payload.idToken,
+      };
+    case USER_SIGNIN_FAILED:
+      return {
+        ...state,
+        loading: false,
+        error: true,
+        errorMessage: payload.errorMessage,
+        idToken: '',
+        user: {},
       };
 
     case USER_LOGUOT_REQUEST:

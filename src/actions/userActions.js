@@ -9,7 +9,11 @@ import {
   USER_LOGUOT_FAILED,
   USER_LOGUOT_SUCCESS,
 } from '../constans/userConstans';
-import { signInEmailPassword, signInSocialMedia } from '../firebase';
+import {
+  getIdToken,
+  signInEmailPassword,
+  signInSocialMedia,
+} from '../firebase';
 
 export const userSignInByEmailAction = (values, setErrors, resetForm) => async (
   dispatch
@@ -28,7 +32,7 @@ export const userSignInByEmailAction = (values, setErrors, resetForm) => async (
       payload: {
         isNewUser: additionalUserInfo.isNewUser,
         providerId: additionalUserInfo.providerId,
-        email: user.email, 
+        email: user.email,
         emailVerified: user.emailVerified,
         uid: user.uid,
       },
@@ -58,22 +62,31 @@ export const userSignInSocilaMedialAction = (values) => async (dispatch) => {
     });
 
     const uesrAuth = await signInSocialMedia(values);
-    const { additionalUserInfo, credential, operationType, user } = uesrAuth;
+    const {
+      additionalUserInfo,
+      // credential,
+      // operationType,
+      user,
+    } = uesrAuth;
+    const idToken = await getIdToken();
 
     switch (additionalUserInfo.providerId) {
       case 'google.com':
         dispatch({
           type: USER_SIGNIN_SUCCESS,
           payload: {
-            isNewUser: additionalUserInfo.isNewUser,
-            providerId: additionalUserInfo.providerId,
-            email: additionalUserInfo.profile.email,
-            firstName: additionalUserInfo.profile.family_name,
-            lastName: additionalUserInfo.profile.given_name,
-            name: additionalUserInfo.profile.name,
-            emailVerified: user.emailVerified,
-            uid: additionalUserInfo.profile.id,
-            photoId: additionalUserInfo.profile.picture,
+            user: {
+              isNewUser: additionalUserInfo.isNewUser,
+              providerId: additionalUserInfo.providerId,
+              email: additionalUserInfo.profile.email,
+              firstName: additionalUserInfo.profile.family_name,
+              lastName: additionalUserInfo.profile.given_name,
+              name: additionalUserInfo.profile.name,
+              emailVerified: user.emailVerified,
+              uid: additionalUserInfo.profile.id,
+              photoId: additionalUserInfo.profile.picture,
+            },
+            idToken: idToken,
           },
         });
         break;
@@ -81,15 +94,18 @@ export const userSignInSocilaMedialAction = (values) => async (dispatch) => {
         dispatch({
           type: USER_SIGNIN_SUCCESS,
           payload: {
-            isNewUser: additionalUserInfo.isNewUser,
-            providerId: additionalUserInfo.providerId,
-            email: additionalUserInfo.profile.email,
-            firstName: additionalUserInfo.profile.first_name,
-            lastName: additionalUserInfo.profile.last_name,
-            name: additionalUserInfo.profile.name,
-            emailVerified: user.emailVerified,
-            uid: additionalUserInfo.profile.id,
-            photoId: additionalUserInfo.profile.picture.data.url,
+            user: {
+              isNewUser: additionalUserInfo.isNewUser,
+              providerId: additionalUserInfo.providerId,
+              email: additionalUserInfo.profile.email,
+              firstName: additionalUserInfo.profile.first_name,
+              lastName: additionalUserInfo.profile.last_name,
+              name: additionalUserInfo.profile.name,
+              emailVerified: user.emailVerified,
+              uid: additionalUserInfo.profile.id,
+              photoId: additionalUserInfo.profile.picture.data.url,
+            },
+            idToken: idToken,
           },
         });
         break;
@@ -98,7 +114,7 @@ export const userSignInSocilaMedialAction = (values) => async (dispatch) => {
         break;
     }
   } catch (error) {
-    console.log('error  CATCH Social Media:>> ', error);
+    // console.log('error  CATCH Social Media:>> ', error);
     dispatch({
       type: USER_SIGNIN_FAILED,
       payload: {

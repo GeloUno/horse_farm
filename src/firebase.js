@@ -155,16 +155,19 @@ export const sendVerificationEmail = () => {
     });
 };
 
-export const getIdToken = () => {
-  firebase
+export const getIdToken = async () => {
+  const idToken = await firebase
     .auth()
     .currentUser.getIdToken(true)
     .then((idToken) => {
-      // console.log('idToken :>> ', idToken);
+      //  console.log('idToken :>> ', idToken);
+      return idToken;
     })
     .catch((error) => {
-      // console.log('error :>> ', error);
+      //  console.log('error :>> ', error);
+      return error.message;
     });
+  return idToken;
 };
 
 export const getCurrentUser = () => {
