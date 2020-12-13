@@ -8,7 +8,6 @@ const LogInBody = ({
   loginModalToggle,
   signinModalToggle,
   resetPasswordModalToggle,
-  setUser,
 }) => {
   const dispatch = useDispatch();
   const userAction = useSelector((state) => state.userAction);
@@ -53,7 +52,7 @@ const LogInBody = ({
         )}
       </div>
 
-      <LogInFormik setUser={setUser} />
+      <LogInFormik />
       <div className=" btnSignInRemindPassword">
         <p
           className="accessToggleModalShow"
