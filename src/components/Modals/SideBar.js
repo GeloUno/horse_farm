@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { NavList } from '../Layout/NavList';
 
 const SideBar = ({
@@ -7,6 +8,8 @@ const SideBar = ({
   isAuthenticated,
   setSectionPage,
 }) => {
+  const userAuth = useSelector((state) => state.userAction);
+  const { user } = userAuth;
   return (
     <div
       className="modalBackground"
@@ -26,13 +29,13 @@ const SideBar = ({
             <div className="userSideBar">
               <img
                 className="photoUser"
-                src="https://randomuser.me/api/portraits/women/68.jpg"
+                src={user.photoId}
                 alt="zdjęcie użytkownika"
               />
             </div>
             <div className="userNickAndPoints">
               <p>
-                nick:<strong>{'Ami'}</strong>
+                nick:<strong>{user.name}</strong>
               </p>
               <p>
                 karnety:<strong>{'15'}</strong>

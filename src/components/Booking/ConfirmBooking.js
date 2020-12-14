@@ -3,12 +3,11 @@ import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import 'moment/locale/pl';
 import { useHistory } from 'react-router-dom';
-const ConfirmBooking = ({
-  user: { user },
-  startDateAndTimeBooking,
-  endDateAndTimeBooking,
-}) => {
+import { useSelector } from 'react-redux';
+const ConfirmBooking = ({ startDateAndTimeBooking, endDateAndTimeBooking }) => {
   const history = useHistory();
+  const userAuth = useSelector((state) => state.userAction);
+  const { user } = userAuth;
   return (
     <div className="contaniner profileContainer">
       {user && startDateAndTimeBooking && endDateAndTimeBooking && (
@@ -36,7 +35,7 @@ const ConfirmBooking = ({
           </div>
           <div className="text">dla użytkownika</div>
           <div className="userBooking">
-            <h4>{user.nick}</h4>
+            <h4>{user.name}</h4>
           </div>
           <div>
             <button
@@ -55,7 +54,6 @@ const ConfirmBooking = ({
 };
 
 ConfirmBooking.propTypes = {
-  user: PropTypes.object.isRequired,
   startDateAndTimeBooking: PropTypes.instanceOf(Date),
   endDateAndTimeBooking: PropTypes.instanceOf(Date),
 };

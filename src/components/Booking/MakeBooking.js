@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import DatePicker from 'react-datepicker';
 import addDays from 'date-fns/addDays';
 import setHour from 'date-fns/setHours';
@@ -8,14 +7,16 @@ import pl from 'date-fns/locale/pl';
 import 'react-datepicker/dist/react-datepicker.css';
 import { forHoursOptions } from '../../utility/forHoursOptions';
 import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 const MakeBooking = ({
-  userID,
-  nick,
   firstHourBooking = 8,
   lastHourBooking = 21,
   setStartDateAndTimeBooking,
   setEndDateAndTimeBooking,
 }) => {
+  const userAuth = useSelector((state) => state.userAction);
+  const { user } = userAuth;
+
   const [dayBooking, setDayBooking] = useState(addDays(new Date(), 2));
   const [startTimeBooking, setStartTimeBooking] = useState(firstHourBooking);
   const [endTimeBooking, setEndTimeBooking] = useState(1 + +startTimeBooking);
@@ -41,16 +42,12 @@ const MakeBooking = ({
   return (
     <div className="contaniner profileContainer editProfileContainer">
       <div>
-        <img
-          className={'image-user'}
-          src="https://randomuser.me/api/portraits/women/68.jpg"
-          alt="użytkownik"
-        />
+        <img className={'image-user'} src={user.photoId} alt="użytkownik" />
       </div>
       <form onSubmit={(e) => handleSubmit(e)}>
         <div className="bookingForm">
-          <p className="mg-1-right">nick:</p>
-          <h2>{nick}</h2>
+          <p className="mg-1-right">name:</p>
+          <h2>{user.name}</h2>
         </div>
         <DatePicker
           selected={dayBooking}
@@ -102,10 +99,6 @@ const MakeBooking = ({
       </form>
     </div>
   );
-};
-MakeBooking.propTypes = {
-  userID: PropTypes.any.isRequired,
-  nick: PropTypes.string.isRequired,
 };
 
 export default MakeBooking;
