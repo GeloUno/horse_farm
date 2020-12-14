@@ -31,13 +31,15 @@ import {
 import PageNotFound from './components/Layout/PageNotFound';
 import { useDispatch, useSelector } from 'react-redux';
 import { useCookies } from 'react-cookie';
+import { getCurrentUser, getFirebase, onAuthChange } from './firebase';
+import PrivateRoute from './routing/PrivateRoute';
 
 // export const ResetPasswordContext = React.createContext();
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const userAuth = useSelector((state) => state.userAction);
-  const { idToken } = userAuth;
+  const { idToken, userState } = userAuth;
 
   //  const { idToken } = userAuth;
 
@@ -50,14 +52,29 @@ function App() {
     elementSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
   useEffect(() => {
+    getFirebase();
+    onAuthChange();
+    // return () => {
+
+    // }
+  }, []);
+
+  useEffect(() => {
     if (sectionPage) {
       scrollToSection(sectionPage);
     }
   }, [sectionPage]);
 
   useEffect(() => {
+    console.log('getCurrentUser', getCurrentUser());
+
     cookies.idToken ? setIsAuthenticated(true) : setIsAuthenticated(false);
 
+    userState &&
+      setUser({
+        name: userState.name,
+        id: userState.id,
+      });
     return () => {
       // cleanup;
     };
@@ -167,24 +184,40 @@ function App() {
             isGalleryImageModalShow={isGalleryImageModalShow}
             dataGalleryImageModal={dataGalleryImageModal}
             galleryImageModalToggle={galleryImageModalToggle}
-            userID={user.user.userID}
+            userID={2}
             isScrollToAddComment={isScrollToAddComment}
             setisScrollToAddComment={setisScrollToAddComment}
           />
         )}
         {/* <Redirect exect from="/horse_farm/" to="/" /> */}
         <Switch>
-          <Route path="/profil" component={ProfileScreen} exact />
-          <Route path="/edycjaprofilu" component={EditProfileScreen} exact />
-          <Route path="/planer" component={PlanBookingsScreen} exact />
+          <PrivateRoute
+            setLoginModalShow={setLoginModalShow}
+            path="/profil"
+            component={ProfileScreen}
+            exact
+          />
+          <PrivateRoute
+            setLoginModalShow={setLoginModalShow}
+            path="/edycjaprofilu"
+            component={EditProfileScreen}
+            exact
+          />
+          <PrivateRoute
+            setLoginModalShow={setLoginModalShow}
+            path="/planer"
+            component={PlanBookingsScreen}
+            exact
+          />
           {/* <Route path="/opinia" component={OpinionsScreen} /> */}
           {/* <Route path="/kontakt" component={ContactScreen} /> */}
-          <Route
+          <PrivateRoute
+            setLoginModalShow={setLoginModalShow}
             path="/rezerwacja"
             component={() => (
               <MakeBookingScreen
-                userID={user.user.userID}
-                nick={user.user.nick}
+                userID={2}
+                nick={'Ami'}
                 setStartDateAndTimeBooking={setStartDateAndTimeBooking}
                 setEndDateAndTimeBooking={setEndDateAndTimeBooking}
                 exact
@@ -192,7 +225,8 @@ function App() {
             )}
           />
 
-          <Route
+          <PrivateRoute
+            setLoginModalShow={setLoginModalShow}
             path="/potwierdzenie_rezerwacji"
             component={() => (
               <ConfirmBookingScreen
@@ -210,7 +244,7 @@ function App() {
                 isGalleryImageModalShow={isGalleryImageModalShow}
                 setDataGalleryImageModal={setDataGalleryImageModal}
                 galleryImageModalToggle={galleryImageModalToggle}
-                userID={user.user.userID}
+                userID={2}
                 isScrollToAddComment={isScrollToAddComment}
                 setisScrollToAddComment={setisScrollToAddComment}
                 exact
