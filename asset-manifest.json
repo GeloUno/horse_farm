@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/horse_farm/static/css/main.db82c345.chunk.css",
-    "main.js": "/horse_farm/static/js/main.65cb12ec.chunk.js",
-    "main.js.map": "/horse_farm/static/js/main.65cb12ec.chunk.js.map",
+    "main.js": "/horse_farm/static/js/main.a0e1f6b6.chunk.js",
+    "main.js.map": "/horse_farm/static/js/main.a0e1f6b6.chunk.js.map",
     "runtime-main.js": "/horse_farm/static/js/runtime-main.9034245c.js",
     "runtime-main.js.map": "/horse_farm/static/js/runtime-main.9034245c.js.map",
     "static/css/2.25ff2e5b.chunk.css": "/horse_farm/static/css/2.25ff2e5b.chunk.css",
     "static/js/2.6a17cc3e.chunk.js": "/horse_farm/static/js/2.6a17cc3e.chunk.js",
     "static/js/2.6a17cc3e.chunk.js.map": "/horse_farm/static/js/2.6a17cc3e.chunk.js.map",
     "index.html": "/horse_farm/index.html",
-    "precache-manifest.727a27e63d391e9fa53a0712bbacd830.js": "/horse_farm/precache-manifest.727a27e63d391e9fa53a0712bbacd830.js",
+    "precache-manifest.cd4a093c99ee16a76f89f8db9cd79280.js": "/horse_farm/precache-manifest.cd4a093c99ee16a76f89f8db9cd79280.js",
     "service-worker.js": "/horse_farm/service-worker.js",
     "static/css/2.25ff2e5b.chunk.css.map": "/horse_farm/static/css/2.25ff2e5b.chunk.css.map",
     "static/css/main.db82c345.chunk.css.map": "/horse_farm/static/css/main.db82c345.chunk.css.map",
@@ -28,6 +28,6 @@
     "static/css/2.25ff2e5b.chunk.css",
     "static/js/2.6a17cc3e.chunk.js",
     "static/css/main.db82c345.chunk.css",
-    "static/js/main.65cb12ec.chunk.js"
+    "static/js/main.a0e1f6b6.chunk.js"
   ]
 }
