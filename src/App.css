@@ -1190,10 +1190,12 @@ address a {
 .PageNotFound {
   display: flex;
   margin: 0;
-  padding: 18rem;
-  /* height: 50vh; */
+  padding: 5rem;
+  height: 77vh;
   text-align: center;
-  font-size: 3rem;
+  font-size: 2rem;
+  justify-content: center;
+  align-items: center;
 }
 
 /* UTILITY  GLOBAL*/
