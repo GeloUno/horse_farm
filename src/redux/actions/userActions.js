@@ -1,10 +1,13 @@
 import {
-  USER_SIGNUP_REQUEST,
-  USER_SIGNUP_FAILED,
-  USER_SIGNUP_SUCCESS,
+  USER_CREATE_REQUEST,
+  USER_CREATE_FAILED,
+  USER_CREATE_SUCCESS,
   USER_SIGNIN_REQUEST,
   USER_SIGNIN_FAILED,
   USER_SIGNIN_SUCCESS,
+  USER_RELOAD_REQUEST,
+  USER_RELOAD_FAILED,
+  USER_RELOAD_SUCCESS,
   USER_LOGUOT_REQUEST,
   USER_LOGUOT_FAILED,
   USER_LOGUOT_SUCCESS,
@@ -14,7 +17,9 @@ import {
   signInEmailPassword,
   signInSocialMedia,
   signOutFirebase,
-} from '../firebase';
+  createUserEmailPassword,
+  reloadUserAuth,
+} from '../../firebase';
 
 export const userSignInByEmailAction = (values, setErrors, resetForm) => async (
   dispatch
@@ -24,10 +29,11 @@ export const userSignInByEmailAction = (values, setErrors, resetForm) => async (
       type: USER_SIGNIN_REQUEST,
       payload: { provider: 'email' },
     });
-    let idToken = null;
+    // let idToken = null;
     const userAuth = await signInEmailPassword(values);
     const { additionalUserInfo, user } = userAuth;
-    user.emailVerified && (idToken = await getIdToken());
+    // user.emailVerified && (idToken = await getIdToken());
+    const idToken = await getIdToken();
 
     dispatch({
       type: USER_SIGNIN_SUCCESS,
@@ -123,6 +129,56 @@ export const userSignInSocilaMedialAction = (values) => async (dispatch) => {
       payload: {
         errorMessage: error.message,
       },
+    });
+  }
+};
+export const createUserByEmialPasswordAction = (
+  values,
+  setErrors,
+  resetForm
+) => async (dispatch) => {
+  try {
+    dispatch({
+      type: USER_CREATE_REQUEST,
+    });
+
+    const userAuth = await createUserEmailPassword(values);
+    const { additionalUserInfo, user } = userAuth;
+    const idToken = await getIdToken();
+    dispatch({
+      type: USER_CREATE_SUCCESS,
+      payload: {
+        user: {
+          isNewUser: additionalUserInfo.isNewUser,
+          providerId: additionalUserInfo.providerId,
+          email: user.email,
+          emailVerified: user.emailVerified,
+          uid: user.uid,
+        },
+        idToken: idToken,
+      },
+    });
+  } catch (error) {
+    setErrors({ [error.input]: [error.message] });
+    dispatch({
+      type: USER_CREATE_FAILED,
+      payload: error,
+    });
+  }
+};
+
+export const reloadUserAuthDataAction = () => async (dispatch) => {
+  try {
+    dispatch({ type: USER_RELOAD_REQUEST });
+    const reloadUser = await reloadUserAuth();
+    dispatch({
+      type: USER_RELOAD_SUCCESS,
+      payload: reloadUser,
+    });
+  } catch (error) {
+    dispatch({
+      type: USER_RELOAD_FAILED,
+      payload: error,
     });
   }
 };

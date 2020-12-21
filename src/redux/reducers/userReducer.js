@@ -1,10 +1,13 @@
 import {
-  USER_SIGNUP_REQUEST,
-  USER_SIGNUP_FAILED,
-  USER_SIGNUP_SUCCESS,
+  USER_CREATE_REQUEST,
+  USER_CREATE_FAILED,
+  USER_CREATE_SUCCESS,
   USER_SIGNIN_REQUEST,
   USER_SIGNIN_FAILED,
   USER_SIGNIN_SUCCESS,
+  USER_RELOAD_REQUEST,
+  USER_RELOAD_FAILED,
+  USER_RELOAD_SUCCESS,
   USER_LOGUOT_REQUEST,
   USER_LOGUOT_FAILED,
   USER_LOGUOT_SUCCESS,
@@ -21,11 +24,11 @@ const initialState = {
 const userReducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
-    case USER_SIGNUP_REQUEST:
+    case USER_CREATE_REQUEST:
       return { ...state, ...payload };
-    case USER_SIGNUP_FAILED:
+    case USER_CREATE_FAILED:
       return { ...state, ...payload };
-    case USER_SIGNUP_SUCCESS:
+    case USER_CREATE_SUCCESS:
       return { ...state, ...payload };
 
     case USER_SIGNIN_REQUEST:
@@ -56,6 +59,35 @@ const userReducer = (state = initialState, action) => {
         idToken: '',
         user: {},
       };
+    case USER_RELOAD_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: false,
+      };
+    case USER_RELOAD_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: false,
+        user: {
+          isNewUser: payload.isNewUser,
+          providerId: payload.providerData[0].providerId,
+          email: payload.email,
+          uid: payload.uid,
+          emailVerified: payload.emailVerified,
+        },
+        // idToken:
+      };
+    case USER_RELOAD_FAILED:
+      return {
+        ...state,
+        loading: false,
+        error: true,
+        errorMessage: payload.errorMessage,
+        // user: {},
+        idToken: null,
+      };
 
     case USER_LOGUOT_REQUEST:
       return { ...state, ...payload };
@@ -66,7 +98,7 @@ const userReducer = (state = initialState, action) => {
         loading: false,
         error: false,
         errorMessage: '',
-        idToken: '',
+        idToken: null,
         user: {},
       };
 
