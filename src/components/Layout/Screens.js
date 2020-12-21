@@ -74,8 +74,6 @@ export const PlanBookingsScreen = () => {
   );
 };
 export const MakeBookingScreen = ({
-  userID,
-  nick,
   setStartDateAndTimeBooking,
   setEndDateAndTimeBooking,
 }) => {
@@ -83,8 +81,6 @@ export const MakeBookingScreen = ({
     <>
       <TitleSection title="Rezerwacja" />
       <MakeBooking
-        userID={userID}
-        nick={nick}
         setStartDateAndTimeBooking={setStartDateAndTimeBooking}
         setEndDateAndTimeBooking={setEndDateAndTimeBooking}
       />

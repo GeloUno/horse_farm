@@ -50,6 +50,11 @@ const errorFirebaseAuthTranslationPL = {
     message:
       'Ups... logowanie zostało przerwane przez zamknięcie okna social media',
   },
+  authtoomanyrequests: {
+    input: 'email',
+    message:
+      'Zablokowaliśmy wszystkie żądania z tego urządzenia z powodu nietypowej aktywności. Spróbuj ponownie później.',
+  },
 };
 
 const removeMinusAndSlash = (error) => {
@@ -89,7 +94,7 @@ export const signInEmailPassword = async (values) => {
     .auth()
     .signInWithEmailAndPassword(values.email, values.password)
     .then((result) => {
-      !result.user.emailVerified && sendVerificationEmail();
+      // !result.user.emailVerified && sendVerificationEmail();
       return result;
       // console.log('user :>> ', user);
     })
@@ -105,20 +110,31 @@ export const signInEmailPassword = async (values) => {
   return dataBackFromFirebase;
 };
 
-export const signUpEmailPassword = async (values) => {
+export const createUserEmailPassword = async (values) => {
+  // firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
   const dataFromFirebase = await firebase
     .auth()
-    .createUserWithEmailAndPassword(values.email, values.password)
-    .then((user) => {
-      return user;
+    .setPersistence(firebase.auth.Auth.Persistence.SESSION)
+    .then(() => {
+      return firebase
+        .auth()
+        .createUserWithEmailAndPassword(values.email, values.password)
+        .then((user) => {
+          sendVerificationEmail();
+          return user;
+        })
+        .catch((err) => {
+          throw (
+            errorFirebaseAuthTranslationPL[removeMinusAndSlash(err.code)] || {
+              input: 'email',
+              message: err.message,
+            }
+          );
+        });
     })
     .catch((err) => {
-      throw (
-        errorFirebaseAuthTranslationPL[removeMinusAndSlash(err.code)] || {
-          input: 'email',
-          message: err.message,
-        }
-      );
+      console.log('err FIRE BASE CREATE USER :>> ', err);
+      throw err;
     });
   return dataFromFirebase;
 };
@@ -142,16 +158,16 @@ export const sendEmailToResetPassword = async (email) => {
   return dataFromFirebase;
 };
 
-export const sendVerificationEmail = () => {
-  const user = firebase.auth().currentUser;
+export const sendVerificationEmail = async () => {
+  const user = await firebase.auth().currentUser;
 
   user
     .sendEmailVerification()
     .then(() => {
-      // console.log('send email :>> ');
+      console.log('send email :>> ');
     })
     .catch((error) => {
-      // console.log('error :>> ', error);
+      console.log('error send email:>> ', error);
     });
 };
 
@@ -170,17 +186,39 @@ export const getIdToken = async () => {
   return idToken;
 };
 
-export const getCurrentUser = () => {
-  const userCurrent = firebase.auth().currentUser;
-  userCurrent
-    .sendEmailVerification()
-    .then(() => {
-      // console.log('send email :>> ');
-    })
-    .catch((error) => {
-      // console.log('error :>> ', error);
-    });
-  console.log('userCurrent :>> ', userCurrent);
+export const reloadUserAuth = async () => {
+  try {
+    const user = await firebase.auth().currentUser;
+    user.reload();
+    return user;
+  } catch (err) {
+    throw (
+      errorFirebaseAuthTranslationPL[removeMinusAndSlash(err.code)] || {
+        input: 'email',
+        message: err.message,
+      }
+    );
+  }
+};
+
+export const getCurrentUser = async () => {
+  const user = await firebase.auth().currentUser;
+  return user && user.emailVerified;
+};
+
+// const fireBaseUseSession = () => {
+//   firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
+// };
+
+export const onAuthChange = () => {
+  firebase.auth().onAuthStateChanged((result) => {
+    if (result) {
+      console.log('STATUS CHANGE IS USER:>> ', result);
+    } else {
+      console.log('STATUS CHANGE NO USER:>> ', result);
+      // No user is signed in.
+    }
+  });
 };
 
 export const signOutFirebase = async () => {

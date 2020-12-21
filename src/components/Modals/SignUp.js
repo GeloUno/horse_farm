@@ -1,8 +1,43 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import Cookies from 'universal-cookie';
 import SigninHorseImg from '../../assets/SigninHorse.png';
 import SignUpFormik from '../Formik/SignUpFormik';
+import ConfirmEmail from '../Users/ConfirmEmail';
 
-const SingUpUser = ({ signinModalToggle, loginModalToggle }) => {
+const SingUpUser = ({
+  signinModalToggle,
+  loginModalToggle,
+  setUser,
+  setSinginModalShow,
+}) => {
+  const userAuth = useSelector((state) => state.userAction);
+  const { idToken, user } = userAuth;
+  const { email, providerId, emailVerified } = user;
+  const [Componet, setComponet] = useState(null);
+  const cookies = new Cookies();
+  useEffect(() => {
+    !email && !emailVerified && setComponet(<SignUpFormik />);
+
+    email &&
+      providerId === 'password' &&
+      !emailVerified &&
+      setComponet(<ConfirmEmail email={email} user={user} />);
+
+    if (email && providerId === 'password' && emailVerified) {
+      cookies.set('idToken', idToken, {
+        path: '/',
+        maxAge: 5 * 60,
+        // secure: true,
+        // httpOnly: true,
+      });
+      setUser(user);
+      setSinginModalShow(false);
+    }
+    return () => {
+      // cleanup
+    };
+  }, [emailVerified]);
   return (
     <div
       className="modalBackground modalContainerCenter accessToggleModalShow"
@@ -22,7 +57,7 @@ const SingUpUser = ({ signinModalToggle, loginModalToggle }) => {
               loginModalToggle(e);
             }}
           ></i>
-          <SignUpFormik />
+          {Componet}
         </div>
       </div>
     </div>

@@ -749,6 +749,10 @@ address a {
   margin: 0 -2rem;
 }
 
+.confirmEmailButton {
+  display: grid;
+}
+
 
 /* reset password modal rest */
 
@@ -786,6 +790,28 @@ address a {
   font-size: .8rem;
   color: var(--red-alert);
 }
+
+.confirmEmailContent {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin: 4rem;
+}
+
+.confirmEmailTitle {
+  text-align: center;
+  color: var(--primary-color-green);
+  font-size: 1.4rem;
+  padding: 4rem 0;
+}
+
+.confirmEmailBody {
+  font-size: 1.1rem;
+  text-align: center;
+  padding-bottom: 5em;
+}
+
 
 /* PROFILE */
 

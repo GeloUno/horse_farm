@@ -11,7 +11,7 @@ const Gallery = ({
   setDataGalleryImageModal,
   isGalleryImageModalShow,
   isAuth = true,
-  userID = null,
+  userID = 0,
   isPagination = true,
   imagesGallery = DevImagesData,
 

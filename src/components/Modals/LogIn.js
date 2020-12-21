@@ -5,7 +5,8 @@ import 'firebase/firestore';
 import { getFirebase } from '../../firebase';
 import LogInBody from '../Users/LogInBody';
 import { useSelector } from 'react-redux';
-import { useCookies } from 'react-cookie';
+import Cookies from 'universal-cookie';
+import ConfirmEmail from '../Users/ConfirmEmail';
 
 const LoginUser = ({
   signinModalToggle,
@@ -15,27 +16,39 @@ const LoginUser = ({
   setUser,
 }) => {
   getFirebase();
-  const [cookies, setCookie, removeCookie] = useCookies(['idToken']);
+  const cookies = new Cookies();
   const userAuth = useSelector((state) => state.userAction);
-  const { idToken, user } = userAuth;
-  const [view, setView] = useState(null);
+  let { idToken, user } = userAuth;
+  let { email, providerId, emailVerified } = user;
+  const [Component, setComponent] = useState(null);
 
   useEffect(() => {
-    if (!user.email && !user.emailVerified) {
-      setView(
+    if (!email && !emailVerified) {
+      setComponent(
         <LogInBody
           loginModalToggle={loginModalToggle}
           signinModalToggle={signinModalToggle}
           resetPasswordModalToggle={resetPasswordModalToggle}
         />
       );
-    } else if (user.email && !user.emailVerified && !idToken) {
-      setView(<div>emailVeryfied</div>);
-    } else if (idToken) {
-      setCookie('idToken', idToken, {
+    } else if (email && providerId === 'password' && !emailVerified) {
+      setComponent(<ConfirmEmail email={email} user={user} />);
+    } else if (email && providerId === 'password' && emailVerified) {
+      cookies.set('idToken', idToken, {
         path: '/',
-        // domain: 'http://localhost/',
-        maxAge: 30 * 60,
+        maxAge: 5 * 60,
+        // secure: true,
+        // httpOnly: true,
+      });
+      setUser(user);
+      setLoginModalShow(false);
+    } else if (
+      (email && providerId === 'google.com') ||
+      providerId === 'facebook.com'
+    ) {
+      cookies.set('idToken', idToken, {
+        path: '/',
+        maxAge: 5 * 60,
         // secure: true,
         // httpOnly: true,
       });
@@ -44,7 +57,7 @@ const LoginUser = ({
     }
 
     return () => {};
-  }, [user, idToken]);
+  }, [emailVerified]);
 
   return (
     <div
@@ -59,7 +72,7 @@ const LoginUser = ({
         </div>
         <div className="inputModalContainer">
           <i className="fas fa-arrow-left backIcon accessToggleModalShow"></i>
-          {view}
+          {Component}
         </div>
       </div>
     </div>
