@@ -6,7 +6,7 @@ const phoneRegex = RegExp(/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{3})$/);
 
 const EditProfileFormik = ({ user }) => {
   const initialValues = {
-    nick: user.nick,
+    name: user.name,
     firstName: user.firstName,
     lastName: user.firstName,
     phone: user.phone,
@@ -15,7 +15,7 @@ const EditProfileFormik = ({ user }) => {
   };
 
   const validationSchema = Yup.object({
-    nick: Yup.string()
+    name: Yup.string()
       .min(3, 'minimalna liczba znaków to 3')
       .max(50, ',maksymalna lczba znaków 50')
       .required('pole jest wymagane w celu kontaktu instruktora'),
@@ -57,17 +57,17 @@ const EditProfileFormik = ({ user }) => {
         <Form className="editUserProfile">
           {/* <Form className="userProfile editUserProfile"> */}
           <div className="bodyInputEditProfile">
-            <label className="labelInputEditProfile" htmlFor="nick">
-              nick:
+            <label className="labelInputEditProfile" htmlFor="name">
+              name:
             </label>
-            <Field name="nick">
+            <Field name="name">
               {(props) => {
                 const { field, form, meta } = props;
                 return (
                   <div>
                     <input
                       className="inputModalContaineFormInput"
-                      id="nick"
+                      id="name"
                       type="text"
                       {...field}
                     />
@@ -206,7 +206,7 @@ const EditProfileFormik = ({ user }) => {
               // disabled={!formik.dirty || formik.errors}
               disabled={
                 !formik.dirty ||
-                formik.errors.nick ||
+                formik.errors.name ||
                 formik.errors.firstName ||
                 formik.errors.lastName ||
                 formik.errors.phone ||
