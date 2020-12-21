@@ -1,7 +1,6 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import firebase from 'firebase';
 import 'firebase/auth';
 import 'firebase/firestore';
 import { sendEmailToResetPassword } from '../../firebase';

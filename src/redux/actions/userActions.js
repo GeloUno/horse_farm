@@ -186,7 +186,7 @@ export const reloadUserAuthDataAction = () => async (dispatch) => {
 export const userSignOutAction = async (dispatch) => {
   try {
     dispatch({ type: USER_LOGUOT_REQUEST });
-    const logOut = await signOutFirebase();
+    await signOutFirebase();
     dispatch({
       type: USER_LOGUOT_SUCCESS,
     });

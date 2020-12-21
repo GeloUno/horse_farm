@@ -1,11 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import {
-  getCurrentUser,
-  reloadUserAuth,
-  sendVerificationEmail,
-} from '../../firebase';
-import {
   reloadUserAuthDataAction,
   userSignOutAction,
 } from '../../redux/actions/userActions';

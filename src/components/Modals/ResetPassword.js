@@ -1,19 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import ResetPasswordFormik from '../Formik/ResetPasswordFormik';
 
-// import { RememberPasswordContext } from '../../App';
-
 const ResetPassword = ({ resetPasswordModalToggle, loginModalToggle }) => {
-  // const toogleModalPassword = useContext(ResetPasswordContext);
   return (
     <div
       className="modalBackground modalContainerCenter accessToggleModalShow"
       onClick={(e) => {
-        // e.stopPropagation();
         resetPasswordModalToggle(e);
       }}
     >
-      {/* {console.log('object', toogleModalPassword)} */}
       <div className="resetPasswordModal">
         <div className="textModalContainer">
           <i

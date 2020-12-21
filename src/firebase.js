@@ -50,11 +50,6 @@ const errorFirebaseAuthTranslationPL = {
     message:
       'Ups... logowanie zostało przerwane przez zamknięcie okna social media',
   },
-  authtoomanyrequests: {
-    input: 'email',
-    message:
-      'Zablokowaliśmy wszystkie żądania z tego urządzenia z powodu nietypowej aktywności. Spróbuj ponownie później.',
-  },
 };
 
 const removeMinusAndSlash = (error) => {

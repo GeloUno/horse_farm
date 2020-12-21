@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import {
-  BrowserRouter as Router,
-  Redirect,
-  Route,
-  Switch,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import NavBar from './components/Layout/NavBar';
 import Footer from './components/Layout/Footer';
@@ -16,22 +11,19 @@ import ResetPassword from './components/Modals/ResetPassword';
 
 import GalleryFullScreenImage from './components/Gallery/ImageModal';
 
-import { ShowMobileInfo } from './DevUtility/ShowMobileInfo';
 import {
   ConfirmBookingScreen,
-  ContactScreen,
   EditProfileScreen,
   GalleryScreen,
   HomeScreen,
   MakeBookingScreen,
-  OpinionsScreen,
   PlanBookingsScreen,
   ProfileScreen,
 } from './components/Layout/Screens';
 import PageNotFound from './components/Layout/PageNotFound';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 // import { useCookies } from 'react-cookie';
-import { getCurrentUser, getFirebase, onAuthChange } from './firebase';
+import { getFirebase, onAuthChange } from './firebase';
 import PrivateRoute from './routing/PrivateRoute';
 import Cookies from 'universal-cookie';
 

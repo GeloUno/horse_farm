@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
-import { DEVuser } from '../../DevUtility/user';
 import EditProfileFormik from '../Formik/EditProfileFormik';
 
 const EditProfile = () =>
