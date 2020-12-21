@@ -30,9 +30,10 @@ import {
 } from './components/Layout/Screens';
 import PageNotFound from './components/Layout/PageNotFound';
 import { useDispatch, useSelector } from 'react-redux';
-import { useCookies } from 'react-cookie';
+// import { useCookies } from 'react-cookie';
 import { getCurrentUser, getFirebase, onAuthChange } from './firebase';
 import PrivateRoute from './routing/PrivateRoute';
+import Cookies from 'universal-cookie';
 
 // export const ResetPasswordContext = React.createContext();
 
@@ -43,7 +44,7 @@ function App() {
 
   //  const { idToken } = userAuth;
 
-  const [cookies] = useCookies(['idToken']);
+  const cookies = new Cookies();
 
   const [sectionPage, setSectionPage] = useState(null);
 
@@ -66,10 +67,10 @@ function App() {
   }, [sectionPage]);
 
   useEffect(() => {
-    console.log('getCurrentUser', getCurrentUser());
-
-    cookies.idToken ? setIsAuthenticated(true) : setIsAuthenticated(false);
-
+    cookies.get('idToken')
+      ? setIsAuthenticated(true)
+      : setIsAuthenticated(false);
+    console.log('cookie ', cookies.get('idToken'));
     userState &&
       setUser({
         name: userState.name,
@@ -162,6 +163,8 @@ function App() {
           <SingUpUser
             signinModalToggle={signinModalToggle}
             loginModalToggle={loginModalToggle}
+            setUser={setUser}
+            setSinginModalShow={setSinginModalShow}
           />
         )}
         {resetPasswordModalShow && (
@@ -216,8 +219,6 @@ function App() {
             path="/rezerwacja"
             component={() => (
               <MakeBookingScreen
-                userID={2}
-                nick={'Ami'}
                 setStartDateAndTimeBooking={setStartDateAndTimeBooking}
                 setEndDateAndTimeBooking={setEndDateAndTimeBooking}
                 exact
