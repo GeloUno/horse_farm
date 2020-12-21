@@ -8,16 +8,26 @@ const PrivateRoute = ({ component: Component, setLoginModalShow, ...rest }) => {
   const userAuth = useSelector((state) => state.userAction);
   const { user } = userAuth;
   return (
+    // <>
+    //   {console.log('user', user)}
     <Route
       {...rest}
       render={(props) =>
-        user && user.email ? (
+        (user && user.providerId && user.providerId !== 'password') ||
+        (user &&
+          user.providerId &&
+          user.providerId === 'password' &&
+          user.emailVerified) ? (
           <Component {...props} />
         ) : (
-          <Redirect to="/">{setLoginModalShow(true)}</Redirect>
+          // <Redirect to="/">{setLoginModalShow(true)}</Redirect>
+          <Redirect
+            to={{ pathname: '/', state: { action: setLoginModalShow(true) } }}
+          />
         )
       }
     />
+    // </>
   );
 };
 
