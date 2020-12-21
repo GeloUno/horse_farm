@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import Cookies from 'universal-cookie';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { useHistory } from 'react-router-dom';
@@ -16,6 +16,8 @@ export const NavList = ({
   const history = useHistory();
   const dispatch = useDispatch();
   const cookies = new Cookies();
+  const userAuth = useSelector((state) => state.userAction);
+  const { user } = userAuth;
   const handleSignOut = () => {
     signOutFirebase()
       .then(() => {
@@ -202,6 +204,13 @@ export const NavList = ({
             <i className="fas fa-sign-out-alt"></i>
             Wyloguj
           </Link>
+          {user && user.photoId && (
+            <img
+              className="navbarUserPhoto "
+              src={user.photoId}
+              alt="zdjęcie użytkownika"
+            />
+          )}
         </h2>
       </li>
     </Fragment>

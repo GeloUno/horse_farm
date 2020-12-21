@@ -24,14 +24,16 @@ const SideBar = ({
             sideBarToggle(e);
           }}
         ></i>
-        {isAuthenticated && (
+        {user.photoId && (
           <>
             <div className="userSideBar">
-              <img
-                className="photoUser"
-                src={user.photoId}
-                alt="zdjęcie użytkownika"
-              />
+              {user.photoId && (
+                <img
+                  className="photoUser"
+                  src={user.photoId}
+                  alt="zdjęcie użytkownika"
+                />
+              )}
             </div>
             <div className="userNickAndPoints">
               <p>
@@ -43,7 +45,7 @@ const SideBar = ({
             </div>
           </>
         )}
-        {!isAuthenticated && (
+        {!user.photoId && (
           <>
             <div className="spaceSideBarNoUser" />
           </>

@@ -294,9 +294,18 @@ body {
 .photoUser {
   border-radius: 50%;
   border: solid 0.625rem #fff;
-  /* clip-path: circle(50% at 50% 50%); */
   width: 12rem;
   height: 12rem;
+}
+
+.navbarUserPhoto {
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  top: 0.1rem;
+  right: -1rem;
+  display: flex;
+  position: relative;
 }
 
 .userNickAndPoints {
@@ -1564,6 +1573,7 @@ address a {
     justify-content: flex-start;
   }
 
+  .navbarUserPhoto,
   .menu-right {
     display: none;
   }
