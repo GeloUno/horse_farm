@@ -1,23 +1,26 @@
 import React from 'react';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
-import firebase from 'firebase';
+// import firebase from 'firebase';
+// import 'firebase/auth';
+// import 'firebase/firestore';
+// import { createUserEmailPassword } from '../../firebase';
+import { useDispatch } from 'react-redux';
+import { createUserByEmialPasswordAction } from '../../redux/actions/userActions';
 
-import 'firebase/auth';
-import 'firebase/firestore';
-import { signUpEmailPassword } from '../../firebase';
-
-const handleSubmit = (values, { setErrors, resetForm }) => {
-  signUpEmailPassword(values)
-    .then((result) => {
-      console.log('sign UP result :>> ', result);
-    })
-    .catch((error) => {
-      setErrors({ [error.input]: [error.message] });
-    });
-};
 const SignUpFormik = () => {
   const initialValues = { email: '', password: '', confirmPassword: '' };
+  const dispatch = useDispatch();
+  const handleSubmit = (values, { setErrors, resetForm }) => {
+    dispatch(createUserByEmialPasswordAction(values, setErrors, resetForm));
+    // signUpEmailPassword(values)
+    //   .then((result) => {
+    //     console.log('sign UP result :>> ', result);
+    //   })
+    //   .catch((error) => {
+    //     setErrors({ [error.input]: [error.message] });
+    //   });
+  };
 
   const validationSchema = Yup.object({
     email: Yup.string()

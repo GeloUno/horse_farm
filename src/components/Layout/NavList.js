@@ -1,11 +1,12 @@
 import React, { Fragment } from 'react';
-import { useCookies } from 'react-cookie';
+import Cookies from 'universal-cookie';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { useHistory } from 'react-router-dom';
-import { userSignOutAction } from '../../actions/userActions';
+
 import { signOutFirebase } from '../../firebase';
+import { userSignOutAction } from '../../redux/actions/userActions';
 
 export const NavList = ({
   loginModalToggle,
@@ -14,7 +15,7 @@ export const NavList = ({
 }) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const [cookies, setCookie, removeCookie] = useCookies(['idToken']);
+  const cookies = new Cookies();
   const handleSignOut = () => {
     signOutFirebase()
       .then(() => {
@@ -193,7 +194,7 @@ export const NavList = ({
             className="sm-hiden"
             onClick={() => {
               dispatch(userSignOutAction);
-              removeCookie('idToken', {
+              cookies.remove('idToken', {
                 path: '/',
               });
             }}

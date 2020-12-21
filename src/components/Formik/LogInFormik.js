@@ -4,7 +4,8 @@ import * as Yup from 'yup';
 import 'firebase/auth';
 import 'firebase/firestore';
 import { useDispatch } from 'react-redux';
-import { userSignInByEmailAction } from '../../actions/userActions';
+import { userSignInByEmailAction } from '../../redux/actions/userActions';
+
 const LogInFormik = () => {
   const dispatch = useDispatch();
   const initialValues = { email: '', password: '' };

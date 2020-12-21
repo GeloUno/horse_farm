@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { userSignInSocilaMedialAction } from '../../actions/userActions';
+import { userSignInSocilaMedialAction } from '../../redux/actions/userActions';
+
 // import { signInSocialMedia } from '../../firebase';
 import LogInFormik from '../Formik/LogInFormik';
 
