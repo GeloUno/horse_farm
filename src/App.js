@@ -171,6 +171,7 @@ function App() {
           <ResetPassword
             resetPasswordModalToggle={resetPasswordModalToggle}
             loginModalToggle={loginModalToggle}
+            setResetPasswordModalShow={setResetPasswordModalShow}
           />
           // </ResetPasswordContext.Provider>
         )}

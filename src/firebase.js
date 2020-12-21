@@ -142,7 +142,6 @@ export const sendEmailToResetPassword = async (email) => {
       return user;
     })
     .catch((err) => {
-      //   console.log('err', err);
       throw (
         errorFirebaseAuthTranslationPL[removeMinusAndSlash(err.code)] || {
           input: 'email',

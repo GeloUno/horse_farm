@@ -1,7 +1,11 @@
 import React from 'react';
 import ResetPasswordFormik from '../Formik/ResetPasswordFormik';
 
-const ResetPassword = ({ resetPasswordModalToggle, loginModalToggle }) => {
+const ResetPassword = ({
+  resetPasswordModalToggle,
+  loginModalToggle,
+  setResetPasswordModalShow,
+}) => {
   return (
     <div
       className="modalBackground modalContainerCenter accessToggleModalShow"
@@ -24,7 +28,9 @@ const ResetPassword = ({ resetPasswordModalToggle, loginModalToggle }) => {
           </h2>
         </div>
         <div className="inputModalContainer">
-          <ResetPasswordFormik />
+          <ResetPasswordFormik
+            setResetPasswordModalShow={setResetPasswordModalShow}
+          />
         </div>
       </div>
     </div>

@@ -11,6 +11,9 @@ import {
   USER_LOGUOT_REQUEST,
   USER_LOGUOT_FAILED,
   USER_LOGUOT_SUCCESS,
+  USER_RESET_PASSWORD_REQUEST,
+  USER_RESET_PASSWORD_SUCCESS,
+  USER_RESET_PASSWORD_FAILED,
 } from '../constans/userConstans';
 
 const initialState = {
@@ -88,6 +91,12 @@ const userReducer = (state = initialState, action) => {
         // user: {},
         idToken: null,
       };
+    case USER_RESET_PASSWORD_REQUEST:
+      return { ...state, ...payload };
+    case USER_RESET_PASSWORD_SUCCESS:
+      return { ...state, ...payload };
+    case USER_RESET_PASSWORD_FAILED:
+      return { ...state, ...payload };
 
     case USER_LOGUOT_REQUEST:
       return { ...state, ...payload };

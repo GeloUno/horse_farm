@@ -11,6 +11,9 @@ import {
   USER_LOGUOT_REQUEST,
   USER_LOGUOT_FAILED,
   USER_LOGUOT_SUCCESS,
+  USER_RESET_PASSWORD_REQUEST,
+  USER_RESET_PASSWORD_FAILED,
+  USER_RESET_PASSWORD_SUCCESS,
 } from '../constans/userConstans';
 import {
   getIdToken,
@@ -19,6 +22,7 @@ import {
   signOutFirebase,
   createUserEmailPassword,
   reloadUserAuth,
+  sendEmailToResetPassword,
 } from '../../firebase';
 
 export const userSignInByEmailAction = (values, setErrors, resetForm) => async (
@@ -29,10 +33,10 @@ export const userSignInByEmailAction = (values, setErrors, resetForm) => async (
       type: USER_SIGNIN_REQUEST,
       payload: { provider: 'email' },
     });
-    // let idToken = null;
+
     const userAuth = await signInEmailPassword(values);
     const { additionalUserInfo, user } = userAuth;
-    // user.emailVerified && (idToken = await getIdToken());
+
     const idToken = await getIdToken();
 
     dispatch({
@@ -163,6 +167,44 @@ export const createUserByEmialPasswordAction = (
     dispatch({
       type: USER_CREATE_FAILED,
       payload: error,
+    });
+  }
+};
+
+export const sendEmailToResetPasswordAction = (
+  values,
+  setResetPasswordModalShow,
+  setErrors,
+  resetForm
+) => async (dispach) => {
+  try {
+    dispach({
+      type: USER_RESET_PASSWORD_REQUEST,
+      payload: {
+        loading: true,
+        error: false,
+      },
+    });
+    await sendEmailToResetPassword(values.email);
+    dispach({
+      type: USER_RESET_PASSWORD_SUCCESS,
+      payload: {
+        loading: false,
+        error: false,
+        Message: 'send email to reset password',
+      },
+    });
+    resetForm();
+    setResetPasswordModalShow(false);
+  } catch (error) {
+    setErrors({ [error.input]: [error.message] });
+    dispach({
+      type: USER_RESET_PASSWORD_FAILED,
+      payload: {
+        loading: false,
+        error: true,
+        errorMessage: error.message,
+      },
     });
   }
 };
