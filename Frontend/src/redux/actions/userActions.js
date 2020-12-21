@@ -14,6 +14,9 @@ import {
   USER_RESET_PASSWORD_REQUEST,
   USER_RESET_PASSWORD_FAILED,
   USER_RESET_PASSWORD_SUCCESS,
+  USER_VERIFICATION_EMAIL_REQUEST,
+  USER_VERIFICATION_EMAIL_FAILED,
+  USER_VERIFICATION_EMAIL_SUCCESS,
 } from '../constans/userConstans';
 import {
   getIdToken,
@@ -23,6 +26,7 @@ import {
   createUserEmailPassword,
   reloadUserAuth,
   sendEmailToResetPassword,
+  sendVerificationEmail,
 } from '../../firebase';
 
 export const userSignInByEmailAction = (values, setErrors, resetForm) => async (
@@ -206,6 +210,16 @@ export const sendEmailToResetPasswordAction = (
         errorMessage: error.message,
       },
     });
+  }
+};
+
+export const sendVerificationEmailAction = () => async (dispach) => {
+  try {
+    dispach({ type: USER_VERIFICATION_EMAIL_REQUEST });
+    await sendVerificationEmail();
+    dispach({ type: USER_VERIFICATION_EMAIL_SUCCESS });
+  } catch (error) {
+    dispach({ type: USER_VERIFICATION_EMAIL_FAILED, payload: error.message });
   }
 };
 

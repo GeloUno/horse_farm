@@ -2,11 +2,15 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import {
   reloadUserAuthDataAction,
+  sendVerificationEmailAction,
   userSignOutAction,
 } from '../../redux/actions/userActions';
 
 const handleSignOut = (dispatch) => {
   dispatch(userSignOutAction);
+};
+const handleSendVerificationEmail = (dispatch) => {
+  dispatch(sendVerificationEmailAction());
 };
 
 const ConfirmEmail = ({ email, user }) => {
@@ -30,7 +34,12 @@ const ConfirmEmail = ({ email, user }) => {
         potwierdzenie że podany email podczas rejestracji jest poprawny
       </div>
       <div className="confirmEmailButton">
-        <button className="btn btn-green btn-capitalize btn-radius btn-login">
+        <button
+          className="btn btn-green btn-capitalize btn-radius btn-login"
+          onClick={() => {
+            handleSendVerificationEmail(dispatch);
+          }}
+        >
           Wyślij ponownie
         </button>
         <button

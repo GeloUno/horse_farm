@@ -14,6 +14,9 @@ import {
   USER_RESET_PASSWORD_REQUEST,
   USER_RESET_PASSWORD_SUCCESS,
   USER_RESET_PASSWORD_FAILED,
+  USER_VERIFICATION_EMAIL_REQUEST,
+  USER_VERIFICATION_EMAIL_SUCCESS,
+  USER_VERIFICATION_EMAIL_FAILED,
 } from '../constans/userConstans';
 
 const initialState = {
@@ -97,6 +100,13 @@ const userReducer = (state = initialState, action) => {
       return { ...state, ...payload };
     case USER_RESET_PASSWORD_FAILED:
       return { ...state, ...payload };
+
+    case USER_VERIFICATION_EMAIL_REQUEST:
+      return { ...state, loading: true, error: false };
+    case USER_VERIFICATION_EMAIL_SUCCESS:
+      return { ...state, loading: false, error: false };
+    case USER_VERIFICATION_EMAIL_FAILED:
+      return { ...state, loading: false, error: true, errorMessage: payload };
 
     case USER_LOGUOT_REQUEST:
       return { ...state, ...payload };

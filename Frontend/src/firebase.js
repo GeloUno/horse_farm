@@ -159,9 +159,11 @@ export const sendVerificationEmail = async () => {
     .sendEmailVerification()
     .then(() => {
       console.log('send email :>> ');
+      return { message: 'send veryfication email' };
     })
     .catch((error) => {
       console.log('error send email:>> ', error);
+      throw error;
     });
 };
 
