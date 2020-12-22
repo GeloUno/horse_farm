@@ -42,7 +42,9 @@ const MakeBooking = ({
   return (
     <div className="contaniner profileContainer editProfileContainer">
       <div>
-        <img className={'image-user'} src={user.photoId} alt="użytkownik" />
+        {user && user.photoId && (
+          <img className={'image-user'} src={user.photoId} alt="użytkownik" />
+        )}
       </div>
       <form onSubmit={(e) => handleSubmit(e)}>
         <div className="bookingForm">

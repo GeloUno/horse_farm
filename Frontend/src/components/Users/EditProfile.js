@@ -37,9 +37,21 @@ const EditProfile = () =>
     return (
       <div className="contaniner profileContainer editProfileContainer">
         <div className="imapgeProfile">
-          <img className={'image-user'} src={user.photoId} alt="użytkownik" />
+          {user && user.photoId && (
+            <img
+              className="image-user imageEditProfile"
+              src={user.photoId}
+              alt="użytkownik"
+            />
+          )}
           <div className="profileButtons">
-            <button className="btn btn-green btn-capitalize">Edytuj</button>
+            <button
+              className="btn btn-green btn-capitalize 
+btn-editProfile"
+            >
+              {user && user.photoId && 'Zmień zdjęcie'}
+              {(!user || !user.photoId) && 'Dodaj zdjęcie'}
+            </button>
           </div>
         </div>
         <EditProfileFormik user={user} />

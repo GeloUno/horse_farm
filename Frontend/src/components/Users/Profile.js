@@ -9,7 +9,9 @@ const Profile = () => {
   return (
     <div className="contaniner profileContainer">
       <div className="imapgeProfile">
-        <img className={'image-user'} src={user.photoId} alt="użytkownik" />
+        {user && user.photoId && (
+          <img className={'image-user'} src={user.photoId} alt="użytkownik" />
+        )}
       </div>
       <div className="userProfile">
         <div>
