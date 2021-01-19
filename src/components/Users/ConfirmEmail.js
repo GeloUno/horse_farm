@@ -14,18 +14,17 @@ const handleSendVerificationEmail = (dispatch) => {
 };
 
 const ConfirmEmail = ({ email, user }) => {
-  // sendVerificationEmail();
+  const dispatch = useDispatch();
+  dispatch(sendVerificationEmailAction());
   useEffect(() => {
     const interval = setInterval(() => {
       dispatch(reloadUserAuthDataAction());
-
-      console.log('This will run after 3 second!', user);
+      // console.log('This will run after 3 second!', user);
     }, 3000);
     return () => {
       clearInterval(interval);
     };
   }, []);
-  const dispatch = useDispatch();
   return (
     <div className="confirmEmailContent">
       <div className="confirmEmailTitle">To już ostatni krok rejestracji</div>
