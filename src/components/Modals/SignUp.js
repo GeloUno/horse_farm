@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Cookies from 'universal-cookie';
 import SigninHorseImg from '../../assets/SigninHorse.png';
+import useHttpClient from '../../hooks/httpHook';
 import SignUpFormik from '../Formik/SignUpFormik';
 import ConfirmEmail from '../Users/ConfirmEmail';
+import PulseLoader from 'react-spinners/PulseLoader';
 
 const SingUpUser = ({
   signinModalToggle,
@@ -14,15 +16,42 @@ const SingUpUser = ({
   const userAuth = useSelector((state) => state.userAction);
   const { idToken, user } = userAuth;
   const { email, providerId, emailVerified } = user;
-  const [Componet, setComponet] = useState(null);
+
+  const {
+    isLoading,
+    isErrors,
+    dataResponse,
+    sendReqestClient,
+  } = useHttpClient();
+
+  const [Component, setComponent] = useState(null);
   const cookies = new Cookies();
+
   useEffect(() => {
-    !email && !emailVerified && setComponet(<SignUpFormik />);
+    // this is only for testing
+    // !isLoading &&
+    //   !isErrors &&
+    //   !dataResponse &&
+    //   sendReqestClient(
+    //     'user/create',
+    //     {
+    //       firstName: 'gelu',
+    //       lastName: 'gelo',
+    //       email: 'cos@wp.pl',
+    //     },
+    //     'post'
+    //   );
+
+    console.log('isLoading', isLoading);
+    console.log('isErrors', isErrors);
+    console.log('dataResponse', dataResponse);
+
+    !email && !emailVerified && setComponent(<SignUpFormik />);
 
     email &&
       providerId === 'password' &&
       !emailVerified &&
-      setComponet(<ConfirmEmail email={email} user={user} />);
+      setComponent(<ConfirmEmail email={email} user={user} />);
 
     if (email && providerId === 'password' && emailVerified) {
       cookies.set('idToken', idToken, {
@@ -31,13 +60,36 @@ const SingUpUser = ({
         // secure: true,
         // httpOnly: true,
       });
-      setUser(user);
-      setSinginModalShow(false);
+
+      !isLoading &&
+        !isErrors &&
+        !dataResponse &&
+        sendReqestClient(
+          'user',
+          {          
+            email,
+          },
+          'post'
+        );
     }
+
+    !isLoading &&
+      isErrors &&
+      dataResponse &&
+      setComponent(
+        <h1 className="errorMessenge">
+          Coś poszło nie tak podczas rejestracji skontaktuj się z instruktorem
+        </h1>
+      );
+
+    !isLoading && !isErrors && dataResponse && setUser(user);
+    !isLoading && !isErrors && dataResponse && setSinginModalShow(false);
+    // isLoading &&
+    //   setComponent(<PulseLoader color={' hsla(94, 30%, 43%, 1)'} size={25} />);
     return () => {
       // cleanup
     };
-  }, [emailVerified]);
+  }, [emailVerified, isLoading]);
   return (
     <div
       className="modalBackground modalContainerCenter accessToggleModalShow"
@@ -57,7 +109,10 @@ const SingUpUser = ({
               loginModalToggle(e);
             }}
           ></i>
-          {Componet}
+          {!isLoading && Component}
+          {isLoading && (
+            <PulseLoader color={' hsla(94, 30%, 43%, 1)'} size={25} />
+          )}
         </div>
       </div>
     </div>
