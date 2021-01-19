@@ -24,7 +24,7 @@ import PageNotFound from './components/Layout/PageNotFound';
 import { useSelector } from 'react-redux';
 // import { useCookies } from 'react-cookie';
 import { getFirebase, onAuthChange } from './firebase';
-import PrivateRoute from './routing/PrivateRoute';
+import PrivateRoute from './router/PrivateRoute';
 import Cookies from 'universal-cookie';
 
 // export const ResetPasswordContext = React.createContext();
