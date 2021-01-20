@@ -22,6 +22,7 @@ const SingUpUser = ({
     isErrors,
     dataResponse,
     sendReqestClient,
+    source,
   } = useHttpClient();
 
   const [Component, setComponent] = useState(null);
@@ -66,7 +67,7 @@ const SingUpUser = ({
         !dataResponse &&
         sendReqestClient(
           'user',
-          {          
+          {
             email,
           },
           'post'
@@ -87,7 +88,7 @@ const SingUpUser = ({
     // isLoading &&
     //   setComponent(<PulseLoader color={' hsla(94, 30%, 43%, 1)'} size={25} />);
     return () => {
-      // cleanup
+      source.cancel('Cancel axios by the user');
     };
   }, [emailVerified, isLoading]);
   return (

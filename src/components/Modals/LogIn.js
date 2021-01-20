@@ -25,6 +25,7 @@ const LoginUser = ({
     isErrors,
     dataResponse,
     sendReqestClient,
+    source,
   } = useHttpClient();
 
   let { idToken, user } = userAuth;
@@ -33,6 +34,16 @@ const LoginUser = ({
   const [Component, setComponent] = useState(null);
 
   useEffect(() => {
+    console.log(
+      'LOGIN DATA',
+      isLoading,
+      isErrors,
+      dataResponse,
+      email,
+      providerId,
+      emailVerified,
+      user
+    );
     if (!email && !emailVerified) {
       setComponent(
         <LogInBody
@@ -42,39 +53,41 @@ const LoginUser = ({
         />
       );
     } else if (!emailVerified) {
+      console.log('TEST 1111');
       setComponent(<ConfirmEmail email={email} user={user} />);
     } else if (email && emailVerified) {
+      console.log('TEST 2222');
       cookies.set('idToken', idToken, {
         path: '/',
         maxAge: 5 * 60,
         // secure: true,
         // httpOnly: true,
       });
-
-      setUser(user);
-      setLoginModalShow(false);
-    } else if (
-      (email && providerId === 'google.com') ||
-      (email && providerId === 'facebook.com')
-    ) {
-      cookies.set('idToken', idToken, {
-        path: '/',
-        maxAge: 5 * 60,
-        // secure: true,
-        // httpOnly: true,
-      });
-      // console.log('user', user);
-
       !isLoading &&
         !isErrors &&
         !dataResponse &&
         sendReqestClient('user', user, 'put');
 
+      console.log('dataResponse', isLoading, isErrors, dataResponse);
+
       !isLoading && !isErrors && dataResponse && setUser(user);
       !isLoading && !isErrors && dataResponse && setLoginModalShow(false);
-    }
 
-    return () => {};
+      setUser(user);
+      setLoginModalShow(false);
+    }
+    !isLoading &&
+      isErrors &&
+      dataResponse &&
+      setComponent(
+        <h1 className="errorMessenge">
+          Coś poszło nie tak podczas rejestracji skontaktuj się z instruktorem
+        </h1>
+      );
+
+    return () => {
+      source.cancel('Cancel axios by the user');
+    };
   }, [emailVerified, isLoading]);
 
   return (

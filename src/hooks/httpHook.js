@@ -8,7 +8,8 @@ const useHttpClient = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isErrors, setIsErrors] = useState(false);
   const [dataResponse, setDataResponse] = useState(null);
-
+  const cancelToken = axios.CancelToken;
+  const source = cancelToken.source();
   const sendReqestClient = useCallback(
     async (pathUrl = null, body = null, method = 'get') => {
       setIsLoading(true);
@@ -19,6 +20,9 @@ const useHttpClient = () => {
           {
             method: method,
             data: body,
+          },
+          {
+            cancelToken: source.token,
           }
         );
 
@@ -36,7 +40,13 @@ const useHttpClient = () => {
     },
     []
   );
-  return { isLoading, isErrors, dataResponse, sendReqestClient };
+  return {
+    isLoading,
+    isErrors,
+    dataResponse,
+    sendReqestClient,
+    source,
+  };
 };
 
 export default useHttpClient;
