@@ -50,6 +50,11 @@ const errorFirebaseAuthTranslationPL = {
     message:
       'Ups... logowanie zostało przerwane przez zamknięcie okna social media',
   },
+  authaccountexistswithdifferentcredential: {
+    input: 'errorMessageSocialMedia',
+    message:
+      'Istnieje już konto z tym samym adresem e-mail, ale za pomocą innej formy logowania',
+  },
 };
 
 const removeMinusAndSlash = (error) => {
@@ -71,9 +76,6 @@ export const signInSocialMedia = async (socialMedia) => {
       return result;
     })
     .catch((error) => {
-      // socialMedia === 'google' && console.log('Error LoginByGoogle');
-      // socialMedia === 'facebook' && console.log('Error LoginByFacebook');
-      console.error('Error Firebase Social Media', error);
       throw (
         errorFirebaseAuthTranslationPL[removeMinusAndSlash(error.code)] || {
           input: 'errorMessageSocialMedia',
@@ -91,10 +93,8 @@ export const signInEmailPassword = async (values) => {
     .then((result) => {
       // !result.user.emailVerified && sendVerificationEmail();
       return result;
-      // console.log('user :>> ', user);
     })
     .catch((err) => {
-      // console.log('err :>> ', err);
       throw (
         errorFirebaseAuthTranslationPL[removeMinusAndSlash(err.code)] || {
           input: 'email',
@@ -115,7 +115,7 @@ export const createUserEmailPassword = async (values) => {
         .auth()
         .createUserWithEmailAndPassword(values.email, values.password)
         .then((user) => {
-          sendVerificationEmail();
+          // sendVerificationEmail();
           return user;
         })
         .catch((err) => {
@@ -128,7 +128,6 @@ export const createUserEmailPassword = async (values) => {
         });
     })
     .catch((err) => {
-      console.log('err FIRE BASE CREATE USER :>> ', err);
       throw err;
     });
   return dataFromFirebase;
@@ -158,11 +157,9 @@ export const sendVerificationEmail = async () => {
   user
     .sendEmailVerification()
     .then(() => {
-      console.log('send email :>> ');
       return { message: 'send veryfication email' };
     })
     .catch((error) => {
-      console.log('error send email:>> ', error);
       throw error;
     });
 };
@@ -172,11 +169,9 @@ export const getIdToken = async () => {
     .auth()
     .currentUser.getIdToken(true)
     .then((idToken) => {
-      //  console.log('idToken :>> ', idToken);
       return idToken;
     })
     .catch((error) => {
-      //  console.log('error :>> ', error);
       return error.message;
     });
   return idToken;
@@ -209,9 +204,7 @@ export const getCurrentUser = async () => {
 export const onAuthChange = () => {
   firebase.auth().onAuthStateChanged((result) => {
     if (result) {
-      console.log('STATUS CHANGE IS USER:>> ', result);
     } else {
-      console.log('STATUS CHANGE NO USER:>> ', result);
       // No user is signed in.
     }
   });
@@ -222,11 +215,9 @@ export const signOutFirebase = async () => {
     .auth()
     .signOut()
     .then((result) => {
-      // console.log('firebaseLogOut :>> ', result);
       return result;
     })
     .catch((error) => {
-      // console.warn('loguotFirebase error :>> ', error);
       throw error.code;
     });
 };
