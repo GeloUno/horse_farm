@@ -1,21 +1,24 @@
 import React from 'react';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
+import { useDispatch } from 'react-redux';
+import { seveEditedUserDataAction } from '../../redux/actions/userActions';
 
 const phoneRegex = RegExp(/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{3})$/);
 
 const EditProfileFormik = ({ user }) => {
+  const dispatch = useDispatch();
   const initialValues = {
-    name: user.name,
+    nick: user.nick || '',
     firstName: user.firstName,
-    lastName: user.firstName,
+    lastName: user.lastName,
     phone: user.phone,
     opinion: user.opinion,
     email: user.email,
   };
 
   const validationSchema = Yup.object({
-    name: Yup.string()
+    nick: Yup.string()
       .min(3, 'minimalna liczba znaków to 3')
       .max(50, ',maksymalna lczba znaków 50')
       .required('pole jest wymagane w celu kontaktu instruktora'),
@@ -44,6 +47,7 @@ const EditProfileFormik = ({ user }) => {
       .max(500, ',maksymalna lczba znaków 500'),
   });
   const handleSubmit = (values) => {
+    dispatch(seveEditedUserDataAction(values));
     console.log('handle :>> ', values);
   };
 
@@ -58,9 +62,9 @@ const EditProfileFormik = ({ user }) => {
           {/* <Form className="userProfile editUserProfile"> */}
           <div className="bodyInputEditProfile">
             <label className="labelInputEditProfile" htmlFor="name">
-              name:
+              nick:
             </label>
-            <Field name="name">
+            <Field name="nick">
               {(props) => {
                 const { field, form, meta } = props;
                 return (

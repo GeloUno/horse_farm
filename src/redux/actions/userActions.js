@@ -20,6 +20,9 @@ import {
   LOAD_CONFIRM_EMAIL_STATE_REQUEST,
   LOAD_CONFIRM_EMAIL_STATE_SUCCESS,
   LOAD_CONFIRM_EMAIL_STATE_FAILED,
+  SAVE_EDITED_USER_DATA_REQUEST,
+  SAVE_EDITED_USER_DATA_FAILED,
+  SAVE_EDITED_USER_DATA_SUCCESS,
 } from '../constans/userConstans';
 import {
   getIdToken,
@@ -31,6 +34,8 @@ import {
   sendEmailToResetPassword,
   sendVerificationEmail,
 } from '../../firebase';
+
+import axios from 'axios';
 
 export const userSignInByEmailAction = (values, setErrors, resetForm) => async (
   dispatch
@@ -173,6 +178,38 @@ export const createUserByEmialPasswordAction = (
     setErrors({ [error.input]: [error.message] });
     dispatch({
       type: USER_CREATE_FAILED,
+      payload: error,
+    });
+  }
+};
+
+export const seveEditedUserDataAction = (values) => async (dispach) => {
+  const user = {
+    nick: values.nick,
+    firstName: values.firstName,
+    lastName: values.lastName,
+    phone: values.phone,
+    email: values.email,
+    opinion: values.opinion,
+    // isManualDataUser: true,
+  };
+  dispach({
+    type: SAVE_EDITED_USER_DATA_REQUEST,
+    payload: {},
+  });
+  try {
+    const resonseSaveUser = await axios.patch(
+      process.env.REACT_APP_URL_HOST_SERVER + 'user',
+      user
+    );
+    console.log('re', resonseSaveUser);
+    dispach({
+      type: SAVE_EDITED_USER_DATA_SUCCESS,
+      payload: resonseSaveUser,
+    });
+  } catch (error) {
+    dispach({
+      type: SAVE_EDITED_USER_DATA_FAILED,
       payload: error,
     });
   }

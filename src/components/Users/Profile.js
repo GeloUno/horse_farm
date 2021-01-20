@@ -16,7 +16,7 @@ const Profile = () => {
       <div className="userProfile">
         <div>
           <p>nick:</p>
-          <h2>{user.name}</h2>
+          <h2>{user.nick || ''}</h2>
         </div>
         <div>
           <p>imię:</p>
