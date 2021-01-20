@@ -14,9 +14,12 @@ import {
   USER_RESET_PASSWORD_REQUEST,
   USER_RESET_PASSWORD_SUCCESS,
   USER_RESET_PASSWORD_FAILED,
-  USER_VERIFICATION_EMAIL_REQUEST,
-  USER_VERIFICATION_EMAIL_SUCCESS,
-  USER_VERIFICATION_EMAIL_FAILED,
+  VERIFICATION_EMAIL_SEND_REQUEST,
+  VERIFICATION_EMAIL_SEND_FAILED,
+  VERIFICATION_EMAIL_SEND_SUCCESS,
+  LOAD_CONFIRM_EMAIL_STATE_REQUEST,
+  LOAD_CONFIRM_EMAIL_STATE_FAILED,
+  LOAD_CONFIRM_EMAIL_STATE_SUCCESS,
 } from '../constans/userConstans';
 
 const initialState = {
@@ -65,27 +68,28 @@ const userReducer = (state = initialState, action) => {
         idToken: '',
         user: {},
       };
-    case USER_RELOAD_REQUEST:
+    case LOAD_CONFIRM_EMAIL_STATE_REQUEST:
       return {
         ...state,
         loading: true,
         error: false,
       };
-    case USER_RELOAD_SUCCESS:
+    case LOAD_CONFIRM_EMAIL_STATE_SUCCESS:
       return {
         ...state,
         loading: false,
         error: false,
         user: {
-          isNewUser: payload.isNewUser,
-          providerId: payload.providerData[0].providerId,
-          email: payload.email,
-          uid: payload.uid,
-          emailVerified: payload.emailVerified,
+          ...state.user,
+          // isNewUser: payload.isNewUser,
+          // providerId: payload.providerData[0].providerId,
+          // email: payload.email,
+          // uid: payload.uid,
+          emailVerified: payload,
         },
         // idToken:
       };
-    case USER_RELOAD_FAILED:
+    case LOAD_CONFIRM_EMAIL_STATE_FAILED:
       return {
         ...state,
         loading: false,
@@ -94,6 +98,36 @@ const userReducer = (state = initialState, action) => {
         // user: {},
         idToken: null,
       };
+    // case USER_RELOAD_REQUEST:
+    //   return {
+    //     ...state,
+    //     loading: true,
+    //     error: false,
+    //   };
+    // case USER_RELOAD_SUCCESS:
+    //   return {
+    //     ...state,
+    //     loading: false,
+    //     error: false,
+    //     user: {
+    //       ...state.user,
+    //       // isNewUser: payload.isNewUser,
+    //       // providerId: payload.providerData[0].providerId,
+    //       // email: payload.email,
+    //       // uid: payload.uid,
+    //       emailVerified: payload.emailVerified,
+    //     },
+    //     // idToken:
+    //   };
+    // case USER_RELOAD_FAILED:
+    //   return {
+    //     ...state,
+    //     loading: false,
+    //     error: true,
+    //     errorMessage: payload.errorMessage,
+    //     // user: {},
+    //     idToken: null,
+    //   };
     case USER_RESET_PASSWORD_REQUEST:
       return { ...state, ...payload };
     case USER_RESET_PASSWORD_SUCCESS:
@@ -101,11 +135,11 @@ const userReducer = (state = initialState, action) => {
     case USER_RESET_PASSWORD_FAILED:
       return { ...state, ...payload };
 
-    case USER_VERIFICATION_EMAIL_REQUEST:
+    case VERIFICATION_EMAIL_SEND_REQUEST:
       return { ...state, loading: true, error: false };
-    case USER_VERIFICATION_EMAIL_SUCCESS:
+    case VERIFICATION_EMAIL_SEND_SUCCESS:
       return { ...state, loading: false, error: false };
-    case USER_VERIFICATION_EMAIL_FAILED:
+    case VERIFICATION_EMAIL_SEND_FAILED:
       return { ...state, loading: false, error: true, errorMessage: payload };
 
     case USER_LOGUOT_REQUEST:
@@ -122,6 +156,8 @@ const userReducer = (state = initialState, action) => {
       };
 
     default:
+      process.env.NODE_ENV === 'development' &&
+        console.log('Redux Default', process.env.NODE_ENV, type);
       return state;
   }
 };

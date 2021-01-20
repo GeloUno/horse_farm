@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import {
-  reloadUserAuthDataAction,
+  reloadConfirmEmalStateAction,
   sendVerificationEmailAction,
   userSignOutAction,
 } from '../../redux/actions/userActions';
@@ -18,7 +18,7 @@ const ConfirmEmail = ({ email, user }) => {
   dispatch(sendVerificationEmailAction());
   useEffect(() => {
     const interval = setInterval(() => {
-      dispatch(reloadUserAuthDataAction());
+      dispatch(reloadConfirmEmalStateAction());
       // console.log('This will run after 3 second!', user);
     }, 3000);
     return () => {

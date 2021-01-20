@@ -14,9 +14,12 @@ import {
   USER_RESET_PASSWORD_REQUEST,
   USER_RESET_PASSWORD_FAILED,
   USER_RESET_PASSWORD_SUCCESS,
-  USER_VERIFICATION_EMAIL_REQUEST,
-  USER_VERIFICATION_EMAIL_FAILED,
-  USER_VERIFICATION_EMAIL_SUCCESS,
+  VERIFICATION_EMAIL_SEND_REQUEST,
+  VERIFICATION_EMAIL_SEND_FAILED,
+  VERIFICATION_EMAIL_SEND_SUCCESS,
+  LOAD_CONFIRM_EMAIL_STATE_REQUEST,
+  LOAD_CONFIRM_EMAIL_STATE_SUCCESS,
+  LOAD_CONFIRM_EMAIL_STATE_FAILED,
 } from '../constans/userConstans';
 import {
   getIdToken,
@@ -215,11 +218,11 @@ export const sendEmailToResetPasswordAction = (
 
 export const sendVerificationEmailAction = () => async (dispach) => {
   try {
-    dispach({ type: USER_VERIFICATION_EMAIL_REQUEST });
+    dispach({ type: VERIFICATION_EMAIL_SEND_REQUEST });
     await sendVerificationEmail();
-    dispach({ type: USER_VERIFICATION_EMAIL_SUCCESS });
+    dispach({ type: VERIFICATION_EMAIL_SEND_SUCCESS });
   } catch (error) {
-    dispach({ type: USER_VERIFICATION_EMAIL_FAILED, payload: error.message });
+    dispach({ type: VERIFICATION_EMAIL_SEND_FAILED, payload: error.message });
   }
 };
 
@@ -234,6 +237,21 @@ export const reloadUserAuthDataAction = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: USER_RELOAD_FAILED,
+      payload: error,
+    });
+  }
+};
+export const reloadConfirmEmalStateAction = () => async (dispatch) => {
+  try {
+    dispatch({ type: LOAD_CONFIRM_EMAIL_STATE_REQUEST });
+    const reloadUser = await reloadUserAuth();
+    dispatch({
+      type: LOAD_CONFIRM_EMAIL_STATE_SUCCESS,
+      payload: reloadUser.emailVerified,
+    });
+  } catch (error) {
+    dispatch({
+      type: LOAD_CONFIRM_EMAIL_STATE_FAILED,
       payload: error,
     });
   }
