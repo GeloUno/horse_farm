@@ -20,6 +20,9 @@ import {
   LOAD_CONFIRM_EMAIL_STATE_REQUEST,
   LOAD_CONFIRM_EMAIL_STATE_FAILED,
   LOAD_CONFIRM_EMAIL_STATE_SUCCESS,
+  SAVE_EDITED_USER_DATA_REQUEST,
+  SAVE_EDITED_USER_DATA_SUCCESS,
+  SAVE_EDITED_USER_DATA_FAILED,
 } from '../constans/userConstans';
 
 const initialState = {
@@ -81,10 +84,6 @@ const userReducer = (state = initialState, action) => {
         error: false,
         user: {
           ...state.user,
-          // isNewUser: payload.isNewUser,
-          // providerId: payload.providerData[0].providerId,
-          // email: payload.email,
-          // uid: payload.uid,
           emailVerified: payload,
         },
         // idToken:
@@ -98,36 +97,70 @@ const userReducer = (state = initialState, action) => {
         // user: {},
         idToken: null,
       };
-    // case USER_RELOAD_REQUEST:
-    //   return {
-    //     ...state,
-    //     loading: true,
-    //     error: false,
-    //   };
-    // case USER_RELOAD_SUCCESS:
-    //   return {
-    //     ...state,
-    //     loading: false,
-    //     error: false,
-    //     user: {
-    //       ...state.user,
-    //       // isNewUser: payload.isNewUser,
-    //       // providerId: payload.providerData[0].providerId,
-    //       // email: payload.email,
-    //       // uid: payload.uid,
-    //       emailVerified: payload.emailVerified,
-    //     },
-    //     // idToken:
-    //   };
-    // case USER_RELOAD_FAILED:
-    //   return {
-    //     ...state,
-    //     loading: false,
-    //     error: true,
-    //     errorMessage: payload.errorMessage,
-    //     // user: {},
-    //     idToken: null,
-    //   };
+
+    case SAVE_EDITED_USER_DATA_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: false,
+        user: {
+          ...state.user,
+        },
+      };
+    case SAVE_EDITED_USER_DATA_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: false,
+        user: {
+          ...state.user,
+          firstName: payload.firstName,
+          lastName: payload.lastName,
+          phone: payload.phone,
+          nick: payload.nick,
+          opinion: payload.opinion,
+          email: payload.email,
+        },
+      };
+    case SAVE_EDITED_USER_DATA_FAILED:
+      return {
+        ...state,
+        loading: false,
+        error: true,
+        errorMessage: payload.errorMessage,
+        user: {},
+      };
+
+    case USER_RELOAD_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: false,
+      };
+    case USER_RELOAD_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: false,
+        user: {
+          ...state.user,
+          isNewUser: payload.isNewUser,
+          providerId: payload.providerData[0].providerId,
+          email: payload.email,
+          uid: payload.uid,
+          emailVerified: payload.emailVerified,
+        },
+        // idToken:
+      };
+    case USER_RELOAD_FAILED:
+      return {
+        ...state,
+        loading: false,
+        error: true,
+        errorMessage: payload.errorMessage,
+        // user: {},
+        idToken: null,
+      };
     case USER_RESET_PASSWORD_REQUEST:
       return { ...state, ...payload };
     case USER_RESET_PASSWORD_SUCCESS:

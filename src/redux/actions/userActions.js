@@ -34,8 +34,7 @@ import {
   sendEmailToResetPassword,
   sendVerificationEmail,
 } from '../../firebase';
-
-import axios from 'axios';
+import { httpRequest } from '../../utility/httpRequest';
 
 export const userSignInByEmailAction = (values, setErrors, resetForm) => async (
   dispatch
@@ -198,16 +197,16 @@ export const seveEditedUserDataAction = (values) => async (dispach) => {
     payload: {},
   });
   try {
-    const resonseSaveUser = await axios.patch(
-      process.env.REACT_APP_URL_HOST_SERVER + 'user',
-      user
-    );
-    console.log('re', resonseSaveUser);
+    const data = await httpRequest('user', 'patch', user);
+    const dataUser = await data.user;
+    console.log('data Action ', data);
+    console.log('re', dataUser);
     dispach({
       type: SAVE_EDITED_USER_DATA_SUCCESS,
-      payload: resonseSaveUser,
+      payload: dataUser,
     });
   } catch (error) {
+    console.log('error', error);
     dispach({
       type: SAVE_EDITED_USER_DATA_FAILED,
       payload: error,
