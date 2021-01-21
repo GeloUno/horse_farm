@@ -9,7 +9,7 @@ const phoneRegex = RegExp(/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{3})$/);
 const EditProfileFormik = ({ user }) => {
   const dispatch = useDispatch();
   const initialValues = {
-    nick: user.nick || '',
+    nick: user.nick,
     firstName: user.firstName,
     lastName: user.lastName,
     phone: user.phone,
@@ -166,6 +166,10 @@ const EditProfileFormik = ({ user }) => {
                       className="inputModalContaineFormInput"
                       id="email"
                       type="email"
+                      disabled={
+                        user.providerId === 'google.com' ||
+                        user.providerId === 'facebook.com'
+                      }
                       {...field}
                     />
                     <div className="errorMessenge">
