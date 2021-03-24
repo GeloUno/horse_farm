@@ -1,0 +1,50 @@
+<picture>
+<source
+media="(max-width: 767px)"
+sizes="(max-width: 767px) 100vw, 767px"
+srcset="
+Stadnina-4_ytymok_ar_1_1,c_fill,g_auto__c_scale,w_190.png 190w,
+Stadnina-4_ytymok_ar_1_1,c_fill,g_auto__c_scale,w_264.png 264w,
+Stadnina-4_ytymok_ar_1_1,c_fill,g_auto__c_scale,w_325.png 325w,
+Stadnina-4_ytymok_ar_1_1,c_fill,g_auto__c_scale,w_379.png 379w,
+Stadnina-4_ytymok_ar_1_1,c_fill,g_auto__c_scale,w_431.png 431w,
+Stadnina-4_ytymok_ar_1_1,c_fill,g_auto__c_scale,w_473.png 473w,
+Stadnina-4_ytymok_ar_1_1,c_fill,g_auto__c_scale,w_514.png 514w,
+Stadnina-4_ytymok_ar_1_1,c_fill,g_auto__c_scale,w_553.png 553w,
+Stadnina-4_ytymok_ar_1_1,c_fill,g_auto__c_scale,w_592.png 592w,
+Stadnina-4_ytymok_ar_1_1,c_fill,g_auto__c_scale,w_633.png 633w,
+Stadnina-4_ytymok_ar_1_1,c_fill,g_auto__c_scale,w_670.png 670w,
+Stadnina-4_ytymok_ar_1_1,c_fill,g_auto__c_scale,w_703.png 703w,
+Stadnina-4_ytymok_ar_1_1,c_fill,g_auto__c_scale,w_738.png 738w,
+Stadnina-4_ytymok_ar_1_1,c_fill,g_auto__c_scale,w_767.png 767w">
+<source
+media="(min-width: 768px) and (max-width: 991px)"
+sizes="(max-width: 991px) 70vw, 694px"
+srcset="
+Stadnina-4_ytymok_ar_4_3,c_fill,g_auto__c_scale,w_538.png 538w,
+Stadnina-4_ytymok_ar_4_3,c_fill,g_auto__c_scale,w_594.png 594w,
+Stadnina-4_ytymok_ar_4_3,c_fill,g_auto__c_scale,w_653.png 653w,
+Stadnina-4_ytymok_ar_4_3,c_fill,g_auto__c_scale,w_694.png 694w">
+<source
+media="(min-width: 992px) and (max-width: 1199px)"
+sizes="(max-width: 1200px) 60vw, 720px"
+srcset="
+Stadnina-4_ytymok_ar_16_9,c_fill,g_auto__c_scale,w_596.png 596w,
+Stadnina-4_ytymok_ar_16_9,c_fill,g_auto__c_scale,w_667.png 667w,
+Stadnina-4_ytymok_ar_16_9,c_fill,g_auto__c_scale,w_720.png 720w">
+<img
+sizes="(max-width: 2000px) 40vw, 800px"
+srcset="
+Stadnina-4_ytymok_c_scale,w_480.png 480w,
+Stadnina-4_ytymok_c_scale,w_521.png 521w,
+Stadnina-4_ytymok_c_scale,w_561.png 561w,
+Stadnina-4_ytymok_c_scale,w_606.png 606w,
+Stadnina-4_ytymok_c_scale,w_638.png 638w,
+Stadnina-4_ytymok_c_scale,w_669.png 669w,
+Stadnina-4_ytymok_c_scale,w_708.png 708w,
+Stadnina-4_ytymok_c_scale,w_741.png 741w,
+Stadnina-4_ytymok_c_scale,w_772.png 772w,
+Stadnina-4_ytymok_c_scale,w_800.png 800w"
+src="Stadnina-4_ytymok_c_scale,w_800.png"
+alt="">
+</picture>
