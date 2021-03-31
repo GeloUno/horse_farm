@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import NavBar from './components/Layout/NavBar';
-import Footer from './components/Layout/Footer';
+import NavBar from './Layout/NavBar';
+import Footer from './Layout/Footer';
 import SideBar from './components/Modals/SideBar';
 import LoginUser from './components/Modals/LogIn';
 import SingUpUser from './components/Modals/SignUp';
@@ -19,8 +19,8 @@ import {
   MakeBookingScreen,
   PlanBookingsScreen,
   ProfileScreen,
-} from './components/Layout/Screens';
-import PageNotFound from './components/Layout/PageNotFound';
+} from './Layout/Screens';
+import PageNotFound from './Layout/PageNotFound';
 import { useSelector } from 'react-redux';
 // import { useCookies } from 'react-cookie';
 import { getFirebase, onAuthChange } from './firebase';
