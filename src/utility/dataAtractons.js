@@ -1,8 +1,8 @@
-import atrattionImage_1 from '../assets/Attractions/Stadnina-1.png';
-import atrattionImage_2 from '../assets/Attractions/Stadnina-2.png';
-import atrattionImage_3 from '../assets/Attractions/Stadnina-3.png';
-import atrattionImage_4 from '../assets/Attractions/Stadnina-4.png';
-import atrattionImage_5 from '../assets/Attractions/Stadnina-5.png';
+import atrattionImage_1 from '../assets/Attractions/Stadnina-1/Stadnina-1_vmv1ek_c_scale,w_480.png';
+import atrattionImage_2 from '../assets/Attractions/Stadnina-2/Stadnina-2_zeheav_c_scale,w_480.png';
+import atrattionImage_3 from '../assets/Attractions/Stadnina-3/Stadnina-3_zdyjwn_c_scale,w_480.png';
+import atrattionImage_4 from '../assets/Attractions/Stadnina-4/Stadnina-4_ytymok_c_scale,w_480.png';
+import atrattionImage_5 from '../assets/Attractions/Stadnina-5/Stadnina-5_le20dx_c_scale,w_480.png';
 
 export const dataAtractions = {
   1: {
