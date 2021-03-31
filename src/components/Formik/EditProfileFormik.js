@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { seveEditedUserDataAction } from '../../redux/actions/userActions';
 
+
 const phoneRegex = RegExp(/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{3})$/);
 
 const EditProfileFormik = ({ user }) => {
@@ -46,8 +47,8 @@ const EditProfileFormik = ({ user }) => {
       .min(25, ',minimalna lczba znaków 20')
       .max(500, ',maksymalna lczba znaków 500'),
   });
-  const handleSubmit = (values) => {
-    dispatch(seveEditedUserDataAction(values));
+  const handleSubmit = (values) => {   
+    dispatch(seveEditedUserDataAction(values, user));
     console.log('handle :>> ', values);
   };
 
