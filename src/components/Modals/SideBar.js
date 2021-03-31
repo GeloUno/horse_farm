@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { NavList } from '../Layout/NavList';
+import { NavList } from '../../Layout/NavList';
 
 const SideBar = ({
   sideBarToggle,
