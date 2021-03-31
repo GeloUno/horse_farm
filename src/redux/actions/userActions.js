@@ -23,6 +23,8 @@ import {
   SAVE_EDITED_USER_DATA_REQUEST,
   SAVE_EDITED_USER_DATA_FAILED,
   SAVE_EDITED_USER_DATA_SUCCESS,
+  USER_UPDATE_OWN_DATA,
+  USER_COOKE_TOKEN_REMOVE,
 } from '../constans/userConstans';
 import {
   getIdToken,
@@ -35,6 +37,7 @@ import {
   sendVerificationEmail,
 } from '../../firebase';
 import { httpRequest } from '../../utility/httpRequest';
+import Cookies from 'universal-cookie';
 
 export const userSignInByEmailAction = (values, setErrors, resetForm) => async (
   dispatch
@@ -108,8 +111,8 @@ export const userSignInSocilaMedialAction = (values) => async (dispatch) => {
               lastName: additionalUserInfo.profile.given_name,
               name: additionalUserInfo.profile.name,
               emailVerified: user.emailVerified,
-              uid: additionalUserInfo.profile.id,
               photoId: additionalUserInfo.profile.picture,
+              uid: user.uid,
             },
             idToken: idToken,
           },
@@ -127,7 +130,7 @@ export const userSignInSocilaMedialAction = (values) => async (dispatch) => {
               lastName: additionalUserInfo.profile.last_name,
               name: additionalUserInfo.profile.name,
               emailVerified: user.emailVerified,
-              uid: additionalUserInfo.profile.id,
+              uid: user.uid,
               photoId: additionalUserInfo.profile.picture.data.url,
             },
             idToken: idToken,
@@ -182,22 +185,30 @@ export const createUserByEmialPasswordAction = (
   }
 };
 
-export const seveEditedUserDataAction = (values) => async (dispach) => {
+export const seveEditedUserDataAction = (values, userParam) => async (
+  dispach
+) => {
+  console.log("<- LOG -> file: userActions.js -> line 191 -> userParam", userParam)
+  console.log("<- LOG -> file: userActions.js -> line 191 -> values", values)
+
   const user = {
-    nick: values.nick,
+    id: userParam.id,
+    email: values.email,
     firstName: values.firstName,
     lastName: values.lastName,
+    nick: values.nick,
     phone: values.phone,
-    email: values.email,
+    uid: userParam.uid,
+    providerId: userParam.providerId,
+    emailVerified: userParam.emailVerified,
     opinion: values.opinion,
-    // isManualDataUser: true,
   };
   dispach({
     type: SAVE_EDITED_USER_DATA_REQUEST,
     payload: {},
   });
   try {
-    const data = await httpRequest('user', 'patch', user);
+    const data = await httpRequest('user/updateEditedData', 'patch', user);
     const dataUser = await data.user;
     console.log('data Action ', data);
     console.log('re', dataUser);
@@ -293,9 +304,26 @@ export const reloadConfirmEmalStateAction = () => async (dispatch) => {
   }
 };
 
+export const updataOwnDataUserAction = (user) => (dispatch) => {
+  dispatch({
+    type: USER_UPDATE_OWN_DATA,
+    payload: user,
+  });
+};
+export const userRemoveCookieTokenAction = (dispatch) => {
+  const cookies = new Cookies();
+  cookies.remove('idToken', {
+    path: '/',
+  })
+  dispatch({
+    type: USER_COOKE_TOKEN_REMOVE
+  })
+}
+
 export const userSignOutAction = async (dispatch) => {
   try {
     dispatch({ type: USER_LOGUOT_REQUEST });
+
     await signOutFirebase();
     dispatch({
       type: USER_LOGUOT_SUCCESS,

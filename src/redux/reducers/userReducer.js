@@ -23,6 +23,7 @@ import {
   SAVE_EDITED_USER_DATA_REQUEST,
   SAVE_EDITED_USER_DATA_SUCCESS,
   SAVE_EDITED_USER_DATA_FAILED,
+  USER_UPDATE_OWN_DATA,
 } from '../constans/userConstans';
 
 const initialState = {
@@ -131,6 +132,24 @@ const userReducer = (state = initialState, action) => {
         user: {},
       };
 
+    case USER_UPDATE_OWN_DATA:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          email: payload.user.email,
+          id: payload.user.id,
+          credits: payload.user.credits,
+          isAccessToMakeBooking: payload.user.isAccessToMakeBooking,
+          isManualOwnDataUser: payload.user.isManualOwnDataUser,
+          firstName: payload.user.firstName || undefined,
+          lastName: payload.user.lastName || undefined,
+          phone: payload.user.phone || undefined,
+          nick: payload.user.nick || undefined,
+          opinion: payload.user.opinion || undefined,
+        },
+      };
+
     case USER_RELOAD_REQUEST:
       return {
         ...state,
@@ -190,7 +209,8 @@ const userReducer = (state = initialState, action) => {
 
     default:
       process.env.NODE_ENV === 'development' &&
-        console.log('Redux Default', process.env.NODE_ENV, type);
+        console.log('Redux Default', process.env.NODE_ENV);
+      console.log('Redux Default TYPE', type);
       return state;
   }
 };
