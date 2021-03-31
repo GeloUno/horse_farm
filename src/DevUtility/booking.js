@@ -1,7 +1,7 @@
 import faker from 'faker';
 faker.setLocale('pl');
-const minYear = 2020;
-const maxYear = 2020;
+const minYear = 2021;
+const maxYear = 2021;
 
 export const DevBookingData = [
   {
