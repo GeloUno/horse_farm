@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { dataAtractions } from '../../utility/dataAtractons.js';
+import { dataAtractions } from '../utility/dataAtractons.js';
 
 const nextPage = (numberPage) => {
   if (numberPage >= 5) {

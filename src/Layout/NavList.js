@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 
 import { useHistory } from 'react-router-dom';
 
-import { signOutFirebase } from '../../firebase';
-import { userSignOutAction } from '../../redux/actions/userActions';
+import { signOutFirebase } from '../firebase';
+import { userRemoveCookieTokenAction, userSignOutAction } from '../redux/actions/userActions';
 
 export const NavList = ({
   loginModalToggle,
@@ -15,7 +15,7 @@ export const NavList = ({
 }) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const cookies = new Cookies();
+  // const cookies = new Cookies();
   const userAuth = useSelector((state) => state.userAction);
   const { user } = userAuth;
   const handleSignOut = () => {
@@ -196,9 +196,10 @@ export const NavList = ({
             className="sm-hiden"
             onClick={() => {
               dispatch(userSignOutAction);
-              cookies.remove('idToken', {
-                path: '/',
-              });
+              dispatch(userRemoveCookieTokenAction);
+              // cookies.remove('idToken', {
+              //   path: '/',
+              // });
             }}
           >
             <i className="fas fa-sign-out-alt"></i>

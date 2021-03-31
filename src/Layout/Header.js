@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import '../../App.css';
-import backgroundImageHorse from '../../assets/HorseBackground.png';
+import '../App.css';
+import backgroundImageHorse from '../assets/HorseBackground_ttbpbw/HorseBackground_ttbpbw_c_scale,w_1613.png';
 
 const styleBacgroundImage = {
   backgroundImage: `url(${backgroundImageHorse})`,

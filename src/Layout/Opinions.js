@@ -9,7 +9,7 @@ export const Opinions = () => {
       name: 'Roger',
       description:
         'Velit nisi ea do est aute officia occaecat dolor adipisicing reprehenderit.',
-      sourceImage: 'https://randomuser.me/api/portraits/men/14.jpg',
+      sourceImage: 'https://randomuser.me/api/portraits/men/14.jpg?width=10&height=10',
     },
     {
       name: 'Russell',
