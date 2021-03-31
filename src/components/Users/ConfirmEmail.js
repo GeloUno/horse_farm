@@ -15,7 +15,7 @@ const handleSendVerificationEmail = (dispatch) => {
 
 const ConfirmEmail = ({ email, user }) => {
   const dispatch = useDispatch();
-  dispatch(sendVerificationEmailAction());
+  // dispatch(sendVerificationEmailAction());
   useEffect(() => {
     const interval = setInterval(() => {
       dispatch(reloadConfirmEmalStateAction());

@@ -73,6 +73,8 @@ export const signInSocialMedia = async (socialMedia) => {
     .auth()
     .signInWithPopup(provider)
     .then((result) => {
+      console.log('SiginSocialMediaResult', result)
+      !result.user.emailVerified && sendVerificationEmail();
       return result;
     })
     .catch((error) => {
@@ -91,7 +93,8 @@ export const signInEmailPassword = async (values) => {
     .auth()
     .signInWithEmailAndPassword(values.email, values.password)
     .then((result) => {
-      // !result.user.emailVerified && sendVerificationEmail();
+      !result.user.emailVerified && sendVerificationEmail();
+      console.log('signinEmalResult', result)
       return result;
     })
     .catch((err) => {
@@ -114,9 +117,10 @@ export const createUserEmailPassword = async (values) => {
       return firebase
         .auth()
         .createUserWithEmailAndPassword(values.email, values.password)
-        .then((user) => {
-          // sendVerificationEmail();
-          return user;
+        .then((result) => {
+          !result.user.emailVerified && sendVerificationEmail();
+          console.log('CreateUserEmali', result)       
+          return result;
         })
         .catch((err) => {
           throw (
@@ -153,12 +157,11 @@ export const sendEmailToResetPassword = async (email) => {
 
 export const sendVerificationEmail = async () => {
   const user = await firebase.auth().currentUser;
-
   user
     .sendEmailVerification()
     .then(() => {
       return { message: 'send veryfication email' };
-    })
+        })
     .catch((error) => {
       throw error;
     });
