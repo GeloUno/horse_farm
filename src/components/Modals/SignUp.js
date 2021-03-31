@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Cookies from 'universal-cookie';
 import SigninHorseImg from '../../assets/SigninHorse.png';
 import useHttpClient from '../../hooks/httpHook';
 import SignUpFormik from '../Formik/SignUpFormik';
 import ConfirmEmail from '../Users/ConfirmEmail';
 import PulseLoader from 'react-spinners/PulseLoader';
+import { updataOwnDataUserAction, userRemoveCookieTokenAction, userSignOutAction } from '../../redux/actions/userActions';
+import { isNeedToShowUserBody, isUserCanBeCreateByPassword, isUserCanSetTokenInCookie, isUserCanUpdateDataFromMongoDB, isUserGetCorrectDataAndCanCloseModal, isUserGetErrorFromDataMongoDB, isUserNeedConfirmEmail, setTokenInCookies } from '../../shared/user'
 
 const SingUpUser = ({
   signinModalToggle,
@@ -14,8 +16,9 @@ const SingUpUser = ({
   setSinginModalShow,
 }) => {
   const userAuth = useSelector((state) => state.userAction);
+  const dispatch = useDispatch();
   const { idToken, user } = userAuth;
-  const { email, providerId, emailVerified } = user;
+  const { email, providerId, emailVerified, uid, isNewUser } = user;
 
   const {
     isLoading,
@@ -29,64 +32,33 @@ const SingUpUser = ({
   const cookies = new Cookies();
 
   useEffect(() => {
-    // this is only for testing
-    // !isLoading &&
-    //   !isErrors &&
-    //   !dataResponse &&
-    //   sendReqestClient(
-    //     'user/create',
-    //     {
-    //       firstName: 'gelu',
-    //       lastName: 'gelo',
-    //       email: 'cos@wp.pl',
-    //     },
-    //     'post'
-    //   );
 
-    console.log('isLoading', isLoading);
-    console.log('isErrors', isErrors);
-    console.log('dataResponse', dataResponse);
+    isNeedToShowUserBody(email, emailVerified) && setComponent(<SignUpFormik />);
 
-    !email && !emailVerified && setComponent(<SignUpFormik />);
+    isUserCanBeCreateByPassword(email, isLoading, isErrors, dataResponse, isNewUser, providerId) && (sendReqestClient(
+      'user/create', { email, uid, providerId, emailVerified }, 'post'));
 
-    email &&
-      providerId === 'password' &&
-      !emailVerified &&
-      setComponent(<ConfirmEmail email={email} user={user} />);
+    isUserNeedConfirmEmail(email, isErrors, emailVerified) && setComponent(<ConfirmEmail email={email} user={user} />);
 
-    if (email && providerId === 'password' && emailVerified) {
-      cookies.set('idToken', idToken, {
-        path: '/',
-        maxAge: 5 * 60,
-        // secure: true,
-        // httpOnly: true,
-      });
+    isUserCanSetTokenInCookie(email, emailVerified) && setTokenInCookies(idToken)
 
-      !isLoading &&
-        !isErrors &&
-        !dataResponse &&
-        sendReqestClient(
-          'user',
-          {
-            email,
-          },
-          'post'
-        );
-    }
+    isUserCanUpdateDataFromMongoDB(isLoading, isErrors, emailVerified, dataResponse) && (dispatch(updataOwnDataUserAction(dataResponse)))
 
-    !isLoading &&
-      isErrors &&
-      dataResponse &&
+    if (isUserGetErrorFromDataMongoDB(isLoading, isErrors, dataResponse)) {
       setComponent(
         <h1 className="errorMessenge">
           Coś poszło nie tak podczas rejestracji skontaktuj się z instruktorem
         </h1>
       );
+      dispatch(userRemoveCookieTokenAction);
+      dispatch(userSignOutAction);
+    }
 
-    !isLoading && !isErrors && dataResponse && setUser(user);
-    !isLoading && !isErrors && dataResponse && setSinginModalShow(false);
-    // isLoading &&
-    //   setComponent(<PulseLoader color={' hsla(94, 30%, 43%, 1)'} size={25} />);
+    if (isUserGetCorrectDataAndCanCloseModal(email, isLoading, isErrors, dataResponse, emailVerified)) {
+      setUser(user);
+      setSinginModalShow(false);
+    }
+
     return () => {
       source.cancel('Cancel axios by the user');
     };
@@ -95,6 +67,8 @@ const SingUpUser = ({
     <div
       className="modalBackground modalContainerCenter accessToggleModalShow"
       onClick={(e) => {
+        dispatch(userSignOutAction);
+        dispatch(userRemoveCookieTokenAction);
         signinModalToggle(e);
       }}
     >

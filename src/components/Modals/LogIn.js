@@ -4,11 +4,25 @@ import 'firebase/auth';
 import 'firebase/firestore';
 import { getFirebase } from '../../firebase';
 import LogInBody from '../Users/LogInBody';
-import { useSelector } from 'react-redux';
-import Cookies from 'universal-cookie';
+import { useDispatch, useSelector } from 'react-redux';
 import ConfirmEmail from '../Users/ConfirmEmail';
 import useHttpClient from '../../hooks/httpHook';
 import PulseLoader from 'react-spinners/PulseLoader';
+import { updataOwnDataUserAction, userRemoveCookieTokenAction, userSignOutAction } from '../../redux/actions/userActions';
+import {
+  isNeedToShowUserBody,
+  isUserCanCreateBySocialMedia,
+  isUserCanLoginByPassword,
+  isUserCanLoginBySocialMedia,
+  isUserCanSetTokenInCookie,
+  isUserCanUpdateDataFromMongoDB,
+  isUserGetCorrectDataAndCanCloseModal,
+  isUserGetErrorFromDataMongoDB,
+  isUserNeedConfirmEmail,
+  setTokenInCookies
+} from '../../shared/user'
+
+
 
 const LoginUser = ({
   signinModalToggle,
@@ -18,8 +32,8 @@ const LoginUser = ({
   setUser,
 }) => {
   getFirebase();
-  const cookies = new Cookies();
   const userAuth = useSelector((state) => state.userAction);
+  const dispatch = useDispatch();
   const {
     isLoading,
     isErrors,
@@ -29,8 +43,8 @@ const LoginUser = ({
   } = useHttpClient();
 
   let { idToken, user } = userAuth;
-  // console.log('userAuth', userAuth);
-  let { email, providerId, emailVerified } = user;
+
+  let { email, providerId, emailVerified, uid, isNewUser } = user;
   const [Component, setComponent] = useState(null);
 
   useEffect(() => {
@@ -44,56 +58,56 @@ const LoginUser = ({
       emailVerified,
       user
     );
-    if (!email && !emailVerified) {
+
+    isNeedToShowUserBody(email, emailVerified) && (
       setComponent(
         <LogInBody
           loginModalToggle={loginModalToggle}
           signinModalToggle={signinModalToggle}
           resetPasswordModalToggle={resetPasswordModalToggle}
-        />
-      );
-    } else if (!emailVerified) {
-      console.log('TEST 1111');
-      setComponent(<ConfirmEmail email={email} user={user} />);
-    } else if (email && emailVerified) {
-      console.log('TEST 2222');
-      cookies.set('idToken', idToken, {
-        path: '/',
-        maxAge: 5 * 60,
-        // secure: true,
-        // httpOnly: true,
-      });
-      !isLoading &&
-        !isErrors &&
-        !dataResponse &&
-        sendReqestClient('user', user, 'put');
+        />)
+    )
 
-      console.log('dataResponse', isLoading, isErrors, dataResponse);
+    isUserNeedConfirmEmail(email, isErrors, emailVerified) && (setComponent(<ConfirmEmail email={email} user={user} />))
 
-      !isLoading && !isErrors && dataResponse && setUser(user);
-      !isLoading && !isErrors && dataResponse && setLoginModalShow(false);
+    isUserCanSetTokenInCookie(email, emailVerified) && setTokenInCookies(idToken)
 
+    isUserCanLoginByPassword(isLoading, isErrors, dataResponse, isNewUser, providerId) && sendReqestClient('user/login', user, 'post');
+
+    isUserCanCreateBySocialMedia(isLoading, isErrors, dataResponse, isNewUser, providerId) && sendReqestClient('user/createsocialmedia', user, 'post');
+
+    isUserCanLoginBySocialMedia(isLoading, isErrors, dataResponse, isNewUser, providerId) && sendReqestClient('user/loginsocialmedia', user, 'post');
+
+
+    isUserCanUpdateDataFromMongoDB(isLoading, isErrors, emailVerified, dataResponse) && dispatch(updataOwnDataUserAction(dataResponse));
+
+    if (isUserGetCorrectDataAndCanCloseModal(email, isLoading, isErrors, dataResponse, emailVerified)) {
       setUser(user);
       setLoginModalShow(false);
     }
-    !isLoading &&
-      isErrors &&
-      dataResponse &&
+    if (isUserGetErrorFromDataMongoDB(isLoading, isErrors, dataResponse)) {
+      dispatch(userRemoveCookieTokenAction);
+      dispatch(userSignOutAction);
+
       setComponent(
         <h1 className="errorMessenge">
-          Coś poszło nie tak podczas rejestracji skontaktuj się z instruktorem
-        </h1>
+          Coś poszło nie tak podczas logowania skontaktuj się z instruktorem
+          </h1>
       );
+
+    }
 
     return () => {
       source.cancel('Cancel axios by the user');
     };
-  }, [emailVerified, isLoading]);
+  }, [emailVerified, isLoading, dataResponse]);
 
   return (
     <div
       className="modalBackground modalContainerCenter accessToggleModalShow"
       onClick={(e) => {
+        dispatch(userSignOutAction);
+        dispatch(userRemoveCookieTokenAction);
         loginModalToggle(e);
       }}
     >
