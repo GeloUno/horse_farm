@@ -14,20 +14,29 @@ const useHttpClient = () => {
     async (pathUrl = null, body = null, method = 'get') => {
       setIsLoading(true);
       setIsErrors(false);
+
+      const configURL = (method === 'get') ? (
+        {
+          method: method,
+          params: body,
+        }
+      ) : (
+        {
+          method: method,
+          data: body,
+        }
+      );
       try {
         let httpClientData = await axios(
           process.env.REACT_APP_URL_HOST_SERVER + pathUrl,
-          {
-            method: method,
-            data: body,
-          },
+          configURL,
           {
             cancelToken: source.token,
           }
         );
 
-        setDataResponse(httpClientData);
-        console.log('httpClientData :>> ', httpClientData);
+        setDataResponse(httpClientData.data);
+
       } catch (error) {
         setIsErrors(true);
         if (error.response && error.response.data) {
@@ -37,6 +46,7 @@ const useHttpClient = () => {
         }
       }
       setIsLoading(false);
+      return setDataResponse;
     },
     []
   );
