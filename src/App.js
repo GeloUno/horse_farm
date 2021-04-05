@@ -26,6 +26,7 @@ import { useSelector } from 'react-redux';
 import { getFirebase, onAuthChange } from './firebase';
 import PrivateRoute from './router/PrivateRoute';
 import Cookies from 'universal-cookie';
+import confirmDeleteUser from './components/Users/ConfirmDeleteUser';
 
 // export const ResetPasswordContext = React.createContext();
 
@@ -197,6 +198,12 @@ function App() {
             setLoginModalShow={setLoginModalShow}
             path="/edycjaprofilu"
             component={EditProfileScreen}
+            exact
+          />
+          <PrivateRoute
+            setLoginModalShow={setLoginModalShow}
+            path="/usunprofil"
+            component={confirmDeleteUser}
             exact
           />
           <PrivateRoute
