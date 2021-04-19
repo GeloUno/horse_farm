@@ -44,7 +44,7 @@ const LoginUser = ({
 
   let { idToken, user } = userAuth;
 
-  let { email, providerId, emailVerified, uid, isNewUser } = user;
+  let { email, providerId, emailVerified, isNewUser } = user;
   const [Component, setComponent] = useState(null);
 
   useEffect(() => {
