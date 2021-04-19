@@ -1,3 +1,6 @@
+
+import { IUserRemove } from '../../models/userInterfaces';
+
 export const USER_CREATE_REQUEST = 'USER_CREATE_REQUEST';
 export const USER_CREATE_FAILED = 'USER_CREATE_FAILED';
 export const USER_CREATE_SUCCESS = 'USER_CREATE_SUCCESS';
@@ -37,4 +40,57 @@ export const USER_LOGUOT_REQUEST = 'USER_LOGUOT_REQUEST';
 export const USER_LOGUOT_FAILED = 'USER_LOGUOT_FAILED';
 export const USER_LOGUOT_SUCCESS = 'USER_LOGUOT_SUCCESS';
 
+export const USER_REMOVE_REQUEST = 'USER_REMOVE_REQUEST';
+export const USER_REMOVE_FAILED = 'USER_REMOVE_FAILED';
+export const USER_REMOVE_SUCCESS = 'USER_REMOVE_SUCCESS';
+
 export const USER_COOKE_TOKEN_REMOVE = 'USER_COOKE_TOKEN_REMOVE';
+
+
+interface ErrorInput {
+  input: string
+}
+
+export interface ErrorResponse {
+  errorMessage: string,
+  errorInput?: ErrorInput[] | ErrorInput
+}
+
+
+interface IUserSignOutRequest {
+  type: typeof USER_LOGUOT_REQUEST
+}
+interface IUserSignOutSuccess {
+  type: typeof USER_LOGUOT_SUCCESS,
+}
+interface IUserSignOutFailed {
+  type: typeof USER_LOGUOT_FAILED,
+  payload:
+  {
+    error: ErrorResponse
+  }
+}
+
+export type IUserSignOutDispatchTypes = IUserSignOutRequest | IUserSignOutSuccess | IUserSignOutFailed;
+
+
+
+
+interface IUserRemoveRequest {
+  type: typeof USER_REMOVE_REQUEST
+}
+interface IUserRemoveSuccess {
+  type: typeof USER_REMOVE_SUCCESS,
+  payload: {
+    user: IUserRemove
+  }
+}
+interface IUserRemoveFailed {
+  type: typeof USER_REMOVE_FAILED,
+  payload:
+  {
+    error: ErrorResponse
+  }
+}
+
+export type IUserRemoveDispatchTypes = IUserRemoveRequest | IUserRemoveSuccess | IUserRemoveFailed;

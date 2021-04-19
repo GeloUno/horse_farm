@@ -1,3 +1,4 @@
+import { IUserInitialState } from '../../models/userInterfaces';
 import {
   USER_CREATE_REQUEST,
   USER_CREATE_FAILED,
@@ -24,17 +25,34 @@ import {
   SAVE_EDITED_USER_DATA_SUCCESS,
   SAVE_EDITED_USER_DATA_FAILED,
   USER_UPDATE_OWN_DATA,
+  USER_REMOVE_REQUEST,
+  USER_REMOVE_FAILED,
+  USER_REMOVE_SUCCESS,
 } from '../constans/userConstans';
 
-const initialState = {
-  user: {},
-  loading: false,
-  error: false,
-  errorMessage: '',
-  idToken: null,
+export interface IUserState {
+  user: Partial<IUserInitialState>,
+  isLoading: boolean,
+  isError: boolean,
+  errorMessage: string,
+  idToken: string | undefined
+}
+
+const initialState: IUserState = {
+  user: {
+    email: undefined,
+    emailVerified: undefined,
+    isNewUser: undefined,
+    providerId: undefined
+
+  },
+  isLoading: false,
+  isError: false,
+  errorMessage: "",
+  idToken: undefined
 };
 
-const userReducer = (state = initialState, action) => {
+const userReducer = (state: IUserState = initialState, action: any) => {
   const { type, payload } = action;
   switch (type) {
     case USER_CREATE_REQUEST:
@@ -205,6 +223,29 @@ const userReducer = (state = initialState, action) => {
         errorMessage: '',
         idToken: null,
         user: {},
+      };
+    case USER_REMOVE_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: false,
+      };
+    case USER_REMOVE_FAILED:
+      return {
+        ...state,
+        loading: false,
+        error: true,
+        errorMessage: payload.errorMessage,
+        // user: {},
+      };
+    case USER_REMOVE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: false,
+        errorMessage: '',
+        // idToken: null,
+        // user: {},
       };
 
     default:
