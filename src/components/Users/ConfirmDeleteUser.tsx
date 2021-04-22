@@ -106,7 +106,7 @@ const ConfirmDeleteUser: React.FC = () => {
                         iconButtonConfirm={IconButtonConfirm.DELETE_ICON}
                     >
                         {<>
-                            <Box p={5} minWidth={'60vh'}>
+                            <Box p={5}>
                                 Usunięcie konta <strong>{`${user.email}`}</strong> skutkuje trwałym i nie odwracalnym wykasowniem użutkownika oraz wszelkich danych z jego kontem związanych, bez możliwości ich późniejszego odzyskania.
                             Jeśli nie chesz usunąć konta wciśnij wstecz.
 
@@ -143,7 +143,7 @@ const ConfirmDeleteUser: React.FC = () => {
 
                     confirmAction={() => { goToHomePageHandle() }}>
                     {<>
-                        <Box p={5} minWidth={'60vh'}>
+                        <Box p={5} >
                             Coś poszło nie tak konto <strong>{`${user.email}`}</strong> nie zostało usunięte zapraszam później :-(
                         </Box>
                     </>
@@ -160,7 +160,7 @@ const ConfirmDeleteUser: React.FC = () => {
                         iconButtonConfirm={IconButtonConfirm.NO_ICON}
                         confirmAction={() => { logoutUserHandle() }}>
                         {<>
-                            <Box p={5} minWidth={'60vh'}>
+                            <Box p={5} >
                                 Konto <strong>{`${user.email}`}</strong> zostało usunięte :-(
                         </Box>
                         </>

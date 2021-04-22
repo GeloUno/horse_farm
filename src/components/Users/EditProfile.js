@@ -34,7 +34,7 @@ const EditProfile = () => {
             alt="użytkownik"
           />
         )}
-        <div className="profileButtons">
+        <div className="profileButtons profileButtonPhoto">
           <button
             className="btn btn-green btn-capitalize 
             btn-editProfile"

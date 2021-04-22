@@ -40,12 +40,12 @@ export const Message = ({ title, children, cancelAction, confirmAction, typeMess
     const classes = customStyles();
     return (
 
-        <Box height='60vh' display='flex' alignItems='center'>
+        <Box height='60vh' display='flex' alignItems='center' justifyContent={'center'}>
             <Alert severity={typeMessage} >
                 <Box p={0.3}>
                     <AlertTitle>{title}</AlertTitle>
                 </Box>
-                <Box>
+                <Box flexGrow={1}>
                     {children}
                 </Box>
                 <Box

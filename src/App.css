@@ -1849,6 +1849,10 @@ address a {
     width: 90%;
   }
 
+  .profileButtonPhoto {
+    width: 60%;
+  }
+
 
   .clendaryHourBookingBody {
     height: 65vh;
