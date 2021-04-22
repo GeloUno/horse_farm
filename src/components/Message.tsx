@@ -5,7 +5,7 @@ import { Box, Button, Theme } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 
-interface IWarningProps {
+export interface IWarningProps {
     readonly title: string,
     readonly children: React.ReactChild,
     cancelAction?(): void,
