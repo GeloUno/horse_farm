@@ -55,9 +55,10 @@ export const Message = ({ title, children, cancelAction, confirmAction, typeMess
                 >
                     {cancelAction && (
                         <Button
+
                             variant="contained"
                             color="primary"
-                            className={classes.button}
+                            className={`${classes.button} cancleButtonActionMessage`}
                             onClick={() => cancelAction()}
                         >
                             Wstecz
@@ -70,7 +71,7 @@ export const Message = ({ title, children, cancelAction, confirmAction, typeMess
                             variant="contained"
                             color="secondary"
                             startIcon={iconButtonConfirm === IconButtonConfirm.DELETE_ICON && <DeleteIcon />}
-                            className={classes.button}
+                            className={`${classes.button} confirmButtonActionMessage`}
                             onClick={() => confirmAction()}
                         >
                             {textButtonConfirm}
