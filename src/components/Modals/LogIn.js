@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ConfirmEmail from '../Users/ConfirmEmail';
 import useHttpClient from '../../hooks/httpHook';
 import PulseLoader from 'react-spinners/PulseLoader';
-import { updataOwnDataUserAction, userRemoveCookieTokenAction, userSignOutAction } from '../../redux/actions/userActions';
+import { updateOwnDataUserAction, userRemoveCookieTokenAction, userSignOutAction } from '../../redux/actions/userActions';
 import {
   isNeedToShowUserBody,
   isUserCanCreateBySocialMedia,
@@ -79,7 +79,7 @@ const LoginUser = ({
     isUserCanLoginBySocialMedia(isLoading, isErrors, dataResponse, isNewUser, providerId) && sendReqestClient('user/loginsocialmedia', user, 'post');
 
 
-    isUserCanUpdateDataFromMongoDB(isLoading, isErrors, emailVerified, dataResponse) && dispatch(updataOwnDataUserAction(dataResponse));
+    isUserCanUpdateDataFromMongoDB(isLoading, isErrors, emailVerified, dataResponse) && dispatch(updateOwnDataUserAction(dataResponse));
 
     if (isUserGetCorrectDataAndCanCloseModal(email, isLoading, isErrors, dataResponse, emailVerified)) {
       setUser(user);

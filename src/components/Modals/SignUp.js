@@ -6,8 +6,21 @@ import useHttpClient from '../../hooks/httpHook';
 import SignUpFormik from '../Formik/SignUpFormik';
 import ConfirmEmail from '../Users/ConfirmEmail';
 import PulseLoader from 'react-spinners/PulseLoader';
-import { updataOwnDataUserAction, userRemoveCookieTokenAction, userSignOutAction } from '../../redux/actions/userActions';
-import { isNeedToShowUserBody, isUserCanBeCreateByPassword, isUserCanSetTokenInCookie, isUserCanUpdateDataFromMongoDB, isUserGetCorrectDataAndCanCloseModal, isUserGetErrorFromDataMongoDB, isUserNeedConfirmEmail, setTokenInCookies } from '../../shared/user'
+import {
+  updateOwnDataUserAction,
+  userRemoveCookieTokenAction,
+  userSignOutAction
+} from '../../redux/actions/userActions';
+import {
+  isNeedToShowUserBody,
+  isUserCanBeCreateByPassword,
+  isUserCanSetTokenInCookie,
+  isUserCanUpdateDataFromMongoDB,
+  isUserGetCorrectDataAndCanCloseModal,
+  isUserGetErrorFromDataMongoDB,
+  isUserNeedConfirmEmail,
+  setTokenInCookies
+} from '../../shared/user'
 
 const SingUpUser = ({
   signinModalToggle,
@@ -42,7 +55,7 @@ const SingUpUser = ({
 
     isUserCanSetTokenInCookie(email, emailVerified) && setTokenInCookies(idToken)
 
-    isUserCanUpdateDataFromMongoDB(isLoading, isErrors, emailVerified, dataResponse) && (dispatch(updataOwnDataUserAction(dataResponse)))
+    isUserCanUpdateDataFromMongoDB(isLoading, isErrors, emailVerified, dataResponse) && (dispatch(updateOwnDataUserAction(dataResponse)))
 
     if (isUserGetErrorFromDataMongoDB(isLoading, isErrors, dataResponse)) {
       setComponent(
