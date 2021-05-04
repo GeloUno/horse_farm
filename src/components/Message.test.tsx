@@ -3,7 +3,7 @@ import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 
 import { IconButtonConfirm, Message, TypeMessage } from './Message'
 import { Alert, AlertTitle } from '@material-ui/lab'
-import { Box, Button, Theme } from '@material-ui/core';
+import { Box, Button } from '@material-ui/core';
 
 
 Enzyme.configure({ adapter: new Adapter() });
