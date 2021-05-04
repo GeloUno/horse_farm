@@ -12,7 +12,8 @@ const LogInBody = ({
 }) => {
   const dispatch = useDispatch();
   const userAction = useSelector((state) => state.userAction);
-  const { errorMessage, provider } = userAction;
+  const { errorMessage, user } = userAction;
+  const { providerId } = user;
 
   //   const handleSignInSocialMedia = (soclia) => {
   //     signInSocialMedia(soclia)
@@ -46,7 +47,7 @@ const LogInBody = ({
             <i className="fab fa-facebook-f"></i>
           </div>
         </div>
-        {(provider === 'google' || provider === 'facebook') && errorMessage && (
+        {(providerId === 'google.com' || providerId === 'facebook.com') && errorMessage && (
           <div className="errorMessageSocialMedia errorMessenge">
             {errorMessage}
           </div>
