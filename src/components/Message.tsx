@@ -11,7 +11,7 @@ export interface IWarningProps {
     cancelAction?(): void,
     confirmAction?(): void,
     readonly typeMessage: TypeMessage,
-    readonly textButtonConfirm: string,
+    readonly textButtonConfirm?: string,
     readonly iconButtonConfirm?: IconButtonConfirm
 }
 
