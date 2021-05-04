@@ -9,10 +9,10 @@ interface NoUserProps {
 }
 
 export const NoUserData: React.FC<NoUserProps> = ({ confirmAction, logoutAfterTime }) => {
+
     useEffect(() => {
         logoutAfterTime(4000)
         return () => {
-
         }
     }, [])
     return (
@@ -23,7 +23,7 @@ export const NoUserData: React.FC<NoUserProps> = ({ confirmAction, logoutAfterTi
             confirmAction={confirmAction}
         >
             <Box p={5}>
-                Ups coś poszło nie tak zapraszam później...
+                Ups coś poszło nie tak zapraszamy później...
             </Box>
         </Message>
     )
