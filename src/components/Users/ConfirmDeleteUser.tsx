@@ -5,8 +5,9 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userRemoveAction, userSignOutAction, userRemoveCookieTokenAction } from '../../redux/actions/userActions';
 import { RootState } from '../../redux/store'
-import { IUserBaseMongoBD } from '../../models/userInterfaces';
+import { IUserBaseMongoBD, IUser, OneOrUndefined } from '../../models/userInterfaces';
 import ConfirmDeleteUserDetail from './ConfirmDeleteUserDetail';
+import { NoUserData } from './NoUserData';
 
 
 
@@ -47,8 +48,24 @@ const ConfirmDeleteUser: React.FC = () => {
     const dispatch = useDispatch()
 
     const userAuth = useSelector((state: RootState) => state.userAction);
-    const { user, loading, error }: { user: IUserBaseMongoBD, loading: boolean, error: boolean, errorMessage: string } = userAuth;
+    const { user, isLoading, isError, errorMessage }: { user: Partial<IUser>, isLoading: boolean, isError: boolean, errorMessage: string | null } = userAuth;
+    const userReq = user as IUser;
 
+    let userMDB: OneOrUndefined<IUserBaseMongoBD>;
+    if (user.email &&
+        user.emailVerified &&
+        user.providerId &&
+        user.uid) {
+        userMDB = {
+            email: user.email,
+            emailVerified: user.emailVerified,
+            providerId: user.providerId,
+            uid: user.uid
+        };
+    }
+    else {
+        userMDB = undefined;
+    }
 
     const logoutAfterTime = (time: number) => {
         setTimeout(() => {
@@ -59,17 +76,17 @@ const ConfirmDeleteUser: React.FC = () => {
     useEffect(() => {
         if (actionMessage !== ActionMessage.MESSAGE) {
 
-            error && !loading && (setActionMessage((prevAction) => ActionMessage.ERROR))
+            isError && !isLoading && (setActionMessage((prevAction) => ActionMessage.ERROR))
 
-            !error && !loading && (setActionMessage((prevAction) => ActionMessage.SUCCESS))
+            !isError && !isLoading && (setActionMessage((prevAction) => ActionMessage.SUCCESS))
 
-            !error && !loading && logoutAfterTime(4000)
+            !isError && !isLoading && logoutAfterTime(4000)
         }
 
         return () => {
             // cleanup
         }
-    }, [loading])
+    }, [isLoading])
 
 
     const logoutUserHandle = () => {
@@ -84,7 +101,7 @@ const ConfirmDeleteUser: React.FC = () => {
 
     const confirmRemoveUserHandle = () => {
         setActionMessage(ActionMessage.LOADING);
-        dispatch(userRemoveAction(user))
+        dispatch(userRemoveAction(userReq))
     }
 
     const goToHomePageHandle = () => {
@@ -95,14 +112,21 @@ const ConfirmDeleteUser: React.FC = () => {
         <ThemeProvider theme={theme}>
             <Container maxWidth={'sm'} className={classes.container}>
 
-                <ConfirmDeleteUserDetail
-                    actionMessage={actionMessage}
-                    confirmAction={confirmRemoveUserHandle}
-                    cancelAction={cancelRemoveUserHandle}
-                    user={user}
-                    goToHomePage={goToHomePageHandle}
-                    logoutUser={logoutUserHandle}
-                />
+                {userMDB && (
+                    <ConfirmDeleteUserDetail
+                        actionMessage={actionMessage}
+                        confirmAction={confirmRemoveUserHandle}
+                        cancelAction={cancelRemoveUserHandle}
+                        user={userMDB}
+                        goToHomePage={goToHomePageHandle}
+                        logoutUser={logoutUserHandle}
+                    />
+                )
+                }
+                {!userMDB && (<NoUserData
+                    confirmAction={logoutUserHandle}
+                    logoutAfterTime={logoutAfterTime}
+                />)}
 
             </Container>
         </ThemeProvider>
