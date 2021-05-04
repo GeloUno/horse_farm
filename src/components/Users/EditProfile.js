@@ -6,23 +6,23 @@ import { PulseLoader } from 'react-spinners';
 
 const EditProfile = () => {
   const userAuth = useSelector((state) => state.userAction);
-  const { user, loading, error } = userAuth;
+  const { user, isLoading, isError } = userAuth;
   const [wasDataSend, setWasDataSend] = useState(false);
   const history = useHistory();
 
   useEffect(() => {
-    if (loading && !wasDataSend) {
+    if (isLoading && !wasDataSend) {
       setWasDataSend((prev) => {
         return !prev;
       });
     }
-    !loading && !error && wasDataSend && history.push('profil');
+    !isLoading && !isError && wasDataSend && history.push('profil');
     return () => {
       setWasDataSend((prev) => {
         return !prev;
       });
     };
-  }, [loading, error, wasDataSend]);
+  }, [isLoading, isError, wasDataSend]);
 
   return (
     <div className="contaniner profileContainer editProfileContainer">
@@ -44,8 +44,8 @@ const EditProfile = () => {
           </button>
         </div>
       </div>
-      {loading && <PulseLoader size={35} color={'hsla(94, 30%, 43%, 1)'} />}
-      {!loading && !error && <EditProfileFormik user={user} />}
+      {isLoading && <PulseLoader size={35} color={'hsla(94, 30%, 43%, 1)'} />}
+      {!isLoading && !isError && <EditProfileFormik user={user} />}
     </div>
   );
 };
