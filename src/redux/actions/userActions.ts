@@ -29,6 +29,8 @@ import {
   USER_REMOVE_FAILED,
   USER_REMOVE_SUCCESS,
   IUserRemoveDispatchTypes,
+  IUserUpdateData,
+  IUserRemoveCookieToken,
 } from '../constans/userConstans';
 import {
   getIdToken,
@@ -43,17 +45,27 @@ import {
 import { httpRequest } from '../../utility/httpRequest';
 import Cookies from 'universal-cookie';
 import { Dispatch } from 'redux'
-import { IUserSignOutDispatchTypes } from '../constans/userConstans';
+import {
+  IUserSignOutDispatchTypes,
+  IUserReloadConfirmEmailState,
+  IUserReloadFirebase,
+  IUserSendVerificationEmail,
+  IUserSendEmailToResetPassword,
+  IUserSaveEditedData,
+  IUserCreateByPassword,
+  IUserSigninSocialMedia,
+  IUserSigninByEmail,
+  ErrorResponse
+} from '../constans/userConstans';
 import { IUserBaseMongoBD } from '../../models/userInterfaces';
 
-
 export const userSignInByEmailAction = (values: any, setErrors: any, resetForm: any) => async (
-  dispatch: Dispatch
+  dispatch: Dispatch<IUserSigninByEmail>
 ) => {
   try {
     dispatch({
       type: USER_SIGNIN_REQUEST,
-      payload: { provider: 'email' },
+      payload: null
     });
 
     const userAuth = await signInEmailPassword(values);
@@ -61,22 +73,23 @@ export const userSignInByEmailAction = (values: any, setErrors: any, resetForm: 
     const user = userAuth.user;
 
     const idToken = await getIdToken();
+    if (user != null) {
 
-    dispatch({
-      type: USER_SIGNIN_SUCCESS,
-      payload: {
-        user: {
-          isNewUser: additionalUserInfo?.isNewUser,
-          providerId: additionalUserInfo?.providerId,
-          email: user?.email,
-          emailVerified: user?.emailVerified,
-          uid: user?.uid,
+      dispatch({
+        type: USER_SIGNIN_SUCCESS,
+        payload: {
+          user: {
+            isNewUser: additionalUserInfo?.isNewUser,
+            providerId: additionalUserInfo!.providerId,
+            email: user.email!,
+            emailVerified: user!.emailVerified,
+            uid: user!.uid,
+          },
+          idToken: idToken,
         },
-        idToken: idToken,
-      },
-    });
-
-    resetForm();
+      });
+      resetForm();
+    }
   } catch (error) {
     setErrors(
       { [error.input]: [error.message] } || {
@@ -84,20 +97,27 @@ export const userSignInByEmailAction = (values: any, setErrors: any, resetForm: 
         message: error.message,
       }
     );
+
+    const errorResponse: ErrorResponse = {
+      errorMessage: error.message,
+    }
+
     dispatch({
       type: USER_SIGNIN_FAILED,
-      payload: { user: {}, error: error.message },
+      payload: {
+        error: errorResponse
+      },
     });
   }
 };
 
-export const userSignInSocilaMedialAction = (values: any) => async (dispatch: Dispatch) => {
+export const userSignInSocilaMedialAction = (values: any) => async (dispatch: Dispatch<IUserSigninSocialMedia>) => {
   try {
     dispatch({
       type: USER_SIGNIN_REQUEST,
-      payload: { provider: values },
+      payload: null,
     });
-    // firebase did not define nested types for profile, so it is of type any
+    // firebase didn't define nested types for profile, so it is type any
     const uesrAuth: any = await signInSocialMedia(values);
     const {
       additionalUserInfo,
@@ -153,10 +173,14 @@ export const userSignInSocilaMedialAction = (values: any) => async (dispatch: Di
     }
 
   } catch (error) {
+
+    const errorResponse: ErrorResponse = {
+      errorMessage: error.message,
+    }
     dispatch({
       type: USER_SIGNIN_FAILED,
       payload: {
-        errorMessage: error.message,
+        error: errorResponse,
       },
     });
   }
@@ -165,28 +189,31 @@ export const createUserByEmialPasswordAction = (
   values: any,
   setErrors: any,
   resetForm: any
-) => async (dispatch: Dispatch) => {
+) => async (dispatch: Dispatch<IUserCreateByPassword>) => {
   try {
     dispatch({
       type: USER_CREATE_REQUEST,
+      payload: null
     });
 
     const userAuth = await createUserEmailPassword(values);
     const { additionalUserInfo, user } = userAuth;
     const idToken = await getIdToken();
-    dispatch({
-      type: USER_CREATE_SUCCESS,
-      payload: {
-        user: {
-          isNewUser: additionalUserInfo?.isNewUser,
-          providerId: additionalUserInfo?.providerId,
-          email: user?.email,
-          emailVerified: user?.emailVerified,
-          uid: user?.uid,
+    if (user) {
+      dispatch({
+        type: USER_CREATE_SUCCESS,
+        payload: {
+          user: {
+            isNewUser: additionalUserInfo!.isNewUser,
+            providerId: additionalUserInfo!.providerId,
+            email: user.email!,
+            emailVerified: user.emailVerified,
+            uid: user.uid,
+          },
+          idToken: idToken,
         },
-        idToken: idToken,
-      },
-    });
+      });
+    }
   } catch (error) {
     setErrors({ [error.input]: [error.message] });
     dispatch({
@@ -197,10 +224,8 @@ export const createUserByEmialPasswordAction = (
 };
 
 export const seveEditedUserDataAction = (values: any, userParam: any) => async (
-  dispach: Dispatch
+  dispach: Dispatch<IUserSaveEditedData>
 ) => {
-  // console.log("<- LOG -> file: userActions.js -> line 191 -> userParam", userParam)
-  // console.log("<- LOG -> file: userActions.js -> line 191 -> values", values)
 
   const user = {
     id: userParam.id,
@@ -216,16 +241,18 @@ export const seveEditedUserDataAction = (values: any, userParam: any) => async (
   };
   dispach({
     type: SAVE_EDITED_USER_DATA_REQUEST,
-    payload: {},
+    payload: null
   });
   try {
     const data = await httpRequest('user/updateEditedData', 'patch', user);
+
     const dataUser = await data.user;
-    console.log('data Action ', data);
-    console.log('re', dataUser);
+
     dispach({
       type: SAVE_EDITED_USER_DATA_SUCCESS,
-      payload: dataUser,
+      payload: {
+        user: dataUser
+      },
     });
   } catch (error) {
     console.log('error', error);
@@ -241,21 +268,21 @@ export const sendEmailToResetPasswordAction = (
   setResetPasswordModalShow: any,
   setErrors: any,
   resetForm: any
-) => async (dispach: Dispatch) => {
+) => async (dispach: Dispatch<IUserSendEmailToResetPassword>) => {
   try {
     dispach({
       type: USER_RESET_PASSWORD_REQUEST,
       payload: {
-        loading: true,
-        error: false,
+        isLoading: true,
+        isError: false,
       },
     });
     await sendEmailToResetPassword(values.email);
     dispach({
       type: USER_RESET_PASSWORD_SUCCESS,
       payload: {
-        loading: false,
-        error: false,
+        isLoading: false,
+        isError: false,
         Message: 'send email to reset password',
       },
     });
@@ -266,32 +293,47 @@ export const sendEmailToResetPasswordAction = (
     dispach({
       type: USER_RESET_PASSWORD_FAILED,
       payload: {
-        loading: false,
-        error: true,
-        errorMessage: error.message,
+        isLoading: false,
+        isError: true,
+        error: error.message,
       },
     });
   }
 };
 
-export const sendVerificationEmailAction = () => async (dispach: Dispatch) => {
+export const sendVerificationEmailAction = () => async (dispach: Dispatch<IUserSendVerificationEmail>) => {
   try {
-    dispach({ type: VERIFICATION_EMAIL_SEND_REQUEST });
+    dispach({
+      type: VERIFICATION_EMAIL_SEND_REQUEST,
+      payload: null
+    });
     await sendVerificationEmail();
-    dispach({ type: VERIFICATION_EMAIL_SEND_SUCCESS });
+    dispach({
+      type: VERIFICATION_EMAIL_SEND_SUCCESS,
+      payload: null
+    });
   } catch (error) {
-    dispach({ type: VERIFICATION_EMAIL_SEND_FAILED, payload: error.message });
+    dispach({
+      type: VERIFICATION_EMAIL_SEND_FAILED,
+      payload: error.message
+    });
   }
 };
 
-export const reloadUserAuthDataAction = () => async (dispatch: Dispatch) => {
+export const reloadUserAuthDataAction = () => async (dispatch: Dispatch<IUserReloadFirebase>) => {
   try {
-    dispatch({ type: USER_RELOAD_REQUEST });
-    const reloadUser = await reloadUserAuth();
     dispatch({
-      type: USER_RELOAD_SUCCESS,
-      payload: reloadUser,
+      type: USER_RELOAD_REQUEST,
+      payload: null
     });
+    const reloadUser = await reloadUserAuth();
+
+    if (reloadUser != null) {
+      dispatch({
+        type: USER_RELOAD_SUCCESS,
+        payload: reloadUser,
+      });
+    }
   } catch (error) {
     dispatch({
       type: USER_RELOAD_FAILED,
@@ -299,14 +341,20 @@ export const reloadUserAuthDataAction = () => async (dispatch: Dispatch) => {
     });
   }
 };
-export const reloadConfirmEmalStateAction = () => async (dispatch: Dispatch) => {
+export const reloadConfirmEmalStateAction = () => async (dispatch: Dispatch<IUserReloadConfirmEmailState>) => {
   try {
-    dispatch({ type: LOAD_CONFIRM_EMAIL_STATE_REQUEST });
-    const reloadUser = await reloadUserAuth();
     dispatch({
-      type: LOAD_CONFIRM_EMAIL_STATE_SUCCESS,
-      payload: reloadUser?.emailVerified,
+      type: LOAD_CONFIRM_EMAIL_STATE_REQUEST,
+      payload: null
     });
+    const reloadUser = await reloadUserAuth();
+
+    if (reloadUser?.emailVerified) {
+      dispatch({
+        type: LOAD_CONFIRM_EMAIL_STATE_SUCCESS,
+        payload: reloadUser!,
+      });
+    }
   } catch (error) {
     dispatch({
       type: LOAD_CONFIRM_EMAIL_STATE_FAILED,
@@ -315,13 +363,13 @@ export const reloadConfirmEmalStateAction = () => async (dispatch: Dispatch) => 
   }
 };
 
-export const updataOwnDataUserAction = (user: any) => (dispatch: Dispatch) => {
+export const updateOwnDataUserAction = (user: any) => (dispatch: Dispatch<IUserUpdateData>) => {
   dispatch({
     type: USER_UPDATE_OWN_DATA,
     payload: user,
   });
 };
-export const userRemoveCookieTokenAction = (dispatch: Dispatch) => {
+export const userRemoveCookieTokenAction = (dispatch: Dispatch<IUserRemoveCookieToken>) => {
   const cookies = new Cookies();
   cookies.remove('idToken', {
     path: '/',
@@ -333,11 +381,15 @@ export const userRemoveCookieTokenAction = (dispatch: Dispatch) => {
 
 export const userSignOutAction = async (dispatch: Dispatch<IUserSignOutDispatchTypes>) => {
   try {
-    dispatch({ type: USER_LOGUOT_REQUEST });
+    dispatch({
+      type: USER_LOGUOT_REQUEST,
+      payload: null
+    });
 
     await signOutFirebase();
     dispatch({
-      type: USER_LOGUOT_SUCCESS
+      type: USER_LOGUOT_SUCCESS,
+      payload: null
     });
   } catch (error) {
     dispatch({
@@ -352,6 +404,7 @@ export const userRemoveAction = (user: IUserBaseMongoBD) => async (dispatch: Dis
   try {
     dispatch({
       type: USER_REMOVE_REQUEST,
+      payload: null
     })
     const dataUserRemove = await httpRequest('user/deleteUser', 'delete', user);
 

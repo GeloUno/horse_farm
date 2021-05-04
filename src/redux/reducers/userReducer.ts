@@ -1,4 +1,4 @@
-import { IUserInitialState } from '../../models/userInterfaces';
+import { IUser } from '../../models/userInterfaces';
 import {
   USER_CREATE_REQUEST,
   USER_CREATE_FAILED,
@@ -28,91 +28,104 @@ import {
   USER_REMOVE_REQUEST,
   USER_REMOVE_FAILED,
   USER_REMOVE_SUCCESS,
+  IUserDispacheType,
 } from '../constans/userConstans';
 
-export interface IUserState {
-  user: Partial<IUserInitialState>,
+
+export interface IBaseState {
   isLoading: boolean,
   isError: boolean,
-  errorMessage: string,
-  idToken: string | undefined
+  errorMessage: string | null,
+  idToken: string | null,
 }
 
-const initialState: IUserState = {
-  user: {
-    email: undefined,
-    emailVerified: undefined,
-    isNewUser: undefined,
-    providerId: undefined
+// export interface IUserDefaultState extends IBaseState {
+//   user: IUser,
+// }
+export interface IUserInitialState extends IBaseState {
+  // user: Partial<IUser>,
+  user: Partial<IUser>,
+  // user: IUser | null,
+}
 
-  },
+const initialState: IUserInitialState = {
+  user: {},
   isLoading: false,
   isError: false,
-  errorMessage: "",
-  idToken: undefined
+  errorMessage: null,
+  idToken: null
 };
 
-const userReducer = (state: IUserState = initialState, action: any) => {
-  const { type, payload } = action;
-  switch (type) {
+const userReducer = (state: IUserInitialState = initialState, action: IUserDispacheType): IUserInitialState => {
+  // const { type } = action;
+  switch (action.type) {
     case USER_CREATE_REQUEST:
-      return { ...state, ...payload };
+      return { ...state };
     case USER_CREATE_FAILED:
-      return { ...state, ...payload };
+      return { ...state, ...action.payload.error };
     case USER_CREATE_SUCCESS:
-      return { ...state, ...payload };
+      return { ...state, ...action.payload };
 
     case USER_SIGNIN_REQUEST:
       return {
         ...state,
-        loading: true,
-        error: false,
-        user: {},
-        errorMessage: '',
-        provider: payload.provider,
-        idToken: false,
+        isLoading: true,
+        isError: false,
+        user: {
+          email: undefined,
+          providerId: undefined,
+          emailVerified: undefined,
+          isNewUser: undefined
+        },
+        errorMessage: null,
+        idToken: null,
       };
     case USER_SIGNIN_SUCCESS:
       return {
         ...state,
-        loading: false,
-        error: false,
-        errorMessage: '',
-        user: payload.user,
-        idToken: payload.idToken,
+        isLoading: false,
+        isError: false,
+        errorMessage: null,
+        user: action.payload.user,
+        idToken: action.payload.idToken,
       };
     case USER_SIGNIN_FAILED:
       return {
         ...state,
-        loading: false,
-        error: true,
-        errorMessage: payload.errorMessage,
-        idToken: '',
-        user: {},
+        isLoading: false,
+        isError: true,
+        errorMessage: action.payload.error.errorMessage,
+        idToken: null,
+        user: {
+          email: undefined,
+          providerId: undefined,
+          emailVerified: undefined,
+          isNewUser: undefined
+        },
       };
     case LOAD_CONFIRM_EMAIL_STATE_REQUEST:
       return {
         ...state,
-        loading: true,
-        error: false,
+        isLoading: true,
+        isError: false,
       };
     case LOAD_CONFIRM_EMAIL_STATE_SUCCESS:
       return {
         ...state,
-        loading: false,
-        error: false,
+        isLoading: false,
+        isError: false,
         user: {
           ...state.user,
-          emailVerified: payload,
+          emailVerified: action.payload.emailVerified,
         },
         // idToken:
       };
     case LOAD_CONFIRM_EMAIL_STATE_FAILED:
       return {
         ...state,
-        loading: false,
-        error: true,
-        errorMessage: payload.errorMessage,
+        isLoading: false,
+        isError: true,
+        errorMessage: action.payload.errorMessage,
         // user: {},
         idToken: null,
       };
@@ -120,8 +133,8 @@ const userReducer = (state: IUserState = initialState, action: any) => {
     case SAVE_EDITED_USER_DATA_REQUEST:
       return {
         ...state,
-        loading: true,
-        error: false,
+        isLoading: true,
+        isError: false,
         user: {
           ...state.user,
         },
@@ -129,25 +142,30 @@ const userReducer = (state: IUserState = initialState, action: any) => {
     case SAVE_EDITED_USER_DATA_SUCCESS:
       return {
         ...state,
-        loading: false,
-        error: false,
+        isLoading: false,
+        isError: false,
         user: {
           ...state.user,
-          firstName: payload.firstName,
-          lastName: payload.lastName,
-          phone: payload.phone,
-          nick: payload.nick,
-          opinion: payload.opinion,
-          email: payload.email,
+          firstName: action.payload.user.firstName,
+          lastName: action.payload.user.lastName,
+          phone: action.payload.user.phone,
+          nick: action.payload.user.nick,
+          opinion: action.payload.user.opinion,
+          email: action.payload.user.email,
         },
       };
     case SAVE_EDITED_USER_DATA_FAILED:
       return {
         ...state,
-        loading: false,
-        error: true,
-        errorMessage: payload.errorMessage,
-        user: {},
+        isLoading: false,
+        isError: true,
+        errorMessage: action.payload.error.errorMessage,
+        user: {
+          email: undefined,
+          providerId: undefined,
+          emailVerified: undefined,
+          isNewUser: undefined
+        },
       };
 
     case USER_UPDATE_OWN_DATA:
@@ -155,103 +173,116 @@ const userReducer = (state: IUserState = initialState, action: any) => {
         ...state,
         user: {
           ...state.user,
-          email: payload.user.email,
-          id: payload.user.id,
-          credits: payload.user.credits,
-          isAccessToMakeBooking: payload.user.isAccessToMakeBooking,
-          isManualOwnDataUser: payload.user.isManualOwnDataUser,
-          firstName: payload.user.firstName || undefined,
-          lastName: payload.user.lastName || undefined,
-          phone: payload.user.phone || undefined,
-          nick: payload.user.nick || undefined,
-          opinion: payload.user.opinion || undefined,
+          email: action.payload.user.email,
+          id: action.payload.user.id,
+          credits: action.payload.user.credits,
+          isAccessToMakeBooking: action.payload.user.isAccessToMakeBooking,
+          isManualOwnDataUser: action.payload.user.isManualOwnDataUser,
+          firstName: action.payload.user.firstName || undefined,
+          lastName: action.payload.user.lastName || undefined,
+          phone: action.payload.user.phone || undefined,
+          nick: action.payload.user.nick || undefined,
+          opinion: action.payload.user.opinion || undefined,
         },
       };
 
     case USER_RELOAD_REQUEST:
       return {
         ...state,
-        loading: true,
-        error: false,
+        isLoading: true,
+        isError: false,
       };
     case USER_RELOAD_SUCCESS:
       return {
         ...state,
-        loading: false,
-        error: false,
+        isLoading: false,
+        isError: false,
         user: {
           ...state.user,
-          isNewUser: payload.isNewUser,
-          providerId: payload.providerData[0].providerId,
-          email: payload.email,
-          uid: payload.uid,
-          emailVerified: payload.emailVerified,
+          isNewUser: action.payload.isNewUser!,
+          // providerId: action.payload?.providerData[0].providerId,
+          providerId: action.payload.providerId!,
+          email: action.payload.email!,
+          uid: action.payload.uid!,
+          emailVerified: action.payload.emailVerified!,
         },
         // idToken:
       };
     case USER_RELOAD_FAILED:
       return {
         ...state,
-        loading: false,
-        error: true,
-        errorMessage: payload.errorMessage,
+        isLoading: false,
+        isError: true,
+        errorMessage: action.payload.errorMessage,
         // user: {},
         idToken: null,
       };
     case USER_RESET_PASSWORD_REQUEST:
-      return { ...state, ...payload };
+      return { ...state, ...action.payload };
     case USER_RESET_PASSWORD_SUCCESS:
-      return { ...state, ...payload };
+      return { ...state, ...action.payload };
     case USER_RESET_PASSWORD_FAILED:
-      return { ...state, ...payload };
+      return { ...state, ...action.payload };
 
     case VERIFICATION_EMAIL_SEND_REQUEST:
-      return { ...state, loading: true, error: false };
+      return { ...state, isLoading: true, isError: false };
     case VERIFICATION_EMAIL_SEND_SUCCESS:
-      return { ...state, loading: false, error: false };
+      return { ...state, isLoading: false, isError: false };
     case VERIFICATION_EMAIL_SEND_FAILED:
-      return { ...state, loading: false, error: true, errorMessage: payload };
+      return { ...state, isLoading: false, isError: true, errorMessage: action.payload.errorMessage };
 
     case USER_LOGUOT_REQUEST:
-      return { ...state, ...payload };
+      return { ...state };
     case USER_LOGUOT_FAILED:
-      return { ...state, ...payload };
+      return { ...state, ...action.payload };
     case USER_LOGUOT_SUCCESS:
       return {
-        loading: false,
-        error: false,
-        errorMessage: '',
+        isLoading: false,
+        isError: false,
+        errorMessage: null,
         idToken: null,
-        user: {},
+        user: {
+          email: undefined,
+          providerId: undefined,
+          emailVerified: undefined,
+          isNewUser: undefined
+        },
       };
     case USER_REMOVE_REQUEST:
       return {
         ...state,
-        loading: true,
-        error: false,
+        isLoading: true,
+        isError: false,
       };
     case USER_REMOVE_FAILED:
       return {
         ...state,
-        loading: false,
-        error: true,
-        errorMessage: payload.errorMessage,
+        isLoading: false,
+        isError: true,
+        errorMessage: action.payload.error.errorMessage,
         // user: {},
       };
     case USER_REMOVE_SUCCESS:
       return {
         ...state,
-        loading: false,
-        error: false,
-        errorMessage: '',
-        // idToken: null,
-        // user: {},
+        isLoading: false,
+        isError: false,
+        errorMessage: null,
+        idToken: null,
+        user: {
+          // user is logout after 5 second or click confirm button
+          // email:undefined,
+          // providerId:undefined,
+          // emailVerified:undefined,
+          // isNewUser:undefined,
+          ...state.user
+        },
       };
 
     default:
       process.env.NODE_ENV === 'development' &&
         console.log('Redux Default', process.env.NODE_ENV);
-      console.log('Redux Default TYPE', type);
+      console.log('Redux Default TYPE', action);
       return state;
   }
 };

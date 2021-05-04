@@ -1,5 +1,5 @@
 
-import { IUserRemove } from '../../models/userInterfaces';
+import { IUserRemove, IUserReloadConfirmEmail, IUserBaseFirebase, WithNullType, IUser } from '../../models/userInterfaces';
 
 export const USER_CREATE_REQUEST = 'USER_CREATE_REQUEST';
 export const USER_CREATE_FAILED = 'USER_CREATE_FAILED';
@@ -57,13 +57,41 @@ export interface ErrorResponse {
 }
 
 
-interface IUserSignOutRequest {
-  type: typeof USER_LOGUOT_REQUEST
+
+
+export interface IUserCreateByPasswordRequest {
+  type: typeof USER_CREATE_REQUEST,
+  payload: null
 }
-interface IUserSignOutSuccess {
+
+export interface IUserCreateByPasswordSuccess {
+  type: typeof USER_CREATE_SUCCESS,
+  payload: {
+    user: IUserBaseFirebase
+  }
+}
+
+export interface IUserCreateByPasswordFailed {
+  type: typeof USER_CREATE_FAILED,
+  payload: {
+    error: ErrorResponse
+  }
+}
+
+export type IUserCreateByPassword =
+  IUserCreateByPasswordRequest | IUserCreateByPasswordSuccess |
+  IUserCreateByPasswordFailed
+
+
+export interface IUserSignOutRequest {
+  type: typeof USER_LOGUOT_REQUEST,
+  payload: null
+}
+export interface IUserSignOutSuccess {
   type: typeof USER_LOGUOT_SUCCESS,
+  payload: null
 }
-interface IUserSignOutFailed {
+export interface IUserSignOutFailed {
   type: typeof USER_LOGUOT_FAILED,
   payload:
   {
@@ -76,16 +104,17 @@ export type IUserSignOutDispatchTypes = IUserSignOutRequest | IUserSignOutSucces
 
 
 
-interface IUserRemoveRequest {
-  type: typeof USER_REMOVE_REQUEST
+export interface IUserRemoveRequest {
+  type: typeof USER_REMOVE_REQUEST,
+  payload: null
 }
-interface IUserRemoveSuccess {
+export interface IUserRemoveSuccess {
   type: typeof USER_REMOVE_SUCCESS,
   payload: {
     user: IUserRemove
   }
 }
-interface IUserRemoveFailed {
+export interface IUserRemoveFailed {
   type: typeof USER_REMOVE_FAILED,
   payload:
   {
@@ -94,3 +123,202 @@ interface IUserRemoveFailed {
 }
 
 export type IUserRemoveDispatchTypes = IUserRemoveRequest | IUserRemoveSuccess | IUserRemoveFailed;
+
+
+export interface IUserUpdateOwnData {
+  type: typeof USER_UPDATE_OWN_DATA,
+  payload: {
+    user: IUser
+  }
+}
+
+export type IUserUpdateData = IUserUpdateOwnData;
+
+
+export interface IUserRemoveCookieToken {
+  type: typeof USER_COOKE_TOKEN_REMOVE
+}
+
+
+
+export interface IUserReloadConfirmEmailStateRequest {
+  type: typeof LOAD_CONFIRM_EMAIL_STATE_REQUEST,
+  payload: null
+}
+
+export interface IUserReloadConfirmEmailStateSuccess {
+  type: typeof LOAD_CONFIRM_EMAIL_STATE_SUCCESS,
+  payload: IUserReloadConfirmEmail
+}
+
+export interface IUserReloadConfirmEmailStateFailed {
+  type: typeof LOAD_CONFIRM_EMAIL_STATE_FAILED,
+  payload: ErrorResponse
+}
+
+export type IUserReloadConfirmEmailState =
+  IUserReloadConfirmEmailStateRequest | IUserReloadConfirmEmailStateSuccess |
+  IUserReloadConfirmEmailStateFailed
+
+export interface IUserReloadFirebaseRequest {
+  type: typeof USER_RELOAD_REQUEST,
+  payload: null
+}
+
+export interface IUserReloadFirebaseSuccess {
+  type: typeof USER_RELOAD_SUCCESS,
+  payload: WithNullType<IUserBaseFirebase>
+}
+
+export interface IUserReloadFirebaseFailed {
+  type: typeof USER_RELOAD_FAILED,
+  payload: ErrorResponse
+}
+
+export type IUserReloadFirebase =
+  IUserReloadFirebaseRequest | IUserReloadFirebaseSuccess |
+  IUserReloadFirebaseFailed
+
+
+export interface IUserSendVerificationEmailRequest {
+  type: typeof VERIFICATION_EMAIL_SEND_REQUEST,
+  payload: null
+}
+
+export interface IUserSendVerificationEmailSuccess {
+  type: typeof VERIFICATION_EMAIL_SEND_SUCCESS,
+  payload: null
+}
+
+export interface IUserSendVerificationEmailFailed {
+  type: typeof VERIFICATION_EMAIL_SEND_FAILED,
+  payload: ErrorResponse
+}
+
+export type IUserSendVerificationEmail =
+  IUserSendVerificationEmailRequest | IUserSendVerificationEmailSuccess |
+  IUserSendVerificationEmailFailed
+
+
+export interface IUserSendEmailToResetPasswordRequest {
+  type: typeof USER_RESET_PASSWORD_REQUEST,
+  payload: {
+    isLoading: boolean,
+    isError: boolean
+  }
+}
+
+export interface IUserSendEmailToResetPasswordSuccess {
+  type: typeof USER_RESET_PASSWORD_SUCCESS,
+  payload: {
+    isLoading: boolean,
+    isError: boolean,
+    Message: string
+  }
+}
+
+export interface IUserSendEmailToResetPasswordFailed {
+  type: typeof USER_RESET_PASSWORD_FAILED,
+  payload: {
+    isLoading: boolean,
+    isError: boolean,
+    error: ErrorResponse
+  }
+}
+
+export type IUserSendEmailToResetPassword =
+  IUserSendEmailToResetPasswordRequest | IUserSendEmailToResetPasswordSuccess |
+  IUserSendEmailToResetPasswordFailed
+
+
+export interface IUserSaveEditedDataRequest {
+  type: typeof SAVE_EDITED_USER_DATA_REQUEST,
+  payload: null
+}
+
+export interface IUserSaveEditedDataSuccess {
+  type: typeof SAVE_EDITED_USER_DATA_SUCCESS,
+  payload: {
+    user: Partial<IUser>
+  }
+}
+
+export interface IUserSaveEditedDataFailed {
+  type: typeof SAVE_EDITED_USER_DATA_FAILED,
+  payload: {
+    error: ErrorResponse
+  }
+}
+
+export type IUserSaveEditedData =
+  IUserSaveEditedDataRequest | IUserSaveEditedDataSuccess |
+  IUserSaveEditedDataFailed
+
+
+
+
+export interface IUserSigninSocialMediaRequest {
+  type: typeof USER_SIGNIN_REQUEST,
+  payload: null
+}
+
+export interface IUserSigninSocialMediaSuccess {
+  type: typeof USER_SIGNIN_SUCCESS,
+  payload: {
+    user: IUser,
+    idToken: string
+  },
+}
+
+export interface IUserSigninSocialMediaFailed {
+  type: typeof USER_SIGNIN_FAILED,
+  payload: {
+    error: ErrorResponse
+  }
+}
+
+export type IUserSigninSocialMedia =
+  IUserSigninSocialMediaRequest | IUserSigninSocialMediaSuccess |
+  IUserSigninSocialMediaFailed
+
+
+export interface IUserSigninByEmailRequest {
+  type: typeof USER_SIGNIN_REQUEST,
+  payload: null
+}
+
+export interface IUserSigninByEmailSuccess {
+  type: typeof USER_SIGNIN_SUCCESS,
+  payload: {
+    user: IUserBaseFirebase,
+    idToken: string
+  },
+}
+
+export interface IUserSigninByEmailFailed {
+  type: typeof USER_SIGNIN_FAILED,
+  payload: {
+    error: ErrorResponse
+  }
+}
+
+
+
+export type IUserSigninByEmail =
+  IUserSigninByEmailRequest | IUserSigninByEmailSuccess |
+  IUserSigninByEmailFailed
+
+
+export type IUserDispacheType =
+  | IUserSigninByEmail
+  | IUserSigninSocialMedia
+  | IUserCreateByPassword
+  | IUserSaveEditedData
+  | IUserSendEmailToResetPassword
+  | IUserSendEmailToResetPassword
+  | IUserSendVerificationEmail
+  | IUserReloadFirebase
+  | IUserReloadConfirmEmailState
+  | IUserRemoveDispatchTypes
+  | IUserSignOutDispatchTypes
+  | IUserUpdateData
