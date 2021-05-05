@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import Cookies from 'universal-cookie';
+// import Cookies from 'universal-cookie';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -10,7 +10,7 @@ import { userRemoveCookieTokenAction, userSignOutAction } from '../redux/actions
 
 export const NavList = ({
   loginModalToggle,
-  isAuthenticated,
+  // isAuthenticated,
   setSectionPage,
 }) => {
   const history = useHistory();
@@ -35,6 +35,26 @@ export const NavList = ({
       window.scrollTo({ left: 0, top: 0, behavior: 'smooth' });
     }
   };
+
+  const renderSwitchNavList = (userAccess) => {
+    switch (userAccess) {
+      case 'user':
+        return userLinks
+        break;
+      case 'coach':
+        return coachLinks
+        break;
+      case 'owner':
+        return ownerLinks
+        break;
+      case 'admin':
+        return adminLinks
+        break;
+      default:
+        return guestLinks
+        break;
+    }
+  }
 
   const guestLinks = (
     <Fragment>
@@ -216,5 +236,306 @@ export const NavList = ({
       </li>
     </Fragment>
   );
-  return <Fragment>{isAuthenticated ? userLinks : guestLinks}</Fragment>;
+
+  // TODO: ADD REAL LINKS FOR COACH
+  const coachLinks = (
+    <Fragment>
+      <li>
+        <h2>
+          <Link
+            to="/"
+            className="sm-hiden"
+            onClick={() => {
+              onHandleClickJumptoSectionOrTop();
+            }}
+          >
+            Główna
+          </Link>
+        </h2>
+      </li>
+      <li>
+        <h2>
+          <Link
+            to="/profil"
+            className="sm-hiden"
+            onClick={() => {
+              onHandleClickJumptoSectionOrTop(null);
+            }}
+          >
+            Profil
+          </Link>
+        </h2>
+      </li>
+      <li>
+        <h2>
+          <Link
+            to="/planer"
+            className="sm-hiden"
+            onClick={() => {
+              onHandleClickJumptoSectionOrTop(null);
+            }}
+          >
+            Planer
+          </Link>
+        </h2>
+      </li>
+      <li>
+        <h2>
+          <Link
+            to="/rezerwacja"
+            className="sm-hiden"
+            onClick={() => {
+              onHandleClickJumptoSectionOrTop(null);
+            }}
+          >
+            Rezerwacja
+          </Link>
+        </h2>
+      </li>
+      <li>
+        <h2>
+          <Link
+            to="/galeria"
+            className="sm-hiden"
+            onClick={() => {
+              onHandleClickJumptoSectionOrTop(null);
+            }}
+          >
+            Terener
+          </Link>
+        </h2>
+      </li>
+      <li>
+        <h2
+          onClick={() => {
+            handleSignOut();
+          }}
+        >
+          <Link
+            to=""
+            className="sm-hiden"
+            onClick={() => {
+              dispatch(userSignOutAction);
+              dispatch(userRemoveCookieTokenAction);
+              // cookies.remove('idToken', {
+              //   path: '/',
+              // });
+            }}
+          >
+            <i className="fas fa-sign-out-alt"></i>
+            Wyloguj
+          </Link>
+          {user && user.photoId && (
+            <img
+              className="navbarUserPhoto "
+              src={user.photoId}
+              alt="zdjęcie użytkownika"
+            />
+          )}
+        </h2>
+      </li>
+    </Fragment>
+  );
+
+  // TODO: ADD REAL LINKS FOR OWNER
+  const ownerLinks = (
+    <Fragment>
+      <li>
+        <h2>
+          <Link
+            to="/"
+            className="sm-hiden"
+            onClick={() => {
+              onHandleClickJumptoSectionOrTop();
+            }}
+          >
+            Główna
+          </Link>
+        </h2>
+      </li>
+      <li>
+        <h2>
+          <Link
+            to="/profil"
+            className="sm-hiden"
+            onClick={() => {
+              onHandleClickJumptoSectionOrTop(null);
+            }}
+          >
+            Profil
+          </Link>
+        </h2>
+      </li>
+      <li>
+        <h2>
+          <Link
+            to="/planer"
+            className="sm-hiden"
+            onClick={() => {
+              onHandleClickJumptoSectionOrTop(null);
+            }}
+          >
+            Planer
+          </Link>
+        </h2>
+      </li>
+      <li>
+        <h2>
+          <Link
+            to="/rezerwacja"
+            className="sm-hiden"
+            onClick={() => {
+              onHandleClickJumptoSectionOrTop(null);
+            }}
+          >
+            Rezerwacja
+          </Link>
+        </h2>
+      </li>
+      <li>
+        <h2>
+          <Link
+            to="/galeria"
+            className="sm-hiden"
+            onClick={() => {
+              onHandleClickJumptoSectionOrTop(null);
+            }}
+          >
+            Właściciel
+          </Link>
+        </h2>
+      </li>
+      <li>
+        <h2
+          onClick={() => {
+            handleSignOut();
+          }}
+        >
+          <Link
+            to=""
+            className="sm-hiden"
+            onClick={() => {
+              dispatch(userSignOutAction);
+              dispatch(userRemoveCookieTokenAction);
+              // cookies.remove('idToken', {
+              //   path: '/',
+              // });
+            }}
+          >
+            <i className="fas fa-sign-out-alt"></i>
+            Wyloguj
+          </Link>
+          {user && user.photoId && (
+            <img
+              className="navbarUserPhoto "
+              src={user.photoId}
+              alt="zdjęcie użytkownika"
+            />
+          )}
+        </h2>
+      </li>
+    </Fragment>
+  );
+
+  // TODO: ADD REAL LINKS FOR ADMIN
+  const adminLinks = (
+    <Fragment>
+      <li>
+        <h2>
+          <Link
+            to="/"
+            className="sm-hiden"
+            onClick={() => {
+              onHandleClickJumptoSectionOrTop();
+            }}
+          >
+            Główna
+          </Link>
+        </h2>
+      </li>
+      <li>
+        <h2>
+          <Link
+            to="/profil"
+            className="sm-hiden"
+            onClick={() => {
+              onHandleClickJumptoSectionOrTop(null);
+            }}
+          >
+            Profil
+          </Link>
+        </h2>
+      </li>
+      <li>
+        <h2>
+          <Link
+            to="/planer"
+            className="sm-hiden"
+            onClick={() => {
+              onHandleClickJumptoSectionOrTop(null);
+            }}
+          >
+            Planer
+          </Link>
+        </h2>
+      </li>
+      <li>
+        <h2>
+          <Link
+            to="/rezerwacja"
+            className="sm-hiden"
+            onClick={() => {
+              onHandleClickJumptoSectionOrTop(null);
+            }}
+          >
+            Użytkownicy
+          </Link>
+        </h2>
+      </li>
+      <li>
+        <h2>
+          <Link
+            to="/galeria"
+            className="sm-hiden"
+            onClick={() => {
+              onHandleClickJumptoSectionOrTop(null);
+            }}
+          >
+            Administrator
+          </Link>
+        </h2>
+      </li>
+      <li>
+        <h2
+          onClick={() => {
+            handleSignOut();
+          }}
+        >
+          <Link
+            to=""
+            className="sm-hiden"
+            onClick={() => {
+              dispatch(userSignOutAction);
+              dispatch(userRemoveCookieTokenAction);
+              // cookies.remove('idToken', {
+              //   path: '/',
+              // });
+            }}
+          >
+            <i className="fas fa-sign-out-alt"></i>
+            Wyloguj
+          </Link>
+          {user && user.photoId && (
+            <img
+              className="navbarUserPhoto "
+              src={user.photoId}
+              alt="zdjęcie użytkownika"
+            />
+          )}
+        </h2>
+      </li>
+    </Fragment>
+  );
+  // return <Fragment>{user.entityAccess ? userLinks : guestLinks}</Fragment>;
+  return <Fragment>{renderSwitchNavList(user.entityAccess)}</Fragment>;
 };

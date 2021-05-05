@@ -5,7 +5,7 @@ import { NavList } from '../../Layout/NavList';
 const SideBar = ({
   sideBarToggle,
   loginModalToggle,
-  isAuthenticated,
+  // isAuthenticated,
   setSectionPage,
 }) => {
   const userAuth = useSelector((state) => state.userAction);
@@ -53,7 +53,7 @@ const SideBar = ({
         <div className="linksSideNavBar">
           <ul>
             <NavList
-              isAuthenticated={isAuthenticated}
+              // isAuthenticated={isAuthenticated}
               loginModalToggle={loginModalToggle}
               setSectionPage={setSectionPage}
             />

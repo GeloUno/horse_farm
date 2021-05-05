@@ -31,13 +31,13 @@ import confirmDeleteUser from './components/Users/ConfirmDeleteUser';
 // export const ResetPasswordContext = React.createContext();
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const userAuth = useSelector((state) => state.userAction);
-  const { idToken, userState } = userAuth;
+  // const [isAuthenticated, setIsAuthenticated] = useState(false);
+  // const userAuth = useSelector((state) => state.userAction);
+  // const { idToken, userState } = userAuth;
 
   //  const { idToken } = userAuth;
 
-  const cookies = new Cookies();
+  // const cookies = new Cookies();
 
   const [sectionPage, setSectionPage] = useState(null);
 
@@ -59,20 +59,20 @@ function App() {
     }
   }, [sectionPage]);
 
-  useEffect(() => {
-    cookies.get('idToken')
-      ? setIsAuthenticated(true)
-      : setIsAuthenticated(false);
-    console.log('cookie ', cookies.get('idToken'));
-    userState &&
-      setUser({
-        name: userState.name,
-        id: userState.id,
-      });
-    return () => {
-      // cleanup;
-    };
-  });
+  // useEffect(() => {
+  //   // cookies.get('idToken')
+  //   //   ? setIsAuthenticated(true)
+  //   //   : setIsAuthenticated(false);
+  //   // console.log('cookie ', cookies.get('idToken'));
+  //   // userState &&
+  //   //   setUser({
+  //   //     name: userState.name,
+  //   //     id: userState.id,
+  //   //   });
+  //   return () => {
+  //     // cleanup;
+  //   };
+  // });
 
   const [sideBarShow, setSideBarShow] = useState(false);
   const [loginModalShow, setLoginModalShow] = useState(false);
@@ -132,14 +132,14 @@ function App() {
         <NavBar
           sideBarToggle={sideBarToggle}
           loginModalToggle={loginModalToggle}
-          isAuthenticated={isAuthenticated}
+          // isAuthenticated={isAuthenticated}
           setSectionPage={setSectionPage}
         />
         {sideBarShow && (
           <SideBar
             sideBarToggle={sideBarToggle}
             loginModalToggle={loginModalToggle}
-            isAuthenticated={isAuthenticated}
+            // isAuthenticated={isAuthenticated}
             setSectionPage={setSectionPage}
           />
         )}
