@@ -2,7 +2,7 @@ import React from 'react'
 import { Box } from '@material-ui/core';
 import { IconButtonConfirm, Message, TypeMessage } from '../Message';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { IUserBaseMongoBD } from '../../models/userInterfaces';
+import { IUserBaseMongoBD } from '../../models/users';
 import { ActionMessage } from './ConfirmDeleteUser';
 
 

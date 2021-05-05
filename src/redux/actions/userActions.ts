@@ -57,7 +57,7 @@ import {
   IUserSigninByEmail,
   ErrorResponse
 } from '../constans/userConstans';
-import { IUserBaseMongoBD } from '../../models/userInterfaces';
+import { IUserBaseMongoBD } from '../../models/users';
 
 export const userSignInByEmailAction = (values: any, setErrors: any, resetForm: any) => async (
   dispatch: Dispatch<IUserSigninByEmail>

@@ -9,7 +9,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { ActionMessage } from './ConfirmDeleteUser';
 import ConfirmDeleteUserDetail from './ConfirmDeleteUserDetail';
-import { IUserBaseMongoBD } from '../../models/userInterfaces';
+import { IUserBaseMongoBD } from '../../models/users';
 import { IconButtonConfirm, Message, TypeMessage } from '../Message';
 
 Enzyme.configure({ adapter: new Adapter() });

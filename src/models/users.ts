@@ -8,7 +8,12 @@
 
 // export interface IUserInitialState extends Omit<IUser, 'id' | 'uid' | 'credits' | 'isAccessToMakeBooking' | 'isManualOwnDataUser' | 'firstName' | 'lastName' | 'phone' | 'nick' | 'name'> {
 // }
-
+export enum EntityAccess {
+    USER = 'user',
+    COACH = 'coach',
+    OWNER = 'owner',
+    ADMIN = 'admin'
+}
 
 type OneOrMoreUser = IUser | IUser[]
 
@@ -35,6 +40,12 @@ export interface IUserBaseFirebase {
     emailVerified: boolean,
     providerId: string,
     uid: string,
+    firstName?: string,
+    lastName?: string,
+    phone?: string,
+    nick?: string,
+    name?: string,
+    photoId?: string,
 }
 
 export interface IUserBaseMongoBD extends IUserBaseFirebase {
@@ -46,11 +57,12 @@ export interface IUser extends IUserBaseMongoBD {
     credits?: number,
     isAccessToMakeBooking?: boolean,
     isManualOwnDataUser?: boolean,
-    firstName: string,
-    lastName: string,
-    phone?: string,
-    nick?: string,
+    // firstName: string,
+    // lastName: string,
+    // phone?: string,
+    // nick?: string,
     // name: string,
-    photoId: string,
+    // photoId: string,
+    entityAccess: EntityAccess,
     opinion?: string
 }

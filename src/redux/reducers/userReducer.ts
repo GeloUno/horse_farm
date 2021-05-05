@@ -1,4 +1,4 @@
-import { IUser } from '../../models/userInterfaces';
+import { IUser } from '../../models/users';
 import {
   USER_CREATE_REQUEST,
   USER_CREATE_FAILED,
@@ -183,6 +183,7 @@ const userReducer = (state: IUserInitialState = initialState, action: IUserDispa
           phone: action.payload.user.phone || undefined,
           nick: action.payload.user.nick || undefined,
           opinion: action.payload.user.opinion || undefined,
+          entityAccess: action.payload.user.entityAccess || undefined,
         },
       };
 

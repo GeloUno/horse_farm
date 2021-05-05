@@ -1,5 +1,5 @@
 
-import { IUserRemove, IUserReloadConfirmEmail, IUserBaseFirebase, WithNullType, IUser } from '../../models/userInterfaces';
+import { IUserRemove, IUserReloadConfirmEmail, IUserBaseFirebase, WithNullType, IUser } from '../../models/users';
 
 export const USER_CREATE_REQUEST = 'USER_CREATE_REQUEST';
 export const USER_CREATE_FAILED = 'USER_CREATE_FAILED';
@@ -265,7 +265,7 @@ export interface IUserSigninSocialMediaRequest {
 export interface IUserSigninSocialMediaSuccess {
   type: typeof USER_SIGNIN_SUCCESS,
   payload: {
-    user: IUser,
+    user: IUserBaseFirebase,
     idToken: string
   },
 }
