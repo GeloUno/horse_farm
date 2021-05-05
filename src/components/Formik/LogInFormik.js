@@ -6,7 +6,7 @@ import 'firebase/firestore';
 import { useDispatch } from 'react-redux';
 import { userSignInByEmailAction } from '../../redux/actions/userActions';
 
-const LogInFormik = () => {
+const LogInFormik = ({ setIsTryLoginBySocialMedia }) => {
   const dispatch = useDispatch();
   const initialValues = { email: '', password: '' };
 
@@ -22,6 +22,7 @@ const LogInFormik = () => {
   });
 
   const handleSubmit = (values, { setErrors, resetForm }) => {
+    setIsTryLoginBySocialMedia(() => { return false })
     dispatch(userSignInByEmailAction(values, setErrors, resetForm));
   };
 

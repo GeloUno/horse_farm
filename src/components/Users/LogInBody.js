@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { userSignInSocilaMedialAction } from '../../redux/actions/userActions';
 
@@ -15,6 +15,8 @@ const LogInBody = ({
   const { errorMessage, user } = userAction;
   const { providerId } = user;
 
+  const [isTryLoginBySocialMedia, setIsTryLoginBySocialMedia] = useState(false)
+
   //   const handleSignInSocialMedia = (soclia) => {
   //     signInSocialMedia(soclia)
   //       .then((result) => {
@@ -29,32 +31,46 @@ const LogInBody = ({
 
   return (
     <>
+      {
+        console.log("<- LOG -> file: LogInBody.js -> line 16 -> userAction", userAction)
+      }
       <div className="socialLoginBody">
         <p className="socialLoginText">zaloguj przez:</p>
         <div className="socilaMediaLoginGrup">
           <div
             className="btnSocial"
             // onClick={() => handleSignInSocialMedia('google')}
-            onClick={() => dispatch(userSignInSocilaMedialAction('google'))}
+            onClick={() => {
+              setIsTryLoginBySocialMedia(prev => { return true })
+              dispatch(userSignInSocilaMedialAction('google'))
+            }
+            }
           >
             <i className="fab fa-google"></i>
           </div>
           <div
             className="btnSocial"
             // onClick={() => handleSignInSocialMedia('facebook')}
-            onClick={() => dispatch(userSignInSocilaMedialAction('facebook'))}
+            onClick={() => {
+              setIsTryLoginBySocialMedia(prev => { return true })
+              dispatch(userSignInSocilaMedialAction('facebook'))
+            }
+            }
           >
             <i className="fab fa-facebook-f"></i>
           </div>
         </div>
-        {(providerId === 'google.com' || providerId === 'facebook.com') && errorMessage && (
-          <div className="errorMessageSocialMedia errorMessenge">
-            {errorMessage}
-          </div>
-        )}
+        {
+          // (providerId === 'google.com' || providerId === 'facebook.com') &&
+          isTryLoginBySocialMedia &&
+          errorMessage && (
+            <div className="errorMessageSocialMedia errorMessenge">
+              {errorMessage}
+            </div>
+          )}
       </div>
 
-      <LogInFormik />
+      <LogInFormik setIsTryLoginBySocialMedia={setIsTryLoginBySocialMedia} />
       <div className=" btnSignInRemindPassword">
         <p
           className="accessToggleModalShow"
