@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userRemoveAction, userSignOutAction, userRemoveCookieTokenAction } from '../../redux/actions/userActions';
 import { RootState } from '../../redux/store'
-import { IUserBaseMongoBD, IUser, OneOrUndefined } from '../../models/userInterfaces';
+import { IUserBaseMongoBD, IUser, OneOrUndefined } from '../../models/users';
 import ConfirmDeleteUserDetail from './ConfirmDeleteUserDetail';
 import { NoUserData } from './NoUserData';
 
@@ -40,12 +40,17 @@ const useStyles = makeStyles({
 
 });
 
+export const isUserHaveAllProperty = (email: string, emailVerified: boolean, providerId: string, userUid: string): boolean => {
+    return (emailVerified && !!providerId && !!userUid && !!email)
+}
+
 const ConfirmDeleteUser: React.FC = () => {
 
     const [actionMessage, setActionMessage] = useState<ActionMessage>(ActionMessage.MESSAGE)
     const history = useHistory();
     const classes = useStyles();
     const dispatch = useDispatch()
+
 
     const userAuth = useSelector((state: RootState) => state.userAction);
     const { user, isLoading, isError, errorMessage }: { user: Partial<IUser>, isLoading: boolean, isError: boolean, errorMessage: string | null } = userAuth;
