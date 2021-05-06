@@ -7,7 +7,7 @@ interface TitleSectionProps {
 
 const TitleSection: React.FC<TitleSectionProps> = ({
   title,
-  addClassPage = 0 }) => {
+  addClassPage = `` }) => {
   return (
     <div className={`title-section ${addClassPage}`}>
       <h2 className="title-text">{title}</h2>

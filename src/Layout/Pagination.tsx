@@ -5,13 +5,13 @@ import React from 'react';
 interface PaginationProps {
   numberPage: number,
   lengthPages: number,
-  setNumbetPages: number,
+  // setNumbetPages: number,
 }
 const Pagination: React.FC<PaginationProps> = (
   {
     numberPage = 1,
     lengthPages = 1,
-    setNumbetPages
+    // setNumbetPages
   }
 ) => {
   return (
