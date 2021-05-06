@@ -2,9 +2,16 @@ import React from 'react';
 import OpinionUser from './OpinionUser';
 
 //FIXME if data is in file when watch image data is only two and get error on load data should be use useEffect
+interface Opinion {
+  name: string;
+  description: string;
+  sourceImage: string;
+}
 
-export const Opinions = () => {
-  let dataOpinions = [
+
+export const Opinions: React.FC = () => {
+
+  let dataOpinions: Array<Opinion> = [
     {
       name: 'Roger',
       description:
@@ -64,11 +71,11 @@ export const Opinions = () => {
   ];
 
   /* hm ... it should be in server side */
-  const getRandomRange = (max, min) => {
+  const getRandomRange = (max: number, min: number) => {
     return Math.floor(Math.random() * (max - min + 1));
   };
   /* hm ... it should be in server side */
-  const getRandomDataNoRepeat = (dataArray, lengthArrayBack) => {
+  const getRandomDataOpinionNoRepeat = (dataArray: Array<Opinion>, lengthArrayBack: number) => {
     if (dataArray.length >= lengthArrayBack) {
       const arrayBack = [];
       for (let index = 0; index < lengthArrayBack; index++) {
@@ -79,13 +86,13 @@ export const Opinions = () => {
     }
     // return null;
     throw new TypeError(
-      `I can't return a larger array than the source`,
-      'dataArray is smaller than you want return'
+      `I can't return a larger array than the source
+      dataArray is smaller than you want return`
     );
   };
 
   // let randomOpinions = null;
-  let randomOpinions = getRandomDataNoRepeat(dataOpinions, 4);
+  let randomOpinions = getRandomDataOpinionNoRepeat(dataOpinions, 4);
   return (
     <section className="container container-opinion flex-direction-col">
       <header className="title-header">
@@ -114,14 +121,3 @@ export const Opinions = () => {
 
 export default Opinions;
 
-/*
-{
-     b.map((element) => {
-        console.log('random :>> ', getRandomRange(a.length, 1));
-        console.log('a :>> ', a);
-        console.log('a.lenght :>> ', a.length);
-        console.log('a :>> ', a);
-        let removed = a.splice(getRandomRange(a.length, 1), 1);
-        console.log('removed :>> ', removed[0].name, removed[0].description);
-      })}
-*/

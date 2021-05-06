@@ -1,14 +1,15 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { NavList } from '../../Layout/NavList';
+import { NavBarAndSideProps } from '../../models/props/NavBarAndSideProps';
+import { RootState } from '../../redux/store';
 
-const SideBar = ({
+const SideBar: React.FC<NavBarAndSideProps> = ({
   sideBarToggle,
   loginModalToggle,
-  // isAuthenticated,
   setSectionPage,
 }) => {
-  const userAuth = useSelector((state) => state.userAction);
+  const userAuth = useSelector((state: RootState) => state.userAction);
   const { user } = userAuth;
   return (
     <div

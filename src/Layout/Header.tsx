@@ -10,7 +10,7 @@ const styleBacgroundImage = {
   //   height:'860px'
 };
 
-function Header() {
+const Header: React.FC = () => {
   const history = useHistory();
   return (
     <header>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PageNotFound = () => {
+const PageNotFound: React.FC = () => {
   return (
     <h2 className="PageNotFound">
       Ups ...coś poszło nie tak, ta strona nie istnieje :-{'('}

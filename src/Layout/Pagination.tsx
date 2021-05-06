@@ -2,7 +2,18 @@ import React from 'react';
 
 /* TODO: add function in galery set next page and add this functiom with number on button */
 
-const Pagination = ({ numberPage = 1, lengthPages = 1, setNumbetPages }) => {
+interface PaginationProps {
+  numberPage: number,
+  lengthPages: number,
+  setNumbetPages: number,
+}
+const Pagination: React.FC<PaginationProps> = (
+  {
+    numberPage = 1,
+    lengthPages = 1,
+    setNumbetPages
+  }
+) => {
   return (
     <div>
       {lengthPages > 1 && (
@@ -25,7 +36,7 @@ const Pagination = ({ numberPage = 1, lengthPages = 1, setNumbetPages }) => {
           >
             {numberPage - 1}
           </button>
-          <button className="currentNumberButton" style={{ fontWeight: '600' }}>
+          <button className="currentNumberButton" style={{ fontWeight: 600 }}>
             {numberPage}
           </button>
           <button

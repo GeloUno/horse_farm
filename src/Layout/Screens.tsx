@@ -11,7 +11,7 @@ import Header from './Header';
 import Opinions from './Opinions';
 import TitleSection from './TitleSection';
 
-export const HomeScreen = () => {
+export const HomeScreen: React.FC = () => {
   return (
     <>
       <Header />
@@ -25,7 +25,9 @@ export const HomeScreen = () => {
 export const AttractionsScreen = () => {
   return (
     <>
-      <TitleSection title="Atrakcje" addClassPage="attractions" />
+      <TitleSection
+        title="Atrakcje"
+        addClassPage="attractions" />
       <Attractions />
     </>
   );
@@ -34,8 +36,11 @@ export const AttractionsScreen = () => {
 export const OpinionsScreen = () => {
   return (
     <>
-      <TitleSection title="Opinia" addClassPage="opinions" />
-      <Opinions opinion={true} />
+      <TitleSection
+        title="Opinia"
+        addClassPage="opinions" />
+      <Opinions
+      />
     </>
   );
 };
@@ -43,7 +48,9 @@ export const OpinionsScreen = () => {
 export const ContactScreen = () => {
   return (
     <>
-      <TitleSection title="Kontakt" addClassPage="contact" />
+      <TitleSection
+        title="Kontakt"
+        addClassPage="contact" />
       <Contact />
     </>
   );
@@ -52,7 +59,8 @@ export const ContactScreen = () => {
 export const ProfileScreen = () => {
   return (
     <>
-      <TitleSection title="Profil" />
+      <TitleSection
+        title="Profil" />
       <Profile />
     </>
   );
@@ -60,7 +68,8 @@ export const ProfileScreen = () => {
 export const EditProfileScreen = () => {
   return (
     <>
-      <TitleSection title="Edycja profilu" />
+      <TitleSection
+        title="Edycja profilu" />
       <EditProfile />
     </>
   );
@@ -68,13 +77,16 @@ export const EditProfileScreen = () => {
 export const PlanBookingsScreen = () => {
   return (
     <>
-      <TitleSection title="Planer" />
+      <TitleSection
+        title="Planer" />
       <PlanBookings />
     </>
   );
 };
 export const MakeBookingScreen = ({
+  //@ts-ignore
   setStartDateAndTimeBooking,
+  //@ts-ignore
   setEndDateAndTimeBooking,
 }) => {
   return (
@@ -88,14 +100,18 @@ export const MakeBookingScreen = ({
   );
 };
 export const ConfirmBookingScreen = ({
+  //@ts-ignore
   user,
+  //@ts-ignore
   startDateAndTimeBooking,
+  //@ts-ignore
   endDateAndTimeBooking,
 }) => {
   return (
     <>
       <TitleSection title="Potwierdzenie rezerwacji" />
       <ConfirmBooking
+        //@ts-ignore
         user={user}
         startDateAndTimeBooking={startDateAndTimeBooking}
         endDateAndTimeBooking={endDateAndTimeBooking}
@@ -104,12 +120,19 @@ export const ConfirmBookingScreen = ({
   );
 };
 export const GalleryScreen = ({
+  //@ts-ignore
   userID,
+  //@ts-ignore
   setDataGalleryImageModal,
+  //@ts-ignore
   galleryImageModalToggle,
+  //@ts-ignore
   isGalleryImageModalShow,
+  //@ts-ignore
   isScrollToAddComment,
+  //@ts-ignore
   setisScrollToAddComment,
+
 }) => {
   return (
     <>
@@ -119,6 +142,7 @@ export const GalleryScreen = ({
         galleryImageModalToggle={galleryImageModalToggle}
         isGalleryImageModalShow={isGalleryImageModalShow}
         userID={userID}
+        //@ts-ignore
         isScrollToAddComment={isScrollToAddComment}
         setisScrollToAddComment={setisScrollToAddComment}
       />

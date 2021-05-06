@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
-import { dataAtractions } from '../utility/dataAtractons.js';
+import { dataAtractions } from '../utility/dataAtractons';
 
-const nextPage = (numberPage) => {
-  if (numberPage >= 5) {
-    return dataAtractions[1];
+const nextDataAtraction = (numberPage: number) => {
+  if (numberPage >= 4) {
+    return dataAtractions[0];
   } else {
     return dataAtractions[++numberPage];
   }
 };
 
-const equalsPageNumberReturnOpacity = (pageNumber, buttonNumber) => {
-  return Number(buttonNumber) === Number(pageNumber)
+const equalsPageNumberReturnOpacity = (pageNumber: number, buttonNumber: number) => {
+  return buttonNumber === pageNumber
     ? { opacity: '1' }
     : { opacity: '.15' };
 };
 
-export const Attractions = () => {
-  const [attraction, setAttraction] = useState(dataAtractions[1]);
+export const Attractions: React.FC = () => {
+  const [attraction, setAttraction] = useState(dataAtractions[0]);
   return (
     <div className="container">
       <section className="body-section">
@@ -33,7 +33,7 @@ export const Attractions = () => {
             <button
               className="btn btn-green"
               onClick={() => {
-                setAttraction(nextPage(attraction.page));
+                setAttraction(nextDataAtraction(attraction.page));
               }}
             >
               <p>
@@ -56,19 +56,21 @@ export const Attractions = () => {
             </article>
           </div>
           <div className="carousel-buttons">
-            {Object.keys(dataAtractions).map((buttonNumber) => {
+            {(dataAtractions.map((data) => {
+
               return (
                 <button
-                  key={buttonNumber}
+                  key={data.page}
                   className="btn btn-carousel clip-path"
-                  onClick={() => setAttraction(dataAtractions[buttonNumber])}
+                  onClick={() => setAttraction(dataAtractions[data.page])}
+
                   style={equalsPageNumberReturnOpacity(
                     attraction.page,
-                    buttonNumber
+                    data.page
                   )}
                 ></button>
               );
-            })}
+            }))}
           </div>
         </article>
       </section>

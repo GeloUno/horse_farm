@@ -1,16 +1,13 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import '../App.css';
+import { NavBarAndSideProps } from '../models/props/NavBarAndSideProps';
 import { NavList } from './NavList';
+import '../App.css';
 
-const NavBar = ({
+const NavBar: React.FC<NavBarAndSideProps> = ({
   loginModalToggle,
   sideBarToggle,
-  // isAuthenticated,
   setSectionPage,
 }) => {
-  const userAuth = useSelector((state) => state.userAction);
-  // const { user } = userAuth;
   return (
     <nav className="navbar">
       <ul className="menu-left">
@@ -27,22 +24,8 @@ const NavBar = ({
             setSectionPage={setSectionPage}
           />
         }
-
-        {/* {user && user.photoId && (
-          <img
-            className="navbarUserPhoto"
-            src={user.photoId}
-            alt="zdjęcie użytkownika"
-          />
-        )} */}
       </ul>
     </nav>
   );
 };
-
-// NavBar.prorTypes = {
-//   sideBarToggle: PropTypes.func.isRequired,
-//   loginModalToggle: PropTypes.func.isRequired,
-// };
-
 export default NavBar;

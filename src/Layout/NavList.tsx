@@ -7,52 +7,52 @@ import { useHistory } from 'react-router-dom';
 
 import { signOutFirebase } from '../firebase';
 import { userRemoveCookieTokenAction, userSignOutAction } from '../redux/actions/userActions';
+import { RootState } from '../redux/store';
+import { EntityAccess } from '../models/users';
+import { Dispatch } from 'redux';
+import { NavListProps } from '../models/props/NavListProps';
 
-export const NavList = ({
+
+export const NavList: React.FC<NavListProps> = ({
   loginModalToggle,
-  // isAuthenticated,
   setSectionPage,
 }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   // const cookies = new Cookies();
-  const userAuth = useSelector((state) => state.userAction);
+  const userAuth = useSelector((state: RootState) => state.userAction);
   const { user } = userAuth;
   const handleSignOut = () => {
-    signOutFirebase()
-      .then(() => {
-        history.push('/');
-      })
-      .catch((error) => {
-        console.warn('error LogOut :>> ', error);
-      });
+    dispatch(userSignOutAction);
+    dispatch(userRemoveCookieTokenAction);
+    history.push('/');
   };
-  const onHandleClickJumptoSectionOrTop = (section) => {
+  const onHandleClickJumptoSectionOrTop = (section?: string) => {
     if (section) {
       setSectionPage(section);
     } else {
-      setSectionPage(null);
+      setSectionPage(undefined);
       window.scrollTo({ left: 0, top: 0, behavior: 'smooth' });
     }
   };
 
-  const renderSwitchNavList = (userAccess) => {
+  const renderSwitchNavList = (userAccess: EntityAccess | undefined) => {
     switch (userAccess) {
       case 'user':
         return userLinks
-        break;
+      // break;
       case 'coach':
         return coachLinks
-        break;
+      // break;
       case 'owner':
         return ownerLinks
-        break;
+      // break;
       case 'admin':
         return adminLinks
-        break;
+      // break;
       default:
         return guestLinks
-        break;
+      // break;
     }
   }
 
@@ -116,7 +116,7 @@ export const NavList = ({
             to="/galeria"
             className="sm-hiden"
             onClick={() => {
-              onHandleClickJumptoSectionOrTop(null);
+              onHandleClickJumptoSectionOrTop(undefined);
             }}
           >
             Galeria
@@ -159,7 +159,7 @@ export const NavList = ({
             to="/profil"
             className="sm-hiden"
             onClick={() => {
-              onHandleClickJumptoSectionOrTop(null);
+              onHandleClickJumptoSectionOrTop(undefined);
             }}
           >
             Profil
@@ -172,7 +172,7 @@ export const NavList = ({
             to="/planer"
             className="sm-hiden"
             onClick={() => {
-              onHandleClickJumptoSectionOrTop(null);
+              onHandleClickJumptoSectionOrTop(undefined);
             }}
           >
             Planer
@@ -185,7 +185,7 @@ export const NavList = ({
             to="/rezerwacja"
             className="sm-hiden"
             onClick={() => {
-              onHandleClickJumptoSectionOrTop(null);
+              onHandleClickJumptoSectionOrTop(undefined);
             }}
           >
             Rezerwacja
@@ -198,7 +198,7 @@ export const NavList = ({
             to="/galeria"
             className="sm-hiden"
             onClick={() => {
-              onHandleClickJumptoSectionOrTop(null);
+              onHandleClickJumptoSectionOrTop(undefined);
             }}
           >
             Galeria
@@ -259,7 +259,7 @@ export const NavList = ({
             to="/profil"
             className="sm-hiden"
             onClick={() => {
-              onHandleClickJumptoSectionOrTop(null);
+              onHandleClickJumptoSectionOrTop(undefined);
             }}
           >
             Profil
@@ -272,7 +272,7 @@ export const NavList = ({
             to="/planer"
             className="sm-hiden"
             onClick={() => {
-              onHandleClickJumptoSectionOrTop(null);
+              onHandleClickJumptoSectionOrTop(undefined);
             }}
           >
             Planer
@@ -285,7 +285,7 @@ export const NavList = ({
             to="/rezerwacja"
             className="sm-hiden"
             onClick={() => {
-              onHandleClickJumptoSectionOrTop(null);
+              onHandleClickJumptoSectionOrTop(undefined);
             }}
           >
             Rezerwacja
@@ -298,7 +298,7 @@ export const NavList = ({
             to="/galeria"
             className="sm-hiden"
             onClick={() => {
-              onHandleClickJumptoSectionOrTop(null);
+              onHandleClickJumptoSectionOrTop(undefined);
             }}
           >
             Terener
@@ -359,7 +359,7 @@ export const NavList = ({
             to="/profil"
             className="sm-hiden"
             onClick={() => {
-              onHandleClickJumptoSectionOrTop(null);
+              onHandleClickJumptoSectionOrTop(undefined);
             }}
           >
             Profil
@@ -372,7 +372,7 @@ export const NavList = ({
             to="/planer"
             className="sm-hiden"
             onClick={() => {
-              onHandleClickJumptoSectionOrTop(null);
+              onHandleClickJumptoSectionOrTop(undefined);
             }}
           >
             Planer
@@ -385,7 +385,7 @@ export const NavList = ({
             to="/rezerwacja"
             className="sm-hiden"
             onClick={() => {
-              onHandleClickJumptoSectionOrTop(null);
+              onHandleClickJumptoSectionOrTop(undefined);
             }}
           >
             Rezerwacja
@@ -398,7 +398,7 @@ export const NavList = ({
             to="/galeria"
             className="sm-hiden"
             onClick={() => {
-              onHandleClickJumptoSectionOrTop(null);
+              onHandleClickJumptoSectionOrTop(undefined);
             }}
           >
             Właściciel
@@ -459,7 +459,7 @@ export const NavList = ({
             to="/profil"
             className="sm-hiden"
             onClick={() => {
-              onHandleClickJumptoSectionOrTop(null);
+              onHandleClickJumptoSectionOrTop(undefined);
             }}
           >
             Profil
@@ -472,7 +472,7 @@ export const NavList = ({
             to="/planer"
             className="sm-hiden"
             onClick={() => {
-              onHandleClickJumptoSectionOrTop(null);
+              onHandleClickJumptoSectionOrTop(undefined);
             }}
           >
             Planer
@@ -485,7 +485,7 @@ export const NavList = ({
             to="/rezerwacja"
             className="sm-hiden"
             onClick={() => {
-              onHandleClickJumptoSectionOrTop(null);
+              onHandleClickJumptoSectionOrTop(undefined);
             }}
           >
             Użytkownicy
@@ -498,7 +498,7 @@ export const NavList = ({
             to="/galeria"
             className="sm-hiden"
             onClick={() => {
-              onHandleClickJumptoSectionOrTop(null);
+              onHandleClickJumptoSectionOrTop(undefined);
             }}
           >
             Administrator

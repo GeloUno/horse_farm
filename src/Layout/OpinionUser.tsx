@@ -1,6 +1,18 @@
 import React from 'react';
 
-const OpinionUser = ({ nick, sourceImage, description }) => {
+export interface OpinionUserProps {
+  nick: string,
+  sourceImage: string,
+  description: string,
+}
+
+const OpinionUser: React.FC<OpinionUserProps> = (
+  {
+    nick,
+    sourceImage,
+    description
+  }
+) => {
   return (
     <article className="article-body flex-direction-col">
       <div>

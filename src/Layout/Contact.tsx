@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Contact = () => {
+const Contact: React.FC = () => {
   return (
     <div className="container container-contact">
       <section className="body-section contact-section">
