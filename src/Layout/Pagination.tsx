@@ -17,7 +17,7 @@ const Pagination: React.FC<PaginationProps> = (
   return (
     <div>
       {lengthPages > 1 && (
-        <div className="paggination">
+        <div className="pagination">
           <button
             className="prevArrowButton"
             disabled={numberPage - 1 < 1 ? true : false}
