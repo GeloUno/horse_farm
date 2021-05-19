@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
   };
   return (
     <div style={footerStyleDiv}>
-      <h2 style={footerStyleH2}>
+      <h2 data-testid='logo_developer' style={footerStyleH2}>
         <a style={footerStyleLink}>
           Hello<strong>Gello&trade;</strong>
         </a>

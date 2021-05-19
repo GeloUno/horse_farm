@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { dataAtractions } from '../utility/dataAtractons';
 
-const nextDataAtraction = (numberPage: number) => {
+export const nextDataAtraction = (numberPage: number) => {
   if (numberPage >= 4) {
     return dataAtractions[0];
   } else {
@@ -21,16 +21,16 @@ export const Attractions: React.FC = () => {
     <div className="container">
       <section className="body-section">
         <article className="left-article-attraction">
-          <header className="title-header">
+          <header data-testid='attractionTitle' className="title-header">
             <h2 className="title-regular">
               {attraction.titleRegular}
               <strong className="title-bold">{attraction.titleBold}</strong>
             </h2>
           </header>
-          <div>
-            <p className="description-attraction">{attraction.description}</p>
+          <div >
+            <p data-testid='attractionDescription' className="description-attraction">{attraction.description}</p>
 
-            <button
+            <button data-testid='attractionNextButton'
               className="btn btn-green"
               onClick={() => {
                 setAttraction(nextDataAtraction(attraction.page));
@@ -41,14 +41,14 @@ export const Attractions: React.FC = () => {
               </p>
             </button>
           </div>
-          <div>
+          <div data-testid='backgroundText'>
             <p className="background-text">{attraction.backgroundText}</p>
           </div>
         </article>
         <article className="right-article-attraction">
           <div className="parent-image-attraction">
             <article className="image-article clip-path">
-              <img
+              <img data-testid='attractionImg'
                 className="image-attraction"
                 src={attraction.image}
                 alt="nauka jazdy konnej"
@@ -60,6 +60,7 @@ export const Attractions: React.FC = () => {
 
               return (
                 <button
+                  data-testid={`buttonNumberAtraction-${data.page}`}
                   key={data.page}
                   className="btn btn-carousel clip-path"
                   onClick={() => setAttraction(dataAtractions[data.page])}

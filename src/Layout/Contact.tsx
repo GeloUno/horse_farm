@@ -5,16 +5,16 @@ const Contact: React.FC = () => {
     <div className="container container-contact">
       <section className="body-section contact-section">
         <div>
-          <h2>Aleksandra Rosińska</h2>
+          <h2 data-testid='contactFullName'>Aleksandra Rosińska</h2>
           <p>
             <span>tel: </span>
-            <a href="tel:507171027">507 171 027</a>
+            <a data-testid='contactPhone' href="tel:507171027">507 171 027</a>
           </p>
         </div>
         <div>
-          <address>
+          <address data-testid='contactAddress'>
             <span>adres: </span>
-            <a
+            <a data-testid='contactGoogleMapLocation'
               href="https://maps.google.com/maps?q=polska+belzyce+mikolaja+kopernika+165a"
               target="_blank"
               rel="noopener noreferrer"
@@ -32,7 +32,7 @@ const Contact: React.FC = () => {
             </a>
           </address>
         </div>
-        <div className="socialMedia">
+        <div data-testid='contactSocialmedia' className="socialMedia">
           <i className="fab fa-whatsapp-square"></i>
           <a
             href="https://maps.google.com/maps?q=polska+belzyce+mikolaja+kopernika+165a"
