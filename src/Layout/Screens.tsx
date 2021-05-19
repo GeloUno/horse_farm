@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import ConfirmBooking from '../components/Booking/ConfirmBooking';
 import MakeBooking from '../components/Booking/MakeBooking';
 import PlanBookings from '../components/Booking/PlanBookings';
@@ -12,12 +12,21 @@ import Opinions from './Opinions';
 import TitleSection from './TitleSection';
 
 export const HomeScreen: React.FC = () => {
-  return (
+
+
+  const renderOnlyOnceHomeScreen = useMemo(() =>
     <>
       <Header />
       <AttractionsScreen />
       <OpinionsScreen />
       <ContactScreen />
+    </>
+    ,
+    [])
+
+  return (
+    <>
+      {renderOnlyOnceHomeScreen}
     </>
   );
 };
@@ -25,6 +34,7 @@ export const HomeScreen: React.FC = () => {
 export const AttractionsScreen = () => {
   return (
     <>
+      {console.log(`Render A`)}
       <TitleSection
         title="Atrakcje"
         addClassPage="attractions" />
@@ -36,6 +46,7 @@ export const AttractionsScreen = () => {
 export const OpinionsScreen = () => {
   return (
     <>
+      {console.log(`Render B`)}
       <TitleSection
         title="Opinia"
         addClassPage="opinions" />
