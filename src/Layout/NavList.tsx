@@ -1,15 +1,10 @@
 import React, { Fragment } from 'react';
-// import Cookies from 'universal-cookie';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-
 import { useHistory } from 'react-router-dom';
-
-import { signOutFirebase } from '../firebase';
 import { userRemoveCookieTokenAction, userSignOutAction } from '../redux/actions/userActions';
 import { RootState } from '../redux/store';
 import { EntityAccess } from '../models/users';
-import { Dispatch } from 'redux';
 import { NavListProps } from '../models/props/NavListProps';
 
 
@@ -62,7 +57,7 @@ export const NavList: React.FC<NavListProps> = ({
         <h2>
           <Link
             to="/"
-            className="sm-hiden"
+            className="sm-hidden"
             onClick={() => {
               onHandleClickJumptoSectionOrTop();
             }}
@@ -75,7 +70,7 @@ export const NavList: React.FC<NavListProps> = ({
         <h2>
           <Link
             to="/"
-            className="sm-hiden"
+            className="sm-hidden"
             onClick={() => {
               onHandleClickJumptoSectionOrTop('attractions');
             }}
@@ -88,7 +83,7 @@ export const NavList: React.FC<NavListProps> = ({
         <h2>
           <Link
             to="/"
-            className="sm-hiden"
+            className="sm-hidden"
             onClick={() => {
               onHandleClickJumptoSectionOrTop('opinions');
             }}
@@ -101,7 +96,7 @@ export const NavList: React.FC<NavListProps> = ({
         <h2>
           <Link
             to="/"
-            className="sm-hiden"
+            className="sm-hidden"
             onClick={() => {
               onHandleClickJumptoSectionOrTop('contact');
             }}
@@ -114,7 +109,7 @@ export const NavList: React.FC<NavListProps> = ({
         <h2>
           <Link
             to="/galeria"
-            className="sm-hiden"
+            className="sm-hidden"
             onClick={() => {
               onHandleClickJumptoSectionOrTop(undefined);
             }}
@@ -127,7 +122,7 @@ export const NavList: React.FC<NavListProps> = ({
         <h2>
           <Link
             to=""
-            className="sm-hiden accessToggleModalShow"
+            className="sm-hidden accessToggleModalShow"
             onClick={(e) => loginModalToggle(e)}
           >
             <i className="fas fa-sign-in-alt accessToggleModalShow"></i>
@@ -144,7 +139,7 @@ export const NavList: React.FC<NavListProps> = ({
         <h2>
           <Link
             to="/"
-            className="sm-hiden"
+            className="sm-hidden"
             onClick={() => {
               onHandleClickJumptoSectionOrTop();
             }}
@@ -157,7 +152,7 @@ export const NavList: React.FC<NavListProps> = ({
         <h2>
           <Link
             to="/profil"
-            className="sm-hiden"
+            className="sm-hidden"
             onClick={() => {
               onHandleClickJumptoSectionOrTop(undefined);
             }}
@@ -170,7 +165,7 @@ export const NavList: React.FC<NavListProps> = ({
         <h2>
           <Link
             to="/planer"
-            className="sm-hiden"
+            className="sm-hidden"
             onClick={() => {
               onHandleClickJumptoSectionOrTop(undefined);
             }}
@@ -183,7 +178,7 @@ export const NavList: React.FC<NavListProps> = ({
         <h2>
           <Link
             to="/rezerwacja"
-            className="sm-hiden"
+            className="sm-hidden"
             onClick={() => {
               onHandleClickJumptoSectionOrTop(undefined);
             }}
@@ -196,7 +191,7 @@ export const NavList: React.FC<NavListProps> = ({
         <h2>
           <Link
             to="/galeria"
-            className="sm-hiden"
+            className="sm-hidden"
             onClick={() => {
               onHandleClickJumptoSectionOrTop(undefined);
             }}
@@ -213,14 +208,14 @@ export const NavList: React.FC<NavListProps> = ({
         >
           <Link
             to=""
-            className="sm-hiden"
-            onClick={() => {
-              dispatch(userSignOutAction);
-              dispatch(userRemoveCookieTokenAction);
-              // cookies.remove('idToken', {
-              //   path: '/',
-              // });
-            }}
+            className="sm-hidden"
+          // onClick={() => {
+          //   dispatch(userSignOutAction);
+          //   dispatch(userRemoveCookieTokenAction);
+          // cookies.remove('idToken', {
+          //   path: '/',
+          // });
+          // }}
           >
             <i className="fas fa-sign-out-alt"></i>
             Wyloguj
@@ -244,7 +239,7 @@ export const NavList: React.FC<NavListProps> = ({
         <h2>
           <Link
             to="/"
-            className="sm-hiden"
+            className="sm-hidden"
             onClick={() => {
               onHandleClickJumptoSectionOrTop();
             }}
@@ -257,7 +252,7 @@ export const NavList: React.FC<NavListProps> = ({
         <h2>
           <Link
             to="/profil"
-            className="sm-hiden"
+            className="sm-hidden"
             onClick={() => {
               onHandleClickJumptoSectionOrTop(undefined);
             }}
@@ -270,7 +265,7 @@ export const NavList: React.FC<NavListProps> = ({
         <h2>
           <Link
             to="/planer"
-            className="sm-hiden"
+            className="sm-hidden"
             onClick={() => {
               onHandleClickJumptoSectionOrTop(undefined);
             }}
@@ -283,7 +278,7 @@ export const NavList: React.FC<NavListProps> = ({
         <h2>
           <Link
             to="/rezerwacja"
-            className="sm-hiden"
+            className="sm-hidden"
             onClick={() => {
               onHandleClickJumptoSectionOrTop(undefined);
             }}
@@ -296,7 +291,7 @@ export const NavList: React.FC<NavListProps> = ({
         <h2>
           <Link
             to="/galeria"
-            className="sm-hiden"
+            className="sm-hidden"
             onClick={() => {
               onHandleClickJumptoSectionOrTop(undefined);
             }}
@@ -313,14 +308,14 @@ export const NavList: React.FC<NavListProps> = ({
         >
           <Link
             to=""
-            className="sm-hiden"
-            onClick={() => {
-              dispatch(userSignOutAction);
-              dispatch(userRemoveCookieTokenAction);
-              // cookies.remove('idToken', {
-              //   path: '/',
-              // });
-            }}
+            className="sm-hidden"
+          // onClick={() => {
+          //   dispatch(userSignOutAction);
+          //   dispatch(userRemoveCookieTokenAction);
+          // cookies.remove('idToken', {
+          //   path: '/',
+          // });
+          // }}
           >
             <i className="fas fa-sign-out-alt"></i>
             Wyloguj
@@ -344,7 +339,7 @@ export const NavList: React.FC<NavListProps> = ({
         <h2>
           <Link
             to="/"
-            className="sm-hiden"
+            className="sm-hidden"
             onClick={() => {
               onHandleClickJumptoSectionOrTop();
             }}
@@ -357,7 +352,7 @@ export const NavList: React.FC<NavListProps> = ({
         <h2>
           <Link
             to="/profil"
-            className="sm-hiden"
+            className="sm-hidden"
             onClick={() => {
               onHandleClickJumptoSectionOrTop(undefined);
             }}
@@ -370,7 +365,7 @@ export const NavList: React.FC<NavListProps> = ({
         <h2>
           <Link
             to="/planer"
-            className="sm-hiden"
+            className="sm-hidden"
             onClick={() => {
               onHandleClickJumptoSectionOrTop(undefined);
             }}
@@ -383,7 +378,7 @@ export const NavList: React.FC<NavListProps> = ({
         <h2>
           <Link
             to="/rezerwacja"
-            className="sm-hiden"
+            className="sm-hidden"
             onClick={() => {
               onHandleClickJumptoSectionOrTop(undefined);
             }}
@@ -396,7 +391,7 @@ export const NavList: React.FC<NavListProps> = ({
         <h2>
           <Link
             to="/galeria"
-            className="sm-hiden"
+            className="sm-hidden"
             onClick={() => {
               onHandleClickJumptoSectionOrTop(undefined);
             }}
@@ -413,14 +408,14 @@ export const NavList: React.FC<NavListProps> = ({
         >
           <Link
             to=""
-            className="sm-hiden"
-            onClick={() => {
-              dispatch(userSignOutAction);
-              dispatch(userRemoveCookieTokenAction);
-              // cookies.remove('idToken', {
-              //   path: '/',
-              // });
-            }}
+            className="sm-hidden"
+          // onClick={() => {
+          //   dispatch(userSignOutAction);
+          //   dispatch(userRemoveCookieTokenAction);
+          // cookies.remove('idToken', {
+          //   path: '/',
+          // });
+          // }}
           >
             <i className="fas fa-sign-out-alt"></i>
             Wyloguj
@@ -444,7 +439,7 @@ export const NavList: React.FC<NavListProps> = ({
         <h2>
           <Link
             to="/"
-            className="sm-hiden"
+            className="sm-hidden"
             onClick={() => {
               onHandleClickJumptoSectionOrTop();
             }}
@@ -457,7 +452,7 @@ export const NavList: React.FC<NavListProps> = ({
         <h2>
           <Link
             to="/profil"
-            className="sm-hiden"
+            className="sm-hidden"
             onClick={() => {
               onHandleClickJumptoSectionOrTop(undefined);
             }}
@@ -470,7 +465,7 @@ export const NavList: React.FC<NavListProps> = ({
         <h2>
           <Link
             to="/planer"
-            className="sm-hiden"
+            className="sm-hidden"
             onClick={() => {
               onHandleClickJumptoSectionOrTop(undefined);
             }}
@@ -483,7 +478,7 @@ export const NavList: React.FC<NavListProps> = ({
         <h2>
           <Link
             to="/rezerwacja"
-            className="sm-hiden"
+            className="sm-hidden"
             onClick={() => {
               onHandleClickJumptoSectionOrTop(undefined);
             }}
@@ -496,7 +491,7 @@ export const NavList: React.FC<NavListProps> = ({
         <h2>
           <Link
             to="/galeria"
-            className="sm-hiden"
+            className="sm-hidden"
             onClick={() => {
               onHandleClickJumptoSectionOrTop(undefined);
             }}
@@ -513,14 +508,14 @@ export const NavList: React.FC<NavListProps> = ({
         >
           <Link
             to=""
-            className="sm-hiden"
-            onClick={() => {
-              dispatch(userSignOutAction);
-              dispatch(userRemoveCookieTokenAction);
-              // cookies.remove('idToken', {
-              //   path: '/',
-              // });
-            }}
+            className="sm-hidden"
+          // onClick={() => {
+          //   dispatch(userSignOutAction);
+          //   dispatch(userRemoveCookieTokenAction);
+          // cookies.remove('idToken', {
+          //   path: '/',
+          // });
+          // }}
           >
             <i className="fas fa-sign-out-alt"></i>
             Wyloguj
