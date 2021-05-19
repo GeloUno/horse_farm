@@ -9,6 +9,9 @@
 
 # testing
 /coverage
+/cypress/integration/examples
+/cypress/fixtures
+/cypress/screenshots/All Integration Specs
 
 # production
 /build
