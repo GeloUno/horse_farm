@@ -48,7 +48,7 @@ export interface IUserInitialState extends IBaseState {
   // user: IUser | null,
 }
 
-const initialState: IUserInitialState = {
+export const initialState: IUserInitialState = {
   user: {},
   isLoading: false,
   isError: false,
