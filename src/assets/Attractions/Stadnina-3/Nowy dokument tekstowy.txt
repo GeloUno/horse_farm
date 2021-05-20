@@ -1,0 +1,56 @@
+<picture>
+<source
+media="(max-width: 767px)"
+sizes="(max-width: 767px) 100vw, 767px"
+srcset="
+Stadnina-3_zdyjwn_ar_1_1,c_fill,g_auto__c_scale,w_190.png 190w,
+Stadnina-3_zdyjwn_ar_1_1,c_fill,g_auto__c_scale,w_258.png 258w,
+Stadnina-3_zdyjwn_ar_1_1,c_fill,g_auto__c_scale,w_314.png 314w,
+Stadnina-3_zdyjwn_ar_1_1,c_fill,g_auto__c_scale,w_365.png 365w,
+Stadnina-3_zdyjwn_ar_1_1,c_fill,g_auto__c_scale,w_414.png 414w,
+Stadnina-3_zdyjwn_ar_1_1,c_fill,g_auto__c_scale,w_453.png 453w,
+Stadnina-3_zdyjwn_ar_1_1,c_fill,g_auto__c_scale,w_490.png 490w,
+Stadnina-3_zdyjwn_ar_1_1,c_fill,g_auto__c_scale,w_528.png 528w,
+Stadnina-3_zdyjwn_ar_1_1,c_fill,g_auto__c_scale,w_565.png 565w,
+Stadnina-3_zdyjwn_ar_1_1,c_fill,g_auto__c_scale,w_597.png 597w,
+Stadnina-3_zdyjwn_ar_1_1,c_fill,g_auto__c_scale,w_632.png 632w,
+Stadnina-3_zdyjwn_ar_1_1,c_fill,g_auto__c_scale,w_664.png 664w,
+Stadnina-3_zdyjwn_ar_1_1,c_fill,g_auto__c_scale,w_696.png 696w,
+Stadnina-3_zdyjwn_ar_1_1,c_fill,g_auto__c_scale,w_724.png 724w,
+Stadnina-3_zdyjwn_ar_1_1,c_fill,g_auto__c_scale,w_753.png 753w,
+Stadnina-3_zdyjwn_ar_1_1,c_fill,g_auto__c_scale,w_767.png 767w">
+<source
+media="(min-width: 768px) and (max-width: 991px)"
+sizes="(max-width: 991px) 70vw, 694px"
+srcset="
+Stadnina-3_zdyjwn_ar_4_3,c_fill,g_auto__c_scale,w_538.png 538w,
+Stadnina-3_zdyjwn_ar_4_3,c_fill,g_auto__c_scale,w_590.png 590w,
+Stadnina-3_zdyjwn_ar_4_3,c_fill,g_auto__c_scale,w_638.png 638w,
+Stadnina-3_zdyjwn_ar_4_3,c_fill,g_auto__c_scale,w_682.png 682w,
+Stadnina-3_zdyjwn_ar_4_3,c_fill,g_auto__c_scale,w_694.png 694w">
+<source
+media="(min-width: 992px) and (max-width: 1199px)"
+sizes="(max-width: 1200px) 60vw, 720px"
+srcset="
+Stadnina-3_zdyjwn_ar_16_9,c_fill,g_auto__c_scale,w_596.png 596w,
+Stadnina-3_zdyjwn_ar_16_9,c_fill,g_auto__c_scale,w_664.png 664w,
+Stadnina-3_zdyjwn_ar_16_9,c_fill,g_auto__c_scale,w_718.png 718w,
+Stadnina-3_zdyjwn_ar_16_9,c_fill,g_auto__c_scale,w_720.png 720w">
+<img
+sizes="(max-width: 2000px) 40vw, 800px"
+srcset="
+Stadnina-3_zdyjwn_c_scale,w_480.png 480w,
+Stadnina-3_zdyjwn_c_scale,w_517.png 517w,
+Stadnina-3_zdyjwn_c_scale,w_551.png 551w,
+Stadnina-3_zdyjwn_c_scale,w_584.png 584w,
+Stadnina-3_zdyjwn_c_scale,w_618.png 618w,
+Stadnina-3_zdyjwn_c_scale,w_647.png 647w,
+Stadnina-3_zdyjwn_c_scale,w_677.png 677w,
+Stadnina-3_zdyjwn_c_scale,w_707.png 707w,
+Stadnina-3_zdyjwn_c_scale,w_738.png 738w,
+Stadnina-3_zdyjwn_c_scale,w_764.png 764w,
+Stadnina-3_zdyjwn_c_scale,w_795.png 795w,
+Stadnina-3_zdyjwn_c_scale,w_800.png 800w"
+src="Stadnina-3_zdyjwn_c_scale,w_800.png"
+alt="">
+</picture>

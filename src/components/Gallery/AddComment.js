@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-const AddComment = ({ imageID, userID }) => {
+const AddComment = ({ imageID, userID, inputAddCommentRef }) => {
   const [newComment, setNewComment] = useState();
 
   const handleChangeComment = (e) => {
-    console.log('e :>> ', e.target.value);
+    // console.log('e :>> ', e.target.value);
     setNewComment(e.target.value);
   };
   return (
@@ -15,6 +15,7 @@ const AddComment = ({ imageID, userID }) => {
         }
 
         <input
+          ref={inputAddCommentRef}
           className="comment addCommentInput"
           placeholder="dodaj komentarz ..."
           maxLength="150"

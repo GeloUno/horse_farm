@@ -1,5 +1,5 @@
 import React from 'react';
-import Pagination from '../Layout/Pagination';
+import Pagination from '../../Layout/Pagination';
 import UploadImage from './UploadImage';
 import LikesAndComments from './LikesAndComments';
 import { DevImagesData } from '../../DevUtility/imagesGalery';
@@ -9,10 +9,13 @@ import { DevImagesData } from '../../DevUtility/imagesGalery';
 const Gallery = ({
   galleryImageModalToggle,
   setDataGalleryImageModal,
+  isGalleryImageModalShow,
   isAuth = true,
-  userID = null,
+  userID = 0,
   isPagination = true,
   imagesGallery = DevImagesData,
+
+  setisScrollToAddComment,
 }) => {
   return (
     <div>
@@ -32,7 +35,14 @@ const Gallery = ({
                     galleryImageModalToggle(e);
                   }}
                 />
-                <LikesAndComments imageGallery={imageGallery} userID={userID} />
+                <LikesAndComments
+                  imageGallery={imageGallery}
+                  userID={userID}
+                  galleryImageModalToggle={galleryImageModalToggle}
+                  setDataGalleryImageModal={setDataGalleryImageModal}
+                  setisScrollToAddComment={setisScrollToAddComment}
+                  isGalleryImageModalShow={isGalleryImageModalShow}
+                />
               </div>
             );
           })}

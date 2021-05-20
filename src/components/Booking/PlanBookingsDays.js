@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import HorizontalScroll from 'react-scroll-horizontal';
+import HorizontalScroll from '../../utility/ScrollHorizontal';
+// import HorizontalScroll from 'react-scroll-horizontal';
 import Moment from 'react-moment';
 
 const listDaysInMonth = (daysInMonth, bookingDay, setBookingDay) => {
   const listDays = [];
-
   for (let index = 1; index <= daysInMonth; index++) {
     const day = new Date(bookingDay).setDate(index);
     const dayInWeek = new Date(day).getDay();
     listDays.push(
       <div
-        className="dayNumberAndString btn btn-day"
+        className={`dayNumberAndString btn btn-day day-${index}`}
         key={index}
         onClick={() => {
           setBookingDay(day);
@@ -29,11 +29,19 @@ const listDaysInMonth = (daysInMonth, bookingDay, setBookingDay) => {
   return listDays;
 };
 
-const PlanBookingsDays = ({ daysInMonth, bookingDay, setBookingDay }) => {
+const PlanBookingsDays = ({
+  daysInMonth,
+  bookingDay,
+  setBookingDay,
+  horizontalAmimationValueDays,
+}) => {
   return (
     <div className="DayOfMonth">
       <HorizontalScroll
-        reverseScroll
+        // pageLock={true}
+        reverseScroll={true}
+        // config={{ stiffness: 5, damping: 3 }}
+        animValues={horizontalAmimationValueDays}
         style={{
           paddingTop: '0',
           overflowX: 'scroll',

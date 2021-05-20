@@ -9,16 +9,26 @@
 
 # testing
 /coverage
+/cypress/integration/examples
+/cypress/fixtures
+/cypress/screenshots/All Integration Specs
+/cypress/videos
+/cypress/screenshots
 
 # production
 /build
 
 # misc
 .DS_Store
+.env
 .env.local
+.env.development
 .env.development.local
+.env.test
 .env.test.local
+.env.production
 .env.production.local
+
 
 npm-debug.log*
 yarn-debug.log*

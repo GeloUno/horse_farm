@@ -1,122 +1,51 @@
-import React, { useState } from 'react';
-import { DEVuser } from '../../DevUtility/user';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import EditProfileFormik from '../Formik/EditProfileFormik';
+import { PulseLoader } from 'react-spinners';
 
-const EditProfile = ({
-  nick = DEVuser.nick,
-  firstName = DEVuser.firstName,
-  lastName = DEVuser.lastName,
-  email = DEVuser.email,
-  phone = DEVuser.phone,
-  opinion = undefined,
-}) => {
-  const [user, setUser] = useState({
-    nick,
-    firstName,
-    lastName,
-    email,
-    phone,
-    opinion,
-  });
+const EditProfile = () => {
+  const userAuth = useSelector((state) => state.userAction);
+  const { user, isLoading, isError } = userAuth;
+  const [wasDataSend, setWasDataSend] = useState(false);
+  const history = useHistory();
 
-  const onChangeUser = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
-  };
+  useEffect(() => {
+    if (isLoading && !wasDataSend) {
+      setWasDataSend((prev) => {
+        return !prev;
+      });
+    }
+    !isLoading && !isError && wasDataSend && history.push('profil');
+    return () => {
+      setWasDataSend((prev) => {
+        return !prev;
+      });
+    };
+  }, [isLoading, isError, wasDataSend]);
+
   return (
     <div className="contaniner profileContainer editProfileContainer">
       <div className="imapgeProfile">
-        <img
-          className={'image-user'}
-          src="https://randomuser.me/api/portraits/women/68.jpg"
-          alt="użytkownik"
-        />
-        <div className="profileButtons">
-          <button className="btn btn-green btn-capitalize">Edytuj</button>
+        {user && user.photoId && (
+          <img
+            className="image-user imageEditProfile"
+            src={user.photoId}
+            alt="użytkownik"
+          />
+        )}
+        <div className="profileButtons profileButtonPhoto">
+          <button
+            className="btn btn-green btn-capitalize 
+            btn-editProfile"
+          >
+            {user && user.photoId && 'Zmień zdjęcie'}
+            {(!user || !user.photoId) && 'Dodaj zdjęcie'}
+          </button>
         </div>
       </div>
-      <form className="userProfile editUserProfile">
-        <div>
-          <p>nick:</p>
-          <input
-            onChange={(e) => {
-              onChangeUser(e);
-            }}
-            placeholder="wprowadz nick ..."
-            type="text"
-            name="nick"
-            value={user.nick}
-            key={nick}
-          />
-        </div>
-        <div>
-          <p>imię:</p>
-          <input
-            onChange={(e) => {
-              onChangeUser(e);
-            }}
-            placeholder="wprowadz imię ..."
-            type="text"
-            name="firstName"
-            value={user.firstName}
-            key={firstName}
-          />
-        </div>
-        <div>
-          <p>nazwisko:</p>
-          <input
-            onChange={(e) => {
-              onChangeUser(e);
-            }}
-            placeholder="wprowadz nazwisko ..."
-            type="text"
-            name="lastName"
-            value={user.lastName}
-            key={lastName}
-          />
-        </div>
-        <div>
-          <p>email:</p>
-          <input
-            onChange={(e) => {
-              onChangeUser(e);
-            }}
-            placeholder="wprowadz email ..."
-            type="text"
-            name="email"
-            value={user.email}
-            key={email}
-          />
-        </div>
-        <div>
-          <p>tel:</p>
-          <input
-            onChange={(e) => {
-              onChangeUser(e);
-            }}
-            placeholder="wprowadz tel ..."
-            type="text"
-            name="phone"
-            value={user.phone}
-            key={phone}
-          />
-        </div>
-        <div>
-          <p>opinia:</p>
-          <textarea
-            className="editUserOpinionTextArea"
-            onChange={(e) => {
-              onChangeUser(e);
-            }}
-            placeholder="Tu możesz wystawić opinię o stadninie. Wystawiając opinię WYRAŻSZ ZGODĘ na upoblicznienie swojego wizerunku. Zawsze możesz edytować lub wykasować opinię. Usunięcie opini skutkuje usunięciem wizerunku z miejsca publicznego strony. Jeśli nie jesteś pełnoletni o zgodę zapytaj osoby dorosłe: Rodzica, Opiekuna ..."
-            type="text"
-            rows="12"
-            name="opinion"
-            value={user.opinion}
-          />
-        </div>
-      </form>
-      <div className="profileButtons btn-editProfileButton">
-        <button className="btn btn-green btn-capitalize">zapisz</button>
-      </div>
+      {isLoading && <PulseLoader size={35} color={'hsla(94, 30%, 43%, 1)'} />}
+      {!isLoading && !isError && <EditProfileFormik user={user} />}
     </div>
   );
 };

@@ -4,7 +4,7 @@ import React from 'react';
 const usersListInHour = (users) => {
   const usersList = users.map((user, index) => {
     return (
-      <div className="dataHouerBooking userBookingList" key={user.id}>
+      <div className="dataHourBooking userBookingList" key={user.id}>
         {++index}. {user.name}
       </div>
     );
@@ -19,8 +19,8 @@ const hourBooking = (listHourBooking, arrayHoursList, dayBookingData) => {
   });
 
   arrayHoursList.push(
-    <div className="houerBooking" key={listHourBooking}>
-      <div className="dataHouerBooking">{listHourBooking + ':00'}</div>
+    <div className="hourBooking" key={listHourBooking}>
+      <div className="dataHourBooking">{listHourBooking + ':00'}</div>
       {usersListInHour(users, listHourBooking)}
     </div>
   );
