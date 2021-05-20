@@ -19,20 +19,19 @@ const useHttpClient = () => {
         {
           method: method,
           params: body,
+          cancelToken: source.token
         }
       ) : (
         {
           method: method,
           data: body,
+          cancelToken: source.token
         }
       );
       try {
         let httpClientData = await axios(
           process.env.REACT_APP_URL_HOST_SERVER + pathUrl,
           configURL,
-          {
-            cancelToken: source.token,
-          }
         );
 
         setDataResponse(httpClientData.data);
