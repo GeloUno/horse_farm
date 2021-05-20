@@ -12,6 +12,8 @@
 /cypress/integration/examples
 /cypress/fixtures
 /cypress/screenshots/All Integration Specs
+/cypress/videos
+/cypress/screenshots
 
 # production
 /build

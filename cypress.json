@@ -1,1 +1,5 @@
-{}
+{
+    "baseUrl":"https://gelouno.github.io/horse_farm",
+    "integrationFolder":"./cypress/integration/horse_farm"
+   
+}
