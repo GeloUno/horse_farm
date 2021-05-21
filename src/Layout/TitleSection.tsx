@@ -9,7 +9,7 @@ const TitleSection: React.FC<TitleSectionProps> = ({
   title,
   addClassPage = `` }) => {
   return (
-    <div className={`title-section ${addClassPage}`}>
+    <div data-cy={`title-section-${addClassPage}`} className={`title-section ${addClassPage}`}>
       <h2 className="title-text">{title}</h2>
     </div>
   );

@@ -56,6 +56,7 @@ export const NavList: React.FC<NavListProps> = ({
       <li>
         <h2>
           <Link
+            data-cy="linkHomePage"
             to="/"
             className="sm-hidden"
             onClick={() => {
@@ -69,6 +70,7 @@ export const NavList: React.FC<NavListProps> = ({
       <li>
         <h2>
           <Link
+            data-cy="linkAttraction"
             to="/"
             className="sm-hidden"
             onClick={() => {
@@ -82,6 +84,7 @@ export const NavList: React.FC<NavListProps> = ({
       <li>
         <h2>
           <Link
+            data-cy="linkOpinions"
             to="/"
             className="sm-hidden"
             onClick={() => {
@@ -95,6 +98,7 @@ export const NavList: React.FC<NavListProps> = ({
       <li>
         <h2>
           <Link
+            data-cy="linkContact"
             to="/"
             className="sm-hidden"
             onClick={() => {
@@ -108,6 +112,7 @@ export const NavList: React.FC<NavListProps> = ({
       <li>
         <h2>
           <Link
+            data-cy="linkGalery"
             to="/galeria"
             className="sm-hidden"
             onClick={() => {
@@ -121,6 +126,7 @@ export const NavList: React.FC<NavListProps> = ({
       <li>
         <h2>
           <Link
+            data-cy="linkLogin"
             to=""
             className="sm-hidden accessToggleModalShow"
             onClick={(e) => loginModalToggle(e)}
@@ -138,6 +144,7 @@ export const NavList: React.FC<NavListProps> = ({
       <li>
         <h2>
           <Link
+            data-cy="linkHomePage"
             to="/"
             className="sm-hidden"
             onClick={() => {
@@ -151,6 +158,7 @@ export const NavList: React.FC<NavListProps> = ({
       <li>
         <h2>
           <Link
+            data-cy="linkProfile"
             to="/profil"
             className="sm-hidden"
             onClick={() => {
@@ -164,6 +172,7 @@ export const NavList: React.FC<NavListProps> = ({
       <li>
         <h2>
           <Link
+            data-cy="linkPlaner"
             to="/planer"
             className="sm-hidden"
             onClick={() => {
@@ -177,6 +186,7 @@ export const NavList: React.FC<NavListProps> = ({
       <li>
         <h2>
           <Link
+            data-cy="linkBooking"
             to="/rezerwacja"
             className="sm-hidden"
             onClick={() => {
@@ -190,6 +200,7 @@ export const NavList: React.FC<NavListProps> = ({
       <li>
         <h2>
           <Link
+            data-cy="linkGalery"
             to="/galeria"
             className="sm-hidden"
             onClick={() => {
@@ -207,6 +218,7 @@ export const NavList: React.FC<NavListProps> = ({
           }}
         >
           <Link
+            data-cy="linkLogout"
             to=""
             className="sm-hidden"
           // onClick={() => {
@@ -238,6 +250,7 @@ export const NavList: React.FC<NavListProps> = ({
       <li>
         <h2>
           <Link
+            data-cy="linkHomePage"
             to="/"
             className="sm-hidden"
             onClick={() => {
@@ -251,6 +264,7 @@ export const NavList: React.FC<NavListProps> = ({
       <li>
         <h2>
           <Link
+            data-cy="linkProfile"
             to="/profil"
             className="sm-hidden"
             onClick={() => {
@@ -264,6 +278,7 @@ export const NavList: React.FC<NavListProps> = ({
       <li>
         <h2>
           <Link
+            data-cy="linkPlanner"
             to="/planer"
             className="sm-hidden"
             onClick={() => {
@@ -277,6 +292,7 @@ export const NavList: React.FC<NavListProps> = ({
       <li>
         <h2>
           <Link
+            data-cy="linkBooking"
             to="/rezerwacja"
             className="sm-hidden"
             onClick={() => {
@@ -290,6 +306,7 @@ export const NavList: React.FC<NavListProps> = ({
       <li>
         <h2>
           <Link
+            data-cy="linkCoach"
             to="/galeria"
             className="sm-hidden"
             onClick={() => {
@@ -307,6 +324,7 @@ export const NavList: React.FC<NavListProps> = ({
           }}
         >
           <Link
+            data-cy="linkLogout"
             to=""
             className="sm-hidden"
           // onClick={() => {
@@ -338,6 +356,7 @@ export const NavList: React.FC<NavListProps> = ({
       <li>
         <h2>
           <Link
+            data-cy="linkHomePage"
             to="/"
             className="sm-hidden"
             onClick={() => {
@@ -351,6 +370,7 @@ export const NavList: React.FC<NavListProps> = ({
       <li>
         <h2>
           <Link
+            data-cy="linkProfile"
             to="/profil"
             className="sm-hidden"
             onClick={() => {
@@ -364,6 +384,7 @@ export const NavList: React.FC<NavListProps> = ({
       <li>
         <h2>
           <Link
+            data-cy="linkPlanner"
             to="/planer"
             className="sm-hidden"
             onClick={() => {
@@ -377,6 +398,7 @@ export const NavList: React.FC<NavListProps> = ({
       <li>
         <h2>
           <Link
+            data-cy="linkBooking"
             to="/rezerwacja"
             className="sm-hidden"
             onClick={() => {
@@ -390,6 +412,7 @@ export const NavList: React.FC<NavListProps> = ({
       <li>
         <h2>
           <Link
+            data-cy="linkOwner"
             to="/galeria"
             className="sm-hidden"
             onClick={() => {
@@ -407,6 +430,7 @@ export const NavList: React.FC<NavListProps> = ({
           }}
         >
           <Link
+            data-cy="linkLogout"
             to=""
             className="sm-hidden"
           // onClick={() => {
@@ -438,6 +462,7 @@ export const NavList: React.FC<NavListProps> = ({
       <li>
         <h2>
           <Link
+            data-cy="linkHomePage"
             to="/"
             className="sm-hidden"
             onClick={() => {
@@ -451,6 +476,7 @@ export const NavList: React.FC<NavListProps> = ({
       <li>
         <h2>
           <Link
+            data-cy="linkProfile"
             to="/profil"
             className="sm-hidden"
             onClick={() => {
@@ -464,6 +490,7 @@ export const NavList: React.FC<NavListProps> = ({
       <li>
         <h2>
           <Link
+            data-cy="linkPlanner"
             to="/planer"
             className="sm-hidden"
             onClick={() => {
@@ -477,6 +504,7 @@ export const NavList: React.FC<NavListProps> = ({
       <li>
         <h2>
           <Link
+            data-cy="linkUser"
             to="/rezerwacja"
             className="sm-hidden"
             onClick={() => {
@@ -490,6 +518,7 @@ export const NavList: React.FC<NavListProps> = ({
       <li>
         <h2>
           <Link
+            data-cy="linkAdmin"
             to="/galeria"
             className="sm-hidden"
             onClick={() => {
@@ -507,6 +536,7 @@ export const NavList: React.FC<NavListProps> = ({
           }}
         >
           <Link
+            data-cy="linkLogout"
             to=""
             className="sm-hidden"
           // onClick={() => {
