@@ -13,11 +13,11 @@ const styleBacgroundImage = {
 const Header: React.FC = () => {
   const history = useHistory();
   return (
-    <header>
-      <div className="image-header" style={styleBacgroundImage}>
-        <div className="text-header">
+    <header data-cy='headerPage'>
+      <div data-cy='headerBackgroundImage' className="image-header" style={styleBacgroundImage}>
+        <div className="text-header" data-cy='headerText'>
           <h1>Nauka jazdy konnej</h1>
-          <button
+          <button data-cy='headerButton'
             type="submit"
             className="btn btn-withe-brown btn-header"
             onClick={() => {
