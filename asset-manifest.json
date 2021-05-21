@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/horse_farm/static/css/main.e3cad2cf.chunk.css",
-    "main.js": "/horse_farm/static/js/main.ea083c60.chunk.js",
-    "main.js.map": "/horse_farm/static/js/main.ea083c60.chunk.js.map",
+    "main.js": "/horse_farm/static/js/main.d50bfd5a.chunk.js",
+    "main.js.map": "/horse_farm/static/js/main.d50bfd5a.chunk.js.map",
     "runtime-main.js": "/horse_farm/static/js/runtime-main.bf9f0c29.js",
     "runtime-main.js.map": "/horse_farm/static/js/runtime-main.bf9f0c29.js.map",
     "static/css/2.0cfad52a.chunk.css": "/horse_farm/static/css/2.0cfad52a.chunk.css",
@@ -26,6 +26,6 @@
     "static/css/2.0cfad52a.chunk.css",
     "static/js/2.4adf11c5.chunk.js",
     "static/css/main.e3cad2cf.chunk.css",
-    "static/js/main.ea083c60.chunk.js"
+    "static/js/main.d50bfd5a.chunk.js"
   ]
 }
