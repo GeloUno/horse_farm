@@ -94,13 +94,13 @@ export const Opinions: React.FC = () => {
   // let randomOpinions = null;
   let randomOpinions = getRandomDataOpinionNoRepeat(dataOpinions, 4);
   return (
-    <section className="container container-opinion flex-direction-col">
-      <header className="title-header">
+    <section className="container container-opinion flex-direction-col" data-cy='opinionSection'>
+      <header className="title-header" data-cy='opinionHeader'>
         <h2 className="title-regular">
           Trochę o<strong className="title-bold">NAS</strong>
         </h2>
       </header>
-      <section className="opinios-body flex-direction-row">
+      <section className="opinios-body flex-direction-row" data-cy='opinionSectionAllUsers'>
         {randomOpinions &&
           randomOpinions.map((data, index) => {
             const getObjectData = data[0];
@@ -111,6 +111,7 @@ export const Opinions: React.FC = () => {
                 nick={getObjectData.name}
                 sourceImage={getObjectData.sourceImage}
                 description={getObjectData.description}
+                data-cy='opinionUser'
               />
             );
           })}

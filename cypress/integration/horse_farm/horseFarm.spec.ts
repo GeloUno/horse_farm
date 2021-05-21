@@ -9,7 +9,7 @@ describe('visit page horse farm', () => {
 })
 describe('open modal login', () => {
     it('should open login modal', () => {
-        cy.get(':nth-child(6) > h2 > .sm-hiden').click()
+        cy.get(':nth-child(6) > h2 > .sm-hidden').click()
     });
 
 });
