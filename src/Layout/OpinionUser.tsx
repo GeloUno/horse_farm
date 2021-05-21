@@ -1,3 +1,4 @@
+import { Skeleton } from '@material-ui/lab';
 import React from 'react';
 
 export interface OpinionUserProps {
@@ -16,19 +17,42 @@ const OpinionUser: React.FC<OpinionUserProps> = (
   return (
     <article className="article-body flex-direction-col">
       <div>
-        <img
-          className="image-user"
-          src={sourceImage}
-          alt="zdjęcie użytkownika"
-        />
+        {
+          sourceImage ? (
+            <img
+              className="image-user"
+              src={sourceImage}
+              alt="zdjęcie użytkownika"
+            />
+          ) : (
+            <Skeleton variant='circle' width='8rem' height='8rem' />
+          )
+        }
+
       </div>
 
       <div className="nick-user">
-        <h2>{nick}</h2>
+
+        <h2>{nick ? (
+          nick
+        ) : (
+          <Skeleton variant='rect' />
+        )}</h2>
+
+
       </div>
 
       <div className="description">
-        <p>{description}</p>
+        <p>{description ? (
+          description
+        ) : (
+          <>
+            <Skeleton variant='text' />
+            <Skeleton variant='text' />
+            <Skeleton variant='text' />
+            <Skeleton variant='text' />
+          </>
+        )}</p>
       </div>
 
       <div className="contact-link">
