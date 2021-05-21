@@ -3,7 +3,7 @@ import React from 'react';
 const Contact: React.FC = () => {
   return (
     <div className="container container-contact">
-      <section className="body-section contact-section">
+      <section className="body-section contact-section" data-cy='contactSection'>
         <div>
           <h2 data-testid='contactFullName'>Aleksandra Rosińska</h2>
           <p>

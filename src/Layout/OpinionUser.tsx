@@ -15,8 +15,8 @@ const OpinionUser: React.FC<OpinionUserProps> = (
   }
 ) => {
   return (
-    <article className="article-body flex-direction-col">
-      <div>
+    <article className="article-body flex-direction-col" data-cy='opinionUserArticle'>
+      <div data-cy='opinionUserImage'>
         {
           sourceImage ? (
             <img
@@ -31,7 +31,7 @@ const OpinionUser: React.FC<OpinionUserProps> = (
 
       </div>
 
-      <div className="nick-user">
+      <div className="nick-user" data-cy='opinionUserNicke'>
 
         <h2>{nick ? (
           nick
@@ -42,7 +42,7 @@ const OpinionUser: React.FC<OpinionUserProps> = (
 
       </div>
 
-      <div className="description">
+      <div className="description" data-cy='opinionUserDescription'>
         <p>{description ? (
           description
         ) : (
@@ -55,7 +55,7 @@ const OpinionUser: React.FC<OpinionUserProps> = (
         )}</p>
       </div>
 
-      <div className="contact-link">
+      <div className="contact-link" data-cy='opinionUserContaktLink'>
         <link rel="stylesheet" href="#" />
         <p>
           kontakt <i className="fas fa-arrow-right"></i>
