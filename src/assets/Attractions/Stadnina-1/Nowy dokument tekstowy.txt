@@ -1,0 +1,58 @@
+<picture>
+<source
+media="(max-width: 767px)"
+sizes="(max-width: 767px) 100vw, 767px"
+srcset="
+Stadnina-1_vmv1ek_ar_1_1,c_fill,g_auto__c_scale,w_190.png 190w,
+Stadnina-1_vmv1ek_ar_1_1,c_fill,g_auto__c_scale,w_253.png 253w,
+Stadnina-1_vmv1ek_ar_1_1,c_fill,g_auto__c_scale,w_305.png 305w,
+Stadnina-1_vmv1ek_ar_1_1,c_fill,g_auto__c_scale,w_351.png 351w,
+Stadnina-1_vmv1ek_ar_1_1,c_fill,g_auto__c_scale,w_395.png 395w,
+Stadnina-1_vmv1ek_ar_1_1,c_fill,g_auto__c_scale,w_433.png 433w,
+Stadnina-1_vmv1ek_ar_1_1,c_fill,g_auto__c_scale,w_471.png 471w,
+Stadnina-1_vmv1ek_ar_1_1,c_fill,g_auto__c_scale,w_505.png 505w,
+Stadnina-1_vmv1ek_ar_1_1,c_fill,g_auto__c_scale,w_539.png 539w,
+Stadnina-1_vmv1ek_ar_1_1,c_fill,g_auto__c_scale,w_572.png 572w,
+Stadnina-1_vmv1ek_ar_1_1,c_fill,g_auto__c_scale,w_602.png 602w,
+Stadnina-1_vmv1ek_ar_1_1,c_fill,g_auto__c_scale,w_632.png 632w,
+Stadnina-1_vmv1ek_ar_1_1,c_fill,g_auto__c_scale,w_660.png 660w,
+Stadnina-1_vmv1ek_ar_1_1,c_fill,g_auto__c_scale,w_690.png 690w,
+Stadnina-1_vmv1ek_ar_1_1,c_fill,g_auto__c_scale,w_719.png 719w,
+Stadnina-1_vmv1ek_ar_1_1,c_fill,g_auto__c_scale,w_748.png 748w,
+Stadnina-1_vmv1ek_ar_1_1,c_fill,g_auto__c_scale,w_767.png 767w">
+<source
+media="(min-width: 768px) and (max-width: 991px)"
+sizes="(max-width: 991px) 70vw, 694px"
+srcset="
+Stadnina-1_vmv1ek_ar_4_3,c_fill,g_auto__c_scale,w_538.png 538w,
+Stadnina-1_vmv1ek_ar_4_3,c_fill,g_auto__c_scale,w_581.png 581w,
+Stadnina-1_vmv1ek_ar_4_3,c_fill,g_auto__c_scale,w_623.png 623w,
+Stadnina-1_vmv1ek_ar_4_3,c_fill,g_auto__c_scale,w_659.png 659w,
+Stadnina-1_vmv1ek_ar_4_3,c_fill,g_auto__c_scale,w_694.png 694w">
+<source
+media="(min-width: 992px) and (max-width: 1199px)"
+sizes="(max-width: 1200px) 60vw, 720px"
+srcset="
+Stadnina-1_vmv1ek_ar_16_9,c_fill,g_auto__c_scale,w_596.png 596w,
+Stadnina-1_vmv1ek_ar_16_9,c_fill,g_auto__c_scale,w_648.png 648w,
+Stadnina-1_vmv1ek_ar_16_9,c_fill,g_auto__c_scale,w_700.png 700w,
+Stadnina-1_vmv1ek_ar_16_9,c_fill,g_auto__c_scale,w_720.png 720w">
+<img
+sizes="(max-width: 2000px) 40vw, 800px"
+srcset="
+Stadnina-1_vmv1ek_c_scale,w_480.png 480w,
+Stadnina-1_vmv1ek_c_scale,w_514.png 514w,
+Stadnina-1_vmv1ek_c_scale,w_547.png 547w,
+Stadnina-1_vmv1ek_c_scale,w_577.png 577w,
+Stadnina-1_vmv1ek_c_scale,w_609.png 609w,
+Stadnina-1_vmv1ek_c_scale,w_637.png 637w,
+Stadnina-1_vmv1ek_c_scale,w_666.png 666w,
+Stadnina-1_vmv1ek_c_scale,w_693.png 693w,
+Stadnina-1_vmv1ek_c_scale,w_720.png 720w,
+Stadnina-1_vmv1ek_c_scale,w_746.png 746w,
+Stadnina-1_vmv1ek_c_scale,w_772.png 772w,
+Stadnina-1_vmv1ek_c_scale,w_799.png 799w,
+Stadnina-1_vmv1ek_c_scale,w_800.png 800w"
+src="Stadnina-1_vmv1ek_c_scale,w_800.png"
+alt="">
+</picture>
