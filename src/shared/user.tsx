@@ -46,14 +46,17 @@ export const setTokenInCookies = (idToken: string) => {
 
 
 
-export const isUserCanLoginByPassword = (isLoading: boolean, isErrors: boolean, dataResponse: unknown, isNewUser: boolean, providerId: string) => {
+export const isUserCanSendRequestToLoginByPassword = (isLoading: boolean, isErrors: boolean, dataResponse: unknown, isNewUser: boolean | undefined, providerId: string | undefined) => {
     return (!isLoading && !isErrors && !dataResponse && !isNewUser && providerId === "password")
 }
 
-export const isUserCanLoginBySocialMedia = (isLoading: boolean, isErrors: boolean, dataResponse: unknown, isNewUser: boolean, providerId: string) => {
+export const isUserCanSendRequestToLoginBySocialMedia = (isLoading: boolean, isErrors: boolean, dataResponse: unknown, isNewUser: boolean | undefined, providerId: string | undefined) => {
+    if (isNewUser === undefined || providerId === undefined) {
+        return false
+    }
     return (!isLoading && !isErrors && !dataResponse && !isNewUser && (providerId === "google.com" || providerId === "facebook.com"))
 }
 
-export const isUserCanCreateBySocialMedia = (isLoading: boolean, isErrors: boolean, dataResponse: unknown, isNewUser: boolean, providerId: string) => {
-    return (!isLoading && !isErrors && !dataResponse && isNewUser && (providerId === "google.com" || providerId === "facebook.com"))
+export const isUserCanSendRequestToCreateBySocialMedia = (isLoading: boolean, isErrors: boolean, dataResponse: unknown, isNewUser: boolean | undefined, providerId: string | undefined) => {
+    return (!isLoading && !isErrors && !dataResponse && !!isNewUser && (providerId === "google.com" || providerId === "facebook.com"))
 }

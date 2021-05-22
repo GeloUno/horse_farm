@@ -1,4 +1,4 @@
-import { isUserNeedConfirmEmail, isUserCanSetTokenInCookie, isUserCanBeCreateByPassword, isUserCanUpdateDataFromMongoDB, isUserGetErrorFromDataMongoDB, isUserGetCorrectDataAndCanCloseModal, setTokenInCookies, isUserCanLoginByPassword, isUserCanLoginBySocialMedia, isUserCanCreateBySocialMedia, isNeedToShowUserForms } from './user';
+import { isUserNeedConfirmEmail, isUserCanSetTokenInCookie, isUserCanBeCreateByPassword, isUserCanUpdateDataFromMongoDB, isUserGetErrorFromDataMongoDB, isUserGetCorrectDataAndCanCloseModal, setTokenInCookies, isUserCanSendRequestToLoginByPassword, isUserCanSendRequestToLoginBySocialMedia, isUserCanSendRequestToCreateBySocialMedia, isNeedToShowUserForms } from './user';
 import Cookies from 'universal-cookie';
 
 
@@ -285,79 +285,120 @@ describe('setTokenInCookies', () => {
     });
 });
 
-describe('isUserCanLoginByPassword', () => {
+describe('isUserCanSendRequestToLoginByPassword', () => {
     test('should return false if user is provider from google ', () => {
-        const result = isUserCanLoginByPassword(false, false, false, false, 'google')
+        const result = isUserCanSendRequestToLoginByPassword(false, false, false, false, 'google')
+        expect(result).toBe(false)
+
+    });
+    test('should return false if user is provider is undefined ', () => {
+        const result = isUserCanSendRequestToLoginByPassword(false, false, false, false, undefined)
         expect(result).toBe(false)
 
     });
     test('should return false if user is provider from facebook ', () => {
-        const result = isUserCanLoginByPassword(false, false, false, false, 'facebook')
+        const result = isUserCanSendRequestToLoginByPassword(false, false, false, false, 'facebook')
         expect(result).toBe(false)
     });
 
     test('should return true if user is provider from password ', () => {
-        const result = isUserCanLoginByPassword(false, false, false, false, 'password')
+        const result = isUserCanSendRequestToLoginByPassword(false, false, false, false, 'password')
         expect(result).toBe(true)
     });
 
     test('should return false if user is new user and provider from password ', () => {
-        const result = isUserCanLoginByPassword(false, false, false, true, 'password')
+        const result = isUserCanSendRequestToLoginByPassword(false, false, false, true, 'password')
+        expect(result).toBe(false)
+    });
+    test('should return false if user is new user and provider is undefined', () => {
+        const result = isUserCanSendRequestToLoginByPassword(false, false, false, true, undefined)
+        expect(result).toBe(false)
+    });
+    test('should return false if new user is undefined and provider is undefined', () => {
+        const result = isUserCanSendRequestToLoginByPassword(false, false, false, undefined, undefined)
+        expect(result).toBe(false)
+    });
+    test('should return false if new user is undefined and provider is undefined', () => {
+        const result = isUserCanSendRequestToLoginByPassword(false, false, false, undefined, undefined)
         expect(result).toBe(false)
     });
 
 });
 
-describe('isUserCanLoginBySocialMedia', () => {
+describe('isUserCanSendRequestToLoginBySocialMedia', () => {
     test('should return true if user is provider from google.com', () => {
-        const result = isUserCanLoginBySocialMedia(false, false, false, false, 'google.com')
+        const result = isUserCanSendRequestToLoginBySocialMedia(false, false, false, false, 'google.com')
         expect(result).toBe(true)
-
+    });
+    test('should return false if user is provider from google.com and is new user is undefined', () => {
+        const result = isUserCanSendRequestToLoginBySocialMedia(false, false, false, undefined, 'google.com')
+        expect(result).toBe(false)
     });
     test('should return true if user is provider from facebook.com ', () => {
-        const result = isUserCanLoginBySocialMedia(false, false, false, false, 'facebook.com')
+        const result = isUserCanSendRequestToLoginBySocialMedia(false, false, false, false, 'facebook.com')
         expect(result).toBe(true)
+    });
+    test('should return true if user is provider from facebook.com and is new user is undefined ', () => {
+        const result = isUserCanSendRequestToLoginBySocialMedia(false, false, false, undefined, 'facebook.com')
+        expect(result).toBe(false)
     });
 
     test('should return false if user is provider from password ', () => {
-        const result = isUserCanLoginBySocialMedia(false, false, false, false, 'password')
+        const result = isUserCanSendRequestToLoginBySocialMedia(false, false, false, false, 'password')
+        expect(result).toBe(false)
+    });
+
+    test('should return false if user provider is undefined ', () => {
+        const result = isUserCanSendRequestToLoginBySocialMedia(false, false, false, false, undefined)
         expect(result).toBe(false)
     });
 
     test('should return false if user is new user and provider from facebook.com ', () => {
-        const result = isUserCanLoginBySocialMedia(false, false, false, true, 'facebook.com')
+        const result = isUserCanSendRequestToLoginBySocialMedia(false, false, false, true, 'facebook.com')
         expect(result).toBe(false)
     });
     test('should return false if user is new user and provider from google.com ', () => {
-        const result = isUserCanLoginBySocialMedia(false, false, false, true, 'google.com')
+        const result = isUserCanSendRequestToLoginBySocialMedia(false, false, false, true, 'google.com')
         expect(result).toBe(false)
     });
 
 
 });
 
-describe('isUserCanCreateBySocialMedia', () => {
-    test('should return true if user is provider from google.com', () => {
-        const result = isUserCanCreateBySocialMedia(false, false, false, true, 'google.com')
-        expect(result).toBe(true)
+describe('isUserCanSendRequestToCreateBySocialMedia', () => {
 
+    test('should return true if user is provider from google.com', () => {
+        const result = isUserCanSendRequestToCreateBySocialMedia(false, false, false, true, 'google.com')
+        expect(result).toBe(true)
+    });
+    test('should return FALSE if user is provider from google.com and is new user is undefined', () => {
+        const result = isUserCanSendRequestToCreateBySocialMedia(false, false, false, undefined, 'google.com')
+        expect(result).toBe(false)
     });
     test('should return true if user is provider from facebook.com ', () => {
-        const result = isUserCanCreateBySocialMedia(false, false, false, true, 'facebook.com')
+        const result = isUserCanSendRequestToCreateBySocialMedia(false, false, false, true, 'facebook.com')
         expect(result).toBe(true)
     });
 
     test('should return false if user is provider from password ', () => {
-        const result = isUserCanCreateBySocialMedia(false, false, false, true, 'password')
+        const result = isUserCanSendRequestToCreateBySocialMedia(false, false, false, true, 'password')
+        expect(result).toBe(false)
+    });
+    test('should return false if user provider is undefined ', () => {
+        const result = isUserCanSendRequestToCreateBySocialMedia(false, false, false, true, undefined)
+        expect(result).toBe(false)
+    });
+    test('should return false if user provider and is new user are undefined ', () => {
+        const result = isUserCanSendRequestToCreateBySocialMedia(false, false, false, undefined, undefined)
         expect(result).toBe(false)
     });
 
     test('should return false if user is not new user and provider is from facebook.com ', () => {
-        const result = isUserCanCreateBySocialMedia(false, false, false, false, 'facebook.com')
+        const result = isUserCanSendRequestToCreateBySocialMedia(false, false, false, false, 'facebook.com')
         expect(result).toBe(false)
     });
     test('should return false if user is not new user and provider is from google.com ', () => {
-        const result = isUserCanCreateBySocialMedia(false, false, false, false, 'google.com')
+        const result = isUserCanSendRequestToCreateBySocialMedia(false, false, false, false, 'google.com')
         expect(result).toBe(false)
     });
 

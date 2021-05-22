@@ -57,6 +57,7 @@ const SingUpUser: React.FC<SingUpProps> = ({
 
     isNeedToShowUserForms(email, emailVerified) && setToggleComponent(<SignUpFormik />);
 
+
     isUserCanBeCreateByPassword(email, isLoading, isErrors, dataResponse, isNewUser, providerId) && (sendReqestClient(
       'user/create', { email, uid, providerId, emailVerified }, 'post'));
 
@@ -70,11 +71,12 @@ const SingUpUser: React.FC<SingUpProps> = ({
       setToggleComponent(
         <h1 className="errorMessenge">
           Coś poszło nie tak podczas rejestracji skontaktuj się z instruktorem
-        </h1>
+          </h1>
       );
       dispatch(userRemoveCookieTokenAction);
       dispatch(userSignOutAction);
     }
+
 
     if (isUserGetCorrectDataAndCanCloseModal(email, isLoading, isErrors, dataResponse, emailVerified)) {
       // setUser(user);
