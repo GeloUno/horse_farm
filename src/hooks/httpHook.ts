@@ -4,7 +4,6 @@ import axios from 'axios';
 import { useCallback, useState } from 'react';
 
 const useHttpClient = () => {
-  // const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isErrors, setIsErrors] = useState(false);
   const [dataResponse, setDataResponse] = useState(null);
@@ -19,13 +18,11 @@ const useHttpClient = () => {
         {
           method: method,
           params: body,
-          cancelToken: source.token
         }
       ) : (
         {
           method: method,
           data: body,
-          cancelToken: source.token
         }
       );
       try {
