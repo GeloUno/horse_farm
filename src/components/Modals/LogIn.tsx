@@ -9,11 +9,12 @@ import ConfirmEmail from '../Users/ConfirmEmail';
 import useHttpClient from '../../hooks/httpHook';
 import PulseLoader from 'react-spinners/PulseLoader';
 import { updateOwnDataUserAction, userRemoveCookieTokenAction, userSignOutAction } from '../../redux/actions/userActions';
+import { RootState } from '../../redux/store';
 import {
-  isNeedToShowUserBody,
-  isUserCanCreateBySocialMedia,
-  isUserCanLoginByPassword,
-  isUserCanLoginBySocialMedia,
+  isNeedToShowUserForms,
+  isUserCanSendRequestToCreateBySocialMedia,
+  isUserCanSendRequestToLoginByPassword,
+  isUserCanSendRequestToLoginBySocialMedia,
   isUserCanSetTokenInCookie,
   isUserCanUpdateDataFromMongoDB,
   isUserGetCorrectDataAndCanCloseModal,
@@ -22,17 +23,24 @@ import {
   setTokenInCookies
 } from '../../shared/user'
 
+interface LoginUserProps {
+  signinModalToggle(): void,
+  loginModalToggle(e: React.MouseEvent): void,
+  resetPasswordModalToggle(): void,
+  setLoginModalShow(show: boolean): void,
+  // setUser,
+}
 
 
-const LoginUser = ({
+const LoginUser: React.FC<LoginUserProps> = ({
   signinModalToggle,
   loginModalToggle,
   resetPasswordModalToggle,
   setLoginModalShow,
-  setUser,
+  // setUser,
 }) => {
   getFirebase();
-  const userAuth = useSelector((state) => state.userAction);
+  const userAuth = useSelector((state: RootState) => state.userAction);
   const dispatch = useDispatch();
   const {
     isLoading,
@@ -45,7 +53,7 @@ const LoginUser = ({
   let { idToken, user } = userAuth;
 
   let { email, providerId, emailVerified, isNewUser } = user;
-  const [Component, setComponent] = useState(null);
+  const [ToggleComponent, setToggleComponent] = useState<JSX.Element | null>(null);
 
   useEffect(() => {
     console.log(
@@ -59,8 +67,8 @@ const LoginUser = ({
       user
     );
 
-    isNeedToShowUserBody(email, emailVerified) && (
-      setComponent(
+    isNeedToShowUserForms(email, emailVerified) && (
+      setToggleComponent(
         <LogInBody
           loginModalToggle={loginModalToggle}
           signinModalToggle={signinModalToggle}
@@ -68,28 +76,28 @@ const LoginUser = ({
         />)
     )
 
-    isUserNeedConfirmEmail(email, isErrors, emailVerified) && (setComponent(<ConfirmEmail email={email} user={user} />))
+    isUserNeedConfirmEmail(email, isErrors, emailVerified) && (setToggleComponent(<ConfirmEmail email={email} user={user} />))
 
-    isUserCanSetTokenInCookie(email, emailVerified) && setTokenInCookies(idToken)
+    // isUserCanSetTokenInCookie(email, emailVerified) && setTokenInCookies(idToken!)
 
-    isUserCanLoginByPassword(isLoading, isErrors, dataResponse, isNewUser, providerId) && sendReqestClient('user/login', user, 'post');
+    isUserCanSendRequestToLoginByPassword(isLoading, isErrors, dataResponse, isNewUser, providerId) && sendReqestClient('user/login', user, 'post');
 
-    isUserCanCreateBySocialMedia(isLoading, isErrors, dataResponse, isNewUser, providerId) && sendReqestClient('user/createsocialmedia', user, 'post');
+    isUserCanSendRequestToCreateBySocialMedia(isLoading, isErrors, dataResponse, isNewUser, providerId) && sendReqestClient('user/createsocialmedia', user, 'post');
 
-    isUserCanLoginBySocialMedia(isLoading, isErrors, dataResponse, isNewUser, providerId) && sendReqestClient('user/loginsocialmedia', user, 'post');
+    isUserCanSendRequestToLoginBySocialMedia(isLoading, isErrors, dataResponse, isNewUser, providerId) && sendReqestClient('user/loginsocialmedia', user, 'post');
 
 
     isUserCanUpdateDataFromMongoDB(isLoading, isErrors, emailVerified, dataResponse) && dispatch(updateOwnDataUserAction(dataResponse));
 
     if (isUserGetCorrectDataAndCanCloseModal(email, isLoading, isErrors, dataResponse, emailVerified)) {
-      setUser(user);
+      // setUser(user);
       setLoginModalShow(false);
     }
     if (isUserGetErrorFromDataMongoDB(isLoading, isErrors, dataResponse)) {
       dispatch(userRemoveCookieTokenAction);
       dispatch(userSignOutAction);
 
-      setComponent(
+      setToggleComponent(
         <h1 className="errorMessenge">
           Coś poszło nie tak podczas logowania skontaktuj się z instruktorem
           </h1>
@@ -117,7 +125,7 @@ const LoginUser = ({
         </div>
         <div className="inputModalContainer">
           <i className="fas fa-arrow-left backIcon accessToggleModalShow"></i>
-          {!isLoading && Component}
+          {!isLoading && ToggleComponent}
           {isLoading && (
             <PulseLoader color={' hsla(94, 30%, 43%, 1)'} size={25} />
           )}

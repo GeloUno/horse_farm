@@ -98,7 +98,7 @@ describe('Home Screen horse farm no user', () => {
             cy.get('[data-cy=headerText]').contains(`Nauka jazdy konnej`)
         });
     })
-    context('title section attraction', () => {
+    context('attraction title', () => {
 
         checkTitleSection(Section.Attractions)
 
@@ -230,6 +230,8 @@ describe('Home Screen horse farm no user', () => {
     });
     context('contact title', () => {
         checkTitleSection(Section.Contact)
+    })
+    context('contact section', () => {
 
         it('should be visible', () => {
             cy.get('[data-cy=contactSection] >').should(`be.visible`)
@@ -262,5 +264,13 @@ describe('Home Screen horse farm no user', () => {
             cy.get('[data-testid=contactGoogleMapLocation]').should(`have.attr`, `href`, `https://maps.google.com/maps?q=polska+belzyce+mikolaja+kopernika+165a`)
         });
     });
+    context('footer', () => {
+        it('should be visible', () => {
+            cy.get('[data-testid=logo_developer]').should('be.visible')
+        });
+        it('should hve text', () => {
+            cy.get('[data-testid=logo_developer]').should('have.text', 'HelloGello™')
+        });
+    })
 
 });

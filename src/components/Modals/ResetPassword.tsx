@@ -1,7 +1,14 @@
 import React from 'react';
 import ResetPasswordFormik from '../Formik/ResetPasswordFormik';
 
-const ResetPassword = ({
+interface ResetPasswordProps {
+  resetPasswordModalToggle(e: React.MouseEvent): void,
+  loginModalToggle(e: React.MouseEvent): void,
+  setResetPasswordModalShow(): void,
+}
+
+
+const ResetPassword: React.FC<ResetPasswordProps> = ({
   resetPasswordModalToggle,
   loginModalToggle,
   setResetPasswordModalShow,
