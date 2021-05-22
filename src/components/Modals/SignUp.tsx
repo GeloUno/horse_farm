@@ -6,13 +6,14 @@ import useHttpClient from '../../hooks/httpHook';
 import SignUpFormik from '../Formik/SignUpFormik';
 import ConfirmEmail from '../Users/ConfirmEmail';
 import PulseLoader from 'react-spinners/PulseLoader';
+import { RootState } from '../../redux/store';
 import {
   updateOwnDataUserAction,
   userRemoveCookieTokenAction,
   userSignOutAction
 } from '../../redux/actions/userActions';
 import {
-  isNeedToShowUserBody,
+  isNeedToShowRegisterUserForm,
   isUserCanBeCreateByPassword,
   isUserCanSetTokenInCookie,
   isUserCanUpdateDataFromMongoDB,
@@ -22,13 +23,22 @@ import {
   setTokenInCookies
 } from '../../shared/user'
 
-const SingUpUser = ({
+
+interface SingUpProps {
+  signinModalToggle(e: React.MouseEvent): void,
+  loginModalToggle(e: React.MouseEvent): void,
+  // setUser(): void,
+  setSinginModalShow(show: boolean): void,
+}
+
+
+const SingUpUser: React.FC<SingUpProps> = ({
   signinModalToggle,
   loginModalToggle,
-  setUser,
+  // setUser,
   setSinginModalShow,
 }) => {
-  const userAuth = useSelector((state) => state.userAction);
+  const userAuth = useSelector((state: RootState) => state.userAction);
   const dispatch = useDispatch();
   const { idToken, user } = userAuth;
   const { email, providerId, emailVerified, uid, isNewUser } = user;
@@ -41,19 +51,19 @@ const SingUpUser = ({
     source,
   } = useHttpClient();
 
-  const [Component, setComponent] = useState(null);
+  const [Component, setComponent] = useState<JSX.Element | null>(null);
   const cookies = new Cookies();
 
   useEffect(() => {
 
-    isNeedToShowUserBody(email, emailVerified) && setComponent(<SignUpFormik />);
+    isNeedToShowRegisterUserForm(email, emailVerified) && setComponent(<SignUpFormik />);
 
     isUserCanBeCreateByPassword(email, isLoading, isErrors, dataResponse, isNewUser, providerId) && (sendReqestClient(
       'user/create', { email, uid, providerId, emailVerified }, 'post'));
 
     isUserNeedConfirmEmail(email, isErrors, emailVerified) && setComponent(<ConfirmEmail email={email} user={user} />);
 
-    isUserCanSetTokenInCookie(email, emailVerified) && setTokenInCookies(idToken)
+    isUserCanSetTokenInCookie(email, emailVerified) && setTokenInCookies(idToken!)
 
     isUserCanUpdateDataFromMongoDB(isLoading, isErrors, emailVerified, dataResponse) && (dispatch(updateOwnDataUserAction(dataResponse)))
 
@@ -68,7 +78,7 @@ const SingUpUser = ({
     }
 
     if (isUserGetCorrectDataAndCanCloseModal(email, isLoading, isErrors, dataResponse, emailVerified)) {
-      setUser(user);
+      // setUser(user);
       setSinginModalShow(false);
     }
 

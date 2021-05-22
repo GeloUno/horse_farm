@@ -1,8 +1,31 @@
-import { isUserNeedConfirmEmail, isUserCanSetTokenInCookie, isUserCanBeCreateByPassword, isUserCanUpdateDataFromMongoDB, isUserGetErrorFromDataMongoDB, isUserGetCorrectDataAndCanCloseModal, isNeedToShowUserBody, setTokenInCookies, isUserCanLoginByPassword, isUserCanLoginBySocialMedia, isUserCanCreateBySocialMedia } from './user';
+import { isUserNeedConfirmEmail, isUserCanSetTokenInCookie, isUserCanBeCreateByPassword, isUserCanUpdateDataFromMongoDB, isUserGetErrorFromDataMongoDB, isUserGetCorrectDataAndCanCloseModal, isNeedToShowRegisterUserForm, setTokenInCookies, isUserCanLoginByPassword, isUserCanLoginBySocialMedia, isUserCanCreateBySocialMedia } from './user';
 import Cookies from 'universal-cookie';
 
 
 describe(`isUserNeedConfirmEmail`, () => {
+    test(`should isUserNeedConfirmEmail return FALSE if user email is undefined no error and emailVerificed is false`, () => {
+        const result = isUserNeedConfirmEmail(undefined, false, false)
+        expect(result).toBe(false)
+    });
+
+    test(`should isUserNeedConfirmEmail return FALSE if get error`, () => {
+        const result = isUserNeedConfirmEmail(undefined, true, false)
+        expect(result).toBe(false)
+    });
+
+    test(`should isUserNeedConfirmEmail return FALSE if user email is undefined no error and email is verified`, () => {
+        const result = isUserNeedConfirmEmail(undefined, false, true)
+        expect(result).toBe(false)
+    });
+    test(`should isUserNeedConfirmEmail return FALSE if get error`, () => {
+        const result = isUserNeedConfirmEmail(undefined, true, undefined)
+        expect(result).toBe(false)
+    });
+
+    test(`should isUserNeedConfirmEmail return FALSE if user email is undefined no error and email is undefined`, () => {
+        const result = isUserNeedConfirmEmail(undefined, false, undefined)
+        expect(result).toBe(false)
+    });
     test(`should isUserNeedConfirmEmail return TRUE if user have email no error and emailVerificed is false`, () => {
         const result = isUserNeedConfirmEmail(`josh@gmail.com`, false, false)
         expect(result).toBe(true)
@@ -10,6 +33,15 @@ describe(`isUserNeedConfirmEmail`, () => {
 
     test(`should isUserNeedConfirmEmail return FALSE if get error`, () => {
         const result = isUserNeedConfirmEmail(`josh@gmail.com`, true, false)
+        expect(result).toBe(false)
+    });
+    test(`should isUserNeedConfirmEmail return TRUE if user have email no error and emailVerificed is undefined`, () => {
+        const result = isUserNeedConfirmEmail(`josh@gmail.com`, false, undefined)
+        expect(result).toBe(true)
+    });
+
+    test(`should isUserNeedConfirmEmail return FALSE if get error, get email and veryficed is undefined`, () => {
+        const result = isUserNeedConfirmEmail(`josh@gmail.com`, true, undefined)
         expect(result).toBe(false)
     });
 
@@ -40,19 +72,36 @@ describe(`isUserNeedConfirmEmail`, () => {
 });
 
 describe('isUserCanSetTokenInCookie', () => {
+
     test(`should isUserCanSetTokenInCookie return FALSE if user have email and don't have email verified`, () => {
         const result = isUserCanSetTokenInCookie(`josh@gmail.com`, false)
         expect(result).toBe(false)
     });
+    test(`should isUserCanSetTokenInCookie return FALSE if user have email and email verified is undefined`, () => {
+        const result = isUserCanSetTokenInCookie(`josh@gmail.com`, undefined)
+        expect(result).toBe(false)
+    });
+    test(`should isUserCanSetTokenInCookie return FALSE if user email is undefined and don't have email verified`, () => {
+        const result = isUserCanSetTokenInCookie(undefined, false)
+        expect(result).toBe(false)
+    });
 
-    test(`should isUserCanSetTokenInCookie return FALSE if user don't have email and don't have email verified`, () => {
+    test(`should isUserCanSetTokenInCookie return FALSE if user email is empty and don't have email verified`, () => {
         const result = isUserCanSetTokenInCookie(``, false)
+        expect(result).toBe(false)
+    });
+    test(`should isUserCanSetTokenInCookie return FALSE if user email is empty and email verified is undefined`, () => {
+        const result = isUserCanSetTokenInCookie(``, undefined)
         expect(result).toBe(false)
     });
 
     test(`should isUserCanSetTokenInCookie return FALSE if user don't have email and have email verified`, () => {
         const result = isUserCanSetTokenInCookie(`josh@gmail.com`, false)
         expect(result).toBe(false)
+    });
+    test(`should isUserCanSetTokenInCookie return TRUE if user have email and have email verified`, () => {
+        const result = isUserCanSetTokenInCookie(`josh@gmail.com`, true)
+        expect(result).toBe(true)
     });
 });
 
@@ -88,9 +137,17 @@ describe('isUserCanUpdateDataFromMongoDB', () => {
         const result = isUserCanUpdateDataFromMongoDB(true, false, false, true)
         expect(result).toBe(false)
     });
+    test('should return false is loading', () => {
+        const result = isUserCanUpdateDataFromMongoDB(true, false, undefined, true)
+        expect(result).toBe(false)
+    });
 
     test('should return false is get error', () => {
         const result = isUserCanUpdateDataFromMongoDB(false, true, false, true)
+        expect(result).toBe(false)
+    });
+    test('should return false is get error', () => {
+        const result = isUserCanUpdateDataFromMongoDB(false, true, undefined, true)
         expect(result).toBe(false)
     });
 
@@ -98,9 +155,17 @@ describe('isUserCanUpdateDataFromMongoDB', () => {
         const result = isUserCanUpdateDataFromMongoDB(false, false, false, true)
         expect(result).toBe(false)
     });
+    test('should return false if email is not verified', () => {
+        const result = isUserCanUpdateDataFromMongoDB(false, false, undefined, true)
+        expect(result).toBe(false)
+    });
 
     test('should return false if not get data form mongoDB', () => {
         const result = isUserCanUpdateDataFromMongoDB(false, false, false, false)
+        expect(result).toBe(false)
+    });
+    test('should return false if not get data form mongoDB', () => {
+        const result = isUserCanUpdateDataFromMongoDB(false, false, undefined, false)
         expect(result).toBe(false)
     });
     test('should return true if no error, no loading, email is verified and get data from mongoDB ', () => {
@@ -138,6 +203,10 @@ describe('isUserGetCorrectDataAndCanCloseModal', () => {
         const result = isUserGetCorrectDataAndCanCloseModal('', false, false, true, true)
         expect(result).toBe(false)
     });
+    test('should return false if have email undefined', () => {
+        const result = isUserGetCorrectDataAndCanCloseModal(undefined, false, false, true, true)
+        expect(result).toBe(false)
+    });
 
 
 
@@ -155,6 +224,10 @@ describe('isUserGetCorrectDataAndCanCloseModal', () => {
         const result = isUserGetCorrectDataAndCanCloseModal('josh@email.com', false, false, true, false)
         expect(result).toBe(false)
     });
+    test(`should return false if user email verified is undefined`, () => {
+        const result = isUserGetCorrectDataAndCanCloseModal('josh@email.com', false, false, true, false)
+        expect(result).toBe(false)
+    });
 
     test(`should return true if user get data have email, no error, is not loading, and email is verified`, () => {
         const result = isUserGetCorrectDataAndCanCloseModal('josh@email.com', false, false, true, true)
@@ -162,20 +235,40 @@ describe('isUserGetCorrectDataAndCanCloseModal', () => {
     });
 });
 
-describe('isNeedToShowUserBody', () => {
+describe('isNeedToShowRegisterUserForm', () => {
 
+    test('should return true if email is undefined  and email verified is undefind from firebase', () => {
+        const result = isNeedToShowRegisterUserForm(undefined, undefined)
+        expect(result).toBe(true)
+    });
+    test('should return true if email is empty  and email verified is undefind from firebase', () => {
+        const result = isNeedToShowRegisterUserForm('', undefined)
+        expect(result).toBe(true)
+    });
+    test('should return true if is email and email verified is undefind from firebase', () => {
+        const result = isNeedToShowRegisterUserForm('johndoe@gmail.com', undefined)
+        expect(result).toBe(true)
+    });
+    test('should return true if email is undefined  and email verified is true from firebase', () => {
+        const result = isNeedToShowRegisterUserForm(undefined, true)
+        expect(result).toBe(true)
+    });
+    test('should return true if email is undefined  and email verified is false from firebase', () => {
+        const result = isNeedToShowRegisterUserForm(undefined, false)
+        expect(result).toBe(true)
+    });
     test('should return true if email is not verified and not get email from firebase', () => {
-        const result = isNeedToShowUserBody('', false)
+        const result = isNeedToShowRegisterUserForm('', false)
         expect(result).toBe(true)
     });
 
     test('should return flase if email is not verified and get email from firebase', () => {
-        const result = isNeedToShowUserBody('josh@gmail.com', false)
+        const result = isNeedToShowRegisterUserForm('josh@gmail.com', false)
         expect(result).toBe(false)
     });
 
-    test(`should return false if email is  verified and don't get email from firebase`, () => {
-        const result = isNeedToShowUserBody('', true)
+    test(`should return false if email is  verified and get empty email from firebase`, () => {
+        const result = isNeedToShowRegisterUserForm('', true)
         expect(result).toBe(false)
     });
 });
