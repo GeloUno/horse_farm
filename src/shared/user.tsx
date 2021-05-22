@@ -27,7 +27,7 @@ export const isUserGetCorrectDataAndCanCloseModal = (email: string | undefined, 
 }
 
 // T
-export const isNeedToShowRegisterUserForm = (email: string | undefined, emailVerified: boolean | undefined) => {
+export const isNeedToShowUserForms = (email: string | undefined, emailVerified: boolean | undefined) => {
     if (email == undefined || emailVerified == undefined) {
         return true
     }

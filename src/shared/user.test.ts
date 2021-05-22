@@ -1,4 +1,4 @@
-import { isUserNeedConfirmEmail, isUserCanSetTokenInCookie, isUserCanBeCreateByPassword, isUserCanUpdateDataFromMongoDB, isUserGetErrorFromDataMongoDB, isUserGetCorrectDataAndCanCloseModal, isNeedToShowRegisterUserForm, setTokenInCookies, isUserCanLoginByPassword, isUserCanLoginBySocialMedia, isUserCanCreateBySocialMedia } from './user';
+import { isUserNeedConfirmEmail, isUserCanSetTokenInCookie, isUserCanBeCreateByPassword, isUserCanUpdateDataFromMongoDB, isUserGetErrorFromDataMongoDB, isUserGetCorrectDataAndCanCloseModal, setTokenInCookies, isUserCanLoginByPassword, isUserCanLoginBySocialMedia, isUserCanCreateBySocialMedia, isNeedToShowUserForms } from './user';
 import Cookies from 'universal-cookie';
 
 
@@ -238,37 +238,37 @@ describe('isUserGetCorrectDataAndCanCloseModal', () => {
 describe('isNeedToShowRegisterUserForm', () => {
 
     test('should return true if email is undefined  and email verified is undefind from firebase', () => {
-        const result = isNeedToShowRegisterUserForm(undefined, undefined)
+        const result = isNeedToShowUserForms(undefined, undefined)
         expect(result).toBe(true)
     });
     test('should return true if email is empty  and email verified is undefind from firebase', () => {
-        const result = isNeedToShowRegisterUserForm('', undefined)
+        const result = isNeedToShowUserForms('', undefined)
         expect(result).toBe(true)
     });
     test('should return true if is email and email verified is undefind from firebase', () => {
-        const result = isNeedToShowRegisterUserForm('johndoe@gmail.com', undefined)
+        const result = isNeedToShowUserForms('johndoe@gmail.com', undefined)
         expect(result).toBe(true)
     });
     test('should return true if email is undefined  and email verified is true from firebase', () => {
-        const result = isNeedToShowRegisterUserForm(undefined, true)
+        const result = isNeedToShowUserForms(undefined, true)
         expect(result).toBe(true)
     });
     test('should return true if email is undefined  and email verified is false from firebase', () => {
-        const result = isNeedToShowRegisterUserForm(undefined, false)
+        const result = isNeedToShowUserForms(undefined, false)
         expect(result).toBe(true)
     });
     test('should return true if email is not verified and not get email from firebase', () => {
-        const result = isNeedToShowRegisterUserForm('', false)
+        const result = isNeedToShowUserForms('', false)
         expect(result).toBe(true)
     });
 
     test('should return flase if email is not verified and get email from firebase', () => {
-        const result = isNeedToShowRegisterUserForm('josh@gmail.com', false)
+        const result = isNeedToShowUserForms('josh@gmail.com', false)
         expect(result).toBe(false)
     });
 
     test(`should return false if email is  verified and get empty email from firebase`, () => {
-        const result = isNeedToShowRegisterUserForm('', true)
+        const result = isNeedToShowUserForms('', true)
         expect(result).toBe(false)
     });
 });

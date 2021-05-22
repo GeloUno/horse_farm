@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Cookies from 'universal-cookie';
+// import Cookies from 'universal-cookie';
 import SigninHorseImg from '../../assets/SigninHorse.png';
 import useHttpClient from '../../hooks/httpHook';
 import SignUpFormik from '../Formik/SignUpFormik';
@@ -13,7 +13,7 @@ import {
   userSignOutAction
 } from '../../redux/actions/userActions';
 import {
-  isNeedToShowRegisterUserForm,
+  isNeedToShowUserForms,
   isUserCanBeCreateByPassword,
   isUserCanSetTokenInCookie,
   isUserCanUpdateDataFromMongoDB,
@@ -51,24 +51,23 @@ const SingUpUser: React.FC<SingUpProps> = ({
     source,
   } = useHttpClient();
 
-  const [Component, setComponent] = useState<JSX.Element | null>(null);
-  const cookies = new Cookies();
+  const [ToggleComponent, setToggleComponent] = useState<JSX.Element | null>(null);
 
   useEffect(() => {
 
-    isNeedToShowRegisterUserForm(email, emailVerified) && setComponent(<SignUpFormik />);
+    isNeedToShowUserForms(email, emailVerified) && setToggleComponent(<SignUpFormik />);
 
     isUserCanBeCreateByPassword(email, isLoading, isErrors, dataResponse, isNewUser, providerId) && (sendReqestClient(
       'user/create', { email, uid, providerId, emailVerified }, 'post'));
 
-    isUserNeedConfirmEmail(email, isErrors, emailVerified) && setComponent(<ConfirmEmail email={email} user={user} />);
+    isUserNeedConfirmEmail(email, isErrors, emailVerified) && setToggleComponent(<ConfirmEmail email={email} user={user} />);
 
-    isUserCanSetTokenInCookie(email, emailVerified) && setTokenInCookies(idToken!)
+    // isUserCanSetTokenInCookie(email, emailVerified) && setTokenInCookies(idToken!)
 
     isUserCanUpdateDataFromMongoDB(isLoading, isErrors, emailVerified, dataResponse) && (dispatch(updateOwnDataUserAction(dataResponse)))
 
     if (isUserGetErrorFromDataMongoDB(isLoading, isErrors, dataResponse)) {
-      setComponent(
+      setToggleComponent(
         <h1 className="errorMessenge">
           Coś poszło nie tak podczas rejestracji skontaktuj się z instruktorem
         </h1>
@@ -107,7 +106,7 @@ const SingUpUser: React.FC<SingUpProps> = ({
               loginModalToggle(e);
             }}
           ></i>
-          {!isLoading && Component}
+          {!isLoading && ToggleComponent}
           {isLoading && (
             <PulseLoader color={' hsla(94, 30%, 43%, 1)'} size={25} />
           )}
