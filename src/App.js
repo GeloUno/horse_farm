@@ -86,7 +86,7 @@ function App() {
   const [isScrollToAddComment, setisScrollToAddComment] = useState(false);
   const [endDateAndTimeBooking, setEndDateAndTimeBooking] = useState(undefined);
   // ANCHOR: set user ID after login to DB
-  const [user, setUser] = useState(null); //ANCHOR: on prod should be null, set user id from DB
+  // const [user, setUser] = useState(null); //ANCHOR: on prod should be null, set user id from DB
 
   /* ANCHOR: what will be better multi function ore one  ?? */
 
@@ -149,14 +149,14 @@ function App() {
             loginModalToggle={loginModalToggle}
             resetPasswordModalToggle={resetPasswordModalToggle}
             setLoginModalShow={setLoginModalShow}
-            setUser={setUser}
+          // setUser={setUser}
           />
         )}
         {singinModalShow && (
           <SingUpUser
             signinModalToggle={signinModalToggle}
             loginModalToggle={loginModalToggle}
-            setUser={setUser}
+            // setUser={setUser}
             setSinginModalShow={setSinginModalShow}
           />
         )}
@@ -231,7 +231,7 @@ function App() {
             path="/potwierdzenie_rezerwacji"
             component={() => (
               <ConfirmBookingScreen
-                user={user}
+                // user={user}
                 startDateAndTimeBooking={startDateAndTimeBooking}
                 endDateAndTimeBooking={endDateAndTimeBooking}
                 exact
