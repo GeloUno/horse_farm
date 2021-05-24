@@ -25,8 +25,11 @@ describe('Home Screen horse farm no user', () => {
         it('should be visible', () => {
             cy.get('.navbar').should('be.visible')
         })
-        it('should have menu', () => {
+        it('should have menu right and visibile', () => {
             cy.get('.menu-right').should('be.visible')
+        })
+        it('should have menu left not be visible', () => {
+            cy.get('.menu-left').should('not.be.visible')
         })
         it('should have button link home', () => {
             cy.get('[data-cy=linkHomePage]').should('be.visible')
