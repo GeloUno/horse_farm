@@ -2,11 +2,12 @@
 
 import axios from 'axios';
 import { useCallback, useState } from 'react';
+import { IUser } from '../models/users';
 
 const useHttpClient = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [isErrors, setIsErrors] = useState(false);
-  const [dataResponse, setDataResponse] = useState(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isErrors, setIsErrors] = useState<boolean>(false);
+  const [dataResponse, setDataResponse] = useState<IUser | Error | null>(null);
   const cancelToken = axios.CancelToken;
   const source = cancelToken.source();
   const sendReqestClient = useCallback(
