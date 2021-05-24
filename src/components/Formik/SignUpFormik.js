@@ -1,25 +1,18 @@
 import React from 'react';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
-// import firebase from 'firebase';
-// import 'firebase/auth';
-// import 'firebase/firestore';
-// import { createUserEmailPassword } from '../../firebase';
 import { useDispatch } from 'react-redux';
 import { createUserByEmialPasswordAction } from '../../redux/actions/userActions';
+import { useStyles } from '../../utility/materialui';
+import { Button } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
 
 const SignUpFormik = () => {
   const initialValues = { email: '', password: '', confirmPassword: '' };
   const dispatch = useDispatch();
+  const classes = useStyles();
   const handleSubmit = (values, { setErrors, resetForm }) => {
     dispatch(createUserByEmialPasswordAction(values, setErrors, resetForm));
-    // signUpEmailPassword(values)
-    //   .then((result) => {
-    //     console.log('sign UP result :>> ', result);
-    //   })
-    //   .catch((error) => {
-    //     setErrors({ [error.input]: [error.message] });
-    //   });
   };
 
   const validationSchema = Yup.object({
@@ -43,81 +36,80 @@ const SignUpFormik = () => {
       onSubmit={handleSubmit}
     >
       {(formik) => (
-        <Form>
-          <label htmlFor="email">e-mail:</label>
+        <Form className={classes.root} noValidate autoComplete="off">
           <Field name="email">
             {(props) => {
               const { field, form, meta } = props;
 
               return (
                 <>
-                  <input
-                    className="inputModalContaineFormInput"
+                  <TextField
+                    error={meta.touched && meta.error}
+                    helperText={meta.touched && meta.error}
+                    color='primary'
+                    label='email'
+                    variant='outlined'
                     id="email"
                     type="email"
                     {...field}
                   />
-
-                  <div className="errorMessenge">
-                    {meta.touched && meta.error}
-                  </div>
                 </>
               );
             }}
           </Field>
-          <label htmlFor="password">hasło:</label>
           <Field name="password">
             {(props) => {
               const { field, form, meta } = props;
 
               return (
                 <>
-                  <input
-                    className="inputModalContaineFormInput"
+                  <TextField
+                    error={meta.touched && meta.error}
+                    helperText={meta.touched && meta.error}
+                    color='primary'
+                    label='hasło'
+                    variant='outlined'
                     id="password"
                     type="password"
                     {...field}
                   />
-
-                  <div className="errorMessenge">
-                    {meta.touched && meta.error}
-                  </div>
                 </>
               );
             }}
           </Field>
-          <label htmlFor="confirmPassword">powtórz hasło:</label>
           <Field name="confirmPassword">
             {(props) => {
               const { field, form, meta } = props;
 
               return (
                 <>
-                  <input
-                    className="inputModalContaineFormInput"
+                  <TextField
+                    error={meta.touched && meta.error}
+                    helperText={meta.touched && meta.error}
+                    color='primary'
+                    label='powtórz hasło'
+                    variant='outlined'
                     id="confirmPassword"
                     type="password"
                     {...field}
                   />
-
-                  <div className="errorMessenge">
-                    {meta.touched && meta.error}
-                  </div>
                 </>
               );
             }}
           </Field>
-          <button
+          <Button
+            variant='contained'
+            color='secondary'
+            size='large'
             disabled={
               (formik.touched.email && formik.errors.email) ||
               (formik.touched.password && formik.errors.password) ||
               (formik.touched.confirmPassword && formik.errors.confirmPassword)
             }
             type="submit"
-            className="btn btn-brown btn-capitalize btn-radius btn-signup"
           >
             rejestracja
-          </button>
+          </Button>
         </Form>
       )}
     </Formik>

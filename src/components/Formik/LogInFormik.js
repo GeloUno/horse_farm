@@ -5,8 +5,14 @@ import 'firebase/auth';
 import 'firebase/firestore';
 import { useDispatch } from 'react-redux';
 import { userSignInByEmailAction } from '../../redux/actions/userActions';
+import TextField from '@material-ui/core/TextField';
+import { useStyles } from '../../utility/materialui';
+import { Button } from '@material-ui/core';
+
+
 
 const LogInFormik = ({ setIsTryLoginBySocialMedia }) => {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const initialValues = { email: '', password: '' };
 
@@ -33,57 +39,64 @@ const LogInFormik = ({ setIsTryLoginBySocialMedia }) => {
       onSubmit={handleSubmit}
     >
       {(formik) => (
-        <Form>
-          <label htmlFor="email">e-mail:</label>
+        <Form className={classes.root} noValidate autoComplete="off">
           <Field name="email">
             {(props) => {
               const { field, form, meta } = props;
               return (
                 <>
-                  <input
-                    className="inputModalContaineFormInput"
+                  <TextField
+                    error={meta.touched && meta.error}
+                    helperText={meta.touched && meta.error}
+                    color='primary'
+                    label='email'
+                    variant='outlined'
+                    data-testid='inputLoginFormEmail'
                     type="email"
                     id="email"
                     {...field}
                   />
-
-                  <div className="errorMessenge">
-                    {meta.touched && meta.error}
-                  </div>
                 </>
               );
             }}
           </Field>
-          <label htmlFor="password">hasło:</label>
           <Field name="password">
             {(props) => {
               const { field, form, meta } = props;
               return (
                 <>
-                  <input
-                    className="inputModalContaineFormInput"
+
+                  <TextField
+                    error={meta.touched && meta.error}
+                    helperText={meta.touched && meta.error}
+                    // size="medium"
+                    color='primary'
+                    label="hasło"
+                    variant='outlined'
+                    data-testid='inputLoginFormPassword'
+
                     type="password"
                     id="password"
                     {...field}
                   />
 
-                  <div className="errorMessenge">
-                    {meta.touched && meta.error}
-                  </div>
                 </>
               );
             }}
           </Field>
-          <button
+          <Button
+            variant='contained'
+            color='primary'
+            size='large'
+            data-testid='inputLoginFormButton'
             disabled={
               (formik.touched.email && formik.errors.email) ||
               (formik.touched.password && formik.errors.password)
             }
             type="submit"
-            className="btn btn-green btn-capitalize btn-radius btn-login"
           >
             zaloguj
-          </button>
+          </Button>
         </Form>
       )}
     </Formik>

@@ -683,9 +683,9 @@ address a {
 
 
 .inputModalContainer form label {
-  margin-left: 2rem;
+  /* margin-left: 2rem;
   margin-bottom: -1rem;
-  margin-top: 1rem;
+  margin-top: 1rem; */
   /* margin-bottom: -1rem; */
 }
 
@@ -773,13 +773,14 @@ address a {
 
 .resetPasswordModal div {
   display: flex;
-  height: 50%;
+  /* height: 50%; */
   width: 100%;
 }
 
 .resetPasswordModal div:nth-child(1) {
   justify-content: center;
   align-items: center;
+  height: 85%;
 }
 
 .resetPasswordModal div:nth-child(1) h2 {
@@ -791,8 +792,8 @@ address a {
 }
 
 .btn-resetPassword {
-  margin: 1rem;
-  margin-top: 1rem;
+  margin: 0rem;
+  margin-top: 3rem;
 }
 
 .errorMessenge {

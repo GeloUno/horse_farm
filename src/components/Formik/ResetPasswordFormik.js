@@ -5,8 +5,13 @@ import 'firebase/auth';
 import 'firebase/firestore';
 import { useDispatch } from 'react-redux';
 import { sendEmailToResetPasswordAction } from '../../redux/actions/userActions';
+import TextField from '@material-ui/core/TextField';
+import { useStyles } from '../../utility/materialui';
+import { Button } from '@material-ui/core';
+
 
 export const ResetPassword = ({ setResetPasswordModalShow }) => {
+  const classes = useStyles();
   const dispatch = useDispatch();
 
   const initialValues = {
@@ -38,20 +43,21 @@ export const ResetPassword = ({ setResetPasswordModalShow }) => {
       onSubmit={handleSubmit}
     >
       {(formik) => (
-        <Form>
-          <label htmlFor="email">email:</label>
+        <Form className={classes.root}>
           <Field name="email">
             {(props) => {
               const { field, form, meta } = props;
               return (
-                <input
+
+                <TextField
+                  error={formik.errors.email}
+                  helperText={formik.errors.email}
+                  label='email'
+                  variant='outlined'
+                  color='primary'
                   id="email"
                   name="email"
                   type="email"
-                  className="inputModalContaineFormInput"
-                  // onChange={(e) => {
-                  //   handleChange(e);
-                  // }}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.email}
@@ -59,21 +65,17 @@ export const ResetPassword = ({ setResetPasswordModalShow }) => {
               );
             }}
           </Field>
-          <div className="errorMessenge">{formik.errors.email}</div>
-
-          <button
-            // onClick={() => {
-            //   handleSubmit();
-            // }}
+          <Button
+            size='large'
+            variant='contained'
+            color='secondary'
             type="submit"
             disabled={
-              // formik.values.email === '' ||
               formik.touched.email && formik.errors.email
             }
-            className="btn btn-brown btn-capitalize btn-radius btn-resetPassword"
           >
             wyslij
-          </button>
+          </Button>
         </Form>
       )}
     </Formik>

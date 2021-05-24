@@ -21,23 +21,14 @@ import {
   ProfileScreen,
 } from './Layout/Screens';
 import PageNotFound from './Layout/PageNotFound';
-// import { useSelector } from 'react-redux';
-// import { useCookies } from 'react-cookie';
 import { getFirebase, onAuthChange } from './firebase';
 import PrivateRoute from './router/PrivateRoute';
-// import Cookies from 'universal-cookie';
 import confirmDeleteUser from './components/Users/ConfirmDeleteUser';
+import { ThemeProvider } from '@material-ui/core';
+import { theme } from './utility/materialui';
 
-// export const ResetPasswordContext = React.createContext();
 
 function App() {
-  // const [isAuthenticated, setIsAuthenticated] = useState(false);
-  // const userAuth = useSelector((state) => state.userAction);
-  // const { idToken, userState } = userAuth;
-
-  //  const { idToken } = userAuth;
-
-  // const cookies = new Cookies();
 
   const [sectionPage, setSectionPage] = useState(null);
 
@@ -48,9 +39,6 @@ function App() {
   useEffect(() => {
     getFirebase();
     onAuthChange();
-    // return () => {
-
-    // }
   }, []);
 
   useEffect(() => {
@@ -59,20 +47,6 @@ function App() {
     }
   }, [sectionPage]);
 
-  // useEffect(() => {
-  //   // cookies.get('idToken')
-  //   //   ? setIsAuthenticated(true)
-  //   //   : setIsAuthenticated(false);
-  //   // console.log('cookie ', cookies.get('idToken'));
-  //   // userState &&
-  //   //   setUser({
-  //   //     name: userState.name,
-  //   //     id: userState.id,
-  //   //   });
-  //   return () => {
-  //     // cleanup;
-  //   };
-  // });
 
   const [sideBarShow, setSideBarShow] = useState(false);
   const [loginModalShow, setLoginModalShow] = useState(false);
@@ -85,10 +59,6 @@ function App() {
   );
   const [isScrollToAddComment, setisScrollToAddComment] = useState(false);
   const [endDateAndTimeBooking, setEndDateAndTimeBooking] = useState(undefined);
-  // ANCHOR: set user ID after login to DB
-  // const [user, setUser] = useState(null); //ANCHOR: on prod should be null, set user id from DB
-
-  /* ANCHOR: what will be better multi function ore one  ?? */
 
   const sideBarToggle = (e) => {
     if (!e.target.classList.contains('sideBarBody')) {
@@ -97,7 +67,7 @@ function App() {
     }
   };
   const loginModalToggle = (e) => {
-    // console.log('login Toogle :>> ', e.target.classList);
+
     if (e.target.classList.contains('accessToggleModalShow')) {
       setLoginModalShow(!loginModalShow);
       e.preventDefault();
@@ -128,136 +98,120 @@ function App() {
 
   return (
     <div className="App">
-      <Router basename="/horse_farm">
-        <NavBar
-          sideBarToggle={sideBarToggle}
-          loginModalToggle={loginModalToggle}
-          // isAuthenticated={isAuthenticated}
-          setSectionPage={setSectionPage}
-        />
-        {sideBarShow && (
-          <SideBar
+      <ThemeProvider theme={theme}>
+        <Router basename="/horse_farm">
+          <NavBar
             sideBarToggle={sideBarToggle}
             loginModalToggle={loginModalToggle}
-            // isAuthenticated={isAuthenticated}
             setSectionPage={setSectionPage}
           />
-        )}
-        {loginModalShow && (
-          <LoginUser
-            signinModalToggle={signinModalToggle}
-            loginModalToggle={loginModalToggle}
-            resetPasswordModalToggle={resetPasswordModalToggle}
-            setLoginModalShow={setLoginModalShow}
-          // setUser={setUser}
-          />
-        )}
-        {singinModalShow && (
-          <SingUpUser
-            signinModalToggle={signinModalToggle}
-            loginModalToggle={loginModalToggle}
-            // setUser={setUser}
-            setSinginModalShow={setSinginModalShow}
-          />
-        )}
-        {resetPasswordModalShow && (
-          // <ResetPasswordContext.Provider
-          //   value={{
-          //     sideBarShow,
-          //     loginModalShow,
-          //     singinModalShow,
-          //     resetPasswordModalShow,
-          //   }}
-          // >
-          <ResetPassword
-            resetPasswordModalToggle={resetPasswordModalToggle}
-            loginModalToggle={loginModalToggle}
-            setResetPasswordModalShow={setResetPasswordModalShow}
-          />
-          // </ResetPasswordContext.Provider>
-        )}
-        {isGalleryImageModalShow && (
-          <GalleryFullScreenImage
-            isGalleryImageModalShow={isGalleryImageModalShow}
-            dataGalleryImageModal={dataGalleryImageModal}
-            galleryImageModalToggle={galleryImageModalToggle}
-            userID={2}
-            isScrollToAddComment={isScrollToAddComment}
-            setisScrollToAddComment={setisScrollToAddComment}
-          />
-        )}
-        {/* <Redirect exect from="/horse_farm/" to="/" /> */}
-        <Switch>
-          <PrivateRoute
-            setLoginModalShow={setLoginModalShow}
-            path="/profil"
-            component={ProfileScreen}
-            exact
-          />
-          <PrivateRoute
-            setLoginModalShow={setLoginModalShow}
-            path="/edycjaprofilu"
-            component={EditProfileScreen}
-            exact
-          />
-          <PrivateRoute
-            setLoginModalShow={setLoginModalShow}
-            path="/usunprofil"
-            component={confirmDeleteUser}
-            exact
-          />
-          <PrivateRoute
-            setLoginModalShow={setLoginModalShow}
-            path="/planer"
-            component={PlanBookingsScreen}
-            exact
-          />
-          {/* <Route path="/opinia" component={OpinionsScreen} /> */}
-          {/* <Route path="/kontakt" component={ContactScreen} /> */}
-          <PrivateRoute
-            setLoginModalShow={setLoginModalShow}
-            path="/rezerwacja"
-            component={() => (
-              <MakeBookingScreen
-                setStartDateAndTimeBooking={setStartDateAndTimeBooking}
-                setEndDateAndTimeBooking={setEndDateAndTimeBooking}
-                exact
-              />
-            )}
-          />
+          {sideBarShow && (
+            <SideBar
+              sideBarToggle={sideBarToggle}
+              loginModalToggle={loginModalToggle}
+              setSectionPage={setSectionPage}
+            />
+          )}
+          {loginModalShow && (
+            <LoginUser
+              signinModalToggle={signinModalToggle}
+              loginModalToggle={loginModalToggle}
+              resetPasswordModalToggle={resetPasswordModalToggle}
+              setLoginModalShow={setLoginModalShow}
+            />
+          )}
+          {singinModalShow && (
+            <SingUpUser
+              signinModalToggle={signinModalToggle}
+              loginModalToggle={loginModalToggle}
+              setSinginModalShow={setSinginModalShow}
+            />
+          )}
+          {resetPasswordModalShow && (
+            <ResetPassword
+              resetPasswordModalToggle={resetPasswordModalToggle}
+              loginModalToggle={loginModalToggle}
+              setResetPasswordModalShow={setResetPasswordModalShow}
+            />
+          )}
+          {isGalleryImageModalShow && (
+            <GalleryFullScreenImage
+              isGalleryImageModalShow={isGalleryImageModalShow}
+              dataGalleryImageModal={dataGalleryImageModal}
+              galleryImageModalToggle={galleryImageModalToggle}
+              userID={2}
+              isScrollToAddComment={isScrollToAddComment}
+              setisScrollToAddComment={setisScrollToAddComment}
+            />
+          )}
+          <Switch>
+            <PrivateRoute
+              setLoginModalShow={setLoginModalShow}
+              path="/profil"
+              component={ProfileScreen}
+              exact
+            />
+            <PrivateRoute
+              setLoginModalShow={setLoginModalShow}
+              path="/edycjaprofilu"
+              component={EditProfileScreen}
+              exact
+            />
+            <PrivateRoute
+              setLoginModalShow={setLoginModalShow}
+              path="/usunprofil"
+              component={confirmDeleteUser}
+              exact
+            />
+            <PrivateRoute
+              setLoginModalShow={setLoginModalShow}
+              path="/planer"
+              component={PlanBookingsScreen}
+              exact
+            />
+            <PrivateRoute
+              setLoginModalShow={setLoginModalShow}
+              path="/rezerwacja"
+              component={() => (
+                <MakeBookingScreen
+                  setStartDateAndTimeBooking={setStartDateAndTimeBooking}
+                  setEndDateAndTimeBooking={setEndDateAndTimeBooking}
+                  exact
+                />
+              )}
+            />
 
-          <PrivateRoute
-            setLoginModalShow={setLoginModalShow}
-            path="/potwierdzenie_rezerwacji"
-            component={() => (
-              <ConfirmBookingScreen
-                // user={user}
-                startDateAndTimeBooking={startDateAndTimeBooking}
-                endDateAndTimeBooking={endDateAndTimeBooking}
-                exact
-              />
-            )}
-          />
-          <Route
-            path="/galeria"
-            component={() => (
-              <GalleryScreen
-                isGalleryImageModalShow={isGalleryImageModalShow}
-                setDataGalleryImageModal={setDataGalleryImageModal}
-                galleryImageModalToggle={galleryImageModalToggle}
-                userID={2}
-                isScrollToAddComment={isScrollToAddComment}
-                setisScrollToAddComment={setisScrollToAddComment}
-                exact
-              />
-            )}
-          />
-          <Route path="/" component={HomeScreen} exact />
-          <Route component={() => <PageNotFound />} />
-        </Switch>
-        {/* <ShowMobileInfo /> */}
-        <Footer />
-      </Router>
+            <PrivateRoute
+              setLoginModalShow={setLoginModalShow}
+              path="/potwierdzenie_rezerwacji"
+              component={() => (
+                <ConfirmBookingScreen
+                  startDateAndTimeBooking={startDateAndTimeBooking}
+                  endDateAndTimeBooking={endDateAndTimeBooking}
+                  exact
+                />
+              )}
+            />
+            <Route
+              path="/galeria"
+              component={() => (
+                <GalleryScreen
+                  isGalleryImageModalShow={isGalleryImageModalShow}
+                  setDataGalleryImageModal={setDataGalleryImageModal}
+                  galleryImageModalToggle={galleryImageModalToggle}
+                  userID={2}
+                  isScrollToAddComment={isScrollToAddComment}
+                  setisScrollToAddComment={setisScrollToAddComment}
+                  exact
+                />
+              )}
+            />
+            <Route path="/" component={HomeScreen} exact />
+            <Route component={() => <PageNotFound />} />
+          </Switch>
+          <Footer />
+        </Router>
+      </ThemeProvider>
     </div>
   );
 }

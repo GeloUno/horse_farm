@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { dataAtractions } from '../utility/dataAtractons';
+import { Button } from '@material-ui/core';
 
 export const nextDataAtraction = (numberPage: number) => {
   if (numberPage >= 4) {
@@ -30,8 +31,16 @@ export const Attractions: React.FC = () => {
           <div >
             <p data-testid='attractionDescription' className="description-attraction">{attraction.description}</p>
 
-            <button data-testid='attractionNextButton'
-              className="btn btn-green"
+            <Button
+              variant='contained'
+              style={{
+                borderRadius: 3,
+                paddingInline: '3rem',
+                marginTop: '5rem'
+              }}
+              color='primary'
+              data-testid='attractionNextButton'
+              className="btn "
               onClick={() => {
                 setAttraction(nextDataAtraction(attraction.page));
               }}
@@ -39,7 +48,7 @@ export const Attractions: React.FC = () => {
               <p>
                 Dalej <i className="fas fa-arrow-right"></i>
               </p>
-            </button>
+            </Button>
           </div>
           <div data-testid='backgroundText'>
             <p className="background-text">{attraction.backgroundText}</p>
