@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -8,24 +8,26 @@ import SideBar from './components/Modals/SideBar';
 import LoginUser from './components/Modals/LogIn';
 import SingUpUser from './components/Modals/SignUp';
 import ResetPassword from './components/Modals/ResetPassword';
-
 import GalleryFullScreenImage from './components/Gallery/ImageModal';
-
 import {
-  ConfirmBookingScreen,
-  EditProfileScreen,
-  GalleryScreen,
   HomeScreen,
-  MakeBookingScreen,
-  PlanBookingsScreen,
-  ProfileScreen,
 } from './Layout/Screens';
-import PageNotFound from './Layout/PageNotFound';
+
 import { getFirebase, onAuthChange } from './firebase';
 import PrivateRoute from './router/PrivateRoute';
-import confirmDeleteUser from './components/Users/ConfirmDeleteUser';
 import { ThemeProvider } from '@material-ui/core';
 import { theme } from './utility/materialui';
+import {
+  ProfileScreen,
+  EditProfileScreen,
+  ConfirmDeleteUser,
+  PlanBookingsScreen,
+  MakeBookingScreen,
+  ConfirmBookingScreen,
+  GalleryScreen,
+  PageNotFound
+} from './router/LazyComponents';
+import { Loading } from './components/Loading';
 
 
 function App() {
@@ -139,76 +141,78 @@ function App() {
               isGalleryImageModalShow={isGalleryImageModalShow}
               dataGalleryImageModal={dataGalleryImageModal}
               galleryImageModalToggle={galleryImageModalToggle}
-              userID={2}
+              // userID={2}
               isScrollToAddComment={isScrollToAddComment}
               setisScrollToAddComment={setisScrollToAddComment}
             />
           )}
-          <Switch>
-            <PrivateRoute
-              setLoginModalShow={setLoginModalShow}
-              path="/profil"
-              component={ProfileScreen}
-              exact
-            />
-            <PrivateRoute
-              setLoginModalShow={setLoginModalShow}
-              path="/edycjaprofilu"
-              component={EditProfileScreen}
-              exact
-            />
-            <PrivateRoute
-              setLoginModalShow={setLoginModalShow}
-              path="/usunprofil"
-              component={confirmDeleteUser}
-              exact
-            />
-            <PrivateRoute
-              setLoginModalShow={setLoginModalShow}
-              path="/planer"
-              component={PlanBookingsScreen}
-              exact
-            />
-            <PrivateRoute
-              setLoginModalShow={setLoginModalShow}
-              path="/rezerwacja"
-              component={() => (
-                <MakeBookingScreen
-                  setStartDateAndTimeBooking={setStartDateAndTimeBooking}
-                  setEndDateAndTimeBooking={setEndDateAndTimeBooking}
-                  exact
-                />
-              )}
-            />
 
-            <PrivateRoute
-              setLoginModalShow={setLoginModalShow}
-              path="/potwierdzenie_rezerwacji"
-              component={() => (
-                <ConfirmBookingScreen
-                  startDateAndTimeBooking={startDateAndTimeBooking}
-                  endDateAndTimeBooking={endDateAndTimeBooking}
-                  exact
-                />
-              )}
-            />
-            <Route
-              path="/galeria"
-              component={() => (
-                <GalleryScreen
-                  isGalleryImageModalShow={isGalleryImageModalShow}
-                  setDataGalleryImageModal={setDataGalleryImageModal}
-                  galleryImageModalToggle={galleryImageModalToggle}
-                  userID={2}
-                  isScrollToAddComment={isScrollToAddComment}
-                  setisScrollToAddComment={setisScrollToAddComment}
-                  exact
-                />
-              )}
-            />
-            <Route path="/" component={HomeScreen} exact />
-            <Route component={() => <PageNotFound />} />
-          </Switch>
+          <Suspense fallback={<Loading />}>
+            <Switch>
+              <PrivateRoute
+                setLoginModalShow={setLoginModalShow}
+                path="/profil"
+                component={ProfileScreen}
+                exact
+              />
+              <PrivateRoute
+                setLoginModalShow={setLoginModalShow}
+                path="/edycjaprofilu"
+                component={EditProfileScreen}
+                exact
+              />
+              <PrivateRoute
+                path="/usunprofil"
+                component={ConfirmDeleteUser}
+                exact
+              />
+              <PrivateRoute
+                setLoginModalShow={setLoginModalShow}
+                path="/planer"
+                component={PlanBookingsScreen}
+                exact
+              />
+              <PrivateRoute
+                setLoginModalShow={setLoginModalShow}
+                path="/rezerwacja"
+                component={() => (
+                  <MakeBookingScreen
+                    setStartDateAndTimeBooking={setStartDateAndTimeBooking}
+                    setEndDateAndTimeBooking={setEndDateAndTimeBooking}
+                    exact
+                  />
+                )}
+              />
+
+              <PrivateRoute
+                setLoginModalShow={setLoginModalShow}
+                path="/potwierdzenie_rezerwacji"
+                component={() => (
+                  <ConfirmBookingScreen
+                    startDateAndTimeBooking={startDateAndTimeBooking}
+                    endDateAndTimeBooking={endDateAndTimeBooking}
+                    exact
+                  />
+                )}
+              />
+              <Route
+                path="/galeria"
+                component={() => (
+                  <GalleryScreen
+                    isGalleryImageModalShow={isGalleryImageModalShow}
+                    setDataGalleryImageModal={setDataGalleryImageModal}
+                    galleryImageModalToggle={galleryImageModalToggle}
+                    userID={2}
+                    isScrollToAddComment={isScrollToAddComment}
+                    setisScrollToAddComment={setisScrollToAddComment}
+                    exact
+                  />
+                )}
+              />
+              <Route path="/" component={HomeScreen} exact />
+              <Route component={() => <PageNotFound />} />
+            </Switch>
+          </Suspense>
           <Footer />
         </Router>
       </ThemeProvider>
