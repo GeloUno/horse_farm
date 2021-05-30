@@ -1,17 +1,33 @@
 import React from 'react';
-import { Field, Form, Formik } from 'formik';
+import {
+  Field,
+  // FieldAttributes,
+  Form,
+  Formik,
+  // FormikErrors,
+  // FormikHelpers,
+  FormikProps,
+  FieldProps
+} from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { createUserByEmialPasswordAction } from '../../redux/actions/userActions';
 import { useStyles } from '../../utility/materialui';
 import { Button } from '@material-ui/core';
-import TextField from '@material-ui/core/TextField';
+import { TextField } from '@material-ui/core';
+
+
+interface IFormikSingUp {
+  email: string,
+  password: string,
+  confirmPassword: string,
+}
 
 const SignUpFormik = () => {
   const initialValues = { email: '', password: '', confirmPassword: '' };
   const dispatch = useDispatch();
   const classes = useStyles();
-  const handleSubmit = (values, { setErrors, resetForm }) => {
+  const handleSubmit = (values: IFormikSingUp, { setErrors, resetForm }: { setErrors: Function, resetForm: Function }) => {
     dispatch(createUserByEmialPasswordAction(values, setErrors, resetForm));
   };
 
@@ -25,7 +41,7 @@ const SignUpFormik = () => {
       .max(50, ',maksymalna lczba znaków 50')
       .required('proszę podaj hasło'),
     confirmPassword: Yup.string()
-      .oneOf([Yup.ref('password', '')], 'hasła nie są identyczne')
+      .oneOf([Yup.ref('password')], 'hasła nie są identyczne')
       .required('proszę wprowadź ponownie hasło'),
   });
 
@@ -35,16 +51,16 @@ const SignUpFormik = () => {
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
-      {(formik) => (
+      {(formik: FormikProps<IFormikSingUp>) => (
         <Form className={classes.root} noValidate autoComplete="off">
           <Field name="email">
-            {(props) => {
+            {(props: FieldProps<IFormikSingUp>) => {
               const { field, form, meta } = props;
 
               return (
                 <>
                   <TextField
-                    error={meta.touched && meta.error}
+                    error={!!meta.touched && !!meta.error}
                     helperText={meta.touched && meta.error}
                     color='primary'
                     label='email'
@@ -58,13 +74,13 @@ const SignUpFormik = () => {
             }}
           </Field>
           <Field name="password">
-            {(props) => {
+            {(props: FieldProps<IFormikSingUp>) => {
               const { field, form, meta } = props;
 
               return (
                 <>
                   <TextField
-                    error={meta.touched && meta.error}
+                    error={!!meta.touched && !!meta.error}
                     helperText={meta.touched && meta.error}
                     color='primary'
                     label='hasło'
@@ -78,13 +94,13 @@ const SignUpFormik = () => {
             }}
           </Field>
           <Field name="confirmPassword">
-            {(props) => {
+            {(props: FieldProps<IFormikSingUp>) => {
               const { field, form, meta } = props;
 
               return (
                 <>
                   <TextField
-                    error={meta.touched && meta.error}
+                    error={!!meta.touched && !!meta.error}
                     helperText={meta.touched && meta.error}
                     color='primary'
                     label='powtórz hasło'
@@ -102,9 +118,9 @@ const SignUpFormik = () => {
             color='secondary'
             size='large'
             disabled={
-              (formik.touched.email && formik.errors.email) ||
-              (formik.touched.password && formik.errors.password) ||
-              (formik.touched.confirmPassword && formik.errors.confirmPassword)
+              (!!formik.touched.email && !!formik.errors.email) ||
+              (!!formik.touched.password && !!formik.errors.password) ||
+              (!!formik.touched.confirmPassword && !!formik.errors.confirmPassword)
             }
             type="submit"
           >

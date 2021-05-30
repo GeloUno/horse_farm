@@ -1,16 +1,28 @@
 import React from 'react';
-import { Formik, Field, Form } from 'formik';
+import {
+  Formik,
+  Field,
+  Form,
+  FormikProps,
+  FieldProps
+} from 'formik';
 import * as Yup from 'yup';
-import 'firebase/auth';
-import 'firebase/firestore';
+// import 'firebase/auth';
+// import 'firebase/firestore';
 import { useDispatch } from 'react-redux';
 import { sendEmailToResetPasswordAction } from '../../redux/actions/userActions';
-import TextField from '@material-ui/core/TextField';
 import { useStyles } from '../../utility/materialui';
-import { Button } from '@material-ui/core';
+import { TextField, Button } from '@material-ui/core/';
 
+interface IResetPasswordProps {
+  setResetPasswordModalShow(): void
+}
 
-export const ResetPassword = ({ setResetPasswordModalShow }) => {
+interface IFormikResetPassword {
+  email: string
+}
+
+export const ResetPassword: React.FC<IResetPasswordProps> = ({ setResetPasswordModalShow }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -25,7 +37,7 @@ export const ResetPassword = ({ setResetPasswordModalShow }) => {
       .required('proszę podać adres e-mail'),
   });
 
-  const handleSubmit = (values, { setErrors, resetForm }) => {
+  const handleSubmit = (values: IFormikResetPassword, { setErrors, resetForm }: { setErrors: Function, resetForm: Function }) => {
     dispatch(
       sendEmailToResetPasswordAction(
         values,
@@ -42,15 +54,15 @@ export const ResetPassword = ({ setResetPasswordModalShow }) => {
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
-      {(formik) => (
+      {(formik: FormikProps<IFormikResetPassword>) => (
         <Form className={classes.root}>
           <Field name="email">
-            {(props) => {
+            {(props: FieldProps<IFormikResetPassword>) => {
               const { field, form, meta } = props;
               return (
 
                 <TextField
-                  error={formik.errors.email}
+                  error={!!formik.errors.email}
                   helperText={formik.errors.email}
                   label='email'
                   variant='outlined'
@@ -71,7 +83,7 @@ export const ResetPassword = ({ setResetPasswordModalShow }) => {
             color='secondary'
             type="submit"
             disabled={
-              formik.touched.email && formik.errors.email
+              !!formik.touched.email && !!formik.errors.email
             }
           >
             wyslij

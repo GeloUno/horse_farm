@@ -1,17 +1,24 @@
 import React from 'react';
-import { Field, Form, Formik } from 'formik';
+import { Field, Form, Formik, FormikProps, FieldProps } from 'formik';
 import * as Yup from 'yup';
 import 'firebase/auth';
 import 'firebase/firestore';
 import { useDispatch } from 'react-redux';
 import { userSignInByEmailAction } from '../../redux/actions/userActions';
-import TextField from '@material-ui/core/TextField';
+import { TextField, Button } from '@material-ui/core/';
 import { useStyles } from '../../utility/materialui';
-import { Button } from '@material-ui/core';
+// import { Button } from '@material-ui/core/';
 
+interface LogInFormikProps {
+  setIsTryLoginBySocialMedia(fn: Function): void
+}
 
+interface IFormikLogin {
+  email: string,
+  password: string,
+}
 
-const LogInFormik = ({ setIsTryLoginBySocialMedia }) => {
+const LogInFormik: React.FC<LogInFormikProps> = ({ setIsTryLoginBySocialMedia }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const initialValues = { email: '', password: '' };
@@ -27,7 +34,7 @@ const LogInFormik = ({ setIsTryLoginBySocialMedia }) => {
       .required('proszę podaj adres e-mail'),
   });
 
-  const handleSubmit = (values, { setErrors, resetForm }) => {
+  const handleSubmit = (values: IFormikLogin, { setErrors, resetForm }: { setErrors: Function, resetForm: Function }) => {
     setIsTryLoginBySocialMedia(() => { return false })
     dispatch(userSignInByEmailAction(values, setErrors, resetForm));
   };
@@ -38,15 +45,15 @@ const LogInFormik = ({ setIsTryLoginBySocialMedia }) => {
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
-      {(formik) => (
+      {(formik: FormikProps<IFormikLogin>) => (
         <Form className={classes.root} noValidate autoComplete="off">
           <Field name="email">
-            {(props) => {
+            {(props: FieldProps<IFormikLogin>) => {
               const { field, form, meta } = props;
               return (
                 <>
                   <TextField
-                    error={meta.touched && meta.error}
+                    error={!!meta.touched && !!meta.error}
                     helperText={meta.touched && meta.error}
                     color='primary'
                     label='email'
@@ -61,13 +68,13 @@ const LogInFormik = ({ setIsTryLoginBySocialMedia }) => {
             }}
           </Field>
           <Field name="password">
-            {(props) => {
+            {(props: FieldProps<IFormikLogin>) => {
               const { field, form, meta } = props;
               return (
                 <>
 
                   <TextField
-                    error={meta.touched && meta.error}
+                    error={!!meta.touched && !!meta.error}
                     helperText={meta.touched && meta.error}
                     // size="medium"
                     color='primary'
@@ -90,8 +97,8 @@ const LogInFormik = ({ setIsTryLoginBySocialMedia }) => {
             size='large'
             data-testid='inputLoginFormButton'
             disabled={
-              (formik.touched.email && formik.errors.email) ||
-              (formik.touched.password && formik.errors.password)
+              (!!formik.touched.email && !!formik.errors.email) ||
+              (!!formik.touched.password && !!formik.errors.password)
             }
             type="submit"
           >
