@@ -1728,6 +1728,20 @@ address a {
     display: flex;
     width: 100%;
   }
+
+  .text-header {
+    display: flex;
+    flex-direction: column;
+    padding-left: none;
+  }
+
+  .text-header h1 {
+    font-size: 3.5rem;
+  }
+
+  .btn-header {
+    width: 21rem;
+  }
 }
 
 /* MOBILE */
@@ -1742,10 +1756,21 @@ address a {
     font-size: 2.5vw;
   }
 
-  .text-header h1 {
+  /* .text-header h1 {
     font-size: 2.5rem;
     width: 15rem;
+  } */
+
+  .text-header {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
   }
+
+  .text-header h1 {
+    font-size: 3.5rem;
+  }
+
 
   /* NavBar*/
   .navbar {
@@ -1773,9 +1798,10 @@ address a {
   }
 
   .btn-header {
-    width: 15rem;
-    font-size: 1.6rem;
-    margin-left: 0rem;
+    width: none;
+    font-size: 2rem;
+    margin-left: none;
+    margin-right: none;
   }
 
   .container {
@@ -1796,12 +1822,6 @@ address a {
     font-size: 2rem;
   }
 
-  .text-header {
-    padding-left: 55%;
-    margin-left: 0rem;
-  }
-
-
 
   .left-article-attraction .btn {
     margin-top: 9.25rem;
@@ -1813,8 +1833,9 @@ address a {
   }
 
   .description-attraction {
-    margin: 1.25rem 9rem 3.875rem 04rem;
+    margin: 1.25rem 9rem 6.875rem 04rem;
   }
+
 
   .right-article-attraction {
     display: flex;
