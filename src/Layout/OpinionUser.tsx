@@ -1,5 +1,6 @@
 import { Skeleton } from '@material-ui/lab';
-import React from 'react';
+import React, { useState } from 'react';
+
 
 export interface OpinionUserProps {
   nick: string,
@@ -14,26 +15,29 @@ const OpinionUser: React.FC<OpinionUserProps> = (
     description
   }
 ) => {
+
+  const [isLoadedData, setIsLoadedData] = useState<boolean>(false)
   return (
     <article className="article-body flex-direction-col" data-cy='opinionUserArticle'>
       <div data-cy='opinionUserImage'>
-        {
-          sourceImage ? (
-            <img
-              className="image-user"
-              src={sourceImage}
-              alt="zdjęcie użytkownika"
-            />
-          ) : (
-            <Skeleton variant='circle' width='8rem' height='8rem' />
-          )
+        {<>
+
+          <img
+            className="image-user"
+            src={sourceImage}
+            alt="zdjęcie użytkownika"
+            onLoad={() => { setIsLoadedData(true) }}
+          />
+
+          {!isLoadedData && <Skeleton variant='circle' width='8rem' height='8rem' />}
+        </>
         }
 
       </div>
 
       <div className="nick-user" data-cy='opinionUserNicke'>
 
-        <h2>{nick ? (
+        <h2>{isLoadedData ? (
           nick
         ) : (
           <Skeleton variant='rect' />
@@ -43,7 +47,7 @@ const OpinionUser: React.FC<OpinionUserProps> = (
       </div>
 
       <div className="description" data-cy='opinionUserDescription'>
-        <p>{description ? (
+        <p>{isLoadedData ? (
           description
         ) : (
           <>
