@@ -1,6 +1,6 @@
 import { Skeleton } from '@material-ui/lab';
 import React, { useState } from 'react';
-
+import { isMobile } from 'react-device-detect'
 
 export interface OpinionUserProps {
   nick: string,
@@ -16,24 +16,26 @@ const OpinionUser: React.FC<OpinionUserProps> = (
   }
 ) => {
 
-  const [isLoadedData, setIsLoadedData] = useState<boolean>(false)
+  const [isLoadedData, setIsLoadedData] = useState<boolean>(isMobile ? (true) : (false))
   return (
     <article className="article-body flex-direction-col" data-cy='opinionUserArticle'>
-      <div data-cy='opinionUserImage'>
-        {<>
+      {!isMobile &&
+        <div data-cy='opinionUserImage'>
+          {<>
 
-          <img
-            className="image-user"
-            src={sourceImage}
-            alt="zdjęcie użytkownika"
-            onLoad={() => { setIsLoadedData(true) }}
-          />
+            <img
+              className="image-user"
+              src={sourceImage}
+              alt="zdjęcie użytkownika"
+              onLoad={() => { setIsLoadedData(true) }}
+            />
 
-          {!isLoadedData && <Skeleton variant='circle' width='8rem' height='8rem' />}
-        </>
-        }
+            {!isLoadedData && <Skeleton variant='circle' width='8rem' height='8rem' />}
+          </>
+          }
 
-      </div>
+        </div>
+      }
 
       <div className="nick-user" data-cy='opinionUserNicke'>
 

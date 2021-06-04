@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { dataAtractions } from '../utility/dataAtractons';
 import { Button } from '@material-ui/core';
 import { Skeleton } from '@material-ui/lab';
-
+import { isMobile } from 'react-device-detect'
 export const nextDataAtraction = (numberPage: number) => {
   if (numberPage >= 4) {
     return dataAtractions[0];
@@ -58,25 +58,27 @@ export const Attractions: React.FC = () => {
         </article>
         <article className="right-article-attraction">
           <div className="parent-image-attraction">
-            <article className="image-article clip-path">
-              {console.log(`isImageLoaded`, isImageLoaded)}
-              <img data-testid='attractionImg'
-                className="image-attraction"
-                src={attraction.image}
-                alt="nauka jazdy konnej"
-                style={(isImageLoaded) ? ({ width: '42.5rem', height: '42.5rem' }) : ({ width: 0, height: 0 })}
-                onLoadStart={() => {
-                  setIsImageLoaded(false)
-                }}
-                onLoad={() => {
-                  setIsImageLoaded(true)
-                }}
-              />
-              {!isImageLoaded && <Skeleton variant='rect' className="image-attraction" width='42.5rem'
-                height='42.5rem' />}
-            </article>
+            {!isMobile &&
+              <article className="image-article clip-path">
+
+                <img data-testid='attractionImg'
+                  className="image-attraction"
+                  src={attraction.image}
+                  alt="nauka jazdy konnej"
+                  style={(isImageLoaded) ? ({ width: '42.5rem', height: '42.5rem' }) : ({ width: 0, height: 0 })}
+                  onLoadStart={() => {
+                    setIsImageLoaded(false)
+                  }}
+                  onLoad={() => {
+                    setIsImageLoaded(true)
+                  }}
+                />
+                {!isImageLoaded && <Skeleton variant='rect' className="image-attraction" width='42.5rem'
+                  height='42.5rem' />}
+              </article>
+            }
           </div>
-          <div className="carousel-buttons">
+          {!isMobile && <div className="carousel-buttons">
             {(dataAtractions.map((data) => {
 
               return (
@@ -104,6 +106,7 @@ export const Attractions: React.FC = () => {
               );
             }))}
           </div>
+          }
         </article>
       </section>
     </div>
