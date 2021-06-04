@@ -1,4 +1,5 @@
-import { isUserHaveAllProperty } from './ConfirmDeleteUser';
+import { IUser, OneOrUndefined, IUserBaseMongoBD } from '../../models/users';
+import { isUserHaveAllProperty, returnUserBaseMongoDBorUndefined } from './ConfirmDeleteUser';
 
 
 describe('isUserHaveAllProperty function', () => {
@@ -104,5 +105,163 @@ describe('isUserHaveAllProperty function', () => {
     test('should return true all property string is not empty and emailVerified is true', () => {
         const result = isUserHaveAllProperty('example@com.uk', true, 'google.com', '1234567890')
         expect(result).toBe(true)
+    });
+});
+describe('returnUserBaseMongoDBorUndefined function', () => {
+    test('should return undefined if user data are empty', () => {
+        const userExample: Partial<IUser> = {
+        }
+        const user: OneOrUndefined<IUserBaseMongoBD> = returnUserBaseMongoDBorUndefined(userExample)
+        expect(user).toEqual(undefined)
+    });
+    test(`should return undefined if user don't have email`, () => {
+        const userExample: Partial<IUser> = {
+            // email: `johndoe@go.com`,
+            emailVerified: true,
+            providerId: 'google.com',
+            uid: `1234567890qaz`
+        }
+        const user: OneOrUndefined<IUserBaseMongoBD> = returnUserBaseMongoDBorUndefined(userExample)
+        expect(user).toEqual(undefined)
+    });
+    test(`should return undefined if user don't have emailVerified`, () => {
+        const userExample: Partial<IUser> = {
+            email: `johndoe@go.com`,
+            // emailVerified: true,
+            providerId: 'google.com',
+            uid: `1234567890qaz`
+        }
+        const user: OneOrUndefined<IUserBaseMongoBD> = returnUserBaseMongoDBorUndefined(userExample)
+        expect(user).toEqual(undefined)
+    });
+    test(`should return undefined if user don't have providerId`, () => {
+        const userExample: Partial<IUser> = {
+            email: `johndoe@go.com`,
+            emailVerified: true,
+            // providerId: 'google.com',
+            uid: `1234567890qaz`
+        }
+        const user: OneOrUndefined<IUserBaseMongoBD> = returnUserBaseMongoDBorUndefined(userExample)
+        expect(user).toEqual(undefined)
+    });
+    test(`should return undefined if user don't have uid`, () => {
+        const userExample: Partial<IUser> = {
+            email: `johndoe@go.com`,
+            emailVerified: true,
+            providerId: 'google.com',
+            // uid: `1234567890qaz`
+        }
+        const user: OneOrUndefined<IUserBaseMongoBD> = returnUserBaseMongoDBorUndefined(userExample)
+        expect(user).toEqual(undefined)
+    });
+    test(`should return undefined if user don't have email. emailVerified`, () => {
+        const userExample: Partial<IUser> = {
+            // email: `johndoe@go.com`,
+            // emailVerified: true,
+            providerId: 'google.com',
+            uid: `1234567890qaz`
+        }
+        const user: OneOrUndefined<IUserBaseMongoBD> = returnUserBaseMongoDBorUndefined(userExample)
+        expect(user).toEqual(undefined)
+    });
+    test(`should return undefined if user don't have email, providerId`, () => {
+        const userExample: Partial<IUser> = {
+            // email: `johndoe@go.com`,
+            emailVerified: true,
+            // providerId: 'google.com',
+            uid: `1234567890qaz`
+        }
+        const user: OneOrUndefined<IUserBaseMongoBD> = returnUserBaseMongoDBorUndefined(userExample)
+        expect(user).toEqual(undefined)
+    });
+    test(`should return undefined if user don't have email, uid`, () => {
+        const userExample: Partial<IUser> = {
+            // email: `johndoe@go.com`,
+            emailVerified: true,
+            providerId: 'google.com',
+            // uid: `1234567890qaz`
+        }
+        const user: OneOrUndefined<IUserBaseMongoBD> = returnUserBaseMongoDBorUndefined(userExample)
+        expect(user).toEqual(undefined)
+    });
+    test(`should return undefined if user don't have email, emailVerified, providerId `, () => {
+        const userExample: Partial<IUser> = {
+            // email: `johndoe@go.com`,
+            // emailVerified: true,
+            // providerId: 'google.com',
+            uid: `1234567890qaz`
+        }
+        const user: OneOrUndefined<IUserBaseMongoBD> = returnUserBaseMongoDBorUndefined(userExample)
+        expect(user).toEqual(undefined)
+    });
+    test(`should return undefined if user have only email`, () => {
+        const userExample: Partial<IUser> = {
+            email: `johndoe@go.com`,
+            // emailVerified: true,
+            // providerId: 'google.com',
+            // uid: `1234567890qaz`
+        }
+        const user: OneOrUndefined<IUserBaseMongoBD> = returnUserBaseMongoDBorUndefined(userExample)
+        expect(user).toEqual(undefined)
+    });
+    test(`should return undefined if user have only emailVerified`, () => {
+        const userExample: Partial<IUser> = {
+            // email: `johndoe@go.com`,
+            emailVerified: true,
+            // providerId: 'google.com',
+            // uid: `1234567890qaz`
+        }
+        const user: OneOrUndefined<IUserBaseMongoBD> = returnUserBaseMongoDBorUndefined(userExample)
+        expect(user).toEqual(undefined)
+    });
+    test(`should return undefined if user have only providerId`, () => {
+        const userExample: Partial<IUser> = {
+            // email: `johndoe@go.com`,
+            // emailVerified: true,
+            providerId: 'google.com',
+            // uid: `1234567890qaz`
+        }
+        const user: OneOrUndefined<IUserBaseMongoBD> = returnUserBaseMongoDBorUndefined(userExample)
+        expect(user).toEqual(undefined)
+    });
+    test(`should return undefined if user have only uid`, () => {
+        const userExample: Partial<IUser> = {
+            // email: `johndoe@go.com`,
+            // emailVerified: true,
+            // providerId: 'google.com',
+            uid: `1234567890qaz`
+        }
+        const user: OneOrUndefined<IUserBaseMongoBD> = returnUserBaseMongoDBorUndefined(userExample)
+        expect(user).toEqual(undefined)
+    });
+    test(`should return undefined if user don't have all data`, () => {
+        const userExample: Partial<IUser> = {
+            // email: `johndoe@go.com`,
+            // emailVerified: true,
+            // providerId: 'google.com',
+            // uid: `1234567890qaz`
+        }
+        const user: OneOrUndefined<IUserBaseMongoBD> = returnUserBaseMongoDBorUndefined(userExample)
+        expect(user).toEqual(undefined)
+    });
+    test(`should return user if user don't have email`, (): void => {
+
+        const userExample: Partial<IUser> = {
+            email: `johndoe@go.com`,
+            emailVerified: true,
+            providerId: 'google.com',
+            uid: `1234567890qaz`
+        }
+
+        const userExpect: IUserBaseMongoBD = {
+            email: `johndoe@go.com`,
+            emailVerified: true,
+            providerId: 'google.com',
+            uid: `1234567890qaz`
+        }
+
+        const user: OneOrUndefined<IUserBaseMongoBD> = returnUserBaseMongoDBorUndefined(userExample)
+
+        expect(user).toEqual(userExpect)
     });
 });
