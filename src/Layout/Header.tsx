@@ -6,8 +6,7 @@ import backgroundImageHorse from '../assets/HorseBackground_ttbpbw/HorseBackgrou
 
 import backgroundImageHorseMobile from '../assets/HorseBackground_ttbpbw/HorseBackground_ttbpbw_ar_1_1,c_fill,g_auto__c_scale,w_459.png';
 
-const backgroundImage = () => {
-  console.log(`isMobile`, isMobile)
+const backgroundImage = () => { 
   if (isMobile) {
     return `${backgroundImageHorseMobile}`
   } else {
