@@ -15,6 +15,9 @@
 /cypress/videos
 /cypress/screenshots
 
+# building
+/src/stories/Example
+
 # production
 /build
 
