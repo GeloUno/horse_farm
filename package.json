@@ -48,14 +48,26 @@
     "start": "react-scripts start",
     "local": "react-scripts start'",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "cypress:headless":"cypress run --headless --browser chrome",
-    "cypress:localhost":"npx cypress open --config baseUrl=http://localhost:3000/",
-    "cypress:github":"npx cypress open --config baseUrl=https://gelouno.github.io/horse_farm"
+    "test": "react-scripts test --coverage",
+    "eject": "react-scripts eject",   
+    "cypress:headless": "cypress run --headless --browser chrome",
+    "cypress:localhost": "npx cypress open --config baseUrl=http://localhost:3000/",
+    "cypress:github": "npx cypress open --config baseUrl=https://gelouno.github.io/horse_farm",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
+    ]
   },
   "browserslist": {
     "production": [
@@ -69,13 +81,20 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {   
+  "devDependencies": {
+    "@storybook/addon-actions": "^6.2.9",
+    "@storybook/addon-essentials": "^6.2.9",
+    "@storybook/addon-links": "^6.2.9",
+    "@storybook/node-logger": "^6.2.9",
+    "@storybook/preset-create-react-app": "^3.1.7",
+    "@storybook/react": "^6.2.9",
     "@types/enzyme": "^3.10.8",
     "@types/firebase": "^3.2.1",
     "@types/react-router-dom": "^5.1.7",
     "@types/redux-mock-store": "^1.0.2",
     "@types/sinon": "^10.0.0",
     "cypress": "^7.3.0",
+    "enzyme": "^3.11.0",
     "faker": "^5.1.0",
     "gh-pages": "^3.1.0",
     "redux-mock-store": "^1.5.4",
