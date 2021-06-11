@@ -1,11 +1,10 @@
 import React, { cloneElement } from 'react'
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom'
-// import {  } from '@testing-library/user-event'
 import Header from './Header';
 import { MemoryRouter, Router, useHistory } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
-// import { useHistory } from 'react-router-dom';
+
 
 const customHistory = createBrowserHistory();
 describe('Header component render', () => {
