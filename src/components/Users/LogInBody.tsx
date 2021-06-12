@@ -1,67 +1,64 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { userSignInSocilaMedialAction } from '../../redux/actions/userActions';
-
-// import { signInSocialMedia } from '../../firebase';
 import LogInFormik from '../Formik/LogInFormik';
+import { RootState } from '../../redux/store';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebookF, faGoogle } from '@fortawesome/free-brands-svg-icons';
 
-const LogInBody = ({
+interface LogInBodyPrpos {
+  loginModalToggle(e: React.MouseEvent): void,
+  signinModalToggle(e: React.MouseEvent): void,
+  resetPasswordModalToggle(e: React.MouseEvent): void,
+}
+
+const LogInBody: React.FC<LogInBodyPrpos> = ({
   loginModalToggle,
   signinModalToggle,
   resetPasswordModalToggle,
 }) => {
   const dispatch = useDispatch();
-  const userAction = useSelector((state) => state.userAction);
+  const userAction = useSelector((state: RootState) => state.userAction);
   const { errorMessage, user } = userAction;
   const { providerId } = user;
 
   const [isTryLoginBySocialMedia, setIsTryLoginBySocialMedia] = useState(false)
 
-  //   const handleSignInSocialMedia = (soclia) => {
-  //     signInSocialMedia(soclia)
-  //       .then((result) => {
-  //         console.log('socila media signin oki :>> ', result);
-  //         //     setErrorAuthSocialMedia(false);
-  //       })
-  //       .catch((err) => {
-  //         console.log('err socila media', err);
-  //         //      setErrorAuthSocialMedia(err.message);
-  //       });
-  //   };
-
   return (
-    <>
-      {
-        console.log("<- LOG -> file: LogInBody.js -> line 16 -> userAction", userAction)
-      }
-      <div className="socialLoginBody">
+    <div className='loginBody' style={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      width: '70%'
+    }}>
+      <div className="socialLoginBody" >
         <p className="socialLoginText">zaloguj przez:</p>
         <div className="socilaMediaLoginGrup">
           <div
             className="btnSocial"
-            // onClick={() => handleSignInSocialMedia('google')}
+
             onClick={() => {
               setIsTryLoginBySocialMedia(prev => { return true })
               dispatch(userSignInSocilaMedialAction('google'))
             }
             }
           >
-            <i className="fab fa-google"></i>
+            <FontAwesomeIcon icon={faGoogle} />
+            {/* <i className="fab fa-google"></i> */}
           </div>
           <div
             className="btnSocial"
-            // onClick={() => handleSignInSocialMedia('facebook')}
             onClick={() => {
               setIsTryLoginBySocialMedia(prev => { return true })
               dispatch(userSignInSocilaMedialAction('facebook'))
             }
             }
           >
-            <i className="fab fa-facebook-f"></i>
+            <FontAwesomeIcon icon={faFacebookF} />
+            {/* <i className="fab fa-facebook-f"></i> */}
           </div>
         </div>
         {
-          // (providerId === 'google.com' || providerId === 'facebook.com') &&
           isTryLoginBySocialMedia &&
           errorMessage && (
             <div className="errorMessageSocialMedia errorMessenge">
@@ -91,7 +88,7 @@ const LogInBody = ({
           Resetuj hasło
         </p>
       </div>
-    </>
+    </div>
   );
 };
 

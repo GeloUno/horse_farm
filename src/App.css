@@ -660,10 +660,13 @@ address a {
   align-items: center;
 }
 
-.inputModalContainer form {
+.inputModalForm {
+  width: 95%;
+}
+
+.inputModalForm form {
   display: flex;
   flex-direction: column;
-  width: 60%;
 }
 
 /* .inputModalContainer form input  */
@@ -697,9 +700,10 @@ address a {
 }
 
 .socialLoginBody {
-  width: 30%;
+  width: 50%;
   height: 25%;
   text-align: center;
+  margin-bottom: 2rem;
   color: var(--primary-color-green);
 }
 
