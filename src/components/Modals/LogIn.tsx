@@ -56,17 +56,6 @@ const LoginUser: React.FC<LoginUserProps> = ({
   const [ToggleComponent, setToggleComponent] = useState<JSX.Element | null>(null);
 
   useEffect(() => {
-    console.log(
-      'LOGIN DATA',
-      isLoading,
-      isErrors,
-      dataResponse,
-      email,
-      providerId,
-      emailVerified,
-      user
-    );
-
     isNeedToShowUserForms(email, emailVerified) && (
       setToggleComponent(
         <LogInBody
@@ -100,7 +89,7 @@ const LoginUser: React.FC<LoginUserProps> = ({
       setToggleComponent(
         <h1 className="errorMessenge">
           Coś poszło nie tak podczas logowania skontaktuj się z instruktorem
-          </h1>
+        </h1>
       );
 
     }
