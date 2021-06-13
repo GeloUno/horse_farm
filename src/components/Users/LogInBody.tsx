@@ -25,12 +25,7 @@ const LogInBody: React.FC<LogInBodyPrpos> = ({
   const [isTryLoginBySocialMedia, setIsTryLoginBySocialMedia] = useState(false)
 
   return (
-    <div className='loginBody' style={{
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      width: '70%'
-    }}>
+    <div className='inputFormBody' >
       <div className="socialLoginBody" >
         <p className="socialLoginText">zaloguj przez:</p>
         <div className="socilaMediaLoginGrup">
