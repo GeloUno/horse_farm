@@ -3,23 +3,12 @@ import { Field, Form, Formik, FormikProps, FieldProps } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { seveEditedUserDataAction } from '../../redux/actions/userActions';
-import { IUser, IUserEditProfile } from '../../models/users';
+import { IUserEditProfile } from '../../models/users';
 
 
 interface EditProfileFormikProps {
   user: IUserEditProfile
 }
-
-// interface IFormikEditProfile {
-//   nick: HTMLInputElement,
-//   firstName: HTMLInputElement,
-//   lastName: HTMLInputElement,
-//   phone: HTMLInputElement,
-//   opinion: HTMLInputElement,
-//   email: HTMLInputElement,
-//   providerId: string | undefined
-// }
-
 
 const phoneRegex = RegExp(/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{3})$/);
 
@@ -32,7 +21,9 @@ const EditProfileFormik: React.FC<EditProfileFormikProps> = ({ user }) => {
     phone: user.phone,
     opinion: user.opinion,
     email: user.email,
-    providerId: user?.providerId
+    providerId: user?.providerId,
+    uid: user.uid,
+    id: user.id
   };
 
   const validationSchema = Yup.object({
@@ -76,7 +67,6 @@ const EditProfileFormik: React.FC<EditProfileFormikProps> = ({ user }) => {
     >
       {(formik: FormikProps<IUserEditProfile>) => (
         <Form className="editUserProfile">
-          {/* <Form className="userProfile editUserProfile"> */}
           <div className="bodyInputEditProfile">
             <label className="labelInputEditProfile" htmlFor="name">
               nick:
@@ -228,7 +218,6 @@ const EditProfileFormik: React.FC<EditProfileFormikProps> = ({ user }) => {
 
           <div className="btnBodyEditProfileSave">
             <button
-              // disabled={!formik.dirty || formik.errors}
               disabled={
                 !formik.dirty ||
                 !!formik.errors.nick ||
