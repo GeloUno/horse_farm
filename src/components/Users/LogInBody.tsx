@@ -25,13 +25,13 @@ const LogInBody: React.FC<LogInBodyPrpos> = ({
   const [isTryLoginBySocialMedia, setIsTryLoginBySocialMedia] = useState(false)
 
   return (
-    <div className='inputFormBody' >
+    <div className='inputFormBody' data-testid="loginBody" >
       <div className="socialLoginBody" >
-        <p className="socialLoginText">zaloguj przez:</p>
+        <p className="socialLoginText" data-testid='loginDescription'>zaloguj przez:</p>
         <div className="socilaMediaLoginGrup">
           <div
             className="btnSocial"
-
+            data-testid='socialMediaButtonGoogle'
             onClick={() => {
               setIsTryLoginBySocialMedia(prev => { return true })
               dispatch(userSignInSocilaMedialAction('google'))
@@ -43,6 +43,7 @@ const LogInBody: React.FC<LogInBodyPrpos> = ({
           </div>
           <div
             className="btnSocial"
+            data-testid='socialMediaButtonFacebook'
             onClick={() => {
               setIsTryLoginBySocialMedia(prev => { return true })
               dispatch(userSignInSocilaMedialAction('facebook'))
@@ -63,7 +64,9 @@ const LogInBody: React.FC<LogInBodyPrpos> = ({
       </div>
 
       <LogInFormik setIsTryLoginBySocialMedia={setIsTryLoginBySocialMedia} />
-      <div className=" btnSignInRemindPassword">
+      <div className=" btnSignInRemindPassword"
+        data-testid='buttonRegister'
+      >
         <p
           className="accessToggleModalShow"
           onClick={(e) => {
@@ -75,6 +78,7 @@ const LogInBody: React.FC<LogInBodyPrpos> = ({
         </p>
         <p
           className="accessToggleModalShow"
+          data-testid='buttonResetPassword'
           onClick={(e) => {
             loginModalToggle(e);
             resetPasswordModalToggle(e);

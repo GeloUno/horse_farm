@@ -41,6 +41,7 @@ const LogInFormik: React.FC<LogInFormikProps> = ({ setIsTryLoginBySocialMedia })
 
   return (
     <div className='inputModalForm'
+      data-testid='loginByPasswordFormikComponent'
     >
       <Formik
         initialValues={initialValues}
