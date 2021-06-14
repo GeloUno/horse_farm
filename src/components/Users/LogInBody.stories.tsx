@@ -54,14 +54,19 @@ export default {
 const emptyVoidExample = () => { }
 
 export const PrimaryProfile: Story = () =>
+
+  <LogInBody
+    loginModalToggle={emptyVoidExample} resetPasswordModalToggle={emptyVoidExample} signinModalToggle={emptyVoidExample}
+  />
+
+
+PrimaryProfile.storyName = 'Log in body';
+PrimaryProfile.decorators = [(Story) => (
   <Provider store={store}>
     <ThemeProvider theme={theme}>
       <Router history={customHistory}>
-        <LogInBody
-          loginModalToggle={emptyVoidExample} resetPasswordModalToggle={emptyVoidExample} signinModalToggle={emptyVoidExample}
-        />
+        <Story />
       </Router>
     </ThemeProvider>
   </Provider>
-
-PrimaryProfile.storyName = 'Log in body';
+)]
