@@ -57,20 +57,27 @@ const EditProfile: React.FC<EditProfileProps> = ({ logoutAfterTime, logoutUserHa
   }, [isLoading, isError, wasDataSend]);
 
   return (
-    <div className="contaniner profileContainer editProfileContainer">
-      <div className="imapgeProfile">
+    <div
+      className="contaniner profileContainer editProfileContainer"
+      data-testid='editProfileUser'>
+      <div
+        className="imageProfile"
+        data-testid='editImageProfile'>
         {userEditProfile && user && user.photoId && (
           <img
             className="image-user imageEditProfile"
             src={user.photoId}
             alt="użytkownik"
+            data-testid='imageProfile'
           />
         )}
         {userEditProfile && (
-          <div className="profileButtons profileButtonPhoto">
+          <div
+            className="profileButtons profileButtonPhoto">
             <button
               className="btn btn-green btn-capitalize 
             btn-editProfile"
+              data-testid='editImageButtonProfile'
             >
               {user && user.photoId && 'Zmień zdjęcie'}
               {(!user || !user.photoId) && 'Dodaj zdjęcie'}

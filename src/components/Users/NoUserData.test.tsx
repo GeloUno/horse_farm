@@ -16,7 +16,6 @@ describe('Message component not cancel action and not confirm action', () => {
         confirmAction={confirmAction}
         logoutAfterTime={logoutAfterTime}
     >
-
     </NoUserData>
 
     const wrapper = shallow(noUserData)
@@ -31,19 +30,20 @@ describe('Message component not cancel action and not confirm action', () => {
         expect(result).toHaveLength(1)
     });
     test('should have message with error type', () => {
-        const result = wrapper.prop('typeMessage')
+        const result = wrapper.children().prop('typeMessage')
+        console.log(`result`, wrapper.props())
         expect(result).toEqual(TypeMessage.ERROR)
     });
     test('should title message have text', () => {
-        const result = wrapper.prop('title')
+        const result = wrapper.children().prop('title')
         expect(result).toEqual('Brak danych użytkownika')
     });
     test('should have text button OK', () => {
-        const result = wrapper.prop('textButtonConfirm')
+        const result = wrapper.children().prop('textButtonConfirm')
         expect(result).toEqual('OK')
     });
     test('should have confirm function', () => {
-        const result = wrapper.prop('confirmAction')
+        const result = wrapper.children().prop('confirmAction')
         expect(result).toEqual(confirmAction)
     });
     test('should children component Box have text', () => {
