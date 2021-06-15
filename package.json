@@ -53,7 +53,7 @@
     "start": "react-scripts start",
     "local": "react-scripts start'",
     "build": "react-scripts build",
-    "test": "react-scripts test --coverage",
+    "test": "react-scripts test",
     "eject": "react-scripts eject",
     "cypress:headless": "cypress run --headless --browser chrome",
     "cypress:localhost": "npx cypress open --config baseUrl=http://localhost:3000/",
