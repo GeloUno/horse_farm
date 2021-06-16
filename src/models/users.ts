@@ -33,7 +33,10 @@ export interface IUserEditProfile extends Pick<IUser,
     'phone' |
     'opinion' |
     'email' |
-    'providerId'> {
+    'providerId' |
+    'uid' |
+    'id'
+> {
 }
 
 export type WithNullType<Type> = {

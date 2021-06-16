@@ -5,7 +5,7 @@ import { Box, Button, Theme } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 
-export interface IWarningProps {
+export interface IMessageProps {
     readonly title: string,
     readonly children: React.ReactChild,
     cancelAction?(): void,
@@ -36,16 +36,16 @@ const customStyles = makeStyles((theme: Theme) =>
     }));
 
 
-export const Message = ({ title, children, cancelAction, confirmAction, typeMessage, textButtonConfirm, iconButtonConfirm }: IWarningProps) => {
+export const Message = ({ title, children, cancelAction, confirmAction, typeMessage, textButtonConfirm, iconButtonConfirm }: IMessageProps) => {
     const classes = customStyles();
     return (
 
         <Box height='60vh' display='flex' alignItems='center' justifyContent={'center'}>
             <Alert severity={typeMessage} >
-                <Box p={0.3}>
+                <Box p={0.3} display='flex'>
                     <AlertTitle>{title}</AlertTitle>
                 </Box>
-                <Box flexGrow={1}>
+                <Box display='flex' flexGrow={1} minWidth={'20vw'}>
                     {children}
                 </Box>
                 <Box

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import Cookies from 'universal-cookie';
 import SigninHorseImg from '../../assets/SigninHorse.png';
 import useHttpClient from '../../hooks/httpHook';
 import SignUpFormik from '../Formik/SignUpFormik';
@@ -15,13 +14,12 @@ import {
 import {
   isNeedToShowUserForms,
   isUserCanBeCreateByPassword,
-  isUserCanSetTokenInCookie,
   isUserCanUpdateDataFromMongoDB,
   isUserGetCorrectDataAndCanCloseModal,
   isUserGetErrorFromDataMongoDB,
   isUserNeedConfirmEmail,
-  setTokenInCookies
 } from '../../shared/user'
+import { handleSendVerificationEmail, handleSignOut, intervalGetEmailConfirmStatus } from '../../shared/userHelpers';
 
 
 interface SingUpProps {
@@ -61,7 +59,12 @@ const SingUpUser: React.FC<SingUpProps> = ({
     isUserCanBeCreateByPassword(email, isLoading, isErrors, dataResponse, isNewUser, providerId) && (sendReqestClient(
       'user/create', { email, uid, providerId, emailVerified }, 'post'));
 
-    isUserNeedConfirmEmail(email, isErrors, emailVerified) && setToggleComponent(<ConfirmEmail email={email} user={user} />);
+    isUserNeedConfirmEmail(email, isErrors, emailVerified) && setToggleComponent(<ConfirmEmail
+      email={email!}
+      handleSendVerificationEmail={handleSendVerificationEmail}
+      handleSignOut={handleSignOut}
+      intervalGetEmailConfirmStatus={intervalGetEmailConfirmStatus}
+    />);
 
     // isUserCanSetTokenInCookie(email, emailVerified) && setTokenInCookies(idToken!)
 
@@ -71,7 +74,7 @@ const SingUpUser: React.FC<SingUpProps> = ({
       setToggleComponent(
         <h1 className="errorMessenge">
           Coś poszło nie tak podczas rejestracji skontaktuj się z instruktorem
-          </h1>
+        </h1>
       );
       dispatch(userRemoveCookieTokenAction);
       dispatch(userSignOutAction);

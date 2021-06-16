@@ -16,15 +16,19 @@ export const NoUserData: React.FC<NoUserProps> = ({ confirmAction, logoutAfterTi
         }
     }, [])
     return (
-        <Message
-            title={'Brak danych użytkownika'}
-            typeMessage={TypeMessage.ERROR}
-            textButtonConfirm={'OK'}
-            confirmAction={confirmAction}
+        <div
+            data-testid="messageComponent"
         >
-            <Box p={5}>
-                Ups coś poszło nie tak zapraszamy później...
-            </Box>
-        </Message>
+            <Message
+                title={'Brak danych użytkownika'}
+                typeMessage={TypeMessage.ERROR}
+                textButtonConfirm={'OK'}
+                confirmAction={confirmAction}
+            >
+                <Box p={5}>
+                    Ups coś poszło nie tak zapraszamy później...
+                </Box>
+            </Message>
+        </div>
     )
 }

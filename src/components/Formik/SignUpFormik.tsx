@@ -46,6 +46,8 @@ const SignUpFormik = () => {
   });
 
   return (
+    <div className='inputModalForm'
+    >
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
@@ -129,6 +131,7 @@ const SignUpFormik = () => {
         </Form>
       )}
     </Formik>
+    </div>
   );
 };
 

@@ -1,67 +1,60 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { userSignInSocilaMedialAction } from '../../redux/actions/userActions';
-
-// import { signInSocialMedia } from '../../firebase';
 import LogInFormik from '../Formik/LogInFormik';
+import { RootState } from '../../redux/store';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebookF, faGoogle } from '@fortawesome/free-brands-svg-icons';
 
-const LogInBody = ({
+interface LogInBodyPrpos {
+  loginModalToggle(e: React.MouseEvent): void,
+  signinModalToggle(e: React.MouseEvent): void,
+  resetPasswordModalToggle(e: React.MouseEvent): void,
+}
+
+const LogInBody: React.FC<LogInBodyPrpos> = ({
   loginModalToggle,
   signinModalToggle,
   resetPasswordModalToggle,
 }) => {
   const dispatch = useDispatch();
-  const userAction = useSelector((state) => state.userAction);
+  const userAction = useSelector((state: RootState) => state.userAction);
   const { errorMessage, user } = userAction;
   const { providerId } = user;
 
   const [isTryLoginBySocialMedia, setIsTryLoginBySocialMedia] = useState(false)
 
-  //   const handleSignInSocialMedia = (soclia) => {
-  //     signInSocialMedia(soclia)
-  //       .then((result) => {
-  //         console.log('socila media signin oki :>> ', result);
-  //         //     setErrorAuthSocialMedia(false);
-  //       })
-  //       .catch((err) => {
-  //         console.log('err socila media', err);
-  //         //      setErrorAuthSocialMedia(err.message);
-  //       });
-  //   };
-
   return (
-    <>
-      {
-        console.log("<- LOG -> file: LogInBody.js -> line 16 -> userAction", userAction)
-      }
-      <div className="socialLoginBody">
-        <p className="socialLoginText">zaloguj przez:</p>
+    <div className='inputFormBody' data-testid="loginBody" >
+      <div className="socialLoginBody" >
+        <p className="socialLoginText" data-testid='loginDescription'>zaloguj przez:</p>
         <div className="socilaMediaLoginGrup">
           <div
             className="btnSocial"
-            // onClick={() => handleSignInSocialMedia('google')}
+            data-testid='socialMediaButtonGoogle'
             onClick={() => {
               setIsTryLoginBySocialMedia(prev => { return true })
               dispatch(userSignInSocilaMedialAction('google'))
             }
             }
           >
-            <i className="fab fa-google"></i>
+            <FontAwesomeIcon icon={faGoogle} />
+            {/* <i className="fab fa-google"></i> */}
           </div>
           <div
             className="btnSocial"
-            // onClick={() => handleSignInSocialMedia('facebook')}
+            data-testid='socialMediaButtonFacebook'
             onClick={() => {
               setIsTryLoginBySocialMedia(prev => { return true })
               dispatch(userSignInSocilaMedialAction('facebook'))
             }
             }
           >
-            <i className="fab fa-facebook-f"></i>
+            <FontAwesomeIcon icon={faFacebookF} />
+            {/* <i className="fab fa-facebook-f"></i> */}
           </div>
         </div>
         {
-          // (providerId === 'google.com' || providerId === 'facebook.com') &&
           isTryLoginBySocialMedia &&
           errorMessage && (
             <div className="errorMessageSocialMedia errorMessenge">
@@ -71,7 +64,9 @@ const LogInBody = ({
       </div>
 
       <LogInFormik setIsTryLoginBySocialMedia={setIsTryLoginBySocialMedia} />
-      <div className=" btnSignInRemindPassword">
+      <div className=" btnSignInRemindPassword"
+        data-testid='buttonRegister'
+      >
         <p
           className="accessToggleModalShow"
           onClick={(e) => {
@@ -83,6 +78,7 @@ const LogInBody = ({
         </p>
         <p
           className="accessToggleModalShow"
+          data-testid='buttonResetPassword'
           onClick={(e) => {
             loginModalToggle(e);
             resetPasswordModalToggle(e);
@@ -91,7 +87,7 @@ const LogInBody = ({
           Resetuj hasło
         </p>
       </div>
-    </>
+    </div>
   );
 };
 
