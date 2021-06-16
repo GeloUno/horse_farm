@@ -15,13 +15,12 @@ import {
   isUserCanSendRequestToCreateBySocialMedia,
   isUserCanSendRequestToLoginByPassword,
   isUserCanSendRequestToLoginBySocialMedia,
-  isUserCanSetTokenInCookie,
   isUserCanUpdateDataFromMongoDB,
   isUserGetCorrectDataAndCanCloseModal,
   isUserGetErrorFromDataMongoDB,
   isUserNeedConfirmEmail,
-  setTokenInCookies
 } from '../../shared/user'
+import { intervalGetEmailConfirmStatus, handleSignOut, handleSendVerificationEmail } from '../../shared/userHelpers';
 
 interface LoginUserProps {
   signinModalToggle(): void,
@@ -65,7 +64,12 @@ const LoginUser: React.FC<LoginUserProps> = ({
         />)
     )
 
-    isUserNeedConfirmEmail(email, isErrors, emailVerified) && (setToggleComponent(<ConfirmEmail email={email} user={user} />))
+    isUserNeedConfirmEmail(email, isErrors, emailVerified) && (setToggleComponent(<ConfirmEmail
+      email={email!}
+      intervalGetEmailConfirmStatus={intervalGetEmailConfirmStatus}
+      handleSignOut={handleSignOut}
+      handleSendVerificationEmail={handleSendVerificationEmail}
+    />))
 
     // isUserCanSetTokenInCookie(email, emailVerified) && setTokenInCookies(idToken!)
 
