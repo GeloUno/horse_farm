@@ -1,2 +1,0 @@
-(this.webpackJsonpstadnina=this.webpackJsonpstadnina||[]).push([[9],{1998:function(n,s,t){"use strict";t.r(s);t(0);var a=t(2);s.default=function(){return Object(a.jsxs)("h2",{className:"PageNotFound",children:["Ups ...co\u015b posz\u0142o nie tak, ta strona nie istnieje :-","("]})}}}]);
-//# sourceMappingURL=9.90a21160.chunk.js.map
