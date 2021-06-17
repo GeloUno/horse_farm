@@ -1,12 +1,29 @@
 import React from 'react';
-import { Formik, Field, Form } from 'formik';
+import {
+  Formik,
+  Field,
+  Form,
+  FormikProps,
+  FieldProps
+} from 'formik';
 import * as Yup from 'yup';
-import 'firebase/auth';
-import 'firebase/firestore';
+// import 'firebase/auth';
+// import 'firebase/firestore';
 import { useDispatch } from 'react-redux';
 import { sendEmailToResetPasswordAction } from '../../redux/actions/userActions';
+import { useStyles } from '../../utility/materialui';
+import { TextField, Button } from '@material-ui/core/';
 
-export const ResetPassword = ({ setResetPasswordModalShow }) => {
+interface IResetPasswordProps {
+  setResetPasswordModalShow(): void
+}
+
+interface IFormikResetPassword {
+  email: string
+}
+
+export const ResetPassword: React.FC<IResetPasswordProps> = ({ setResetPasswordModalShow }) => {
+  const classes = useStyles();
   const dispatch = useDispatch();
 
   const initialValues = {
@@ -20,7 +37,7 @@ export const ResetPassword = ({ setResetPasswordModalShow }) => {
       .required('proszę podać adres e-mail'),
   });
 
-  const handleSubmit = (values, { setErrors, resetForm }) => {
+  const handleSubmit = (values: IFormikResetPassword, { setErrors, resetForm }: { setErrors: Function, resetForm: Function }) => {
     dispatch(
       sendEmailToResetPasswordAction(
         values,
@@ -37,21 +54,22 @@ export const ResetPassword = ({ setResetPasswordModalShow }) => {
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
-      {(formik) => (
-        <Form>
-          <label htmlFor="email">email:</label>
+      {(formik: FormikProps<IFormikResetPassword>) => (
+        <Form className={classes.root}>
           <Field name="email">
-            {(props) => {
+            {(props: FieldProps<IFormikResetPassword>) => {
               const { field, form, meta } = props;
               return (
-                <input
+
+                <TextField
+                  error={!!formik.errors.email}
+                  helperText={formik.errors.email}
+                  label='email'
+                  variant='outlined'
+                  color='primary'
                   id="email"
                   name="email"
                   type="email"
-                  className="inputModalContaineFormInput"
-                  // onChange={(e) => {
-                  //   handleChange(e);
-                  // }}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.email}
@@ -59,21 +77,17 @@ export const ResetPassword = ({ setResetPasswordModalShow }) => {
               );
             }}
           </Field>
-          <div className="errorMessenge">{formik.errors.email}</div>
-
-          <button
-            // onClick={() => {
-            //   handleSubmit();
-            // }}
+          <Button
+            size='large'
+            variant='contained'
+            color='secondary'
             type="submit"
             disabled={
-              // formik.values.email === '' ||
-              formik.touched.email && formik.errors.email
+              !!formik.touched.email && !!formik.errors.email
             }
-            className="btn btn-brown btn-capitalize btn-radius btn-resetPassword"
           >
             wyslij
-          </button>
+          </Button>
         </Form>
       )}
     </Formik>

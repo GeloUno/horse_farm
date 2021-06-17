@@ -1,21 +1,38 @@
 import React from 'react';
-import { Field, Form, Formik } from 'formik';
+import { Field, Form, Formik, FormikProps, FieldProps } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { seveEditedUserDataAction } from '../../redux/actions/userActions';
+import { IUser, IUserEditProfile } from '../../models/users';
+
+
+interface EditProfileFormikProps {
+  user: IUserEditProfile
+}
+
+// interface IFormikEditProfile {
+//   nick: HTMLInputElement,
+//   firstName: HTMLInputElement,
+//   lastName: HTMLInputElement,
+//   phone: HTMLInputElement,
+//   opinion: HTMLInputElement,
+//   email: HTMLInputElement,
+//   providerId: string | undefined
+// }
 
 
 const phoneRegex = RegExp(/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{3})$/);
 
-const EditProfileFormik = ({ user }) => {
+const EditProfileFormik: React.FC<EditProfileFormikProps> = ({ user }) => {
   const dispatch = useDispatch();
-  const initialValues = {
+  const initialValues: IUserEditProfile = {
     nick: user.nick,
     firstName: user.firstName,
     lastName: user.lastName,
     phone: user.phone,
     opinion: user.opinion,
     email: user.email,
+    providerId: user?.providerId
   };
 
   const validationSchema = Yup.object({
@@ -47,9 +64,8 @@ const EditProfileFormik = ({ user }) => {
       .min(25, ',minimalna lczba znaków 20')
       .max(500, ',maksymalna lczba znaków 500'),
   });
-  const handleSubmit = (values) => {   
+  const handleSubmit = (values: IUserEditProfile) => {
     dispatch(seveEditedUserDataAction(values, user));
-    console.log('handle :>> ', values);
   };
 
   return (
@@ -58,7 +74,7 @@ const EditProfileFormik = ({ user }) => {
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
-      {(formik) => (
+      {(formik: FormikProps<IUserEditProfile>) => (
         <Form className="editUserProfile">
           {/* <Form className="userProfile editUserProfile"> */}
           <div className="bodyInputEditProfile">
@@ -66,7 +82,7 @@ const EditProfileFormik = ({ user }) => {
               nick:
             </label>
             <Field name="nick">
-              {(props) => {
+              {(props: FieldProps) => {
                 const { field, form, meta } = props;
                 return (
                   <div>
@@ -90,7 +106,7 @@ const EditProfileFormik = ({ user }) => {
               imię:
             </label>
             <Field name="firstName">
-              {(props) => {
+              {(props: FieldProps) => {
                 const { field, form, meta } = props;
                 return (
                   <div>
@@ -113,7 +129,7 @@ const EditProfileFormik = ({ user }) => {
               nazwisko:
             </label>
             <Field name="lastName">
-              {(props) => {
+              {(props: FieldProps) => {
                 const { field, form, meta } = props;
                 return (
                   <div>
@@ -136,7 +152,7 @@ const EditProfileFormik = ({ user }) => {
               tel:
             </label>
             <Field name="phone">
-              {(props) => {
+              {(props: FieldProps) => {
                 const { field, form, meta } = props;
                 return (
                   <div>
@@ -159,7 +175,7 @@ const EditProfileFormik = ({ user }) => {
               e-mail:
             </label>
             <Field name="email">
-              {(props) => {
+              {(props: FieldProps) => {
                 const { field, form, meta } = props;
                 return (
                   <div>
@@ -186,7 +202,7 @@ const EditProfileFormik = ({ user }) => {
               opinia:
             </label>
             <Field name="opinion">
-              {(props) => {
+              {(props: FieldProps) => {
                 const { field, form, meta } = props;
 
                 return (
@@ -195,9 +211,9 @@ const EditProfileFormik = ({ user }) => {
                       className="inputModalContaineFormInput textareaEditProfile"
                       id="opinion"
                       placeholder="Tu możesz wystawić opinię o stadninie. Wystawiając opinię WYRAŻSZ ZGODĘ na upublicznienie swojego opini wraz z zdjeciem profilu. Zawsze możesz edytować lub wykasować opinię. Usunięcie opini skutkuje usunięciem jej z miejsca publicznego strony. Jeśli nie jesteś pełnoletni o zgodę zapytaj osoby dorosłe ..."
-                      type="text"
-                      rows="10"
-                      cols="38"
+                      // type='text'
+                      rows={10}
+                      cols={38}
                       {...field}
                     />
 
@@ -215,12 +231,12 @@ const EditProfileFormik = ({ user }) => {
               // disabled={!formik.dirty || formik.errors}
               disabled={
                 !formik.dirty ||
-                formik.errors.name ||
-                formik.errors.firstName ||
-                formik.errors.lastName ||
-                formik.errors.phone ||
-                formik.errors.opinion ||
-                formik.errors.email
+                !!formik.errors.nick ||
+                !!formik.errors.firstName ||
+                !!formik.errors.lastName ||
+                !!formik.errors.phone ||
+                !!formik.errors.opinion ||
+                !!formik.errors.email
               }
               type="submit"
               className="btn btn-green btn-capitalize"

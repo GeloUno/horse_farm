@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { dataAtractions } from '../utility/dataAtractons';
+import { Button } from '@material-ui/core';
+import { Skeleton } from '@material-ui/lab';
 
 export const nextDataAtraction = (numberPage: number) => {
   if (numberPage >= 4) {
@@ -16,6 +18,7 @@ const equalsPageNumberReturnOpacity = (pageNumber: number, buttonNumber: number)
 };
 
 export const Attractions: React.FC = () => {
+  const [isImageLoaded, setIsImageLoaded] = useState(false)
   const [attraction, setAttraction] = useState(dataAtractions[0]);
   return (
     <div className="container">
@@ -30,8 +33,16 @@ export const Attractions: React.FC = () => {
           <div >
             <p data-testid='attractionDescription' className="description-attraction">{attraction.description}</p>
 
-            <button data-testid='attractionNextButton'
-              className="btn btn-green"
+            <Button
+              variant='contained'
+              style={{
+                borderRadius: 3,
+                paddingInline: '3rem',
+                marginTop: '5rem'
+              }}
+              color='primary'
+              data-testid='attractionNextButton'
+              className="btn "
               onClick={() => {
                 setAttraction(nextDataAtraction(attraction.page));
               }}
@@ -39,7 +50,7 @@ export const Attractions: React.FC = () => {
               <p>
                 Dalej <i className="fas fa-arrow-right"></i>
               </p>
-            </button>
+            </Button>
           </div>
           <div data-testid='backgroundText'>
             <p className="background-text">{attraction.backgroundText}</p>
@@ -48,28 +59,48 @@ export const Attractions: React.FC = () => {
         <article className="right-article-attraction">
           <div className="parent-image-attraction">
             <article className="image-article clip-path">
+              {console.log(`isImageLoaded`, isImageLoaded)}
               <img data-testid='attractionImg'
                 className="image-attraction"
                 src={attraction.image}
                 alt="nauka jazdy konnej"
+                style={(isImageLoaded) ? ({ width: '42.5rem', height: '42.5rem' }) : ({ width: 0, height: 0 })}
+                onLoadStart={() => {
+                  setIsImageLoaded(false)
+                }}
+                onLoad={() => {
+                  setIsImageLoaded(true)
+                }}
               />
+              {!isImageLoaded && <Skeleton variant='rect' className="image-attraction" width='42.5rem'
+                height='42.5rem' />}
             </article>
           </div>
           <div className="carousel-buttons">
             {(dataAtractions.map((data) => {
 
               return (
-                <button
-                  data-testid={`buttonNumberAtraction-${data.page}`}
-                  key={data.page}
-                  className="btn btn-carousel clip-path"
-                  onClick={() => setAttraction(dataAtractions[data.page])}
+                <div key={data.page}>
+                  {!isImageLoaded && <Skeleton variant='rect'
+                    className="btn btn-carousel clip-path"
+                    height={'5rem'}
+                    key={data.page}
+                    data-testid={`buttonNumberAtraction-${data.page}`}
+                    onClick={() => setAttraction(dataAtractions[data.page])}
+                  />}
 
-                  style={equalsPageNumberReturnOpacity(
-                    attraction.page,
-                    data.page
-                  )}
-                ></button>
+                  {isImageLoaded && <button
+                    data-testid={`buttonNumberAtraction-${data.page}`}
+                    key={data.page}
+                    className="btn btn-carousel clip-path"
+                    onClick={() => setAttraction(dataAtractions[data.page])}
+
+                    style={equalsPageNumberReturnOpacity(
+                      attraction.page,
+                      data.page
+                    )}
+                  ></button>}
+                </div>
               );
             }))}
           </div>

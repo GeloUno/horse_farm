@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Cookies from 'universal-cookie';
+// import Cookies from 'universal-cookie';
 import SigninHorseImg from '../../assets/SigninHorse.png';
 import useHttpClient from '../../hooks/httpHook';
 import SignUpFormik from '../Formik/SignUpFormik';
 import ConfirmEmail from '../Users/ConfirmEmail';
 import PulseLoader from 'react-spinners/PulseLoader';
+import { RootState } from '../../redux/store';
 import {
   updateOwnDataUserAction,
   userRemoveCookieTokenAction,
   userSignOutAction
 } from '../../redux/actions/userActions';
 import {
-  isNeedToShowUserBody,
+  isNeedToShowUserForms,
   isUserCanBeCreateByPassword,
   isUserCanSetTokenInCookie,
   isUserCanUpdateDataFromMongoDB,
@@ -22,13 +23,22 @@ import {
   setTokenInCookies
 } from '../../shared/user'
 
-const SingUpUser = ({
+
+interface SingUpProps {
+  signinModalToggle(e: React.MouseEvent): void,
+  loginModalToggle(e: React.MouseEvent): void,
+  // setUser(): void,
+  setSinginModalShow(show: boolean): void,
+}
+
+
+const SingUpUser: React.FC<SingUpProps> = ({
   signinModalToggle,
   loginModalToggle,
-  setUser,
+  // setUser,
   setSinginModalShow,
 }) => {
-  const userAuth = useSelector((state) => state.userAction);
+  const userAuth = useSelector((state: RootState) => state.userAction);
   const dispatch = useDispatch();
   const { idToken, user } = userAuth;
   const { email, providerId, emailVerified, uid, isNewUser } = user;
@@ -41,34 +51,35 @@ const SingUpUser = ({
     source,
   } = useHttpClient();
 
-  const [Component, setComponent] = useState(null);
-  const cookies = new Cookies();
+  const [ToggleComponent, setToggleComponent] = useState<JSX.Element | null>(null);
 
   useEffect(() => {
 
-    isNeedToShowUserBody(email, emailVerified) && setComponent(<SignUpFormik />);
+    isNeedToShowUserForms(email, emailVerified) && setToggleComponent(<SignUpFormik />);
+
 
     isUserCanBeCreateByPassword(email, isLoading, isErrors, dataResponse, isNewUser, providerId) && (sendReqestClient(
       'user/create', { email, uid, providerId, emailVerified }, 'post'));
 
-    isUserNeedConfirmEmail(email, isErrors, emailVerified) && setComponent(<ConfirmEmail email={email} user={user} />);
+    isUserNeedConfirmEmail(email, isErrors, emailVerified) && setToggleComponent(<ConfirmEmail email={email} user={user} />);
 
-    isUserCanSetTokenInCookie(email, emailVerified) && setTokenInCookies(idToken)
+    // isUserCanSetTokenInCookie(email, emailVerified) && setTokenInCookies(idToken!)
 
     isUserCanUpdateDataFromMongoDB(isLoading, isErrors, emailVerified, dataResponse) && (dispatch(updateOwnDataUserAction(dataResponse)))
 
     if (isUserGetErrorFromDataMongoDB(isLoading, isErrors, dataResponse)) {
-      setComponent(
+      setToggleComponent(
         <h1 className="errorMessenge">
           Coś poszło nie tak podczas rejestracji skontaktuj się z instruktorem
-        </h1>
+          </h1>
       );
       dispatch(userRemoveCookieTokenAction);
       dispatch(userSignOutAction);
     }
 
+
     if (isUserGetCorrectDataAndCanCloseModal(email, isLoading, isErrors, dataResponse, emailVerified)) {
-      setUser(user);
+      // setUser(user);
       setSinginModalShow(false);
     }
 
@@ -97,7 +108,7 @@ const SingUpUser = ({
               loginModalToggle(e);
             }}
           ></i>
-          {!isLoading && Component}
+          {!isLoading && ToggleComponent}
           {isLoading && (
             <PulseLoader color={' hsla(94, 30%, 43%, 1)'} size={25} />
           )}

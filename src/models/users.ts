@@ -26,6 +26,15 @@ export interface IUserReloadConfirmEmail extends Pick<IUserBaseFirebase, 'emailV
 
 export interface IUserRemove extends Pick<IUser, 'email' | 'nick'> {
 }
+export interface IUserEditProfile extends Pick<IUser,
+    'nick' |
+    'firstName' |
+    'lastName' |
+    'phone' |
+    'opinion' |
+    'email' |
+    'providerId'> {
+}
 
 export type WithNullType<Type> = {
     [Property in keyof Type]: Type[Property] | null

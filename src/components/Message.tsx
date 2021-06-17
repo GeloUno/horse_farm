@@ -55,7 +55,6 @@ export const Message = ({ title, children, cancelAction, confirmAction, typeMess
                 >
                     {cancelAction && (
                         <Button
-
                             variant="contained"
                             color="primary"
                             className={`${classes.button} cancleButtonActionMessage`}
@@ -76,10 +75,8 @@ export const Message = ({ title, children, cancelAction, confirmAction, typeMess
                         >
                             {textButtonConfirm}
                         </Button>
-
                     }
                 </Box>
-
             </Alert>
         </Box>
 
