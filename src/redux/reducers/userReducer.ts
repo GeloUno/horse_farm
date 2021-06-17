@@ -39,13 +39,8 @@ export interface IBaseState {
   idToken: string | null,
 }
 
-// export interface IUserDefaultState extends IBaseState {
-//   user: IUser,
-// }
 export interface IUserInitialState extends IBaseState {
-  // user: Partial<IUser>,
   user: Partial<IUser>,
-  // user: IUser | null,
 }
 
 export const initialState: IUserInitialState = {

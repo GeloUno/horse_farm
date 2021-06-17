@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { createMuiTheme, ThemeProvider, Container, Box } from '@material-ui/core';
+import { createMuiTheme, ThemeProvider, Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -44,6 +44,24 @@ export const isUserHaveAllProperty = (email: string, emailVerified: boolean, pro
     return (emailVerified && !!providerId && !!userUid && !!email)
 }
 
+export const returnUserBaseMongoDBorUndefined = (user: Partial<IUser>): IUserBaseMongoBD | undefined => {
+    if (user.email &&
+        user.emailVerified &&
+        user.providerId &&
+        user.uid) {
+        const userToReturn: IUserBaseMongoBD = {
+            email: user.email,
+            emailVerified: user.emailVerified,
+            providerId: user.providerId,
+            uid: user.uid
+        }
+        return userToReturn;
+
+    } else {
+        return undefined
+    }
+}
+
 const ConfirmDeleteUser: React.FC = () => {
 
     const [actionMessage, setActionMessage] = useState<ActionMessage>(ActionMessage.MESSAGE)
@@ -54,23 +72,10 @@ const ConfirmDeleteUser: React.FC = () => {
 
     const userAuth = useSelector((state: RootState) => state.userAction);
     const { user, isLoading, isError, errorMessage }: { user: Partial<IUser>, isLoading: boolean, isError: boolean, errorMessage: string | null } = userAuth;
+
     const userReq = user as IUser;
 
-    let userMDB: OneOrUndefined<IUserBaseMongoBD>;
-    if (user.email &&
-        user.emailVerified &&
-        user.providerId &&
-        user.uid) {
-        userMDB = {
-            email: user.email,
-            emailVerified: user.emailVerified,
-            providerId: user.providerId,
-            uid: user.uid
-        };
-    }
-    else {
-        userMDB = undefined;
-    }
+    const userMDB: OneOrUndefined<IUserBaseMongoBD> = returnUserBaseMongoDBorUndefined(user)
 
     const logoutAfterTime = (time: number) => {
         setTimeout(() => {

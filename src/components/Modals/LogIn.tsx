@@ -15,13 +15,12 @@ import {
   isUserCanSendRequestToCreateBySocialMedia,
   isUserCanSendRequestToLoginByPassword,
   isUserCanSendRequestToLoginBySocialMedia,
-  isUserCanSetTokenInCookie,
   isUserCanUpdateDataFromMongoDB,
   isUserGetCorrectDataAndCanCloseModal,
   isUserGetErrorFromDataMongoDB,
   isUserNeedConfirmEmail,
-  setTokenInCookies
 } from '../../shared/user'
+import { intervalGetEmailConfirmStatus, handleSignOut, handleSendVerificationEmail } from '../../shared/userHelpers';
 
 interface LoginUserProps {
   signinModalToggle(): void,
@@ -56,17 +55,6 @@ const LoginUser: React.FC<LoginUserProps> = ({
   const [ToggleComponent, setToggleComponent] = useState<JSX.Element | null>(null);
 
   useEffect(() => {
-    console.log(
-      'LOGIN DATA',
-      isLoading,
-      isErrors,
-      dataResponse,
-      email,
-      providerId,
-      emailVerified,
-      user
-    );
-
     isNeedToShowUserForms(email, emailVerified) && (
       setToggleComponent(
         <LogInBody
@@ -76,7 +64,12 @@ const LoginUser: React.FC<LoginUserProps> = ({
         />)
     )
 
-    isUserNeedConfirmEmail(email, isErrors, emailVerified) && (setToggleComponent(<ConfirmEmail email={email} user={user} />))
+    isUserNeedConfirmEmail(email, isErrors, emailVerified) && (setToggleComponent(<ConfirmEmail
+      email={email!}
+      intervalGetEmailConfirmStatus={intervalGetEmailConfirmStatus}
+      handleSignOut={handleSignOut}
+      handleSendVerificationEmail={handleSendVerificationEmail}
+    />))
 
     // isUserCanSetTokenInCookie(email, emailVerified) && setTokenInCookies(idToken!)
 
@@ -100,7 +93,7 @@ const LoginUser: React.FC<LoginUserProps> = ({
       setToggleComponent(
         <h1 className="errorMessenge">
           Coś poszło nie tak podczas logowania skontaktuj się z instruktorem
-          </h1>
+        </h1>
       );
 
     }

@@ -54,7 +54,7 @@ describe('Message component not cancel action and not confirm action', () => {
         expect(wrapper.contains(<AlertTitle>test warning</AlertTitle>)).toBe(true)
     });
     test('should have children component ', () => {
-        expect(wrapper.contains(<Box flexGrow={1}>
+        expect(wrapper.contains(<Box display='flex' flexGrow={1} minWidth={'20vw'}>
             {children}
         </Box>)).toBe(true)
     });
@@ -143,7 +143,7 @@ describe('Message component with cancel action and confirm action', () => {
         expect(wrapperThird.contains(<AlertTitle>test warning info second</AlertTitle>)).toBe(true)
     });
     test('should have second children component ', () => {
-        expect(wrapperThird.contains(<Box flexGrow={1}>
+        expect(wrapperThird.contains(<Box display='flex' flexGrow={1} minWidth={'20vw'}>
             {childrenSecond}
         </Box>)).toBe(true)
     });
@@ -268,7 +268,7 @@ describe('Message component with cancel action and confirm action', () => {
         expect(wrapperThird.contains(<AlertTitle>test warning info third</AlertTitle>)).toBe(true)
     });
     test('should have second children component ', () => {
-        expect(wrapperThird.contains(<Box flexGrow={1}>
+        expect(wrapperThird.contains(<Box display='flex' flexGrow={1} minWidth={'20vw'}>
             {childrenThird}
         </Box>)).toBe(true)
     });

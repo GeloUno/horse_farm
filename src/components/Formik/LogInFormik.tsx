@@ -10,7 +10,7 @@ import { useStyles } from '../../utility/materialui';
 // import { Button } from '@material-ui/core/';
 
 interface LogInFormikProps {
-  setIsTryLoginBySocialMedia(fn: Function): void
+  setIsTryLoginBySocialMedia: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 interface IFormikLogin {
@@ -40,73 +40,77 @@ const LogInFormik: React.FC<LogInFormikProps> = ({ setIsTryLoginBySocialMedia })
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={handleSubmit}
+    <div className='inputModalForm'
+      data-testid='loginByPasswordFormikComponent'
     >
-      {(formik: FormikProps<IFormikLogin>) => (
-        <Form className={classes.root} noValidate autoComplete="off">
-          <Field name="email">
-            {(props: FieldProps<IFormikLogin>) => {
-              const { field, form, meta } = props;
-              return (
-                <>
-                  <TextField
-                    error={!!meta.touched && !!meta.error}
-                    helperText={meta.touched && meta.error}
-                    color='primary'
-                    label='email'
-                    variant='outlined'
-                    data-testid='inputLoginFormEmail'
-                    type="email"
-                    id="email"
-                    {...field}
-                  />
-                </>
-              );
-            }}
-          </Field>
-          <Field name="password">
-            {(props: FieldProps<IFormikLogin>) => {
-              const { field, form, meta } = props;
-              return (
-                <>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
+        {(formik: FormikProps<IFormikLogin>) => (
+          <Form className={classes.root} noValidate autoComplete="off">
+            <Field name="email">
+              {(props: FieldProps<IFormikLogin>) => {
+                const { field, form, meta } = props;
+                return (
+                  <>
+                    <TextField
+                      error={!!meta.touched && !!meta.error}
+                      helperText={meta.touched && meta.error}
+                      color='primary'
+                      label='email'
+                      variant='outlined'
+                      data-testid='inputLoginFormEmail'
+                      type="email"
+                      id="email"
+                      {...field}
+                    />
+                  </>
+                );
+              }}
+            </Field>
+            <Field name="password">
+              {(props: FieldProps<IFormikLogin>) => {
+                const { field, form, meta } = props;
+                return (
+                  <>
 
-                  <TextField
-                    error={!!meta.touched && !!meta.error}
-                    helperText={meta.touched && meta.error}
-                    // size="medium"
-                    color='primary'
-                    label="hasło"
-                    variant='outlined'
-                    data-testid='inputLoginFormPassword'
+                    <TextField
+                      error={!!meta.touched && !!meta.error}
+                      helperText={meta.touched && meta.error}
+                      // size="medium"
+                      color='primary'
+                      label="hasło"
+                      variant='outlined'
+                      data-testid='inputLoginFormPassword'
 
-                    type="password"
-                    id="password"
-                    {...field}
-                  />
+                      type="password"
+                      id="password"
+                      {...field}
+                    />
 
-                </>
-              );
-            }}
-          </Field>
-          <Button
-            variant='contained'
-            color='primary'
-            size='large'
-            data-testid='inputLoginFormButton'
-            disabled={
-              (!!formik.touched.email && !!formik.errors.email) ||
-              (!!formik.touched.password && !!formik.errors.password)
-            }
-            type="submit"
-          >
-            zaloguj
-          </Button>
-        </Form>
-      )}
-    </Formik>
+                  </>
+                );
+              }}
+            </Field>
+            <Button
+              variant='contained'
+              color='primary'
+              size='large'
+              data-testid='inputLoginFormButton'
+              disabled={
+                (!!formik.touched.email && !!formik.errors.email) ||
+                (!!formik.touched.password && !!formik.errors.password)
+              }
+              type="submit"
+            >
+              zaloguj
+            </Button>
+          </Form>
+        )}
+      </Formik>
+    </div>
   );
 };
 
