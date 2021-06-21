@@ -39,10 +39,10 @@ const OpinionUser: React.FC<OpinionUserProps> = (
 
       <div className="nick-user" data-cy='opinionUserNicke'>
 
-        <h2>{isLoadedData ? (
+        <h2 style={{ marginTop: `2rem` }}>{isLoadedData ? (
           nick
         ) : (
-          <Skeleton variant='rect' />
+          <Skeleton variant='rect' width='8rem' height='2rem' />
         )}</h2>
 
 

@@ -2,6 +2,8 @@ import React from 'react';
 import { NavBarAndSideProps } from '../models/props/NavBarAndSideProps';
 import { NavList } from './NavList';
 import '../App.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 const NavBar: React.FC<NavBarAndSideProps> = ({
   loginModalToggle,
@@ -13,7 +15,7 @@ const NavBar: React.FC<NavBarAndSideProps> = ({
       <ul className="menu-left">
         <li>
           <h2 onClick={(e) => sideBarToggle(e)}>
-            <i className="fas fa-bars"></i>
+            <FontAwesomeIcon icon={faBars} className={'iconBar'} />
           </h2>
         </li>
       </ul>

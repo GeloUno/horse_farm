@@ -23,49 +23,56 @@ export const Attractions: React.FC = () => {
   return (
     <div className="container">
       <section className="body-section">
-        <article className="left-article-attraction">
-          <header data-testid='attractionTitle' className="title-header">
-            <h2 className="title-regular">
-              {attraction.titleRegular}
-              <strong className="title-bold">{attraction.titleBold}</strong>
-            </h2>
-          </header>
-          <div >
-            <p data-testid='attractionDescription' className="description-attraction">{attraction.description}</p>
+        <div
+          style={{
+            display: 'flex',
+            width: '50vw',
+            overflow: 'inherit',
+          }}
+        > <article className="left-article-attraction">
+            <header data-testid='attractionTitle' className="title-header">
+              <h2 className="title-regular">
+                {attraction.titleRegular}
+                <strong className="title-bold">{attraction.titleBold}</strong>
+              </h2>
+            </header>
+            <div >
+              <p data-testid='attractionDescription' className="description-attraction">{attraction.description}</p>
 
-            <Button
-              variant='contained'
-              style={{
-                borderRadius: 3,
-                paddingInline: '3rem',
-                marginTop: '5rem'
-              }}
-              color='primary'
-              data-testid='attractionNextButton'
-              className="btn "
-              onClick={() => {
-                setAttraction(nextDataAtraction(attraction.page));
-              }}
-            >
-              <p>
-                Dalej <i className="fas fa-arrow-right"></i>
-              </p>
-            </Button>
-          </div>
-          <div data-testid='backgroundText'>
-            <p className="background-text">{attraction.backgroundText}</p>
-          </div>
-        </article>
+              <Button
+                variant='contained'
+                style={{
+                  borderRadius: 3,
+                  paddingInline: '3rem',
+                  marginTop: '5rem'
+                }}
+                color='primary'
+                data-testid='attractionNextButton'
+                className="btn "
+                onClick={() => {
+                  setAttraction(nextDataAtraction(attraction.page));
+                }}
+              >
+                <p>
+                  Dalej <i className="fas fa-arrow-right"></i>
+                </p>
+              </Button>
+            </div>
+            <div data-testid='backgroundText'>
+              <p className="background-text">{attraction.backgroundText}</p>
+            </div>
+          </article>
+        </div>
         <article className="right-article-attraction">
           <div className="parent-image-attraction">
             {!isMobile &&
               <article className="image-article clip-path">
 
-                <img data-testid='attractionImg'
-                  className="image-attraction"
+                <img 
+                data-testid='attractionImg'                  
+                className={(isImageLoaded) ? ("image-attraction") : ("image-attraction-hidden")}
                   src={attraction.image}
-                  alt="nauka jazdy konnej"
-                  style={(isImageLoaded) ? ({ width: '42.5rem', height: '42.5rem' }) : ({ width: 0, height: 0 })}
+                  alt="nauka jazdy konnej"                 
                   onLoadStart={() => {
                     setIsImageLoaded(false)
                   }}
@@ -73,8 +80,8 @@ export const Attractions: React.FC = () => {
                     setIsImageLoaded(true)
                   }}
                 />
-                {!isImageLoaded && <Skeleton variant='rect' className="image-attraction" width='42.5rem'
-                  height='42.5rem' />}
+                {!isImageLoaded && <Skeleton variant='rect' className="image-attraction" width='44.5rem'
+                  height='44.5rem' />}
               </article>
             }
           </div>

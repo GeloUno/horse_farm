@@ -13,7 +13,7 @@ import {
   HomeScreen,
 } from './Layout/Screens';
 
-import { getFirebase, onAuthChange } from './firebase';
+// import { getFirebase, onAuthChange } from './firebase';
 import PrivateRoute from './router/PrivateRoute';
 import { ThemeProvider } from '@material-ui/core';
 import { theme } from './utility/materialui';
@@ -25,7 +25,11 @@ import {
   MakeBookingScreen,
   ConfirmBookingScreen,
   GalleryScreen,
-  PageNotFound
+  PageNotFound,
+  // LoginUser,
+  // SingUpUser,
+  // ResetPassword,
+  // GalleryFullScreenImage,
 } from './router/LazyComponents';
 import { Loading } from './components/Loading';
 
@@ -38,10 +42,10 @@ function App() {
     const elementSection = document.querySelector(`.${section}`);
     elementSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
-  useEffect(() => {
-    getFirebase();
-    onAuthChange();
-  }, []);
+  // useEffect(() => {
+  //   getFirebase();
+  //   onAuthChange();
+  // }, []);
 
   useEffect(() => {
     if (sectionPage) {
