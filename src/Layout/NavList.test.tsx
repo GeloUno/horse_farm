@@ -87,9 +87,9 @@ describe('NavList no user login', () => {
     expect(result).toBe(true)
   });
 
-  test('should tag i have access to open modal', () => {
-    const result = wrapper.find('i').last().hasClass('accessToggleModalShow')
-    expect(result).toBe(true)
+  test('should tag svg not have access to open modal', () => {
+    const result = wrapper.find('svg').last().hasClass('accessToggleModalShow')
+    expect(result).toBe(false)
   });
 
   test('should have text Główna Atrakcje Opinia Kontakt Galeria Zaloguj', () => {
@@ -226,8 +226,8 @@ describe('NavList with user login', () => {
     expect(result).toBe(false)
   });
 
-  test('should tag i not have access to open modal', () => {
-    const result = wrapper.find('i').last().hasClass('accessToggleModalShow')
+  test('should tag svg not have access to open modal', () => {
+    const result = wrapper.find('svg').last().hasClass('accessToggleModalShow')
     expect(result).toBe(false)
   });
 
@@ -338,8 +338,8 @@ describe('NavList with user coach', () => {
     expect(result).toBe(false)
   });
 
-  test('should tag i not have access to open modal', () => {
-    const result = wrapper.find('i').last().hasClass('accessToggleModalShow')
+  test('should tag svg not have access to open modal', () => {
+    const result = wrapper.find('svg').last().hasClass('accessToggleModalShow')
     expect(result).toBe(false)
   });
 
@@ -452,8 +452,8 @@ describe('NavList with user owner', () => {
     expect(result).toBe(false)
   });
 
-  test('should tag i not have access to open modal', () => {
-    const result = wrapper.find('i').last().hasClass('accessToggleModalShow')
+  test('should tag svg not have access to open modal', () => {
+    const result = wrapper.find('svg').last().hasClass('accessToggleModalShow')
     expect(result).toBe(false)
   });
 
@@ -563,8 +563,8 @@ describe('NavList with user admin', () => {
     expect(result).toBe(false)
   });
 
-  test('should tag i not have access to open modal', () => {
-    const result = wrapper.find('i').last().hasClass('accessToggleModalShow')
+  test('should tag svg not have access to open modal', () => {
+    const result = wrapper.find('svg').last().hasClass('accessToggleModalShow')
     expect(result).toBe(false)
   });
 

@@ -1,17 +1,15 @@
 import React from 'react';
-
-/* TODO: add function in galery set next page and add this functiom with number on button */
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowCircleLeft, faArrowCircleRight } from '@fortawesome/free-solid-svg-icons';
 
 interface PaginationProps {
   numberPage: number,
   lengthPages: number,
-  // setNumbetPages: number,
 }
 const Pagination: React.FC<PaginationProps> = (
   {
     numberPage = 1,
     lengthPages = 1,
-    // setNumbetPages
   }
 ) => {
   return (
@@ -22,7 +20,7 @@ const Pagination: React.FC<PaginationProps> = (
             className="prevArrowButton"
             disabled={numberPage - 1 < 1 ? true : false}
           >
-            <i className="fas fa-arrow-circle-left"></i>
+            <FontAwesomeIcon icon={faArrowCircleLeft} />
           </button>
           <button
             className="prevNumberButton"
@@ -55,7 +53,7 @@ const Pagination: React.FC<PaginationProps> = (
             className="nextArrowButton"
             disabled={numberPage >= lengthPages ? true : false}
           >
-            <i className="fas fa-arrow-circle-right"></i>
+            <FontAwesomeIcon icon={faArrowCircleRight} />
           </button>
         </div>
       )}

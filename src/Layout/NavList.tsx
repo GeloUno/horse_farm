@@ -6,6 +6,8 @@ import { userRemoveCookieTokenAction, userSignOutAction } from '../redux/actions
 import { RootState } from '../redux/store';
 import { EntityAccess } from '../models/users';
 import { NavListProps } from '../models/props/NavListProps';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 
 export const NavList: React.FC<NavListProps> = ({
@@ -131,7 +133,8 @@ export const NavList: React.FC<NavListProps> = ({
             className="sm-hidden accessToggleModalShow"
             onClick={(e) => loginModalToggle(e)}
           >
-            <i className="fas fa-sign-in-alt accessToggleModalShow"></i>
+            <FontAwesomeIcon style={{ paddingRight: "0.5rem" }} icon={faSignInAlt} />
+
             Zaloguj
           </Link>
         </h2>
@@ -221,15 +224,8 @@ export const NavList: React.FC<NavListProps> = ({
             data-cy="linkLogout"
             to=""
             className="sm-hidden"
-          // onClick={() => {
-          //   dispatch(userSignOutAction);
-          //   dispatch(userRemoveCookieTokenAction);
-          // cookies.remove('idToken', {
-          //   path: '/',
-          // });
-          // }}
           >
-            <i className="fas fa-sign-out-alt"></i>
+            <FontAwesomeIcon style={{ paddingRight: "0.5rem" }} icon={faSignOutAlt} />
             Wyloguj
           </Link>
           {user && user.photoId && (
@@ -327,15 +323,9 @@ export const NavList: React.FC<NavListProps> = ({
             data-cy="linkLogout"
             to=""
             className="sm-hidden"
-          // onClick={() => {
-          //   dispatch(userSignOutAction);
-          //   dispatch(userRemoveCookieTokenAction);
-          // cookies.remove('idToken', {
-          //   path: '/',
-          // });
-          // }}
           >
-            <i className="fas fa-sign-out-alt"></i>
+            <FontAwesomeIcon style={{ paddingRight: "0.5rem" }} icon={faSignOutAlt} />
+
             Wyloguj
           </Link>
           {user && user.photoId && (
@@ -433,15 +423,8 @@ export const NavList: React.FC<NavListProps> = ({
             data-cy="linkLogout"
             to=""
             className="sm-hidden"
-          // onClick={() => {
-          //   dispatch(userSignOutAction);
-          //   dispatch(userRemoveCookieTokenAction);
-          // cookies.remove('idToken', {
-          //   path: '/',
-          // });
-          // }}
           >
-            <i className="fas fa-sign-out-alt"></i>
+            <FontAwesomeIcon style={{ paddingRight: "0.5rem" }} icon={faSignOutAlt} />
             Wyloguj
           </Link>
           {user && user.photoId && (
@@ -539,15 +522,8 @@ export const NavList: React.FC<NavListProps> = ({
             data-cy="linkLogout"
             to=""
             className="sm-hidden"
-          // onClick={() => {
-          //   dispatch(userSignOutAction);
-          //   dispatch(userRemoveCookieTokenAction);
-          // cookies.remove('idToken', {
-          //   path: '/',
-          // });
-          // }}
           >
-            <i className="fas fa-sign-out-alt"></i>
+            <FontAwesomeIcon style={{ paddingRight: "0.5rem" }} icon={faSignOutAlt} />
             Wyloguj
           </Link>
           {user && user.photoId && (
@@ -561,6 +537,5 @@ export const NavList: React.FC<NavListProps> = ({
       </li>
     </Fragment>
   );
-  // return <Fragment>{user.entityAccess ? userLinks : guestLinks}</Fragment>;
   return <Fragment>{renderSwitchNavList(user.entityAccess)}</Fragment>;
 };

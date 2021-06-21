@@ -73,8 +73,8 @@ describe('NavBar component no user', () => {
     expect(result).toHaveLength(7)
   });
 
-  test('should have two i tag', () => {
-    const result = wrapper.find('i')
+  test('should have two svg tag', () => {
+    const result = wrapper.find('svg')
     expect(result).toHaveLength(2)
   });
   test('should have one NavList ', () => {
@@ -135,8 +135,8 @@ describe('NavBar component with user', () => {
     expect(result).toHaveLength(7)
   });
 
-  test('should have two i tag', () => {
-    const result = wrapper.find('i')
+  test('should have two svg tag', () => {
+    const result = wrapper.find('svg')
     expect(result).toHaveLength(2)
   });
   test('should have one NavList ', () => {
@@ -197,8 +197,8 @@ describe('NavBar component with owner', () => {
     expect(result).toHaveLength(7)
   });
 
-  test('should have two i tag', () => {
-    const result = wrapper.find('i')
+  test('should have two svg tag', () => {
+    const result = wrapper.find('svg')
     expect(result).toHaveLength(2)
   });
   test('should have one NavList ', () => {
@@ -259,8 +259,8 @@ describe('NavBar component with coach', () => {
     expect(result).toHaveLength(7)
   });
 
-  test('should have two i tag', () => {
-    const result = wrapper.find('i')
+  test('should have two svg tag', () => {
+    const result = wrapper.find('svg')
     expect(result).toHaveLength(2)
   });
   test('should have one NavList ', () => {
@@ -320,8 +320,8 @@ describe('NavBar component with admin', () => {
     expect(result).toHaveLength(7)
   });
 
-  test('should have two i tag', () => {
-    const result = wrapper.find('i')
+  test('should have two svg tag', () => {
+    const result = wrapper.find('svg')
     expect(result).toHaveLength(2)
   });
   test('should have one NavList ', () => {

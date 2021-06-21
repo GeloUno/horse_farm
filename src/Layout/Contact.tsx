@@ -1,4 +1,7 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebookMessenger, faWhatsappSquare } from '@fortawesome/free-brands-svg-icons';
+import { faMapMarkedAlt } from '@fortawesome/free-solid-svg-icons';
 
 const Contact: React.FC = () => {
   return (
@@ -33,15 +36,15 @@ const Contact: React.FC = () => {
           </address>
         </div>
         <div data-testid='contactSocialmedia' className="socialMedia">
-          <i className="fab fa-whatsapp-square"></i>
+          <FontAwesomeIcon icon={faWhatsappSquare} className='contactIconFontAwesome' />
           <a
             href="https://maps.google.com/maps?q=polska+belzyce+mikolaja+kopernika+165a"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <i className="fas fa-map-marker-alt"></i>
+            <FontAwesomeIcon icon={faMapMarkedAlt} className='contactIconFontAwesome' />
           </a>
-          <i className="fab fa-facebook-messenger"></i>
+          <FontAwesomeIcon icon={faFacebookMessenger} className='contactIconFontAwesome' />
         </div>
       </section>
       <section className="right-section"></section>
