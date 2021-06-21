@@ -81,7 +81,6 @@ body {
 .btn:active {
   border: none;
   box-shadow: 0.625rem 0.625rem 0.625rem 0.125rem rgba(0, 0, 0, 0.1);
-  /* transform: translateY(1%) scale(0.98); */
   transform-origin: center;
 }
 
@@ -166,8 +165,7 @@ body {
 
 .btn-header:active {
   border: none;
-  /* transform: translateY(1%) scale(0.98); */
-  /* transform-origin: center; */
+
 }
 
 .btn-header:hover {
@@ -247,9 +245,11 @@ body {
   padding: .5rem 0;
 }
 
-.navbar ul li h2 a i {
+.iconBar {
   padding: 0rem;
   letter-spacing: .5rem;
+  height: 2.5vh;
+  /* margin-top: 1vh; */
 }
 
 /* SIDE BARNAV */
@@ -403,7 +403,7 @@ body {
 
 .left-article-attraction {
   display: flex;
-  position: relative;
+  /* position: relative; */
   flex-direction: column;
   justify-content: space-between;
   z-index: 0;
@@ -462,7 +462,7 @@ body {
 .right-article-attraction {
   display: flex;
   position: absolute;
-  right: 7rem;
+  left: 42vw;
   top: 1rem;
   flex-direction: column;
   z-index: 1;
@@ -480,12 +480,17 @@ body {
 .image-attraction {
   position: relative;
   top: -0.5rem;
-  width: 42.5rem;
-  height: 42.5rem;
+  width: 44.5rem;
+  height: 44.5rem;
   object-fit: contain;
   object-position: 0% 0%;
   /* transform: scale(0.85); */
   z-index: 1;
+}
+
+.image-attraction-hidden {
+  width: 0;
+  height: 0;
 }
 
 .clip-path {
@@ -498,9 +503,9 @@ body {
 } */
 
 .carousel-buttons {
-  position: absolute;
-  bottom: -0.9rem;
-  right: -8.75rem;
+  position: relative;
+  bottom: 5.1rem;
+  right: -17.75rem;
   display: flex;
   align-items: flex-end;
   transform: scale(.45);
@@ -595,7 +600,7 @@ address a {
 }
 
 
-.contact-section div i {
+.contactIconFontAwesome {
   font-size: 6.25rem;
   color: var(--first-color-brown);
 }
@@ -1355,7 +1360,6 @@ address a {
 .DayOfMonth div {
   font-size: 2rem;
   padding: 0 1rem;
-  /* padding-top: 2rem; */
   color: var(--primary-color-green);
 }
 
@@ -1437,8 +1441,9 @@ address a {
     font-size: 95%;
   }
 
-  .right-article-attraction {
-    right: -2rem;
+  .image-attraction {
+    width: 42.5rem;
+    height: 42.5rem;
   }
 
   .background-text {
@@ -1459,19 +1464,12 @@ address a {
     font-size: 91%;
   }
 
-  .right-article-attraction {
-    right: -2rem;
-  }
 }
 
 /* target 1440x900 D 4% oki */
 @media screen and (max-width: 1450px) {
   :root {
     font-size: 92%;
-  }
-
-  .right-article-attraction {
-    right: -9rem;
   }
 
   .clendaryHourBookingBody {
@@ -1485,10 +1483,6 @@ address a {
 @media screen and (max-width: 1400px) {
   :root {
     font-size: 82%;
-  }
-
-  .right-article-attraction {
-    right: -5rem;
   }
 
   .clendaryHourBookingBody {
@@ -1849,24 +1843,9 @@ address a {
   }
 
 
-  .right-article-attraction {
-    display: flex;
-    position: relative;
-    top: -1rem;
-    right: 3rem;
-    width: 42.25rem;
-    transform: scale(.9);
-  }
 
   .right-article-attraction {
     display: none;
-  }
-
-  .image-attraction {
-    /* top: -0.5rem; */
-    /* left: 6rem; */
-    /* width: 32.5rem;
-    height: 32.5rem; */
   }
 
   .background-text {}
@@ -1909,53 +1888,3 @@ address a {
   }
 
 }
-
-/* GARBAGE CSS */
-
-/* .modalImageGallery {
-  width: 65rem;
-  height: 52rem;
-  flex-direction: column;
-  border: #fff 1rem solid;
-  box-sizing: border-box;
-  overflow-y: scroll;
-}
-
-.modalImageGallery::-webkit-scrollbar {
-  overflow: hidden;
-  display: none;
-} */
-
-/* element.style {
-  transform: translate3d(-800px, 0px, 0px);
-
-} */
-
-
-/* .circleLike,
-.circleComments {
-  clip-path: circle(100% at 0 100%);
-  background-color: #B2B2B2;
-  width: 5rem;
-  height: 5rem;
-}
-
-.circleComments {
-  clip-path: circle(100% at 100% 100%);
-}
-
-.likesImage {
-  position: absolute;
-  bottom: 0rem;
-  left: 0rem;
-}
-
-.commentsImage {
-  position: absolute;
-  bottom: 0rem;
-  right: 0rem;
-}
-
-.circleLike {
-  margin-right: 1rem;
-} */
