@@ -31,7 +31,6 @@ describe('Message component not cancel action and not confirm action', () => {
     });
     test('should have message with error type', () => {
         const result = wrapper.children().prop('typeMessage')
-        console.log(`result`, wrapper.props())
         expect(result).toEqual(TypeMessage.ERROR)
     });
     test('should title message have text', () => {

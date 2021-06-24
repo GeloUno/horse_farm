@@ -20,7 +20,7 @@ describe('Header component render', () => {
   });
   test('should on button click push router history', async () => {
 
-    const { getByText, getByRole, debug } = render(
+    const { getByText, getByRole } = render(
       <Router history={customHistory}>
         <Header />
       </Router>

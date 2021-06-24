@@ -45,12 +45,11 @@ describe('Attraction component', () => {
   })
 
   it('should switch to next attraction after press button', async () => {
-    const { debug, getByTestId } = render(<Attractions />)
+    const { getByTestId } = render(<Attractions />)
 
     fireEvent.click(getByTestId('attractionNextButton'))
 
     const nextDescription = await waitFor(() => {
-      // debug(getByTestId('attractionDescription'));
       return getByTestId('attractionDescription')
     })
     expect(nextDescription).toBeInTheDocument()
