@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import { NavList } from '../../Layout/NavList';
 import { NavBarAndSideProps } from '../../models/props/NavBarAndSideProps';
 import { RootState } from '../../redux/store';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 const SideBar: React.FC<NavBarAndSideProps> = ({
   sideBarToggle,
@@ -14,31 +16,42 @@ const SideBar: React.FC<NavBarAndSideProps> = ({
   return (
     <div
       className="modalBackground"
+      data-testid='sidebarBackground'
       onClick={(e) => {
         sideBarToggle(e);
       }}
     >
-      <nav className="sideBarBody">
-        <i
-          className="far fa-times-circle closeModalButton closeBtn"
-          onClick={(e) => {
-            sideBarToggle(e);
-          }}
-        ></i>
+      <nav className="sideBarBody"
+        data-testid='sideBarBody'
+      >
+
+        <FontAwesomeIcon
+          icon={faTimesCircle}
+          className="closeModalButton closeBtn"
+          data-testid='closeSidBarModal'
+        />
         {user.photoId && (
           <>
-            <div className="userSideBar">
+            <div
+              className="userSideBar"
+              data-testid="imageUser"
+            >
               {user.photoId && (
                 <img
                   className="photoUser"
                   src={user.photoId}
                   alt="zdjęcie użytkownika"
+                  data-testid="imageUserSrc"
                 />
               )}
             </div>
-            <div className="userNickAndPoints">
-              <p>
-                nick:<strong>{user.name}</strong>
+            <div
+              className="userNickAndPoints"
+            >
+              <p
+                data-testid='sidBarUserName'
+              >
+                nick:<strong>{user.nick}</strong>
               </p>
               <p>
                 karnety:<strong>{'15'}</strong>
