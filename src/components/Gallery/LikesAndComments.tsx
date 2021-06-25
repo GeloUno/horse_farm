@@ -20,17 +20,15 @@ enum LikeOrComment {
 const selectFontAwesomIconColorIfUseLeftCommentOrLike = (likeOrComment: LikeOrComment, imageGallery: IDataImage, userID: number): string => {
   if (likeOrComment === LikeOrComment.Comment) {
     if (imageGallery.comments !== undefined) {
-      isUserIdInArrayOfObjects(imageGallery.comments, userID)
-      return 'hsla(94, 30%, 47%, 1)'
-    } else {
-      return '#707070'
+      if (isUserIdInArrayOfObjects(imageGallery.comments, userID)) {
+        return 'hsla(94, 30%, 47%, 1)'
+      }
     }
   } else if (likeOrComment === LikeOrComment.Like) {
     if (imageGallery.like !== undefined) {
-      isUserIdInArrayOfObjects(imageGallery.like, userID)
-      return 'hsla(24, 53%, 42%, 1)'
-    } else {
-      return '#707070'
+      if (isUserIdInArrayOfObjects(imageGallery.like, userID)) {
+        return 'hsla(24, 53%, 42%, 1)'
+      }
     }
   }
   return '#707070'
