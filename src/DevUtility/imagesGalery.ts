@@ -20,11 +20,10 @@ export const DevImagesData: Array<IDataImage> =
       imageID: 1,
       url:
         'https://cdn.pixabay.com/photo/2017/11/19/12/55/horses-2962718_960_720.jpg',
-      like: [{ uid: 1 }, { uid: 2 }, { uid: 6 }, { uid: 9 }],
+      like: [{ uid: 1 }, { uid: 3 }, { uid: 6 }, { uid: 9 }],
       comments: [
         { uid: 1, nick: 'Ami', comment: 'nice' },
         { uid: 2, nick: 'Kami', comment: 'love' },
-        { uid: 3, nick: 'Agi', comment: ' best' },
       ],
     },
     {
@@ -51,14 +50,13 @@ export const DevImagesData: Array<IDataImage> =
         { uid: 1, nick: 'Ami', comment: 'nice' },
         { uid: 2, nick: 'Kami', comment: 'love' },
         { uid: 2, nick: 'Kami', comment: 'love' },
-        { uid: 3, nick: 'Agi', comment: ' best' },
       ],
     },
     {
       imageID: 4,
       url:
         'https://cdn.pixabay.com/photo/2017/09/20/05/56/the-horse-2767521_960_720.jpg',
-      like: [{ uid: 4 }, { uid: 8 }, { uid: 5 }],
+      like: [{ uid: 4 }, { uid: 8 }, { uid: 3 }],
     },
     {
       imageID: 5,
