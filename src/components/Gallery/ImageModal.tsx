@@ -1,21 +1,35 @@
 import React, { useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
 import LikesAndComments from './LikesAndComments';
 import CommentsImage from './CommentsImage';
 import AddComment from './AddComment';
+import { IDataImage } from '../../DevUtility/imagesGalery';
 
-const GalleryFullScreenImage = ({
+interface GalleryFullScreenImageProps {
+  dataGalleryImageModal: IDataImage,
+  galleryImageModalToggle(e: React.MouseEvent): void,
+  isGalleryImageModalShow: boolean,
+  userID: number,
+  isScrollToAddComment: boolean,
+  setisScrollToAddComment(param: boolean): void,
+  setDataGalleryImageModal(image: IDataImage): void
+}
+
+
+const GalleryFullScreenImage: React.FC<GalleryFullScreenImageProps> = ({
   dataGalleryImageModal,
   galleryImageModalToggle,
   isGalleryImageModalShow,
   userID,
   isScrollToAddComment,
   setisScrollToAddComment,
+  setDataGalleryImageModal,
 }) => {
-  const inputAddCommentRef = useRef();
+  const inputAddCommentRef = useRef<HTMLInputElement>();
 
   const handleClikScrollToView = () => {
-    inputAddCommentRef.current.scrollIntoView({ behavior: 'smooth' });
+    if (inputAddCommentRef !== undefined && inputAddCommentRef.current !== undefined) {
+      inputAddCommentRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   useEffect(() => {
@@ -38,10 +52,11 @@ const GalleryFullScreenImage = ({
         <img src={dataGalleryImageModal.url} alt="zdjecie koni" />
         <LikesAndComments
           imageGallery={dataGalleryImageModal}
+          userID={userID}
           isGalleryImageModalShow={isGalleryImageModalShow}
           galleryImageModalToggle={galleryImageModalToggle}
-          userID={userID}
           setisScrollToAddComment={setisScrollToAddComment}
+          setDataGalleryImageModal={setDataGalleryImageModal}
         />
         <CommentsImage
           dataGalleryImageModal={dataGalleryImageModal}
@@ -55,11 +70,6 @@ const GalleryFullScreenImage = ({
       </div>
     </div>
   );
-};
-
-GalleryFullScreenImage.propTypes = {
-  dataGalleryImageModal: PropTypes.object.isRequired,
-  galleryImageModalToggle: PropTypes.func.isRequired,
 };
 
 export default GalleryFullScreenImage;

@@ -19,13 +19,14 @@ import {
   isUserGetErrorFromDataMongoDB,
   isUserNeedConfirmEmail,
 } from '../../shared/user'
-import { handleSendVerificationEmail, handleSignOut, intervalGetEmailConfirmStatus } from '../../shared/userHelpers';
+import { intervalGetEmailConfirmStatus, handleSendVerificationEmail, handleSignOut } from '../../shared/userHelpers';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 
 interface SingUpProps {
   signinModalToggle(e: React.MouseEvent): void,
   loginModalToggle(e: React.MouseEvent): void,
-  // setUser(): void,
   setSinginModalShow(show: boolean): void,
 }
 
@@ -93,24 +94,37 @@ const SingUpUser: React.FC<SingUpProps> = ({
   return (
     <div
       className="modalBackground modalContainerCenter accessToggleModalShow"
+      data-testid='signupModalContainer'
       onClick={(e) => {
         dispatch(userSignOutAction);
         dispatch(userRemoveCookieTokenAction);
         signinModalToggle(e);
       }}
     >
-      <div className="signinModal">
-        <div className="imageModalContainer">
-          <img className="modalImage" src={SigninHorseImg} alt="Konik" />
+      <div
+        className="signinModal"
+        data-testid='signinModal'
+      >
+        <div className="imageModalContainer"
+          data-testid='imageModal'
+        >
+          <img className="modalImage"
+            src={SigninHorseImg}
+            alt="Nauka jazdy konnej rejestracja"
+            data-testid="imageModalSourceSignup"
+          />
         </div>
         <div className="inputModalContainer">
-          <i
-            className="fas fa-arrow-left backIcon accessToggleModalShow"
+          <FontAwesomeIcon
+            icon={faArrowLeft}
+            className="backIcon accessToggleModalShow"
+            data-testid='backIconModalSignup'
             onClick={(e) => {
               signinModalToggle(e);
               loginModalToggle(e);
             }}
-          ></i>
+          />
+
           {!isLoading && ToggleComponent}
           {isLoading && (
             <PulseLoader color={' hsla(94, 30%, 43%, 1)'} size={25} />

@@ -1,7 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 
-function CommentsImage({ dataGalleryImageModal, userID }) {
+import PropTypes from 'prop-types';
+import { IDataImage } from '../../DevUtility/imagesGalery';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+
+
+function CommentsImage({ dataGalleryImageModal, userID }: { dataGalleryImageModal: IDataImage, userID: number }) {
   return (
     <div>
       {dataGalleryImageModal.comments &&
@@ -13,7 +18,7 @@ function CommentsImage({ dataGalleryImageModal, userID }) {
                 {comment.comment}
                 {comment.uid === userID && (
                   <div className="deleteComment">
-                    <i className="far fa-trash-alt"></i>
+                    <FontAwesomeIcon icon={faTrashAlt} />
                   </div>
                 )}
               </div>

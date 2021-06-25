@@ -145,7 +145,7 @@ function App() {
               isGalleryImageModalShow={isGalleryImageModalShow}
               dataGalleryImageModal={dataGalleryImageModal}
               galleryImageModalToggle={galleryImageModalToggle}
-              // userID={2}
+              userID={3}
               isScrollToAddComment={isScrollToAddComment}
               setisScrollToAddComment={setisScrollToAddComment}
             />
@@ -206,7 +206,7 @@ function App() {
                     isGalleryImageModalShow={isGalleryImageModalShow}
                     setDataGalleryImageModal={setDataGalleryImageModal}
                     galleryImageModalToggle={galleryImageModalToggle}
-                    userID={2}
+                    userID={3}
                     isScrollToAddComment={isScrollToAddComment}
                     setisScrollToAddComment={setisScrollToAddComment}
                     exact

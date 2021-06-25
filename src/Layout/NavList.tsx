@@ -59,6 +59,7 @@ export const NavList: React.FC<NavListProps> = ({
         <h2>
           <Link
             data-cy="linkHomePage"
+            data-testid="linkHomePage"
             to="/"
             className="sm-hidden"
             onClick={() => {
@@ -129,6 +130,7 @@ export const NavList: React.FC<NavListProps> = ({
         <h2>
           <Link
             data-cy="linkLogin"
+            data-testid="linkToLogin"
             to=""
             className="sm-hidden accessToggleModalShow"
             onClick={(e) => loginModalToggle(e)}
@@ -222,6 +224,7 @@ export const NavList: React.FC<NavListProps> = ({
         >
           <Link
             data-cy="linkLogout"
+            data-testid="linkToLogout"
             to=""
             className="sm-hidden"
           >
@@ -321,6 +324,7 @@ export const NavList: React.FC<NavListProps> = ({
         >
           <Link
             data-cy="linkLogout"
+            data-testid="linkToLogout"
             to=""
             className="sm-hidden"
           >
@@ -421,6 +425,7 @@ export const NavList: React.FC<NavListProps> = ({
         >
           <Link
             data-cy="linkLogout"
+            data-testid="linkToLogout"
             to=""
             className="sm-hidden"
           >
@@ -520,6 +525,7 @@ export const NavList: React.FC<NavListProps> = ({
         >
           <Link
             data-cy="linkLogout"
+            data-testid="linkToLogout"
             to=""
             className="sm-hidden"
           >
@@ -537,5 +543,7 @@ export const NavList: React.FC<NavListProps> = ({
       </li>
     </Fragment>
   );
-  return <Fragment>{renderSwitchNavList(user.entityAccess)}</Fragment>;
+  return <Fragment >
+    {renderSwitchNavList(user.entityAccess)}
+  </Fragment>;
 };

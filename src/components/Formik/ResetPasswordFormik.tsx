@@ -49,48 +49,52 @@ export const ResetPassword: React.FC<IResetPasswordProps> = ({ setResetPasswordM
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={handleSubmit}
+    <div
+      data-testid='resetPasswordFormik'
     >
-      {(formik: FormikProps<IFormikResetPassword>) => (
-        <Form className={classes.root}>
-          <Field name="email">
-            {(props: FieldProps<IFormikResetPassword>) => {
-              const { field, form, meta } = props;
-              return (
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
+        {(formik: FormikProps<IFormikResetPassword>) => (
+          <Form className={classes.root}>
+            <Field name="email">
+              {(props: FieldProps<IFormikResetPassword>) => {
+                const { field, form, meta } = props;
+                return (
 
-                <TextField
-                  error={!!formik.errors.email}
-                  helperText={formik.errors.email}
-                  label='email'
-                  variant='outlined'
-                  color='primary'
-                  id="email"
-                  name="email"
-                  type="email"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.email}
-                />
-              );
-            }}
-          </Field>
-          <Button
-            size='large'
-            variant='contained'
-            color='secondary'
-            type="submit"
-            disabled={
-              !!formik.touched.email && !!formik.errors.email
-            }
-          >
-            wyslij
-          </Button>
-        </Form>
-      )}
-    </Formik>
+                  <TextField
+                    error={!!formik.errors.email}
+                    helperText={formik.errors.email}
+                    label='email'
+                    variant='outlined'
+                    color='primary'
+                    id="email"
+                    name="email"
+                    type="email"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.email}
+                  />
+                );
+              }}
+            </Field>
+            <Button
+              size='large'
+              variant='contained'
+              color='secondary'
+              type="submit"
+              disabled={
+                !!formik.touched.email && !!formik.errors.email
+              }
+            >
+              wyslij
+            </Button>
+          </Form>
+        )}
+      </Formik>
+    </div>
   );
 };
 

@@ -21,6 +21,8 @@ import {
   isUserNeedConfirmEmail,
 } from '../../shared/user'
 import { intervalGetEmailConfirmStatus, handleSignOut, handleSendVerificationEmail } from '../../shared/userHelpers';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 interface LoginUserProps {
   signinModalToggle(): void,
@@ -106,18 +108,34 @@ const LoginUser: React.FC<LoginUserProps> = ({
   return (
     <div
       className="modalBackground modalContainerCenter accessToggleModalShow"
+      data-testid="loginModalContainer"
       onClick={(e) => {
         dispatch(userSignOutAction);
         dispatch(userRemoveCookieTokenAction);
         loginModalToggle(e);
       }}
     >
-      <div className="loginModal">
-        <div className="imageModalContainer">
-          <img className="modalImage" src={LoginHorseImg} alt="Konik" />
+      <div
+        className="loginModal"
+        data-testid="loginModal"
+      >
+        <div
+          className="imageModalContainer"
+          data-testid='imageModal'
+        >
+          <img
+            className="modalImage"
+            src={LoginHorseImg}
+            alt="Nauka jazdy konnej logowanie"
+            data-testid="imageModalSource"
+          />
         </div>
-        <div className="inputModalContainer">
-          <i className="fas fa-arrow-left backIcon accessToggleModalShow"></i>
+        <div className="inputModalContainer"
+          data-testid='inputModalLoginBody'
+        >
+          <FontAwesomeIcon icon={faArrowLeft} className="backIcon accessToggleModalShow"
+            data-testid='backIconModalLogin'
+          />
           {!isLoading && ToggleComponent}
           {isLoading && (
             <PulseLoader color={' hsla(94, 30%, 43%, 1)'} size={25} />

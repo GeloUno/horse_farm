@@ -1,25 +1,28 @@
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
-const UploadImage = () => {
-  const [fileImage, setFileImage] = useState();
+const UploadImage: React.FC = () => {
+  const [fileImage, setFileImage] = useState<File | null>();
   const [isErrorImageSelected, setIsErrorImageSelected] = useState(false);
   const TYPES_IMAGES_ACCEPT = ['image/jpeg', 'image/png', 'image/gif'];
 
-  const handleChange = (e) => {
-    setIsErrorImageSelected(false);
-    const selectedImage = e.target.files[0];
-    console.log('selected :>> ', selectedImage);
-    if (selectedImage && TYPES_IMAGES_ACCEPT.includes(selectedImage.type)) {
-      setFileImage(selectedImage);
-    } else {
-      setIsErrorImageSelected(true);
-      setFileImage(null);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.currentTarget.files !== null) {
+      setIsErrorImageSelected(false);
+      const selectedImage = e.currentTarget.files[0];
+      console.log('selected :>> ', selectedImage);
+      if (selectedImage && TYPES_IMAGES_ACCEPT.includes(selectedImage.type)) {
+        setFileImage(selectedImage);
+      } else {
+        setIsErrorImageSelected(true);
+        setFileImage(null);
+      }
     }
   };
 
   return (
     <div>
-      {/* {console.log('fileImage', fileImage)} */}
       <div className="containerImages">
         <div className="addImage">
           <label>
@@ -33,10 +36,7 @@ const UploadImage = () => {
               }}
             />
             <span>
-              <i
-                className="fas fa-plus-circle addImageButton"
-                onMouseEnter={() => setIsErrorImageSelected(false)}
-              ></i>
+              <FontAwesomeIcon icon={faPlusCircle} className='addImageButton' onMouseEnter={() => setIsErrorImageSelected(false)} />
             </span>
           </label>
         </div>

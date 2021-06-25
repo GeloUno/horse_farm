@@ -47,90 +47,91 @@ const SignUpFormik = () => {
 
   return (
     <div className='inputModalForm'
+      data-testid='signupInputForm'
     >
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={handleSubmit}
-    >
-      {(formik: FormikProps<IFormikSingUp>) => (
-        <Form className={classes.root} noValidate autoComplete="off">
-          <Field name="email">
-            {(props: FieldProps<IFormikSingUp>) => {
-              const { field, form, meta } = props;
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
+        {(formik: FormikProps<IFormikSingUp>) => (
+          <Form className={classes.root} noValidate autoComplete="off">
+            <Field name="email">
+              {(props: FieldProps<IFormikSingUp>) => {
+                const { field, form, meta } = props;
 
-              return (
-                <>
-                  <TextField
-                    error={!!meta.touched && !!meta.error}
-                    helperText={meta.touched && meta.error}
-                    color='primary'
-                    label='email'
-                    variant='outlined'
-                    id="email"
-                    type="email"
-                    {...field}
-                  />
-                </>
-              );
-            }}
-          </Field>
-          <Field name="password">
-            {(props: FieldProps<IFormikSingUp>) => {
-              const { field, form, meta } = props;
+                return (
+                  <>
+                    <TextField
+                      error={!!meta.touched && !!meta.error}
+                      helperText={meta.touched && meta.error}
+                      color='primary'
+                      label='email'
+                      variant='outlined'
+                      id="email"
+                      type="email"
+                      {...field}
+                    />
+                  </>
+                );
+              }}
+            </Field>
+            <Field name="password">
+              {(props: FieldProps<IFormikSingUp>) => {
+                const { field, form, meta } = props;
 
-              return (
-                <>
-                  <TextField
-                    error={!!meta.touched && !!meta.error}
-                    helperText={meta.touched && meta.error}
-                    color='primary'
-                    label='hasło'
-                    variant='outlined'
-                    id="password"
-                    type="password"
-                    {...field}
-                  />
-                </>
-              );
-            }}
-          </Field>
-          <Field name="confirmPassword">
-            {(props: FieldProps<IFormikSingUp>) => {
-              const { field, form, meta } = props;
+                return (
+                  <>
+                    <TextField
+                      error={!!meta.touched && !!meta.error}
+                      helperText={meta.touched && meta.error}
+                      color='primary'
+                      label='hasło'
+                      variant='outlined'
+                      id="password"
+                      type="password"
+                      {...field}
+                    />
+                  </>
+                );
+              }}
+            </Field>
+            <Field name="confirmPassword">
+              {(props: FieldProps<IFormikSingUp>) => {
+                const { field, form, meta } = props;
 
-              return (
-                <>
-                  <TextField
-                    error={!!meta.touched && !!meta.error}
-                    helperText={meta.touched && meta.error}
-                    color='primary'
-                    label='powtórz hasło'
-                    variant='outlined'
-                    id="confirmPassword"
-                    type="password"
-                    {...field}
-                  />
-                </>
-              );
-            }}
-          </Field>
-          <Button
-            variant='contained'
-            color='secondary'
-            size='large'
-            disabled={
-              (!!formik.touched.email && !!formik.errors.email) ||
-              (!!formik.touched.password && !!formik.errors.password) ||
-              (!!formik.touched.confirmPassword && !!formik.errors.confirmPassword)
-            }
-            type="submit"
-          >
-            rejestracja
-          </Button>
-        </Form>
-      )}
-    </Formik>
+                return (
+                  <>
+                    <TextField
+                      error={!!meta.touched && !!meta.error}
+                      helperText={meta.touched && meta.error}
+                      color='primary'
+                      label='powtórz hasło'
+                      variant='outlined'
+                      id="confirmPassword"
+                      type="password"
+                      {...field}
+                    />
+                  </>
+                );
+              }}
+            </Field>
+            <Button
+              variant='contained'
+              color='secondary'
+              size='large'
+              disabled={
+                (!!formik.touched.email && !!formik.errors.email) ||
+                (!!formik.touched.password && !!formik.errors.password) ||
+                (!!formik.touched.confirmPassword && !!formik.errors.confirmPassword)
+              }
+              type="submit"
+            >
+              rejestracja
+            </Button>
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 };
