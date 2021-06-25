@@ -2,11 +2,24 @@ import React from 'react';
 import Pagination from '../../Layout/Pagination';
 import UploadImage from './UploadImage';
 import LikesAndComments from './LikesAndComments';
-import { DevImagesData } from '../../DevUtility/imagesGalery';
+import { DevImagesData, IDataImage } from '../../DevUtility/imagesGalery';
 
 /* FIXME: isAuth change to false in prod */
 
-const Gallery = ({
+
+interface GalleryProps {
+
+  galleryImageModalToggle(e: React.MouseEvent): void,
+  setDataGalleryImageModal(data: IDataImage): void,
+  isGalleryImageModalShow: boolean,
+  isAuth(): void,
+  userID: number,
+  isPagination: boolean,
+  imagesGallery: Array<IDataImage>,
+  setisScrollToAddComment(): void,
+}
+
+const Gallery: React.FC<GalleryProps> = ({
   galleryImageModalToggle,
   setDataGalleryImageModal,
   isGalleryImageModalShow,
@@ -14,7 +27,6 @@ const Gallery = ({
   userID = 0,
   isPagination = true,
   imagesGallery = DevImagesData,
-
   setisScrollToAddComment,
 }) => {
   return (

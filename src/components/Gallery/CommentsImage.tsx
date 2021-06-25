@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { IDataImage } from '../../DevUtility/imagesGalery';
 
-function CommentsImage({ dataGalleryImageModal, userID }) {
+
+
+function CommentsImage({ dataGalleryImageModal, userID }: { dataGalleryImageModal: IDataImage, userID: number }) {
   return (
     <div>
       {dataGalleryImageModal.comments &&
