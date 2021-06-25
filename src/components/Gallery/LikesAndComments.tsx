@@ -63,7 +63,9 @@ const LikesAndComments: React.FC<LikesAndCommentsProps> = ({
       <div className="numberLike number">
         {imageGallery.like && isUserIdInArrayOfObjects(imageGallery.like, userID)
         }
-        <FontAwesomeIcon icon={faHatCowboy} color={selectFontAwesomIconColorIfUseLeftCommentOrLike(LikeOrComment.Like, imageGallery, userID)}
+        <FontAwesomeIcon
+          icon={faHatCowboy}
+          color={selectFontAwesomIconColorIfUseLeftCommentOrLike(LikeOrComment.Like, imageGallery, userID)}
 
         />
         {(imageGallery.like && imageGallery.like.length) || 0}
@@ -82,24 +84,14 @@ const LikesAndComments: React.FC<LikesAndCommentsProps> = ({
           setisScrollToAddComment(true);
         }}
       >
-        <i
+        <FontAwesomeIcon
           className={
             !isGalleryImageModalShow
-              ? 'accessToggleModalShow fas fa-comments'
-              : 'fas fa-comments'
+              ? 'accessToggleModalShow'
+              : ''
           }
-          style={
-            imageGallery.comments &&
-              isUserIdInArrayOfObjects(imageGallery.comments, userID)
-              ? { color: 'hsla(94, 30%, 47%, 1)' }
-              : { color: '#707070' }
-          }
-        ></i>
-        <FontAwesomeIcon className={
-          !isGalleryImageModalShow
-            ? 'accessToggleModalShow'
-            : ''
-        } icon={faComments} color={selectFontAwesomIconColorIfUseLeftCommentOrLike(LikeOrComment.Comment, imageGallery, userID)} />
+          icon={faComments}
+          color={selectFontAwesomIconColorIfUseLeftCommentOrLike(LikeOrComment.Comment, imageGallery, userID)} />
         {(imageGallery.comments && imageGallery.comments.length) || 0}
       </div>
     </div>

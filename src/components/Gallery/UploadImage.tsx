@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 const UploadImage: React.FC = () => {
   const [fileImage, setFileImage] = useState<File | null>();
@@ -34,10 +36,7 @@ const UploadImage: React.FC = () => {
               }}
             />
             <span>
-              <i
-                className="fas fa-plus-circle addImageButton"
-                onMouseEnter={() => setIsErrorImageSelected(false)}
-              ></i>
+              <FontAwesomeIcon icon={faPlusCircle} className='addImageButton' onMouseEnter={() => setIsErrorImageSelected(false)} />
             </span>
           </label>
         </div>
