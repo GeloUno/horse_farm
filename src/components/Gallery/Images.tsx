@@ -12,7 +12,7 @@ interface GalleryProps {
   galleryImageModalToggle(e: React.MouseEvent): void,
   setDataGalleryImageModal(data: IDataImage): void,
   isGalleryImageModalShow: boolean,
-  isAuth(): void,
+  isAuth: boolean,
   userID: number,
   isPagination: boolean,
   imagesGallery: Array<IDataImage>,
