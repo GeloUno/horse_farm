@@ -57,7 +57,10 @@ const LikesAndComments: React.FC<LikesAndCommentsProps> = ({
   setisScrollToAddComment,
 }) => {
   return (
-    <div className="likeAndComments">
+    <div
+      className="likeAndComments"
+      data-testid="likeAndCommentsComponent"
+    >
       <div className="numberLike number">
         {imageGallery.like && isUserIdInArrayOfObjects(imageGallery.like, userID)
         }

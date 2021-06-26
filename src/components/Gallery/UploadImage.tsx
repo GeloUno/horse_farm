@@ -23,7 +23,10 @@ const UploadImage: React.FC = () => {
 
   return (
     <div>
-      <div className="containerImages">
+      <div
+        className="containerImages"
+        data-testid="ImagesUploadComponent"
+      >
         <div className="addImage">
           <label>
             <input
