@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function CommentsImage({ dataGalleryImageModal, userID }: { dataGalleryImageModal: IDataImage, userID: number }) {
   return (
-    <div>
+    <div data-testid='commentsImageComponent'>
       {dataGalleryImageModal.comments &&
         dataGalleryImageModal.comments.map((comment, index) => {
           return (

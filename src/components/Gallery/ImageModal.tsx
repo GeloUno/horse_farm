@@ -44,12 +44,19 @@ const GalleryFullScreenImage: React.FC<GalleryFullScreenImageProps> = ({
   return (
     <div
       className="modalBackground modalContainerCenter accessToggleModalShow"
+      data-testid='modalImageContainer'
       onClick={(e) => {
         galleryImageModalToggle(e);
       }}
     >
-      <div className="loginModal gridImage modalImageGallery">
-        <img src={dataGalleryImageModal.url} alt="zdjecie koni" />
+      <div className="loginModal gridImage modalImageGallery"
+        data-testid='modalImageBody'
+      >
+        <img
+          src={dataGalleryImageModal.url}
+          alt="zdjecie koni"
+          data-testid='ImageModalSrc'
+        />
         <LikesAndComments
           imageGallery={dataGalleryImageModal}
           userID={userID}
