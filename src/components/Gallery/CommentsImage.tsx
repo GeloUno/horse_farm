@@ -8,17 +8,35 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function CommentsImage({ dataGalleryImageModal, userID }: { dataGalleryImageModal: IDataImage, userID: number }) {
   return (
-    <div data-testid='commentsImageComponent'>
+    <div
+      data-testid='commentsImageComponent'>
       {dataGalleryImageModal.comments &&
         dataGalleryImageModal.comments.map((comment, index) => {
           return (
-            <div className="likesAndComments" key={index}>
-              <label className="userNickComment"> {comment.nick}</label>
-              <div className="comment" key={index}>
+            <div
+              className="likesAndComments"
+              data-testid='commentsBody'
+              key={index}>
+              <label
+                className="userNickComment"
+                data-testid='commentsImageLabel'
+              >
+                {comment.nick}
+              </label>
+              <div
+                className="comment"
+                data-testid='commentsImageContent'
+                key={index}>
                 {comment.comment}
                 {comment.uid === userID && (
-                  <div className="deleteComment">
-                    <FontAwesomeIcon icon={faTrashAlt} />
+                  <div
+                    className="deleteComment"
+                    data-testid='deleteCommentBody'
+                  >
+                    <FontAwesomeIcon
+                      icon={faTrashAlt}
+                      data-testid='deleteCommentIcon'
+                    />
                   </div>
                 )}
               </div>

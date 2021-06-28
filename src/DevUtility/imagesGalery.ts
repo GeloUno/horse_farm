@@ -34,11 +34,11 @@ export const DevImagesData: Array<IDataImage> =
       comments: [
         { uid: 1, nick: 'Ami', comment: 'nice' },
         { uid: 2, nick: 'Kami', comment: 'love' },
-        { uid: 3, nick: 'Agi', comment: ' best' },
+        { uid: 3, nick: 'Agi', comment: 'beautiful' },
         { uid: 2, nick: 'Kami', comment: 'love' },
-        { uid: 3, nick: 'Agi', comment: ' best' },
+        { uid: 3, nick: 'Agi', comment: 'lovely little horse' },
         { uid: 2, nick: 'Kami', comment: 'love' },
-        { uid: 3, nick: 'Agi', comment: ' best' },
+        { uid: 3, nick: 'Agi', comment: 'best' },
       ],
     },
     {
@@ -66,7 +66,7 @@ export const DevImagesData: Array<IDataImage> =
         { uid: 1, nick: 'Ami', comment: 'nice' },
         { uid: 2, nick: 'Kami', comment: 'love' },
         { uid: 2, nick: 'Kami', comment: 'love' },
-        { uid: 3, nick: 'Agi', comment: ' best' },
+        { uid: 3, nick: 'Agi', comment: 'best' },
       ],
     },
     {

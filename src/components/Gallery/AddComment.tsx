@@ -22,6 +22,7 @@ function AddComment({ imageID, userID, inputAddCommentRef }: { imageID: number, 
           ref={inputRef}
           className="comment addCommentInput"
           placeholder="dodaj komentarz ..."
+          data-testid='addCommentInput'
           maxLength={150}
           value={newComment}
           onChange={(e) => {
