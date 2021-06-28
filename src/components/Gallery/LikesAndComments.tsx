@@ -12,12 +12,12 @@ const isUserIdInArrayOfObjects = (paramData: Array<ILike> | Array<IComment>, use
   }
 };
 
-enum LikeOrComment {
+export enum LikeOrComment {
   Like,
   Comment,
 }
 
-const selectFontAwesomIconColorIfUseLeftCommentOrLike = (likeOrComment: LikeOrComment, imageGallery: IDataImage, userID: number): string => {
+export const selectFontAwesomIconColorIfUseLeftCommentOrLike = (likeOrComment: LikeOrComment, imageGallery: IDataImage, userID: number): string => {
   if (likeOrComment === LikeOrComment.Comment) {
     if (imageGallery.comments !== undefined) {
       if (isUserIdInArrayOfObjects(imageGallery.comments, userID)) {
@@ -57,18 +57,26 @@ const LikesAndComments: React.FC<LikesAndCommentsProps> = ({
   setisScrollToAddComment,
 }) => {
   return (
-    <div className="likeAndComments">
-      <div className="numberLike number">
+    <div
+      className="likeAndComments"
+      data-testid="likeAndCommentsComponent"
+    >
+      <div
+        className="numberLike number"
+        data-testid="likeAndNumber"
+      >
         {imageGallery.like && isUserIdInArrayOfObjects(imageGallery.like, userID)
         }
         <FontAwesomeIcon
           icon={faHatCowboy}
+          data-testid="FontAwesomeIconLike"
           color={selectFontAwesomIconColorIfUseLeftCommentOrLike(LikeOrComment.Like, imageGallery, userID)}
 
         />
         {(imageGallery.like && imageGallery.like.length) || 0}
       </div>
       <div
+        data-testid="CommentsIconAndNumber"
         className={
           !isGalleryImageModalShow
             ? 'accessToggleModalShow numberComments number'
@@ -83,6 +91,7 @@ const LikesAndComments: React.FC<LikesAndCommentsProps> = ({
         }}
       >
         <FontAwesomeIcon
+          data-testid="FontAwesomeIconComments"
           className={
             !isGalleryImageModalShow
               ? 'accessToggleModalShow'

@@ -13,7 +13,7 @@ const Pagination: React.FC<PaginationProps> = (
   }
 ) => {
   return (
-    <div>
+    <div data-testid='PaginationComponent'>
       {lengthPages > 1 && (
         <div className="pagination">
           <button

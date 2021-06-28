@@ -10,7 +10,9 @@ function AddComment({ imageID, userID, inputAddCommentRef }: { imageID: number, 
 
   const inputRef = inputAddCommentRef as React.LegacyRef<HTMLInputElement> | undefined
   return (
-    <div className="addCommentForm">
+    <div className="addCommentForm"
+      data-testid='addCommentComponent'
+    >
       <form action="">
         {
           // <label htmlFor="">dodaj komentarz ...</label>
@@ -20,6 +22,7 @@ function AddComment({ imageID, userID, inputAddCommentRef }: { imageID: number, 
           ref={inputRef}
           className="comment addCommentInput"
           placeholder="dodaj komentarz ..."
+          data-testid='addCommentInput'
           maxLength={150}
           value={newComment}
           onChange={(e) => {

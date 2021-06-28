@@ -32,13 +32,21 @@ const Gallery: React.FC<GalleryProps> = ({
   return (
     <div>
       <div>{isAuth && <UploadImage />}</div>
-      <div className="gridImages">
+      <div
+        className="gridImages"
+        data-testid="gridImagesContainer"
+      >
         {imagesGallery &&
           imagesGallery.map((imageGallery, index) => {
             return (
-              <div key={index} className="gridImage">
+              <div
+                key={index}
+                className="gridImage"
+                data-testid="gridImageBody"
+              >
                 <img
                   className="accessToggleModalShow"
+                  data-testid="ImageSrc"
                   key={index}
                   src={imageGallery.url}
                   alt="Zdjecia koni z stadniny"
