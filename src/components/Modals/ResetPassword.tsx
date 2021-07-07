@@ -1,8 +1,11 @@
 import React from 'react';
 import ResetPasswordFormik from '../Formik/ResetPasswordFormik';
-
+import { useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { IFormikResetPassword } from '../Formik/ResetPasswordFormik';
+
+import { sendEmailToResetPasswordAction } from '../../redux/actions/userActions';
 
 interface ResetPasswordProps {
   resetPasswordModalToggle(e: React.MouseEvent): void,
@@ -16,6 +19,18 @@ const ResetPassword: React.FC<ResetPasswordProps> = ({
   loginModalToggle,
   setResetPasswordModalShow,
 }) => {
+  const dispatch = useDispatch();
+
+  const handleSubmit = (values: IFormikResetPassword, { setErrors, resetForm }: { setErrors: Function, resetForm: Function }) => {
+    dispatch(
+      sendEmailToResetPasswordAction(
+        values,
+        setResetPasswordModalShow,
+        setErrors,
+        resetForm
+      )
+    );
+  };
   return (
     <div
       className="modalBackground modalContainerCenter accessToggleModalShow"
@@ -51,7 +66,7 @@ const ResetPassword: React.FC<ResetPasswordProps> = ({
           data-testid='inputSectionResetPassword'
         >
           <ResetPasswordFormik
-            setResetPasswordModalShow={setResetPasswordModalShow}
+            handleSubmit={handleSubmit}
           />
         </div>
       </div>

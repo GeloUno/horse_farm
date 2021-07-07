@@ -5,6 +5,8 @@ import LogInFormik from '../Formik/LogInFormik';
 import { RootState } from '../../redux/store';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { IFormikLogin } from '../Formik/LogInFormik';
+import { userSignInByEmailAction } from './../../redux/actions/userActions';
 
 interface LogInBodyPrpos {
   loginModalToggle(e: React.MouseEvent): void,
@@ -20,9 +22,14 @@ const LogInBody: React.FC<LogInBodyPrpos> = ({
   const dispatch = useDispatch();
   const userAction = useSelector((state: RootState) => state.userAction);
   const { errorMessage, user } = userAction;
-  const { providerId } = user;
+  // const { providerId } = user;
 
   const [isTryLoginBySocialMedia, setIsTryLoginBySocialMedia] = useState(false)
+
+  const handleSubmit = (values: IFormikLogin, { setErrors, resetForm }: { setErrors: Function, resetForm: Function }) => {
+    setIsTryLoginBySocialMedia(() => { return false })
+    dispatch(userSignInByEmailAction(values, setErrors, resetForm));
+  };
 
   return (
     <div className='inputFormBody' data-testid="loginBody" >
@@ -39,7 +46,6 @@ const LogInBody: React.FC<LogInBodyPrpos> = ({
             }
           >
             <FontAwesomeIcon icon={faGoogle} />
-            {/* <i className="fab fa-google"></i> */}
           </div>
           <div
             className="btnSocial"
@@ -51,7 +57,6 @@ const LogInBody: React.FC<LogInBodyPrpos> = ({
             }
           >
             <FontAwesomeIcon icon={faFacebookF} />
-            {/* <i className="fab fa-facebook-f"></i> */}
           </div>
         </div>
         {
@@ -63,7 +68,7 @@ const LogInBody: React.FC<LogInBodyPrpos> = ({
           )}
       </div>
 
-      <LogInFormik setIsTryLoginBySocialMedia={setIsTryLoginBySocialMedia} />
+      <LogInFormik handleSubmit={handleSubmit} />
       <div className=" btnSignInRemindPassword"
         data-testid='buttonRegister'
       >

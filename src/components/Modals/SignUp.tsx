@@ -22,7 +22,8 @@ import {
 import { intervalGetEmailConfirmStatus, handleSendVerificationEmail, handleSignOut } from '../../shared/userHelpers';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-
+import { IFormikSingUp } from '../Formik/SignUpFormik';
+import { createUserByEmialPasswordAction } from '../../redux/actions/userActions';
 
 interface SingUpProps {
   signinModalToggle(e: React.MouseEvent): void,
@@ -38,7 +39,12 @@ const SingUpUser: React.FC<SingUpProps> = ({
   setSinginModalShow,
 }) => {
   const userAuth = useSelector((state: RootState) => state.userAction);
+
   const dispatch = useDispatch();
+
+  const handleSubmit = (values: IFormikSingUp, { setErrors, resetForm }: { setErrors: Function, resetForm: Function }) => {
+    dispatch(createUserByEmialPasswordAction(values, setErrors, resetForm));
+  };
   const { idToken, user } = userAuth;
   const { email, providerId, emailVerified, uid, isNewUser } = user;
 
@@ -54,7 +60,7 @@ const SingUpUser: React.FC<SingUpProps> = ({
 
   useEffect(() => {
 
-    isNeedToShowUserForms(email, emailVerified) && setToggleComponent(<SignUpFormik />);
+    isNeedToShowUserForms(email, emailVerified) && setToggleComponent(<SignUpFormik handleSubmit={handleSubmit} />);
 
 
     isUserCanBeCreateByPassword(email, isLoading, isErrors, dataResponse, isNewUser, providerId) && (sendReqestClient(
