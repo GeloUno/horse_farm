@@ -7,24 +7,19 @@ import {
   FieldProps
 } from 'formik';
 import * as Yup from 'yup';
-// import 'firebase/auth';
-// import 'firebase/firestore';
-import { useDispatch } from 'react-redux';
-import { sendEmailToResetPasswordAction } from '../../redux/actions/userActions';
 import { useStyles } from '../../utility/materialui';
 import { TextField, Button } from '@material-ui/core/';
 
 interface IResetPasswordProps {
-  setResetPasswordModalShow(): void
+  handleSubmit(values: IFormikResetPassword, { setErrors, resetForm }: { setErrors: Function; resetForm: Function }): void
 }
 
-interface IFormikResetPassword {
+export interface IFormikResetPassword {
   email: string
 }
 
-export const ResetPassword: React.FC<IResetPasswordProps> = ({ setResetPasswordModalShow }) => {
+export const ResetPassword: React.FC<IResetPasswordProps> = ({ handleSubmit }) => {
   const classes = useStyles();
-  const dispatch = useDispatch();
 
   const initialValues = {
     email: '',
@@ -32,24 +27,14 @@ export const ResetPassword: React.FC<IResetPasswordProps> = ({ setResetPasswordM
 
   const validationSchema = Yup.object({
     email: Yup.string()
-      .email('Ups... coś brakuje w adresie e-mail')
+      .email('Ups... czegoś brakuje w adresie e-mial')
       .max(50, ',maksymalna lczba znaków 50')
-      .required('proszę podać adres e-mail'),
+      .required('proszę podaj adres e-mail'),
   });
-
-  const handleSubmit = (values: IFormikResetPassword, { setErrors, resetForm }: { setErrors: Function, resetForm: Function }) => {
-    dispatch(
-      sendEmailToResetPasswordAction(
-        values,
-        setResetPasswordModalShow,
-        setErrors,
-        resetForm
-      )
-    );
-  };
 
   return (
     <div
+      className='inputModalForm'
       data-testid='resetPasswordFormik'
     >
       <Formik
@@ -67,6 +52,7 @@ export const ResetPassword: React.FC<IResetPasswordProps> = ({ setResetPasswordM
                   <TextField
                     error={!!formik.errors.email}
                     helperText={formik.errors.email}
+                    data-testid='inputResetPasswordFormik'
                     label='email'
                     variant='outlined'
                     color='primary'
@@ -82,6 +68,7 @@ export const ResetPassword: React.FC<IResetPasswordProps> = ({ setResetPasswordM
             </Field>
             <Button
               size='large'
+              data-testid='buttonResetPasswordFormik'
               variant='contained'
               color='secondary'
               type="submit"

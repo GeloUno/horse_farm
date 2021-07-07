@@ -1,35 +1,30 @@
-import React from 'react';
 import {
   Field,
-  // FieldAttributes,
   Form,
   Formik,
-  // FormikErrors,
-  // FormikHelpers,
   FormikProps,
   FieldProps
 } from 'formik';
 import * as Yup from 'yup';
-import { useDispatch } from 'react-redux';
-import { createUserByEmialPasswordAction } from '../../redux/actions/userActions';
 import { useStyles } from '../../utility/materialui';
 import { Button } from '@material-ui/core';
 import { TextField } from '@material-ui/core';
 
 
-interface IFormikSingUp {
+export interface IFormikSingUp {
   email: string,
   password: string,
   confirmPassword: string,
 }
 
-const SignUpFormik = () => {
+interface ISignUpFormikProps {
+  handleSubmit(values: IFormikSingUp, { setErrors, resetForm }: { setErrors: Function, resetForm: Function }): void
+}
+
+const SignUpFormik: React.FC<ISignUpFormikProps> = ({ handleSubmit }) => {
   const initialValues = { email: '', password: '', confirmPassword: '' };
-  const dispatch = useDispatch();
+
   const classes = useStyles();
-  const handleSubmit = (values: IFormikSingUp, { setErrors, resetForm }: { setErrors: Function, resetForm: Function }) => {
-    dispatch(createUserByEmialPasswordAction(values, setErrors, resetForm));
-  };
 
   const validationSchema = Yup.object({
     email: Yup.string()
@@ -65,6 +60,7 @@ const SignUpFormik = () => {
                     <TextField
                       error={!!meta.touched && !!meta.error}
                       helperText={meta.touched && meta.error}
+                      data-testid='inputEmailSignupForm'
                       color='primary'
                       label='email'
                       variant='outlined'
@@ -85,6 +81,7 @@ const SignUpFormik = () => {
                     <TextField
                       error={!!meta.touched && !!meta.error}
                       helperText={meta.touched && meta.error}
+                      data-testid='inputPasswordSignupForm'
                       color='primary'
                       label='hasło'
                       variant='outlined'
@@ -105,6 +102,7 @@ const SignUpFormik = () => {
                     <TextField
                       error={!!meta.touched && !!meta.error}
                       helperText={meta.touched && meta.error}
+                      data-testid='inputConfirmPasswordSignupForm'
                       color='primary'
                       label='powtórz hasło'
                       variant='outlined'
@@ -117,6 +115,7 @@ const SignUpFormik = () => {
               }}
             </Field>
             <Button
+              data-testid='buttonSignupForm'
               variant='contained'
               color='secondary'
               size='large'

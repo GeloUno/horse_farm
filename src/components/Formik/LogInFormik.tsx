@@ -3,24 +3,25 @@ import { Field, Form, Formik, FormikProps, FieldProps } from 'formik';
 import * as Yup from 'yup';
 import 'firebase/auth';
 import 'firebase/firestore';
-import { useDispatch } from 'react-redux';
-import { userSignInByEmailAction } from '../../redux/actions/userActions';
+
 import { TextField, Button } from '@material-ui/core/';
 import { useStyles } from '../../utility/materialui';
-// import { Button } from '@material-ui/core/';
+
 
 interface LogInFormikProps {
-  setIsTryLoginBySocialMedia: React.Dispatch<React.SetStateAction<boolean>>
+  handleSubmit(values: IFormikLogin, { setErrors, resetForm }: { setErrors: Function, resetForm: Function }): void
 }
 
-interface IFormikLogin {
+export interface IFormikLogin {
   email: string,
   password: string,
 }
 
-const LogInFormik: React.FC<LogInFormikProps> = ({ setIsTryLoginBySocialMedia }) => {
+const LogInFormik: React.FC<LogInFormikProps> = ({
+  handleSubmit
+}) => {
   const classes = useStyles();
-  const dispatch = useDispatch();
+
   const initialValues = { email: '', password: '' };
 
   const validationSchema = Yup.object({
@@ -29,15 +30,10 @@ const LogInFormik: React.FC<LogInFormikProps> = ({ setIsTryLoginBySocialMedia })
       .max(256, ',maksymalna lczba znaków 256')
       .required('proszę podaj hasło'),
     email: Yup.string()
-      .email('Ups... czegoś beakuje w adresie e-mial')
+      .email('Ups... czegoś brakuje w adresie e-mial')
       .max(50, ',maksymalna lczba znaków 50')
       .required('proszę podaj adres e-mail'),
   });
-
-  const handleSubmit = (values: IFormikLogin, { setErrors, resetForm }: { setErrors: Function, resetForm: Function }) => {
-    setIsTryLoginBySocialMedia(() => { return false })
-    dispatch(userSignInByEmailAction(values, setErrors, resetForm));
-  };
 
   return (
     <div className='inputModalForm'
@@ -47,6 +43,7 @@ const LogInFormik: React.FC<LogInFormikProps> = ({ setIsTryLoginBySocialMedia })
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
+
       >
         {(formik: FormikProps<IFormikLogin>) => (
           <Form className={classes.root} noValidate autoComplete="off">
@@ -79,7 +76,6 @@ const LogInFormik: React.FC<LogInFormikProps> = ({ setIsTryLoginBySocialMedia })
                     <TextField
                       error={!!meta.touched && !!meta.error}
                       helperText={meta.touched && meta.error}
-                      // size="medium"
                       color='primary'
                       label="hasło"
                       variant='outlined'
