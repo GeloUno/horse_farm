@@ -1,9 +1,6 @@
 import { Story, Meta } from '@storybook/react';
 import UploadImage from './UploadImage';
 
-
-
-
 export default {
   title: 'Gallery/UploadImage',
   component: UploadImage
@@ -16,8 +13,8 @@ const PrimaryProfile: Story = (args) => (
   <UploadImage />
 
 )
-export const Login = PrimaryProfile.bind({})
-Login.args = {
+export const Primary = PrimaryProfile.bind({})
+Primary.args = {
 }
 
-Login.storyName = 'Upload image';
+Primary.storyName = 'Upload image';

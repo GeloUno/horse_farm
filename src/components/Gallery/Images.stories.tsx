@@ -3,8 +3,6 @@ import Gallery from './Images';
 import { DevImagesData } from '../../DevUtility/imagesGalery';
 
 
-
-
 export default {
   title: 'Gallery/Images',
   component: Gallery
@@ -27,10 +25,10 @@ const PrimaryProfile: Story = (args) => (
   />
 
 )
-export const Login = PrimaryProfile.bind({})
-Login.args = {
+export const Primary = PrimaryProfile.bind({})
+Primary.args = {
   isAuth: false,
   userID: 1
 }
 
-Login.storyName = 'Galery Images';
+Primary.storyName = 'Galery Images';
