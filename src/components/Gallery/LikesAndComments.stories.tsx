@@ -2,9 +2,6 @@ import { Story, Meta } from '@storybook/react';
 import { DevImagesData } from '../../DevUtility/imagesGalery';
 import LikesAndComments from './LikesAndComments';
 
-
-
-
 export default {
   title: 'Gallery/LikesAndComments',
   component: LikesAndComments
@@ -25,10 +22,10 @@ const PrimaryProfile: Story = (args) => (
   />
 
 )
-export const Login = PrimaryProfile.bind({})
-Login.args = {
+export const Primary = PrimaryProfile.bind({})
+Primary.args = {
   numberOfImage: 0,
   userID: 1
 }
 
-Login.storyName = 'Likes And Comments';
+Primary.storyName = 'Likes And Comments';

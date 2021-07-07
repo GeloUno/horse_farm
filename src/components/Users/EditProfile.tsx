@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import EditProfileFormik from '../Formik/EditProfileFormik';
 import { PulseLoader } from 'react-spinners';
 import { RootState } from '../../redux/store';
 import { IUserEditProfile, IUser } from '../../models/users';
 import { NoUserData } from './NoUserData';
+import { seveEditedUserDataAction } from '../../redux/actions/userActions';
 
 
 const returnUserEditProfielOrUdefined = (user: Partial<IUser>): IUserEditProfile | undefined => {
@@ -34,7 +35,7 @@ interface EditProfileProps {
 
 const EditProfile: React.FC<EditProfileProps> = ({ logoutAfterTime, logoutUserHandle }) => {
   const history = useHistory();
-
+  const dispatch = useDispatch();
   const userAuth = useSelector((state: RootState) => state.userAction);
 
   const { user, isLoading, isError } = userAuth;
@@ -42,6 +43,9 @@ const EditProfile: React.FC<EditProfileProps> = ({ logoutAfterTime, logoutUserHa
 
   const userEditProfile = returnUserEditProfielOrUdefined(user)
 
+  const handleSubmit = (values: IUserEditProfile) => {
+    dispatch(seveEditedUserDataAction(values, user));
+  };
   useEffect(() => {
     if (isLoading && !wasDataSend) {
       setWasDataSend((prev) => {
@@ -87,7 +91,7 @@ const EditProfile: React.FC<EditProfileProps> = ({ logoutAfterTime, logoutUserHa
         }
       </div>
       {isLoading && <PulseLoader size={35} color={'hsla(94, 30%, 43%, 1)'} />}
-      {!isLoading && !isError && userEditProfile !== undefined && <EditProfileFormik user={userEditProfile} />}
+      {!isLoading && !isError && userEditProfile !== undefined && <EditProfileFormik user={userEditProfile} handleSubmit={handleSubmit} />}
       {!isLoading && !isError && userEditProfile === undefined && <NoUserData confirmAction={logoutUserHandle} logoutAfterTime={logoutAfterTime} />}
     </div>
   );

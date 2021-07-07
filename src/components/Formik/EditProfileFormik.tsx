@@ -1,19 +1,18 @@
 import React from 'react';
 import { Field, Form, Formik, FormikProps, FieldProps } from 'formik';
 import * as Yup from 'yup';
-import { useDispatch } from 'react-redux';
-import { seveEditedUserDataAction } from '../../redux/actions/userActions';
 import { IUserEditProfile } from '../../models/users';
 
 
 interface EditProfileFormikProps {
-  user: IUserEditProfile
+  user: IUserEditProfile,
+  handleSubmit(values: IUserEditProfile): void
 }
 
 const phoneRegex = RegExp(/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{3})$/);
 
-const EditProfileFormik: React.FC<EditProfileFormikProps> = ({ user }) => {
-  const dispatch = useDispatch();
+const EditProfileFormik: React.FC<EditProfileFormikProps> = ({ user, handleSubmit }) => {
+
   const initialValues: IUserEditProfile = {
     nick: user.nick,
     firstName: user.firstName,
@@ -29,7 +28,7 @@ const EditProfileFormik: React.FC<EditProfileFormikProps> = ({ user }) => {
   const validationSchema = Yup.object({
     nick: Yup.string()
       .min(3, 'minimalna liczba znaków to 3')
-      .max(50, ',maksymalna lczba znaków 50')
+      .max(50, 'maksymalna lczba znaków 50')
       .required('pole jest wymagane w celu kontaktu instruktora'),
 
     firstName: Yup.string()
@@ -39,7 +38,7 @@ const EditProfileFormik: React.FC<EditProfileFormikProps> = ({ user }) => {
 
     lastName: Yup.string()
       .min(3, 'minimalna liczba znaków to 3')
-      .max(50, ',maksymalna lczba znaków 50')
+      .max(50, 'maksymalna lczba znaków 50')
       .required('pole jest wymagane w celu kontaktu instruktora'),
 
     phone: Yup.string()
@@ -48,20 +47,22 @@ const EditProfileFormik: React.FC<EditProfileFormikProps> = ({ user }) => {
 
     email: Yup.string()
       .email('niepoprawny adres e-mial')
-      .max(50, ',maksymalna lczba znaków 50')
+      .max(50, 'maksymalna lczba znaków 50')
       .required('proszę podaj adres e-mail'),
 
     opinion: Yup.string()
-      .min(25, ',minimalna lczba znaków 20')
-      .max(500, ',maksymalna lczba znaków 500'),
+      .min(25, 'minimalna lczba znaków 20')
+      .max(250, 'maksymalna lczba znaków 500'),
   });
-  const handleSubmit = (values: IUserEditProfile) => {
-    dispatch(seveEditedUserDataAction(values, user));
-  };
+
 
   return (
     <div
       data-testid='editProfileFormikComponent'
+      style={{
+        display: 'flex',
+        justifyContent: 'center'
+      }}
     >
       <Formik
         initialValues={initialValues}
@@ -70,8 +71,15 @@ const EditProfileFormik: React.FC<EditProfileFormikProps> = ({ user }) => {
       >
         {(formik: FormikProps<IUserEditProfile>) => (
           <Form className="editUserProfile">
-            <div className="bodyInputEditProfile">
-              <label className="labelInputEditProfile" htmlFor="name">
+            <div
+              data-testid='bodyInputEditProfileNick'
+              className="bodyInputEditProfile"
+            >
+              <label
+                data-testid='labelFormEditProfileNick'
+                className="labelInputEditProfile"
+                htmlFor="nick"
+              >
                 nick:
               </label>
               <Field name="nick">
@@ -80,13 +88,17 @@ const EditProfileFormik: React.FC<EditProfileFormikProps> = ({ user }) => {
                   return (
                     <div>
                       <input
+                        data-testid='inputEditFormProfileNick'
                         className="inputModalContaineFormInput"
                         id="name"
                         type="text"
                         {...field}
+                        value={field.value || ''}
                       />
 
-                      <div className="errorMessenge">
+                      <div
+                        data-testid='errorEditFormProfileNick'
+                        className="errorMessenge">
                         {meta.touched && meta.error}
                       </div>
                     </div>
@@ -94,8 +106,15 @@ const EditProfileFormik: React.FC<EditProfileFormikProps> = ({ user }) => {
                 }}
               </Field>
             </div>
-            <div className="bodyInputEditProfile">
-              <label className="labelInputEditProfile" htmlFor="firstName">
+            <div
+              data-testid='bodyInputEditProfileFirstName'
+              className="bodyInputEditProfile">
+              <label
+                data-testid='labelFormEditProfileFirstName'
+                className="labelInputEditProfile"
+                htmlFor="firstName"
+
+              >
                 imię:
               </label>
               <Field name="firstName">
@@ -104,12 +123,16 @@ const EditProfileFormik: React.FC<EditProfileFormikProps> = ({ user }) => {
                   return (
                     <div>
                       <input
+                        data-testid='inputFormEditProfileFirstName'
                         className="inputModalContaineFormInput"
                         id="firstName"
                         type="text"
                         {...field}
+                        value={field.value || ''}
                       />
-                      <div className="errorMessenge">
+                      <div
+                        data-testid='errorEditFormProfileFirstName'
+                        className="errorMessenge">
                         {meta.touched && meta.error}
                       </div>
                     </div>
@@ -117,8 +140,13 @@ const EditProfileFormik: React.FC<EditProfileFormikProps> = ({ user }) => {
                 }}
               </Field>
             </div>
-            <div className="bodyInputEditProfile">
-              <label className="labelInputEditProfile" htmlFor="lastName">
+            <div
+              data-testid='bodyInputEditProfileLastName'
+              className="bodyInputEditProfile">
+              <label
+                data-testid='labelFormEditProfileLastName'
+                className="labelInputEditProfile"
+                htmlFor="lastName">
                 nazwisko:
               </label>
               <Field name="lastName">
@@ -127,12 +155,16 @@ const EditProfileFormik: React.FC<EditProfileFormikProps> = ({ user }) => {
                   return (
                     <div>
                       <input
+                        data-testid='inputEditFormProfileLastName'
                         className="inputModalContaineFormInput"
                         id="lastName"
                         type="text"
                         {...field}
+                        value={field.value || ''}
                       />
-                      <div className="errorMessenge">
+                      <div
+                        data-testid='errorEditFormProfileLastName'
+                        className="errorMessenge">
                         {meta.touched && meta.error}
                       </div>
                     </div>
@@ -140,8 +172,13 @@ const EditProfileFormik: React.FC<EditProfileFormikProps> = ({ user }) => {
                 }}
               </Field>
             </div>
-            <div className="bodyInputEditProfile">
-              <label className="labelInputEditProfile" htmlFor="phone">
+            <div
+              data-testid='bodyInputEditProfilePhone'
+              className="bodyInputEditProfile">
+              <label
+                data-testid='labelFormEditProfilePhone'
+                className="labelInputEditProfile"
+                htmlFor="phone">
                 tel:
               </label>
               <Field name="phone">
@@ -150,12 +187,16 @@ const EditProfileFormik: React.FC<EditProfileFormikProps> = ({ user }) => {
                   return (
                     <div>
                       <input
+                        data-testid='inputFormEditProfilePhone'
                         className="inputModalContaineFormInput"
                         id="phone"
                         type="phone"
                         {...field}
+                        value={field.value || ''}
                       />
-                      <div className="errorMessenge">
+                      <div
+                        data-testid='errorEditFormProfilePhone'
+                        className="errorMessenge">
                         {meta.touched && meta.error}
                       </div>
                     </div>
@@ -163,8 +204,13 @@ const EditProfileFormik: React.FC<EditProfileFormikProps> = ({ user }) => {
                 }}
               </Field>
             </div>
-            <div className="bodyInputEditProfile">
-              <label className="labelInputEditProfile" htmlFor="email">
+            <div
+              data-testid='bodyInputEditProfileEmail'
+              className="bodyInputEditProfile">
+              <label
+                data-testid='labelFormEditProfileEmail'
+                className="labelInputEditProfile"
+                htmlFor="email">
                 e-mail:
               </label>
               <Field name="email">
@@ -173,6 +219,7 @@ const EditProfileFormik: React.FC<EditProfileFormikProps> = ({ user }) => {
                   return (
                     <div>
                       <input
+                        data-testid='inputFormEditProfileEmail'
                         className="inputModalContaineFormInput"
                         id="email"
                         type="email"
@@ -181,8 +228,11 @@ const EditProfileFormik: React.FC<EditProfileFormikProps> = ({ user }) => {
                           user.providerId === 'facebook.com'
                         }
                         {...field}
+                        value={field.value || ''}
                       />
-                      <div className="errorMessenge">
+                      <div
+                        data-testid='errorEditFormProfileEmail'
+                        className="errorMessenge">
                         {meta.touched && meta.error}
                       </div>
                     </div>
@@ -190,8 +240,13 @@ const EditProfileFormik: React.FC<EditProfileFormikProps> = ({ user }) => {
                 }}
               </Field>
             </div>
-            <div className="bodyInputEditProfile">
-              <label className="labelInputEditProfile" htmlFor="opinion">
+            <div
+              data-testid='bodyInputEditProfileOpinion'
+              className="bodyInputEditProfile">
+              <label
+                data-testid='labelFormEditProfileOpinion'
+                className="labelInputEditProfile"
+                htmlFor="opinion">
                 opinia:
               </label>
               <Field name="opinion">
@@ -201,6 +256,7 @@ const EditProfileFormik: React.FC<EditProfileFormikProps> = ({ user }) => {
                   return (
                     <div>
                       <textarea
+                        data-testid='inputFormEditProfileOpinion'
                         className="inputModalContaineFormInput textareaEditProfile"
                         id="opinion"
                         placeholder="Tu możesz wystawić opinię o stadninie. Wystawiając opinię WYRAŻSZ ZGODĘ na upublicznienie swojego opini wraz z zdjeciem profilu. Zawsze możesz edytować lub wykasować opinię. Usunięcie opini skutkuje usunięciem jej z miejsca publicznego strony. Jeśli nie jesteś pełnoletni o zgodę zapytaj osoby dorosłe ..."
@@ -208,9 +264,12 @@ const EditProfileFormik: React.FC<EditProfileFormikProps> = ({ user }) => {
                         rows={10}
                         cols={38}
                         {...field}
+                        value={field.value || ''}
                       />
 
-                      <div className="errorMessenge">
+                      <div
+                        data-testid='errorEditFormProfileOpinion'
+                        className="errorMessenge">
                         {meta.touched && meta.error}
                       </div>
                     </div>
@@ -219,8 +278,11 @@ const EditProfileFormik: React.FC<EditProfileFormikProps> = ({ user }) => {
               </Field>
             </div>
 
-            <div className="btnBodyEditProfileSave">
+            <div
+              data-testid='bodyInputEditProfileButtonSave'
+              className="btnBodyEditProfileSave">
               <button
+                data-testid='buttonFormEditProfileSave'
                 disabled={
                   !formik.dirty ||
                   !!formik.errors.nick ||

@@ -20,9 +20,9 @@ const PrimaryProfile: Story = (args) => (
   />
 
 )
-export const Login = PrimaryProfile.bind({})
-Login.args = {
+export const Primary = PrimaryProfile.bind({})
+Primary.args = {
 
 }
 
-Login.storyName = 'Add comment to image';
+Primary.storyName = 'Add comment to image';

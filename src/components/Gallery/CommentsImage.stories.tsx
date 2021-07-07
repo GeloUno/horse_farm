@@ -17,10 +17,10 @@ const PrimaryProfile: Story = (args) => (
   />
 
 )
-export const Login = PrimaryProfile.bind({})
-Login.args = {
+export const Primary = PrimaryProfile.bind({})
+Primary.args = {
   numberOfImage: 0,
   userID: 1
 }
 
-Login.storyName = 'Comments';
+Primary.storyName = 'Comments';
