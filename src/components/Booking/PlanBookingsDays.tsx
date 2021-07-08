@@ -1,10 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import HorizontalScroll from '../../utility/ScrollHorizontal';
 // import HorizontalScroll from 'react-scroll-horizontal';
 import Moment from 'react-moment';
 
-const listDaysInMonth = (daysInMonth, bookingDay, setBookingDay) => {
+
+const listDaysInMonth = (daysInMonth: number, bookingDay: Date, setBookingDay: Function) => {
   const listDays = [];
   for (let index = 1; index <= daysInMonth; index++) {
     const day = new Date(bookingDay).setDate(index);
@@ -29,7 +29,15 @@ const listDaysInMonth = (daysInMonth, bookingDay, setBookingDay) => {
   return listDays;
 };
 
-const PlanBookingsDays = ({
+interface IPlanBookingsDaysProps {
+  daysInMonth: number,
+  bookingDay: Date,
+  setBookingDay: React.Dispatch<React.SetStateAction<Date>>,
+  horizontalAmimationValueDays: number
+}
+
+
+const PlanBookingsDays: React.FC<IPlanBookingsDaysProps> = ({
   daysInMonth,
   bookingDay,
   setBookingDay,
@@ -51,10 +59,6 @@ const PlanBookingsDays = ({
       </HorizontalScroll>
     </div>
   );
-};
-
-PlanBookingsDays.propTypes = {
-  daysInMonth: PropTypes.number.isRequired,
 };
 
 export default PlanBookingsDays;

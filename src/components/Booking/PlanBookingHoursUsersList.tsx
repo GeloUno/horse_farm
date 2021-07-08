@@ -1,7 +1,8 @@
 import React from 'react';
-// import { DevBookingData } from '../../DevUtility/booking';
+import { IDevBookingData } from '../../DevUtility/booking';
+// import { DevBookingData, IDevBookingData } from '../../DevUtility/booking';
 
-const usersListInHour = (users) => {
+const usersListInHour = (users: Array<IDevBookingData>) => {
   const usersList = users.map((user, index) => {
     return (
       <div className="dataHourBooking userBookingList" key={user.id}>
@@ -12,7 +13,7 @@ const usersListInHour = (users) => {
   return usersList;
 };
 
-const hourBooking = (listHourBooking, arrayHoursList, dayBookingData) => {
+const hourBooking = (listHourBooking: number, arrayHoursList: Array<React.ReactNode>, dayBookingData: Array<IDevBookingData>) => {
   const users = dayBookingData.filter((e) => {
     const date = new Date(e.hourBooking);
     return date.getHours() === listHourBooking;
@@ -21,17 +22,17 @@ const hourBooking = (listHourBooking, arrayHoursList, dayBookingData) => {
   arrayHoursList.push(
     <div className="hourBooking" key={listHourBooking}>
       <div className="dataHourBooking">{listHourBooking + ':00'}</div>
-      {usersListInHour(users, listHourBooking)}
+      {usersListInHour(users)}
     </div>
   );
 };
 
 export const PlanBookingHoursUsersList = (
-  firstHourBooking,
-  lastHourBooking,
-  dayBookingData
+  firstHourBooking: number,
+  lastHourBooking: number,
+  dayBookingData: Array<IDevBookingData>
 ) => {
-  const arrayHours = [];
+  const arrayHours: Array<React.ReactNode> = [];
   for (
     firstHourBooking;
     firstHourBooking < lastHourBooking;
