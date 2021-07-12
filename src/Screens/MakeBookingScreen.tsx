@@ -2,10 +2,12 @@ import React from 'react';
 import MakeBooking from '../components/Booking/MakeBooking';
 import TitleSection from '../Layout/TitleSection';
 
-const MakeBookingScreen = ({
-  //@ts-ignore
+interface IMakeBookingScreenProps {
+  setStartDateAndTimeBooking(date: Date): void,
+  setEndDateAndTimeBooking(date: Date): void,
+}
+const MakeBookingScreen: React.FC<IMakeBookingScreenProps> = ({
   setStartDateAndTimeBooking,
-  //@ts-ignore
   setEndDateAndTimeBooking,
 }) => {
   return (
