@@ -1,10 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { PlanBookingHoursUsersList } from './PlanBookingHoursUsersList';
+import { IDevBookingData } from '../../DevUtility/booking';
 
-const PlanBookingHoures = ({
-  firstHourBooking,
-  lastHourBooking,
+interface PlanBookingHouresProps {
+  firstHourBooking?: number,
+  lastHourBooking?: number,
+  BookingData: Array<IDevBookingData>,
+  bookingDay: Date,
+}
+
+
+const PlanBookingHoures: React.FC<PlanBookingHouresProps> = ({
+  firstHourBooking = 8,
+  lastHourBooking = 21,
   BookingData,
   bookingDay,
 }) => {
@@ -24,15 +32,6 @@ const PlanBookingHoures = ({
       </div>
     </div>
   );
-};
-
-PlanBookingHoures.defaultProps = {
-  firstHourBooking: 8,
-  lastHourBooking: 21,
-};
-PlanBookingHoures.propTypes = {
-  firstHourBooking: PropTypes.number.isRequired,
-  lastHourBooking: PropTypes.number.isRequired,
 };
 
 export default PlanBookingHoures;

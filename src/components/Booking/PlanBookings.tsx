@@ -1,25 +1,35 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import Moment from 'react-moment';
 import moment from 'moment';
 import PlanBookingsDays from './PlanBookingsDays';
 import PlanBookingHoures from './PlanBookingHours';
-import { DevBookingData } from '../../DevUtility/booking';
+import { DevBookingDataGenerator } from '../../DevUtility/booking';
 import { isMobile } from 'react-device-detect';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import 'moment/locale/pl'
+moment.locale('pl');
+
 const getWayToScroll = ({
   childFirstPointX,
   childWidth,
   parentFirstPointX,
   parentWidth,
+}: {
+  childFirstPointX: number,
+  childWidth: number,
+  parentFirstPointX: number,
+  parentWidth: number,
 }) => {
   let way = 0;
   childFirstPointX + childWidth > parentFirstPointX + parentWidth
     ? (way = childFirstPointX + childWidth - (parentFirstPointX + parentWidth))
     : childFirstPointX < parentFirstPointX &&
-      (way = childFirstPointX - parentFirstPointX);
+    (way = childFirstPointX - parentFirstPointX);
   return -way;
 };
 
-const getCoordinateParentChild = (elementChild) => {
+const getCoordinateParentChild = (elementChild: React.PropsWithChildren<any>) => {
   const childFirstPointX = elementChild.getBoundingClientRect().x;
   const childWidth = elementChild.getBoundingClientRect().width;
   const parentFirstPointX = elementChild.parentElement.parentElement.getBoundingClientRect()
@@ -29,7 +39,7 @@ const getCoordinateParentChild = (elementChild) => {
   return { childFirstPointX, childWidth, parentFirstPointX, parentWidth };
 };
 
-const PlanBookings = () => {
+const PlanBookings: React.FC = () => {
   const [bookingDay, setBookingDay] = useState(new Date());
   const [daysInMonth, setDaysInMonth] = useState(
     moment(bookingDay).daysInMonth()
@@ -38,6 +48,9 @@ const PlanBookings = () => {
     horizontalAmimationValueDays,
     setHorizontalAmimationValueDays,
   ] = useState(0);
+
+  const DevBookingData = useMemo(() => DevBookingDataGenerator(), [])
+
   const scrollToDay = async () => {
     try {
       const daySelected = await new Date(bookingDay).getDate();
@@ -57,8 +70,8 @@ const PlanBookings = () => {
     }
   };
   useEffect(
-    (e) => {
-      scrollToDay(e);
+    () => {
+      scrollToDay();
     },
     // return () => {
     //   cleanup
@@ -70,7 +83,7 @@ const PlanBookings = () => {
     return (
       moment(bookingDay).format('M') === moment(data.hourBooking).format('M') &&
       moment(bookingDay).format('YYYYY') ===
-        moment(data.hourBooking).format('YYYYY')
+      moment(data.hourBooking).format('YYYYY')
       //FIXME: filter month and year should be in backend server
     );
   });
@@ -85,7 +98,7 @@ const PlanBookings = () => {
         <div className="monthYearHeader">
           <div className="month ">
             <h2 className="contentDate">
-              <Moment format="MMMM">{bookingDay}</Moment>
+              <Moment format="MMMM" >{bookingDay}</Moment>
             </h2>
           </div>
           <div className="year contentDate">
@@ -95,18 +108,19 @@ const PlanBookings = () => {
             <div
               className="prevMonth btnChangeDateBooking"
               onClick={() => {
-                setBookingDay(moment(bookingDay).subtract(1, 'months'));
+                setBookingDay(new Date(moment(bookingDay).subtract(1, 'months').toDate()));
               }}
             >
-              <i className="fas fa-chevron-left"></i>
+              <FontAwesomeIcon icon={faChevronLeft} />
             </div>
             <div
               className="nextMonth btnChangeDateBooking"
               onClick={() => {
-                setBookingDay(moment(bookingDay).add(1, 'months'));
+                setBookingDay(new Date(moment(bookingDay).add(1, 'months').toDate()));
               }}
             >
               <i className="fas fa-chevron-right"></i>
+              <FontAwesomeIcon icon={faChevronRight} />
             </div>
           </div>
         </div>
@@ -123,18 +137,19 @@ const PlanBookings = () => {
             <div
               className="prevDay btnChangeDateBooking"
               onClick={() => {
-                setBookingDay(moment(bookingDay).subtract(1, 'days'));
+                setBookingDay(new Date(moment(bookingDay).subtract(1, 'days').toDate()));
               }}
             >
-              <i className="fas fa-chevron-left"></i>
+              <FontAwesomeIcon icon={faChevronLeft} />
             </div>
             <div
               className="nextMonth btnChangeDateBooking"
               onClick={() => {
-                setBookingDay(moment(bookingDay).add(1, 'days'));
+                setBookingDay(new Date(moment(bookingDay).add(1, 'days').toDate()));
               }}
             >
               <i className="fas fa-chevron-right"></i>
+              <FontAwesomeIcon icon={faChevronRight} />
             </div>
           </div>
         </div>
@@ -143,13 +158,12 @@ const PlanBookings = () => {
         daysInMonth={daysInMonth}
         setBookingDay={setBookingDay}
         bookingDay={bookingDay}
-        setHorizontalAmimationValueDays={setHorizontalAmimationValueDays}
         horizontalAmimationValueDays={horizontalAmimationValueDays}
       />
-      <PlanBookingHoures BookingData={bookingMonth} bookingDay={bookingDay} />
-      {/* <div className="reservedButtonLink">
-        <button className="btn btn-green btn-capitalize">rezerwacja</button>
-      </div> */}
+      <PlanBookingHoures
+        BookingData={bookingMonth}
+        bookingDay={bookingDay}
+      />
     </div>
   );
 };

@@ -1,18 +1,23 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import 'moment/locale/pl';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-const ConfirmBooking = ({ startDateAndTimeBooking, endDateAndTimeBooking }) => {
+import { RootState } from '../../redux/store';
+
+interface IConfirmBookingProps {
+  startDateAndTimeBooking: Date,
+  endDateAndTimeBooking: Date
+}
+const ConfirmBooking: React.FC<IConfirmBookingProps> = ({ startDateAndTimeBooking, endDateAndTimeBooking }) => {
   const history = useHistory();
-  const userAuth = useSelector((state) => state.userAction);
+  const userAuth = useSelector((state: RootState) => state.userAction);
   const { user } = userAuth;
   return (
     <div className="contaniner profileContainer">
       {user && startDateAndTimeBooking && endDateAndTimeBooking && (
         <div className="confirmBookingContainer">
-          <div>Wysłano rezrwację</div>
+          <div>Proszę o potwridzenie poprawności rezrwacji:</div>
           <div className="dateBooking">
             <h4>
               {' '}
@@ -35,27 +40,31 @@ const ConfirmBooking = ({ startDateAndTimeBooking, endDateAndTimeBooking }) => {
           </div>
           <div className="text">dla użytkownika</div>
           <div className="userBooking">
-            <h4>{user.name}</h4>
+            <h4>{`${user.firstName} ${user.lastName}`}</h4>
           </div>
           <div>
+            <button
+              className="btn btn-red btn-capitalize btn-login"
+              onClick={() => {
+                history.push('/');
+              }}
+            >
+              cofnij
+            </button>
+
             <button
               className="btn btn-green btn-capitalize btn-login"
               onClick={() => {
                 history.push('/');
               }}
             >
-              zamknij
+              potwierdzam
             </button>
           </div>
         </div>
       )}
     </div>
   );
-};
-
-ConfirmBooking.propTypes = {
-  startDateAndTimeBooking: PropTypes.instanceOf(Date),
-  endDateAndTimeBooking: PropTypes.instanceOf(Date),
 };
 
 export default ConfirmBooking;

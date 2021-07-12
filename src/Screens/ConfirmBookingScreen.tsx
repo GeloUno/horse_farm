@@ -2,20 +2,19 @@ import React from 'react';
 import ConfirmBooking from '../components/Booking/ConfirmBooking';
 import TitleSection from '../Layout/TitleSection';
 
-const ConfirmBookingScreen = ({
-  //@ts-ignore
-  user,
-  //@ts-ignore
+interface IConfirmBookingScreenProps {
+  startDateAndTimeBooking: Date
+  endDateAndTimeBooking: Date
+}
+
+const ConfirmBookingScreen: React.FC<IConfirmBookingScreenProps> = ({
   startDateAndTimeBooking,
-  //@ts-ignore
   endDateAndTimeBooking,
 }) => {
   return (
     <>
       <TitleSection title="Potwierdzenie rezerwacji" />
       <ConfirmBooking
-        //@ts-ignore
-        user={user}
         startDateAndTimeBooking={startDateAndTimeBooking}
         endDateAndTimeBooking={endDateAndTimeBooking} />
     </>

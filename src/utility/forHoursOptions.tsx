@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const forHoursOptions = (firstHourBooking, lastHourBooking) => {
+export const forHoursOptions = (firstHourBooking: number, lastHourBooking: number) => {
   const arrayOptionsHour = [];
   for (
     firstHourBooking;

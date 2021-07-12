@@ -8,21 +8,31 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { forHoursOptions } from '../../utility/forHoursOptions';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-const MakeBooking = ({
+import { RootState } from '../../redux/store';
+
+
+type IMakeBookingProps = {
+  firstHourBooking?: number,
+  lastHourBooking?: number,
+  setStartDateAndTimeBooking(date: Date): void,
+  setEndDateAndTimeBooking(date: Date): void
+}
+
+const MakeBooking: React.FC<IMakeBookingProps> = ({
   firstHourBooking = 8,
   lastHourBooking = 21,
   setStartDateAndTimeBooking,
   setEndDateAndTimeBooking,
 }) => {
-  const userAuth = useSelector((state) => state.userAction);
+  const userAuth = useSelector((state: RootState) => state.userAction);
   const { user } = userAuth;
 
-  const [dayBooking, setDayBooking] = useState(addDays(new Date(), 2));
-  const [startTimeBooking, setStartTimeBooking] = useState(firstHourBooking);
-  const [endTimeBooking, setEndTimeBooking] = useState(1 + +startTimeBooking);
+  const [dayBooking, setDayBooking] = useState<Date>(addDays(new Date(), 2));
+  const [startTimeBooking, setStartTimeBooking] = useState<number>(firstHourBooking);
+  const [endTimeBooking, setEndTimeBooking] = useState<number>(1 + +startTimeBooking);
   const history = useHistory();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const bookingStartDateAndTime = setMinutes(
@@ -49,7 +59,7 @@ const MakeBooking = ({
       <form onSubmit={(e) => handleSubmit(e)}>
         <div className="bookingForm">
           <p className="mg-1-right">name:</p>
-          <h2>{user.name}</h2>
+          <h2>{`${user.firstName} ${user.lastName}`}</h2>
         </div>
         <DatePicker
           selected={dayBooking}
@@ -57,7 +67,8 @@ const MakeBooking = ({
           maxDate={addDays(new Date(), 16)}
           locale={pl}
           onChange={(date) => {
-            setDayBooking(date);
+            date && !Array.isArray(date) && (setDayBooking(date));
+            date && Array.isArray(date) && (setDayBooking(date[0]));
           }}
           inline
         />
@@ -73,7 +84,12 @@ const MakeBooking = ({
               setEndTimeBooking(1 + +e.target.value);
             }}
           >
-            {forHoursOptions(firstHourBooking, lastHourBooking, true, false)}
+            {forHoursOptions(
+              firstHourBooking,
+              lastHourBooking,
+              // true,
+              //  false
+            )}
           </select>
         </div>
         <div className="bookingForm">
@@ -86,8 +102,8 @@ const MakeBooking = ({
             {forHoursOptions(
               1 + +startTimeBooking,
               lastHourBooking + 1,
-              true,
-              false
+              // true,
+              // false
             )}
           </select>
         </div>

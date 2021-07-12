@@ -1,21 +1,26 @@
 import React from 'react';
 import Gallery from '../components/Gallery/Images';
 import TitleSection from '../Layout/TitleSection';
+import { DevImagesData, IDataImage } from '../DevUtility/imagesGalery';
 
-const GalleryScreen: React.FC = ({
-    //@ts-ignore
+interface IGalleryScreenProps {
+    userID: number,
+    setDataGalleryImageModal(data: IDataImage): void,
+    galleryImageModalToggle(e: React.MouseEvent<Element, MouseEvent>): void,
+    isGalleryImageModalShow: any,
+    isScrollToAddComment: any,
+    setisScrollToAddComment(): void,
+    isAuth: boolean,
+}
+
+const GalleryScreen: React.FC<IGalleryScreenProps> = ({
     userID,
-    //@ts-ignore
     setDataGalleryImageModal,
-    //@ts-ignore
     galleryImageModalToggle,
-    //@ts-ignore
     isGalleryImageModalShow,
-    //@ts-ignore
-    isScrollToAddComment,
-    //@ts-ignore
+    // isScrollToAddComment,
     setisScrollToAddComment,
-
+    isAuth
 }) => {
     return (
         <>
@@ -25,9 +30,11 @@ const GalleryScreen: React.FC = ({
                 galleryImageModalToggle={galleryImageModalToggle}
                 isGalleryImageModalShow={isGalleryImageModalShow}
                 userID={userID}
-                //@ts-ignore
-                isScrollToAddComment={isScrollToAddComment}
-                setisScrollToAddComment={setisScrollToAddComment} />
+                // isScrollToAddComment={isScrollToAddComment}
+                setisScrollToAddComment={setisScrollToAddComment}
+                isAuth={isAuth}
+                imagesGallery={DevImagesData}
+            />
         </>
     );
 };
