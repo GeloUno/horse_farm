@@ -2,7 +2,7 @@ import React from 'react';
 import Pagination from '../../Layout/Pagination';
 import UploadImage from './UploadImage';
 import LikesAndComments from './LikesAndComments';
-import { DevImagesData, IDataImage } from '../../DevUtility/imagesGalery';
+import { IDataImage } from '../../DevUtility/imagesGalery';
 
 /* FIXME: isAuth change to false in prod */
 
@@ -14,19 +14,20 @@ interface GalleryProps {
   isGalleryImageModalShow: boolean,
   isAuth: boolean,
   userID: number,
-  isPagination: boolean,
+  isPagination?: boolean,
   imagesGallery: Array<IDataImage>,
   setisScrollToAddComment(): void,
-}
 
+}
+//TODO:default value in props is only for testing
 const Gallery: React.FC<GalleryProps> = ({
   galleryImageModalToggle,
   setDataGalleryImageModal,
   isGalleryImageModalShow,
   isAuth = true,
-  userID = 0,
+  userID = 3,
   isPagination = true,
-  imagesGallery = DevImagesData,
+  imagesGallery,
   setisScrollToAddComment,
 }) => {
   return (
