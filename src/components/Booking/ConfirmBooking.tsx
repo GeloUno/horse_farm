@@ -17,7 +17,7 @@ const ConfirmBooking: React.FC<IConfirmBookingProps> = ({ startDateAndTimeBookin
     <div className="contaniner profileContainer">
       {user && startDateAndTimeBooking && endDateAndTimeBooking && (
         <div className="confirmBookingContainer">
-          <div>Wysłano rezrwację</div>
+          <div>Proszę o potwridzenie poprawności rezrwacji:</div>
           <div className="dateBooking">
             <h4>
               {' '}
@@ -49,7 +49,7 @@ const ConfirmBooking: React.FC<IConfirmBookingProps> = ({ startDateAndTimeBookin
                 history.push('/');
               }}
             >
-              Anuluj
+              cofnij
             </button>
 
             <button
