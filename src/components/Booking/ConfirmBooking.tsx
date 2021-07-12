@@ -49,7 +49,16 @@ const ConfirmBooking: React.FC<IConfirmBookingProps> = ({ startDateAndTimeBookin
                 history.push('/');
               }}
             >
-              zamknij
+              Anuluj
+            </button>
+
+            <button
+              className="btn btn-green btn-capitalize btn-login"
+              onClick={() => {
+                history.push('/');
+              }}
+            >
+              potwierdzam
             </button>
           </div>
         </div>
