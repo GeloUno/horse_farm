@@ -40,11 +40,11 @@ const ConfirmBooking: React.FC<IConfirmBookingProps> = ({ startDateAndTimeBookin
           </div>
           <div className="text">dla użytkownika</div>
           <div className="userBooking">
-            <h4>{user.name}</h4>
+            <h4>{`${user.firstName} ${user.lastName}`}</h4>
           </div>
           <div>
             <button
-              className="btn btn-green btn-capitalize btn-login"
+              className="btn btn-red btn-capitalize btn-login"
               onClick={() => {
                 history.push('/');
               }}

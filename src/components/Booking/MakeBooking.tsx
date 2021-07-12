@@ -59,7 +59,7 @@ const MakeBooking: React.FC<IMakeBookingProps> = ({
       <form onSubmit={(e) => handleSubmit(e)}>
         <div className="bookingForm">
           <p className="mg-1-right">name:</p>
-          <h2>{user.name}</h2>
+          <h2>{`${user.firstName} ${user.lastName}`}</h2>
         </div>
         <DatePicker
           selected={dayBooking}
