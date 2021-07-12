@@ -1,12 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import 'moment/locale/pl';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-const ConfirmBooking = ({ startDateAndTimeBooking, endDateAndTimeBooking }) => {
+import { RootState } from '../../redux/store';
+
+interface IConfirmBookingProps {
+  startDateAndTimeBooking: Date,
+  endDateAndTimeBooking: Date
+}
+const ConfirmBooking: React.FC<IConfirmBookingProps> = ({ startDateAndTimeBooking, endDateAndTimeBooking }) => {
   const history = useHistory();
-  const userAuth = useSelector((state) => state.userAction);
+  const userAuth = useSelector((state: RootState) => state.userAction);
   const { user } = userAuth;
   return (
     <div className="contaniner profileContainer">
@@ -51,11 +56,6 @@ const ConfirmBooking = ({ startDateAndTimeBooking, endDateAndTimeBooking }) => {
       )}
     </div>
   );
-};
-
-ConfirmBooking.propTypes = {
-  startDateAndTimeBooking: PropTypes.instanceOf(Date),
-  endDateAndTimeBooking: PropTypes.instanceOf(Date),
 };
 
 export default ConfirmBooking;
