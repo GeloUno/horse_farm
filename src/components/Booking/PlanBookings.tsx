@@ -93,19 +93,34 @@ const PlanBookings: React.FC = () => {
   }, [bookingDay]);
 
   return (
-    <div className="container containerPlanBooking">
-      <div className="dateHeader ">
-        <div className="monthYearHeader">
-          <div className="month ">
+    <div
+      data-testid="containerPlanBooking"
+      className="container containerPlanBooking">
+      <div
+        data-testid="dateHeader"
+        className="dateHeader">
+        <div
+          data-testid="monthYearHeader"
+          className="monthYearHeader"
+        >
+          <div
+            className="month"
+            data-testid="monthContent"
+          >
             <h2 className="contentDate">
               <Moment format="MMMM" >{bookingDay}</Moment>
             </h2>
           </div>
-          <div className="year contentDate">
+          <div
+            data-testid="yearContent"
+            className="year contentDate">
             <Moment format="YYYY">{bookingDay}</Moment>
           </div>
-          <div className="changeMonth changeDateBooking contentDate">
+          <div
+            data-testid="changeMonth"
+            className="changeMonth changeDateBooking contentDate">
             <div
+              data-testid="prevMonth"
               className="prevMonth btnChangeDateBooking"
               onClick={() => {
                 setBookingDay(new Date(moment(bookingDay).subtract(1, 'months').toDate()));
@@ -114,6 +129,7 @@ const PlanBookings: React.FC = () => {
               <FontAwesomeIcon icon={faChevronLeft} />
             </div>
             <div
+              data-testid="nextMonth"
               className="nextMonth btnChangeDateBooking"
               onClick={() => {
                 setBookingDay(new Date(moment(bookingDay).add(1, 'months').toDate()));
@@ -124,17 +140,26 @@ const PlanBookings: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="dayHeader">
-          <div className="dayNumber">
+        <div
+          data-testid="dayHeader"
+          className="dayHeader">
+          <div
+            data-testid="dayNumber"
+            className="dayNumber">
             <h2 className="contentDate">
               <Moment format="D">{bookingDay}</Moment>
             </h2>
           </div>
-          <div className="daysOfWeek">
+          <div
+            data-testid="daysOfWeek"
+            className="daysOfWeek">
             <Moment format="dddd">{bookingDay}</Moment>
           </div>
-          <div className="changeDay changeDateBooking contentDate">
+          <div
+            data-testid="changeDay"
+            className="changeDay changeDateBooking contentDate">
             <div
+              data-testid="prevDay"
               className="prevDay btnChangeDateBooking"
               onClick={() => {
                 setBookingDay(new Date(moment(bookingDay).subtract(1, 'days').toDate()));
@@ -143,6 +168,7 @@ const PlanBookings: React.FC = () => {
               <FontAwesomeIcon icon={faChevronLeft} />
             </div>
             <div
+              data-testid="nextDay"
               className="nextMonth btnChangeDateBooking"
               onClick={() => {
                 setBookingDay(new Date(moment(bookingDay).add(1, 'days').toDate()));

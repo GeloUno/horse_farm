@@ -5,7 +5,9 @@ import { IDevBookingData } from '../../DevUtility/booking';
 const usersListInHour = (users: Array<IDevBookingData>) => {
   const usersList = users.map((user, index) => {
     return (
-      <div className="dataHourBooking userBookingList" key={user.id}>
+      <div
+        data-testid={`userBookingListInHour userBookingListPart-${index}`}
+        className="dataHourBooking userBookingList" key={user.id}>
         {++index}. {user.name}
       </div>
     );
@@ -20,8 +22,13 @@ const hourBooking = (listHourBooking: number, arrayHoursList: Array<React.ReactN
   });
 
   arrayHoursList.push(
-    <div className="hourBooking" key={listHourBooking}>
-      <div className="dataHourBooking">{listHourBooking + ':00'}</div>
+    <div
+      data-testid={`hourBooking userBookingAt-${listHourBooking}`}
+      className="hourBooking"
+      key={listHourBooking}>
+      <div
+        data-testid='hourDataBooking'
+        className="dataHourBooking">{listHourBooking + ':00'}</div>
       {usersListInHour(users)}
     </div>
   );

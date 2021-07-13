@@ -11,16 +11,22 @@ const listDaysInMonth = (daysInMonth: number, bookingDay: Date, setBookingDay: F
     const dayInWeek = new Date(day).getDay();
     listDays.push(
       <div
+        data-testid={`dayInMonthBody dayInMonth-${index}`}
         className={`dayNumberAndString btn btn-day day-${index}`}
         key={index}
         onClick={() => {
           setBookingDay(day);
         }}
       >
-        <div className={dayInWeek === 0 ? 'dayString day-red' : 'dayString'}>
+        <div
+          data-testid='dayInMonthString'
+          className={dayInWeek === 0 ? 'dayString day-red' : 'dayString'}
+        >
           <Moment format="dddd">{day}</Moment>
         </div>
-        <div className={dayInWeek === 0 ? 'dayNumber day-red' : 'dayNumber'}>
+        <div
+          data-testid='dayInMonthNumber'
+          className={dayInWeek === 0 ? 'dayNumber day-red' : 'dayNumber'}>
           <Moment format="DD">{day}</Moment>
         </div>
       </div>
@@ -29,7 +35,7 @@ const listDaysInMonth = (daysInMonth: number, bookingDay: Date, setBookingDay: F
   return listDays;
 };
 
-interface IPlanBookingsDaysProps {
+export interface IPlanBookingsDaysProps {
   daysInMonth: number,
   bookingDay: Date,
   setBookingDay: React.Dispatch<React.SetStateAction<Date>>,
@@ -44,8 +50,12 @@ const PlanBookingsDays: React.FC<IPlanBookingsDaysProps> = ({
   horizontalAmimationValueDays,
 }) => {
   return (
-    <div className="DayOfMonth">
+    <div
+      className="DayOfMonth"
+      data-testid="planBookingDaysBody"
+    >
       <HorizontalScroll
+        data-testid='horizontalDaysScrollBody'
         // pageLock={true}
         reverseScroll={true}
         // config={{ stiffness: 5, damping: 3 }}

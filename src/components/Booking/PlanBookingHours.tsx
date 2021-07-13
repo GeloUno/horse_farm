@@ -2,7 +2,7 @@ import React from 'react';
 import { PlanBookingHoursUsersList } from './PlanBookingHoursUsersList';
 import { IDevBookingData } from '../../DevUtility/booking';
 
-interface PlanBookingHouresProps {
+export interface PlanBookingHouresProps {
   firstHourBooking?: number,
   lastHourBooking?: number,
   BookingData: Array<IDevBookingData>,
@@ -23,7 +23,10 @@ const PlanBookingHoures: React.FC<PlanBookingHouresProps> = ({
   });
   return (
     <div className="clendaryHourBookingBody">
-      <div className="hourBookingBody">
+      <div
+        data-testid="hourBookingContent"
+        className="hourBookingBody"
+      >
         {PlanBookingHoursUsersList(
           firstHourBooking,
           lastHourBooking + 1,
