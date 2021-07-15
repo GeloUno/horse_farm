@@ -5,13 +5,13 @@ import setHour from 'date-fns/setHours';
 import setMinutes from 'date-fns/setMinutes';
 import pl from 'date-fns/locale/pl';
 import 'react-datepicker/dist/react-datepicker.css';
-import { forHoursOptions } from '../../utility/forHoursOptions';
+import { forHoursOptions, TypeHourOptionalBooking } from '../../utility/forHoursOptions';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 
 
-type IMakeBookingProps = {
+export type IMakeBookingProps = {
   firstHourBooking?: number,
   lastHourBooking?: number,
   setStartDateAndTimeBooking(date: Date): void,
@@ -50,18 +50,32 @@ const MakeBooking: React.FC<IMakeBookingProps> = ({
   };
 
   return (
-    <div className="contaniner profileContainer editProfileContainer">
-      <div>
+    <div
+      data-testid="makeBookingBody"
+      className="contaniner profileContainer editProfileContainer"
+    >
+      <div
+        data-testid="userMakeBookingImage"
+      >
         {user && user.photoId && (
-          <img className={'image-user'} src={user.photoId} alt="użytkownik" />
+          <img
+            data-testid="userMakeBookingImageSrc"
+            className={'image-user'}
+            src={user.photoId}
+            alt="użytkownik" />
         )}
       </div>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <div className="bookingForm">
+      <form
+        data-testid="formUserMakeBooking"
+        onSubmit={(e) => handleSubmit(e)}>
+        <div
+          data-testid="makeBookingUserName"
+          className="bookingForm">
           <p className="mg-1-right">name:</p>
           <h2>{`${user.firstName} ${user.lastName}`}</h2>
         </div>
         <DatePicker
+          data-testid="dataPicker"
           selected={dayBooking}
           minDate={addDays(new Date(), 2)}
           maxDate={addDays(new Date(), 16)}
@@ -72,11 +86,16 @@ const MakeBooking: React.FC<IMakeBookingProps> = ({
           }}
           inline
         />
-        <p>*48 godzinnym wyprzedzeniem</p>
+        <p
+          data-testid="descriptionMakeBooking"
+        >*48 godzinnym wyprzedzeniem</p>
 
-        <div className="bookingForm">
+        <div
+          data-testid="makeBookingHourStart"
+          className="bookingForm">
           <p className="mg-1-right">od godziny:</p>
           <select
+            data-testid="makeBookingHourSelectStart"
             name="fromHourBooking"
             value={startTimeBooking}
             onChange={(e) => {
@@ -87,14 +106,18 @@ const MakeBooking: React.FC<IMakeBookingProps> = ({
             {forHoursOptions(
               firstHourBooking,
               lastHourBooking,
+              TypeHourOptionalBooking.START
               // true,
               //  false
             )}
           </select>
         </div>
-        <div className="bookingForm">
+        <div
+          data-testid="makeBookingHourEnd"
+          className="bookingForm">
           <p className="mg-1-right">do godziny: </p>
           <select
+            data-testid="makeBookingHourSelectEnd"
             name="toHourBooking"
             value={endTimeBooking}
             onChange={(e) => setEndTimeBooking(+e.target.value)}
@@ -102,6 +125,7 @@ const MakeBooking: React.FC<IMakeBookingProps> = ({
             {forHoursOptions(
               1 + +startTimeBooking,
               lastHourBooking + 1,
+              TypeHourOptionalBooking.END
               // true,
               // false
             )}
@@ -109,6 +133,7 @@ const MakeBooking: React.FC<IMakeBookingProps> = ({
         </div>
         <div>
           <input
+            data-testid="makeBookingHourButtonSubmit"
             className="btn btn-green btn-capitalize mg-2-top"
             type="submit"
             value="wyślij"
