@@ -1,4 +1,4 @@
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
 import lightGreen from '@material-ui/core/colors/green';
 
@@ -15,7 +15,7 @@ export const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export const theme = createMuiTheme({
+export const theme = createTheme({
     palette: {
         primary: {
             main: 'hsla(94, 30%, 43%, 1)'

@@ -39,10 +39,11 @@ describe('Login form validation', () => {
   it('no email no password should return error and not call handle submit function', async () => {
     const { container } = render(loginForm)
 
-    const buttonSubmit = screen.getByRole('button', { name: /zaloguj/i })
+    const buttonSubmit = await screen.findByTestId('inputLoginFormButton')
+
+    userEvent.click(buttonSubmit)
 
     await waitFor(() => {
-      userEvent.click(buttonSubmit)
       expect(buttonSubmit).toHaveAttribute('disabled')
       expect(mockFn).toHaveBeenCalledTimes(0)
     })
@@ -54,13 +55,14 @@ describe('Login form validation', () => {
   it('short password and short email should return errors and not call handle submit function', async () => {
     const { container } = render(loginForm)
 
+    const buttonSubmit = await screen.findByTestId('inputLoginFormButton')
+
     userEvent.type(screen.getByLabelText(/email/i), 'ex')
     userEvent.type(screen.getByLabelText(/hasło/i), '12')
 
-    const buttonSubmit = screen.getByRole('button', { name: /zaloguj/i })
+    userEvent.click(buttonSubmit)
 
     await waitFor(() => {
-      userEvent.click(buttonSubmit)
       expect(buttonSubmit).toHaveAttribute('disabled')
       expect(mockFn).toHaveBeenCalledTimes(0)
       expect(container.querySelector('[id="email-helper-text"]')).toHaveTextContent('Ups... czegoś brakuje w adresie e-mial')
@@ -71,13 +73,14 @@ describe('Login form validation', () => {
   it('correct password and incorrect short email should return error and not call handle submit function', async () => {
     const { container } = render(loginForm)
 
+    const buttonSubmit = await screen.findByTestId('inputLoginFormButton')
+
     userEvent.type(screen.getByLabelText(/email/i), 'ex')
     userEvent.type(screen.getByLabelText(/hasło/i), '12345678')
 
-    const buttonSubmit = screen.getByRole('button', { name: /zaloguj/i })
+    userEvent.click(buttonSubmit)
 
     await waitFor(() => {
-      userEvent.click(buttonSubmit)
       expect(buttonSubmit).toHaveAttribute('disabled')
       expect(mockFn).toHaveBeenCalledTimes(0)
       expect(container.querySelector('[id="email-helper-text"]')).toHaveTextContent('Ups... czegoś brakuje w adresie e-mial')
@@ -87,13 +90,14 @@ describe('Login form validation', () => {
   it('correct password and incorrect email no @ should return error and not call handle submit function', async () => {
     const { container } = render(loginForm)
 
+    const buttonSubmit = await screen.findByTestId('inputLoginFormButton')
+
     userEvent.type(screen.getByLabelText(/email/i), 'examplegoo.uk')
     userEvent.type(screen.getByLabelText(/hasło/i), '12345678')
-    userEvent.tab()
-    const buttonSubmit = screen.getByRole('button', { name: /zaloguj/i })
+
+    userEvent.click(buttonSubmit)
 
     await waitFor(() => {
-      userEvent.click(buttonSubmit)
       expect(buttonSubmit).toHaveAttribute('disabled')
       expect(mockFn).toHaveBeenCalledTimes(0)
       expect(container.querySelector('[id="email-helper-text"]')).toHaveTextContent('Ups... czegoś brakuje w adresie e-mial')
@@ -103,13 +107,14 @@ describe('Login form validation', () => {
   it('correct password and incorrect email no .uk should return error and not call handle submit function', async () => {
     const { container } = render(loginForm)
 
+    const buttonSubmit = await screen.findByTestId('inputLoginFormButton')
+
     userEvent.type(screen.getByLabelText(/email/i), 'example@goo')
     userEvent.type(screen.getByLabelText(/hasło/i), '12345678')
 
-    const buttonSubmit = screen.getByRole('button', { name: /zaloguj/i })
+    userEvent.click(buttonSubmit)
 
     await waitFor(() => {
-      userEvent.click(buttonSubmit)
       expect(buttonSubmit).toHaveAttribute('disabled')
       expect(mockFn).toHaveBeenCalledTimes(0)
       expect(container.querySelector('[id="email-helper-text"]')).toHaveTextContent('Ups... czegoś brakuje w adresie e-mial')
@@ -118,15 +123,17 @@ describe('Login form validation', () => {
   })
 
   it('correct password and correct email should call handle submit function and no show error', async () => {
-
     const { container } = render(loginForm)
-    const buttonSubmit = screen.getByRole('button', { name: /zaloguj/i })
+
+    const buttonSubmit = await screen.findByTestId('inputLoginFormButton')
+
     userEvent.type(screen.getByLabelText(/email/i), 'example@goo.uk')
     userEvent.type(screen.getByLabelText(/hasło/i), '12345678')
 
     expect(container.querySelector('[id="email-helper-text"]')).toBeNull()
     expect(container.querySelector('[id="password-helper-text"]')).toBeNull()
     expect(buttonSubmit).not.toHaveAttribute('disabled')
+
     await waitFor(() => {
       userEvent.click(buttonSubmit)
       expect(mockFn).not.toHaveBeenCalledTimes(0)

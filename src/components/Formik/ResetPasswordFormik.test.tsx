@@ -32,10 +32,11 @@ describe('Reset password form validation', () => {
   it('no email should return error and not call handle submit function', async () => {
     const { container } = render(testingComponent)
 
-    const buttonSubmit = screen.getByRole('button', { name: /wyslij/i })
+    const buttonSubmit = await screen.findByTestId('buttonResetPasswordFormik')
+
+    userEvent.click(buttonSubmit)
 
     await waitFor(() => {
-      userEvent.click(buttonSubmit)
       expect(buttonSubmit).toHaveAttribute('disabled')
       expect(mockFn).toHaveBeenCalledTimes(0)
     })
@@ -45,12 +46,13 @@ describe('Reset password form validation', () => {
   it('short email should return error and not call handle submit function', async () => {
     const { container } = render(testingComponent)
 
+    const buttonSubmit = await screen.findByTestId('buttonResetPasswordFormik')
+
     userEvent.type(screen.getByLabelText(/email/i), 'ex')
 
-    const buttonSubmit = screen.getByRole('button', { name: /wyslij/i })
+    userEvent.click(buttonSubmit)
 
     await waitFor(() => {
-      userEvent.click(buttonSubmit)
       expect(buttonSubmit).toHaveAttribute('disabled')
       expect(mockFn).toHaveBeenCalledTimes(0)
       expect(container.querySelector('[id="email-helper-text"]')).toHaveTextContent('Ups... czegoś brakuje w adresie e-mial')
@@ -60,12 +62,13 @@ describe('Reset password form validation', () => {
   it('incorrect email no @ should return error and not call handle submit function', async () => {
     const { container } = render(testingComponent)
 
+    const buttonSubmit = await screen.findByTestId('buttonResetPasswordFormik')
+
     userEvent.type(screen.getByLabelText(/email/i), 'examplegoo.uk')
-    userEvent.tab()
-    const buttonSubmit = screen.getByRole('button', { name: /wyslij/i })
+
+    userEvent.click(buttonSubmit)
 
     await waitFor(() => {
-      userEvent.click(buttonSubmit)
       expect(buttonSubmit).toHaveAttribute('disabled')
       expect(mockFn).toHaveBeenCalledTimes(0)
       expect(container.querySelector('[id="email-helper-text"]')).toHaveTextContent('Ups... czegoś brakuje w adresie e-mial')
@@ -75,12 +78,12 @@ describe('Reset password form validation', () => {
   it('incorrect email no .uk should return error and not call handle submit function', async () => {
     const { container } = render(testingComponent)
 
+    const buttonSubmit = await screen.findByTestId('buttonResetPasswordFormik')
+
     userEvent.type(screen.getByLabelText(/email/i), 'example@goo')
 
-    const buttonSubmit = screen.getByRole('button', { name: /wyslij/i })
-
+    userEvent.click(buttonSubmit)
     await waitFor(() => {
-      userEvent.click(buttonSubmit)
       expect(buttonSubmit).toHaveAttribute('disabled')
       expect(mockFn).toHaveBeenCalledTimes(0)
       expect(container.querySelector('[id="email-helper-text"]')).toHaveTextContent('Ups... czegoś brakuje w adresie e-mial')
@@ -89,9 +92,10 @@ describe('Reset password form validation', () => {
   })
 
   it('correct password and correct email should call handle submit function and no show error', async () => {
-
     const { container } = render(testingComponent)
-    const buttonSubmit = screen.getByRole('button', { name: /wyslij/i })
+
+    const buttonSubmit = await screen.findByTestId('buttonResetPasswordFormik')
+
     userEvent.type(screen.getByLabelText(/email/i), 'example@goo.uk')
 
     expect(container.querySelector('[id="email-helper-text"]')).toBeNull()

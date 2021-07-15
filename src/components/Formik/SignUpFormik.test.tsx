@@ -45,9 +45,11 @@ describe('SignUp form validation', () => {
   it('no email no password no confirm password should return error and not call handle submit function', async () => {
     const { container } = render(loginForm)
 
-    const buttonSubmit = screen.getByRole('button', { name: /rejestracja/i })
+    const buttonSubmit = await screen.findByTestId('buttonSignupForm')
+
+    userEvent.click(buttonSubmit)
+
     await waitFor(() => {
-      userEvent.click(buttonSubmit)
       expect(buttonSubmit).toHaveAttribute('disabled')
       expect(mockFn).toHaveBeenCalledTimes(0)
     })
@@ -59,13 +61,14 @@ describe('SignUp form validation', () => {
   it('short password and short email should return error and not call handle submit function', async () => {
     const { container } = render(loginForm)
 
+    const buttonSubmit = await screen.findByTestId('buttonSignupForm')
+
     userEvent.type(screen.getByLabelText(/email/i), 'ex')
     userEvent.type(screen.getByLabelText('hasło'), '12')
 
-    const buttonSubmit = screen.getByRole('button', { name: /rejestracja/i })
+    userEvent.click(buttonSubmit)
 
     await waitFor(() => {
-      userEvent.click(buttonSubmit)
       expect(buttonSubmit).toHaveAttribute('disabled')
       expect(mockFn).toHaveBeenCalledTimes(0)
       expect(container.querySelector('[id="email-helper-text"]')).toHaveTextContent('Ups... coś z adresem e-mail jest nie tak')
@@ -77,13 +80,14 @@ describe('SignUp form validation', () => {
   it('correct password and incorrect short email no confirm passord should return error and not call handle submit function', async () => {
     const { container } = render(loginForm)
 
+    const buttonSubmit = await screen.findByTestId('buttonSignupForm')
+
     userEvent.type(screen.getByLabelText(/email/i), 'ex')
     userEvent.type(screen.getByLabelText('hasło'), '12345678')
 
-    const buttonSubmit = screen.getByRole('button', { name: /rejestracja/i })
+    userEvent.click(buttonSubmit)
 
     await waitFor(() => {
-      userEvent.click(buttonSubmit)
       expect(buttonSubmit).toHaveAttribute('disabled')
       expect(mockFn).toHaveBeenCalledTimes(0)
       expect(container.querySelector('[id="email-helper-text"]')).toHaveTextContent('Ups... coś z adresem e-mail jest nie tak')
@@ -94,13 +98,14 @@ describe('SignUp form validation', () => {
   it('correct password and incorrect email no @ no confirm passord should return error and not call handle submit function', async () => {
     const { container } = render(loginForm)
 
+    const buttonSubmit = await screen.findByTestId('buttonSignupForm')
+
     userEvent.type(screen.getByLabelText(/email/i), 'examplegoo.uk')
     userEvent.type(screen.getByLabelText('hasło'), '12345678')
-    userEvent.tab()
-    const buttonSubmit = screen.getByRole('button', { name: /rejestracja/i })
+
+    userEvent.click(buttonSubmit)
 
     await waitFor(() => {
-      userEvent.click(buttonSubmit)
       expect(buttonSubmit).toHaveAttribute('disabled')
       expect(mockFn).toHaveBeenCalledTimes(0)
       expect(container.querySelector('[id="email-helper-text"]')).toHaveTextContent('Ups... coś z adresem e-mail jest nie tak')
@@ -111,13 +116,14 @@ describe('SignUp form validation', () => {
   it('correct password and incorrect email no .uk should return error and not call handle submit function', async () => {
     const { container } = render(loginForm)
 
+    const buttonSubmit = await screen.findByTestId('buttonSignupForm')
+
     userEvent.type(screen.getByLabelText(/email/i), 'example@goo')
     userEvent.type(screen.getByLabelText('hasło'), '12345678')
 
-    const buttonSubmit = screen.getByRole('button', { name: /rejestracja/i })
+    userEvent.click(buttonSubmit)
 
     await waitFor(() => {
-      userEvent.click(buttonSubmit)
       expect(buttonSubmit).toHaveAttribute('disabled')
       expect(mockFn).toHaveBeenCalledTimes(0)
       expect(container.querySelector('[id="email-helper-text"]')).toHaveTextContent('Ups... coś z adresem e-mail jest nie tak')
@@ -129,15 +135,18 @@ describe('SignUp form validation', () => {
   it('correct password and correct email no confirm paswword should return error and not call handle submit function', async () => {
 
     const { container } = render(loginForm)
-    const buttonSubmit = screen.getByRole('button', { name: /rejestracja/i })
+    const buttonSubmit = await screen.findByTestId('buttonSignupForm')
+
     userEvent.type(screen.getByLabelText(/email/i), 'example@goo.uk')
     userEvent.type(screen.getByLabelText('hasło'), '12345678')
 
     expect(container.querySelector('[id="email-helper-text"]')).toBeNull()
     expect(container.querySelector('[id="password-helper-text"]')).toBeNull()
     expect(buttonSubmit).not.toHaveAttribute('disabled')
+
+    userEvent.click(buttonSubmit)
+
     await waitFor(() => {
-      userEvent.click(buttonSubmit)
       expect(buttonSubmit).toHaveAttribute('disabled')
       expect(mockFn).toHaveBeenCalledTimes(0)
       expect(container.querySelector('[id="email-helper-text"]')).toBeNull()
@@ -147,7 +156,8 @@ describe('SignUp form validation', () => {
   })
   it('correct password and correct email incorrect confirm paswword should return error and not call handle submit function', async () => {
     const { container } = render(loginForm)
-    const buttonSubmit = screen.getByRole('button', { name: /rejestracja/i })
+    const buttonSubmit = await screen.findByTestId('buttonSignupForm')
+
     userEvent.type(screen.getByLabelText(/email/i), 'example@goo.uk')
     userEvent.type(screen.getByLabelText('hasło'), '12345678')
     userEvent.type(screen.getByLabelText('powtórz hasło'), '87654321')
@@ -155,8 +165,9 @@ describe('SignUp form validation', () => {
     expect(container.querySelector('[id="email-helper-text"]')).toBeNull()
     expect(container.querySelector('[id="password-helper-text"]')).toBeNull()
     expect(buttonSubmit).not.toHaveAttribute('disabled')
+
+    userEvent.click(buttonSubmit)
     await waitFor(() => {
-      userEvent.click(buttonSubmit)
       expect(buttonSubmit).toHaveAttribute('disabled')
       expect(mockFn).toHaveBeenCalledTimes(0)
       expect(container.querySelector('[id="email-helper-text"]')).toBeNull()
@@ -166,7 +177,8 @@ describe('SignUp form validation', () => {
   })
   it('no password and correct email incorrect confirm paswword should return error and not call handle submit function', async () => {
     const { container } = render(loginForm)
-    const buttonSubmit = screen.getByRole('button', { name: /rejestracja/i })
+    const buttonSubmit = await screen.findByTestId('buttonSignupForm')
+
     userEvent.type(screen.getByLabelText(/email/i), 'example@goo.uk')
 
     userEvent.type(screen.getByLabelText('powtórz hasło'), '87654321')
@@ -174,8 +186,10 @@ describe('SignUp form validation', () => {
     expect(container.querySelector('[id="email-helper-text"]')).toBeNull()
     expect(container.querySelector('[id="password-helper-text"]')).toBeNull()
     expect(buttonSubmit).not.toHaveAttribute('disabled')
+
+    userEvent.click(buttonSubmit)
+
     await waitFor(() => {
-      userEvent.click(buttonSubmit)
       expect(buttonSubmit).toHaveAttribute('disabled')
       expect(mockFn).toHaveBeenCalledTimes(0)
       expect(container.querySelector('[id="email-helper-text"]')).toBeNull()
@@ -186,7 +200,7 @@ describe('SignUp form validation', () => {
   it('correct password and correct email correct confirm paswword should call handle submit function and no show error', async () => {
 
     const { container } = render(loginForm)
-    const buttonSubmit = screen.getByRole('button', { name: /rejestracja/i })
+    const buttonSubmit = await screen.findByTestId('buttonSignupForm')
     userEvent.type(screen.getByLabelText(/email/i), 'example@goo.uk')
     userEvent.type(screen.getByLabelText('hasło'), '12345678')
     userEvent.type(screen.getByLabelText('powtórz hasło'), '12345678')

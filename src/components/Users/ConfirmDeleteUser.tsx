@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { createMuiTheme, ThemeProvider, Container } from '@material-ui/core';
+import { ThemeProvider, Container } from '@material-ui/core';
+import { createTheme } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles'
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,11 +19,8 @@ export enum ActionMessage {
     LOADING
 }
 
-const theme = createMuiTheme({
+const theme = createTheme({
 
-    // palette: {
-    //     primary: green
-    // }
 })
 
 
