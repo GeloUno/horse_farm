@@ -101,10 +101,16 @@ describe('Make Booking', () => {
         lastHourBooking={21}
         user={userExample}
       />)
-      const result = screen.getByTestId('userMakeBookingImageSrc')
-      expect(result).toBeInTheDocument()
-      expect(result).toBeVisible()
-      expect(result).toHaveAttribute('src', `${userExample.photoId}`)
+      if (userExample.photoId) {
+
+        const result = screen.getByTestId('userMakeBookingImageSrc')
+        expect(result).toBeInTheDocument()
+        expect(result).toBeVisible()
+        expect(result).toHaveAttribute('src', `${userExample.photoId}`)
+      } else {
+        const result = screen.queryByTestId('userMakeBookingImageSrc')
+        expect(result).not.toBeInTheDocument()
+      }
 
     });
     it('should have user name body', async () => {
